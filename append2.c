@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <fcntl.h>
 #include <errno.h>
+#include <string.h>
 
 int main(int argc, char *argv[])
 {
@@ -31,7 +33,7 @@ int main(int argc, char *argv[])
 	 * rather than always writing BUFSIZ characters.
 	 */
 	while((n = read(fromfd, buf, sizeof(buf))) > 0)
-	  if(fwrite(tofd, buf, n) != n) {
+	  if(write(tofd, buf, n) != n) {
 	    write(STDERR_FILENO, "Could not write to to-file.\n", 28);
 	    break;
 	  }
