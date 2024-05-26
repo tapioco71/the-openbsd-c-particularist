@@ -49,7 +49,11 @@ int main(int argc, char *argv[])
      * Output the record.  Notice we pass the address
      * of the structure.
      */
-    putRecord(fp, i, &records[ i ]);
+    if(putRecord(fp, i, &records[ i ]) == EXIT_FAILURE) {
+      perror("Could not write record.\n");
+      fclose(fp);
+      exit(EXIT_FAILURE);
+    }
   }
   fclose(fp);
   exit(EXIT_SUCCESS);
