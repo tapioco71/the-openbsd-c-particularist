@@ -8,19 +8,14 @@ struct tagRecord {
 
 typedef struct tagRecord tRecord;
 
-tRecord records[ 5 ] = {
-  { 1, "user1" },
-  { 2, "user2" },
-  { 3, "user3" },
-  { 4, "user4" },
-  { 5, "user5" }
-};
+int positions[ 5 ] = { 3, 0, 2, 1 4 };
+tRecord records[ 5 ];
 
 /*
  * Function prototypes.
  */
 
-int putRecord(FILE *, int, tRecord *);
+int getRecord(FILE *, int, tRecord *);
 int main(int, char *[]);
 
 /*
@@ -34,32 +29,33 @@ int main(int argc, char *argv[])
   tRecord rec;
 
   /*
-   * Open the data file for writing.
+   * Open the data file for reading.
    */
-  if((fp = fopen("datafile.dat", "w")) == NULL) {
-    perror("Could not open datafile.dat for writing.\n");
+  if((fp = fopen("datafile.dat", "r")) == NULL) {
+    perror("Could not open datafile.dat for reading.\n");
     exit(EXIT_FAILURE);
   }
 
   /*
-   * For each user, going backwards...
+   * For each position read back the corresponding user.
    */
-  for(i = 4; i >= 0; i--) {
+  for(i = 0; i < 5; i++) {
     /*
      * Output the record.  Notice we pass the address
      * of the structure.
      */
-    if(putRecord(fp, i, &records[ i ]) == EXIT_FAILURE) {
-      perror("Could not write record.\n");
+    if(getRecord(fp, positions[ i ], &record) == EXIT_FAILURE) {
+      perror("Could not read record.\n");
       fclose(fp);
       exit(EXIT_FAILURE);
     }
+    printf("uid: %d, login: %s\n", record.uid, record.login);
   }
   fclose(fp);
   exit(EXIT_SUCCESS);
 }
 
-int putRecord(FILE *fp, int i, tRecord *r)
+int getRecord(FILE *fp, int i, tRecord *r)
 {
   int ret = EXIT_FAILURE;
   /*
@@ -73,7 +69,7 @@ int putRecord(FILE *fp, int i, tRecord *r)
 	 * Write the record.  We want to write  one
 	 * object the size of a record structure.
 	 */
-	if(fwrite((char *) r, sizeof(tRecord), 1, fp) == 1)
+	if(fread((void *) r, sizeof(tRecord), 1, fp) == 1)
 	  ret = EXIT_SUCCESS;
     }
   return ret;
