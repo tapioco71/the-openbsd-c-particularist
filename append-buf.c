@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
     exit(1);
   }
   /*
-   * Now read a line at a time from from-file
+   * Now read a buffer-full at a time from from-file
    * and write it to the to-file.
    */
   while((n = fread(buf, sizeof(char), BUFSIZ, from)) > 0)
