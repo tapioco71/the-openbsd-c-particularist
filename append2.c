@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
 	if(errno == 0)
 	  ret = EXIT_SUCCESS;
       } else {
-	write(STDERR_FILENO, argv[ 2 ], strlen(argv[2 ]));
+	write(STDERR_FILENO, argv[ 2 ], strlen(argv[ 2 ]));
       }
       close(fromfd);
     } else {
@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
   } else {
     write(STDERR_FILENO, "Usage: ", 7);
     write(STDERR_FILENO, *argv, strlen(argv[ 0 ]));
-    write(STDERR_FILENO, "from-file to-file\n", 18);
+    write(STDERR_FILENO, " from-file to-file\n", 19);
   }
   exit(ret);
 }
