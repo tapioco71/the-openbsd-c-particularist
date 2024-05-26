@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
     }
   } else {
     write(STDERR_FILENO, "Usage: ", 7);
-    write(STDERR_FILENO, *argv, strlen(argv));
+    write(STDERR_FILENO, *argv, strlen(argv[ 0 ]));
     write(STDERR_FILENO, "from-file to-file\n", 18);
   }
   exit(ret);
