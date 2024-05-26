@@ -8,7 +8,7 @@ struct tagRecord {
 
 typedef struct tagRecord tRecord;
 
-int positions[ 5 ] = { 3, 0, 2, 1 4 };
+int positions[ 5 ] = { 3, 0, 2, 1, 4 };
 tRecord records[ 5 ];
 
 /*
