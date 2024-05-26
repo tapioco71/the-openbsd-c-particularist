@@ -44,12 +44,12 @@ int main(int argc, char *argv[])
      * Output the record.  Notice we pass the address
      * of the structure.
      */
-    if(getRecord(fp, positions[ i ], &record) == EXIT_FAILURE) {
+    if(getRecord(fp, positions[ i ], &rec) == EXIT_FAILURE) {
       perror("Could not read record.\n");
       fclose(fp);
       exit(EXIT_FAILURE);
     }
-    printf("uid: %d, login: %s\n", record.uid, record.login);
+    printf("uid: %d, login: %s\n", rec.uid, rec.login);
   }
   fclose(fp);
   exit(EXIT_SUCCESS);
