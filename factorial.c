@@ -4,9 +4,8 @@
 /*
  * Function prototypes.
  */
-
 int main(int, char *[]);
-long int factorial(long int);
+unsigned long int factorial(unsigned long int);
 
 /*
  * Main function body.
@@ -14,19 +13,19 @@ long int factorial(long int);
 
 int main(int argc, char *argv[])
 {
-  long int n, m;
+  unsigned long int n, m;
   /*
    * Messaging the user to enter the integer
    * number.
    */
   printf("Enter an integer number: ");
-  scanf("%ld", &n);
-  if(n > 31ul) {
-    perror("n must be a positive integer between 0 and 31.\n");
+  scanf("%lu", &n);
+  if(n > 20ul) {
+    perror("n must be a positive integer between 0 and 20.\n");
     exit(EXIT_FAILURE);
   }
   m = factorial(n);
-  printf("The factorial of %d is %d.\n", n, m);
+  printf("The factorial of %lu is %lu.\n", n, m);
   exit(EXIT_SUCCESS);
 }
 
@@ -35,7 +34,7 @@ int main(int argc, char *argv[])
  * n! = 1 * 2 * 3 * ... * n
  */
 
-long int factorial(long int n)
+unsigned long int factorial(unsigned long int n)
 {
   /*
    * computes n!
