@@ -44,11 +44,11 @@ int main(int argc, char *argv[])
 	if(errno == 0)
 	  ret = EXIT_SUCCESS;
       } else {
-	write(STDERR_FILENO, *argv[ 2 ], strlen(argv[2 ]));
+	write(STDERR_FILENO, argv[ 2 ], strlen(argv[2 ]));
       }
       close(fromfd);
     } else {
-      write(STDERR_FILENO, *argv[ 1 ], strlen(argv[ 1 ]));
+      write(STDERR_FILENO, argv[ 1 ], strlen(argv[ 1 ]));
     }
   } else {
     write(STDERR_FILENO, "Usage: ", 7);
