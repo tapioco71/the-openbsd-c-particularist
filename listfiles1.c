@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
      * low-level read to do things this way, since
      * at a time is very inefficient.
      */
-    while(fread((char *) &dir, sizeof(dir), 1, fp) != EOF) {
+    while(fread((char *) &dir, sizeof(struct dirent), 1, fp) != EOF) {
       /*
        * mark deleted file.
        */
