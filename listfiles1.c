@@ -6,7 +6,6 @@
 #include <sys/dir.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 /*
  * Function prototypes.
@@ -47,7 +46,7 @@ int main(int argc, char *argv[])
     closedir(dp);
     ret = EXIT_SUCCESS;
   } else {
-    perror("current directory");
+    fprintf(stderr, "Could not read current directory\n");
   }
   exit(ret);
 }
