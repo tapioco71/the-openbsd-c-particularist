@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/dir.h>
+#include <sys/stat.h>
 
 /*
  * Global variables definitions.
@@ -42,13 +43,13 @@ int main(int argc, char *argv[])
   /*
    * Check arguments count.
    */
+  flags = 0;
   if(argc < 2) {
-    ret = list(".");
+    ret = list(".", flags);
   } else {
     /*
      * Process arguments.
      */
-    flags = 0;
     while((ch = getopt(argc, argv, "asl:")) != -1) {
       switch(ch) {
       case 'a':
