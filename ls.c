@@ -140,7 +140,7 @@ void printout(char *dir, char *name, uint8_t flags)
    * Make full path name, so
    * we have a legal path.
    */
-  snprintf(newname, BLKSIZE, "%s/%s", dir, name);
+  snprintf(newname, S_BLKSIZE, "%s/%s", dir, name);
   /*
    * At this point we know the file exists,
    * so this won't fail.
