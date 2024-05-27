@@ -18,33 +18,33 @@ int main(int, char *[]);
  */
 int main(int argc, char *argv[])
 {
-  FILE *fp;
-  struct dirent dir;
+  DIR *dp;
+  struct dirent *dir;
   long int ret = EXIT_FAILURE;
   /*
    * Open the current directory.
    */
-  if((fp = fopen(".", "r")) != NULL) {
+  if((dp = opendir(".")) != NULL) {
     /*
      * Read directory entries.  Since we're reading
-     * entries one at a time, we use the fread routine,
+     * entries one at a time, we use the readdir routine,
      * which buffers them internally.  Don't use the
      * low-level read to do things this way, since
      * at a time is very inefficient.
      */
-    while(fread((char *) &dir, sizeof(struct dirent), 1, fp) != EOF) {
+    while((dir = readdir(dp) != NULL) {
       /*
        * mark deleted file.
        */
-      if(dir.d_fileno == 0)
+      if(dir -> d_fileno == 0)
 	printf(" DELETED ");
       /*
        * Make sure we print no more that DIRSIZ
        * characters.
        */
-      printf("%.*s\n", DIRSIZ(&dir), dir.d_name);
+      printf("%.*s\n", DIRSIZ(dir), dir -> d_name);
     }
-    fclose(fp);
+    closedir(dp);
     ret = EXIT_SUCCESS;
   } else {
     perror("current directory");
