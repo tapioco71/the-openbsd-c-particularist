@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
      * low-level read to do things this way, since
      * at a time is very inefficient.
      */
-    while((dir = readdir(dp) != NULL) {
+    while((dir = readdir(dp)) != NULL) {
       /*
        * mark deleted file.
        */
