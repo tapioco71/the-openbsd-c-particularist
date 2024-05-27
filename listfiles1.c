@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
        * Make sure we print no more that DIRSIZ
        * characters.
        */
-      printf("%.*s\n", DIRSIZ(dir), dir.d_name);
+      printf("%.*s\n", DIRSIZ(&dir), dir.d_name);
     }
     fclose(fp);
     ret = EXIT_SUCCESS;
