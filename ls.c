@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
 	 * otherwise just print the info about
 	 * the file.
 	 */
-	if((sbuf.st_mode & S_IFMT) == S_IFDIR)
+	if((st_buf.st_mode & S_IFMT) == S_IFDIR)
 	  ret = list(*argv, flags);
 	else {
 	  printout(".", *argv, flags);
