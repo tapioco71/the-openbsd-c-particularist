@@ -134,8 +134,8 @@ void printout(char *dir, char *name, uint8_t flags)
 {
   int i, j;
   char perms[ 10 ];
-  struct stat buf;
-  char newname[ BLKSIZE ];
+  struct stat st_buf;
+  char newname[ S_BLKSIZE ];
   /*
    * Make full path name, so
    * we have a legal path.
@@ -145,12 +145,12 @@ void printout(char *dir, char *name, uint8_t flags)
    * At this point we know the file exists,
    * so this won't fail.
    */
-  stat(newname, &sbuf);
+  stat(newname, &st_buf);
   if((flags & 0x04) != 0)
     /*
      * print size in kbytes.
      */
-    printf("%5d ", (sbuf.st_size + BLKSIZE - 1) / BLKSIZE);
+    printf("%5d ", (st_buf.st_size + S_BLKSIZE - 1) / S_BLKSIZE);
 
 
 }
