@@ -73,7 +73,7 @@ int main(int argc, char *argv[])
     if((flags & 0x08) == 0) {
       argc -= optind;
       argv += optind;
-      if(stat(*++argv, &st_buf) >= 0) {
+      if(stat(*argv, &st_buf) >= 0) {
 	/*
 	 * If it is a directory we list it,
 	 * otherwise just print the info about
@@ -86,7 +86,7 @@ int main(int argc, char *argv[])
 	  ret = EXIT_SUCCESS;
 	}
       } else {
-	perror(*argv);
+	fprintf(stderr, "ls error.\n");
       }
     }
   }
