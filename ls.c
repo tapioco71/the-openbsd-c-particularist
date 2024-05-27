@@ -155,4 +155,9 @@ void printout(char *dir, char *name, uint8_t flags)
 
 }
 
+void usage(void)
+{
+  printf("Usage: ls [-asl] dir\n");
+}
+
 /* End of file listfiles1.c */
