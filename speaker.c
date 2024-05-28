@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
+#include <errno.h>
 #include <sys/ioctl.h>
 #include <dev/isa/spkrio.h>
 
@@ -37,6 +38,8 @@ int main(int argc, char *argv[])
       ioctl(fd, SPKRTONE, tones[ i ]);
     }
     ret = EXIT_SUCCESS;
+  } else {
+    perror("speaker");
   }
   exit(ret);
 }
