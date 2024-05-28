@@ -197,7 +197,7 @@ void printout(char *dir, char *name, uint8_t flags)
 	/*
 	 * Get the perm bits.
 	 */
-	strcat(perms, modes[ j ]);
+	strncat(perms, modes[ j ], 4);
       }
       /*
        * Handle special bits which replace the 'x'
@@ -235,7 +235,7 @@ void printout(char *dir, char *name, uint8_t flags)
 
 void usage(void)
 {
-  printf("Usage: ls [-a] [-s] [-l] dir\n");
+  printf("Usage: ls [-asl] dir\n");
 }
 
 /* End of file listfiles1.c */
