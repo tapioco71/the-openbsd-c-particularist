@@ -1,4 +1,7 @@
 /* -*- mode: c-mode; -*- */
+/*
+ * ls-like program.
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -241,4 +244,4 @@ void usage(void)
   printf("Usage: ls [-asl] dir\n");
 }
 
-/* End of file listfiles1.c */
+/* End of file ls.c */
