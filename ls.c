@@ -213,7 +213,10 @@ void printout(char *dir, char *name, uint8_t flags)
        * Print permissions, number of links,
        * user and group ids.
        */
-      printf("%s%3d %5d/%-5d ", perms, st_buf.st_nlink, st_buf.st_uid, st_buf.st_gid);
+      printf("%s%3d %5d/%-5d ", perms, \
+	     st_buf.st_nlink, \
+	     st_buf.st_uid, \
+	     st_buf.st_gid);
       /*
        * Print the size of the file in bytes.
        * and the last modification time.  The
