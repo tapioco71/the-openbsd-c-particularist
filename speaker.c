@@ -37,6 +37,7 @@ int main(int argc, char *argv[])
     for(i = 0; i < 5; i++) {
       ioctl(fd, SPKRTONE, &tones[ i ]);
     }
+    close(fd);
     ret = EXIT_SUCCESS;
   } else {
     perror("speaker");
