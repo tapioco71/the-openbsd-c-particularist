@@ -4,7 +4,7 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
-#include <dev/isa/sprkio.h>
+#include <dev/isa/spkrio.h>
 
 /*
  * Functions prototypes.
