@@ -18,7 +18,7 @@ int main(int, char *[]);
 
 int main(int argc, char *argv[])
 {
-  int fd;
+  int fd, i;
   long int ret = EXIT_FAILURE;
   tone_t tones[ 5 ] = {
     { 440, 100 },
