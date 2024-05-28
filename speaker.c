@@ -33,9 +33,9 @@ int main(int argc, char *argv[])
   /*
    * Call ioctl.
    */
-  if((fd = open("/dev/speaker", O_RDWR)) >= 0) {
+  if((fd = open("/dev/speaker", O_WRONLY, 0)) >= 0) {
     for(i = 0; i < 5; i++) {
-      ioctl(fd, SPKRTUNES, tones[ i ]);
+      ioctl(fd, SPKRTONE, &tones[ i ]);
     }
     ret = EXIT_SUCCESS;
   } else {
