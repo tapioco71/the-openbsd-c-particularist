@@ -25,11 +25,11 @@ int main(int argc, char *argv[])
   int fd, i;
   long int ret = EXIT_FAILURE;
   tone_t tones[ 5 ] = {
-    { 440, 100 },
-    { 880, 100 },
-    { 1660, 100 },
-    { 3320, 100 },
-    { 6640, 100 }
+    { 440, 200 },
+    { 880, 200 },
+    { 1660, 200 },
+    { 3320, 200 },
+    { 6640, 200 }
   };
   /*
    * Call ioctl.
