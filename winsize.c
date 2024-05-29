@@ -1,6 +1,6 @@
 /* -*- mode: c-mode; -*- */
 /*
- * speaker program.
+ * winsize program.
  */
 #include <stdio.h>
 #include <stdlib.h>
