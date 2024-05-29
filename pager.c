@@ -40,9 +40,9 @@ int main(int argc, char *argv[])
        */
       if(ioctl(fd, TIOCGETA, &old_tos) >= 0) {
 	memcpy((void *) &new_tos, (void *) &old_tos, sizeof(struct termios));
-	new_tos.c_iflag &= ~IGNBRK;             /* not ignore BREAK. */
-	new_tos.c_lflag &= ~ECHO;               /* disable ECHO. */
-	new_tos.c_lflag &= ~ISIG;               /* disable signals: INTR, QUIT, DSUSP, SUSP. */
+	new_tos.c_iflag &= ~IGNBRK;     /* not ignore BREAK. */
+	new_tos.c_lflag &= ~ECHO;       /* disable ECHO. */
+	new_tos.c_lflag &= ~ISIG;       /* disable signals: INTR, QUIT, DSUSP, SUSP. */
 	if(ioctl(fd, TIOCSETA, &new_tos) >= 0) {
 	  /*
 	   * printout files.
