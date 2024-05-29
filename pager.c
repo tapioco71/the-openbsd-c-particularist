@@ -72,13 +72,14 @@ int main(int argc, char *argv[])
 long int more(char *name)
 {
   long int ret = EXIT_FAILURE;
+  FILE *fp;
+  int line;
+  char line_buf[ BUFSIZ ];
+
   /*
    * Check arguments.
    */
   if(name) {
-    FILE *fp;
-    int line;
-    char line_buf[ BUFSIZ ];
     /*
      * Open the file to print.
      */
@@ -95,13 +96,15 @@ long int more(char *name)
 	    line++;
 	  } else {
 	    fclose(fp);
+	    ret = EXIT_SUCCESS;
 	    prompt();
 	    return ret;
 	  }
 	}
 	prompt();
       }
-    }
+    } else
+      fprintf(stderr, "Could not open %s\n", name);
   }
   return ret;
 }
