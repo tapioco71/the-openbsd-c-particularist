@@ -1,0 +1,7 @@
+struct flock {
+  off_t   l_start;        /* starting offset */
+  off_t   l_len;          /* len = 0 means until end of file */
+  pid_t   l_pid;          /* lock owner */
+  short   l_type;         /* lock type: read/write, etc. */
+  short   l_whence;       /* type of l_start */
+};
