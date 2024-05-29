@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
   /*
    * Call ioctl.
    */
-  if((fd = open("/dev/tty00", O_RDONLY)) >= 0) {
+  if((fd = open("/dev/tty", O_RDWR | O_NOCTTY)) >= 0) {
     if(ioctl(fd, TIOCGWINSZ, &ws) >= 0) {
       if((ws.ws_row == 0) && (ws.ws_col == 0))
 	printf("Ignoring the winsize structure.\n");
