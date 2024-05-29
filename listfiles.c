@@ -2,10 +2,10 @@
 /*
  * Reading directory entries.
  */
-#include <sys/types.h>
-#include <sys/dir.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/types.h>
+#include <sys/dir.h>
 
 /*
  * Function prototypes.
