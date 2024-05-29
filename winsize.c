@@ -31,16 +31,19 @@ int main(int argc, char *argv[])
    * Call ioctl.
    */
   if((fd = open("/dev/tty00", O_RDONLY)) >= 0) {
-    ioctl(fd, TIOCGWINSZ, &ws);
-    if((ws.ws_row == 0) && (ws.ws_col == 0)) {
-      perror("winsize");
-    } else {
-      printf("terminal number of rows: %d\n", ws.ws_row);
-      printf("terminal number of columns: %d\n", ws.ws_col);
-      printf("terminal x pixels size: %d\n", ws.ws_xpixel);
-      printf("terminal y pixels size: %d\n", ws.ws_ypixel);
-      close(fd);
+    if(ioctl(fd, TIOCGWINSZ, &ws) >= 0) {
+      if((ws.ws_row == 0) && (ws.ws_col == 0))
+	printf("Ignoring the winsize structure.\n");
+      else {
+	printf("terminal number of rows: %d\n", ws.ws_row);
+	printf("terminal number of columns: %d\n", ws.ws_col);
+	printf("terminal x pixels size: %d\n", ws.ws_xpixel);
+	printf("terminal y pixels size: %d\n", ws.ws_ypixel);
+      }
       ret = EXIT_SUCCESS;
-    }
-    return ret;
+    } else
+      perror("winsize");
+    close(fd);
   }
+  return ret;
+}
