@@ -36,7 +36,10 @@ int main(int argc, char *argv[])
    */
   if((fd = open("/dev/speaker", O_WRONLY, 0)) >= 0) {
     for(i = 0; i < 5; i++) {
-      ioctl(fd, SPKRTONE, &tones[ i ]);
+      if(ioctl(fd, SPKRTONE, &tones[ i ]) < 0) {
+	perror("speaker");
+	break;
+      }
     }
     close(fd);
     ret = EXIT_SUCCESS;
