@@ -42,7 +42,8 @@ int main(int argc, char *argv[])
       }
     }
     close(fd);
-    ret = EXIT_SUCCESS;
+    if(i >= 5)
+      ret = EXIT_SUCCESS;
   } else {
     perror("speaker");
   }
