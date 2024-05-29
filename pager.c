@@ -90,7 +90,7 @@ long int more(char *name)
 	   * If end-of-file, let them hit a key one
 	   * more time and then go back.
 	   */
-	  if(gets(line_buf, BUFSIZ, fp) != NULL) {
+	  if(fgets(line_buf, BUFSIZ, fp) != NULL) {
 	    fwrite(line_buf, 1, strlen(line_buf), stdout);
 	    line++;
 	  } else {
