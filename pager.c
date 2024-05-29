@@ -56,14 +56,14 @@ int main(int argc, char *argv[])
 	  if(ioctl(fd, TIOCSETA, &old_tos) >= 0)
 	    ret = EXIT_SUCCESS;
 	  else
-	    perror("pager");
+	    perror("pager: failed to set old termios");
 	} else
-	  perror("pager");
+	  perror("pager: failed to set new termios");
       } else
-	perror("pager");
+	perror("pager: failed to get termios");
       close(fd);
     } else
-      perror("pager");
+      perror("pager: could not open tty");
   } else
     fprintf(stderr, "Usage: %s file [ file1 ... ]\n", *argv);
   exit(ret);
