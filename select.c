@@ -13,6 +13,8 @@
 #include <sys/time.h>
 #include <sys/ioctl.h>
 
+#define BUFFER_SIZE 32
+
 /*
  * Functions prototypes.
  */
@@ -24,7 +26,8 @@ int main(int, char *[]);
 int main(int argc, char *argv[])
 {
   int n, nfds;
-  char buf[ 32 ];
+  char buf[ BUFFER_SIZE ];
+  long int ret = EXIT_FAILURE;
   fd_set readfs;
   struct timeval tv;
   /*
@@ -53,5 +56,26 @@ int main(int argc, char *argv[])
    */
   nfds = select(1, &readfds, NULL, NULL, &tv);
   /*
-   * Now we check
+   * Now we check the results.  If nfds is zero,
+   * then we timed out and should assume the
+   * default.  Otherwise, if file descriptor 0
+   * is set in readfds, that means that it is
+   * ready to be read and we can read something
+   * from it.
+   */
+  if(nfds == 0)
+    strncpy(buf, "WORD", 5);
+  else
+    if(FD_ISSET(0, &readfds)) {
+      n = read(0, buf, BUFFER_SIZE);
+      buf[ n > 0 ? n - 1 : 0 ] = '\0';
+    }
+  printf("\nThe word is: %s\n", buf);
+  /*
+   * This is not useful, but since we use this
+   * method to return success or failure, just
+   * go on.
+   */
+  ret = EXIT_SUCCESS;
+  exit(ret);
 }
