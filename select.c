@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
   int n, nfds;
   char buf[ BUFFER_SIZE ];
   long int ret = EXIT_FAILURE;
-  fd_set readfs;
+  fd_set readfds;
   struct timeval tv;
   /*
    * We will be reading from standard input (file
