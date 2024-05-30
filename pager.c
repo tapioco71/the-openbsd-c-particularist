@@ -13,7 +13,6 @@
 #include <sys/tty.h>
 #include <sys/ttycom.h>
 
-
 /*
  * Functions prototypes.
  */
