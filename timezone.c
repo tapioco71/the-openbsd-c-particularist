@@ -22,7 +22,7 @@ int main(int, char *[]);
 int main(int argc, char *argv[])
 {
   long int ret = EXIT_FAILURE;
-  time_t now;
+  struct timeval now;
   struct tm *tm_val;
   /*
    * get-time-of-the-day.
