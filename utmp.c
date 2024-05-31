@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 	printf("line: %.*s, ", UT_LINESIZE, record.ut_line);
 	printf("name: %.*s, ", UT_NAMESIZE, record.ut_name);
 	printf("name: %.*s, ", UT_HOSTSIZE, record.ut_host);
-	printf("time: %s\n", ctime(&record.ut_time));
+	printf("time: %s", ctime(&record.ut_time));
       }
     }
     ret = EXIT_SUCCESS;
