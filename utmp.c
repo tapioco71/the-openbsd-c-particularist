@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
   /*
    * Open the /va/run/utmp file.
    */
-  if((fd = open(_PATH_UTMP, O_RDONLY | O_NONBLOCK)) >= 0) {
+  if((fd = open(_PATH_UTMP, O_RDWR)) >= 0) {
     if(lseek(fd, 0, SEEK_SET) >= 0) {
       while(read(fd, (void *) &record, sizeof(struct utmp)) > 0) {
 	printf("line: %.*s, ", record.ut_line);
