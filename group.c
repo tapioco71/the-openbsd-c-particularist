@@ -39,6 +39,7 @@ int main(int argc, char *argv[])
 	if(*members)
 	  printf(", ");
       }
+      printf("\n");
     }
   } while(grp);
   endgrent();
