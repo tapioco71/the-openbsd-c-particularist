@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
    */
   if((fd = open(_PATH_UTMP, O_RDONLY)) >= 0) {
     if(lseek(fd, 0, SEEK_SET) > 0) {
-      while(read(1, &record, sizeof(struct utmp)) > 0) {
+      while(read(1, &record, sizeof(struct utmp)) >= 0) {
 	printf("line: %.*s, ", record.ut_line);
 	printf("name: %.*s, ", record.ut_name);
 	printf("name: %.*s, ", record.ut_host);
