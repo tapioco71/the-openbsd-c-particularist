@@ -34,9 +34,9 @@ int main(int argc, char *argv[])
       printf("group id: %d\n", grp -> gr_gid);
       printf("group members: ");
       members = grp -> gr_mem;
-      while(*member) {
-	printf("%s", *member++);
-	if(*member)
+      while(*members) {
+	printf("%s", *members++);
+	if(*members)
 	  printf(", ");
       }
     }
