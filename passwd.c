@@ -1,6 +1,6 @@
 /* -*- mode: c-mode; -*- */
 /*
- * select program.
+ * passwd program.
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
   long int ret = EXIT_FAILURE;
   struct passwd *pw;
   /*
-   * Open the password database.
+   * Open the password database file.
    */
   setpwent();
   do {
