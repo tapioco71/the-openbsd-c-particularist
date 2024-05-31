@@ -30,10 +30,12 @@ int main(int argc, char *argv[])
   if((fp = fopen(_PATH_UTMP, "r")) != NULL) {
     while(fread((char *) &record, sizeof(struct utmp), 1, fp) >= 0) {
       if(record.ut_name[ 0 ] != '\0') {
+	/*
 	printf("line: %.*s, ", record.ut_line);
 	printf("name: %.*s, ", record.ut_name);
 	printf("name: %.*s, ", record.ut_host);
 	printf("time: %s\n", ctime(&record.ut_time));
+	*/
       }
     }
     ret = EXIT_SUCCESS;
