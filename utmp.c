@@ -36,8 +36,10 @@ int main(int argc, char *argv[])
 	printf("time: %s\n", ctime(&record.ut_time));
       }
       ret = EXIT_SUCCESS;
-    }
+    } else
+      perror("utmp seek failed.");
     close(fd);
-  }
+  } else
+    perror("open /var/run/utmp");
   exit(ret);
 }
