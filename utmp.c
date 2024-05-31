@@ -29,12 +29,14 @@ int main(int argc, char *argv[])
    */
   if((fd = open(_PATH_UTMP, O_RDONLY)) >= 0) {
     if(lseek(fd, 0, SEEK_SET) >= 0) {
+      /*
       while(read(fd, (void *) &record, sizeof(struct utmp)) > 0) {
 	printf("line: %.*s, ", record.ut_line);
 	printf("name: %.*s, ", record.ut_name);
 	printf("name: %.*s, ", record.ut_host);
 	printf("time: %s\n", ctime(&record.ut_time));
       }
+      */
       ret = EXIT_SUCCESS;
     } else
       perror("utmp seek failed.");
