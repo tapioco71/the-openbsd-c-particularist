@@ -1,6 +1,6 @@
 /* -*- mode: c-mode; -*- */
 /*
- * group program.
+ * utmp program.
  */
 #include <stdio.h>
 #include <stdlib.h>
