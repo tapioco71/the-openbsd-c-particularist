@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
   /*
    * get-time-of-the-day.
    */
-  now = clock_gettime();
+  now = gettime();
   if((tm_val = localtime(&now)) != NULL) {
     printf("seconds: %d, ", tm_val -> tm_sec);
     printf("minutes: %d, ", tm_val -> tm_min);
