@@ -30,17 +30,17 @@ int main(int argc, char *argv[])
    */
   now = gettime();
   if((tm_val = localtime(&now)) != NULL) {
-    printf("seconds: %d, ", tm -> tm_sec);
-    printf("minutes: %d, ", tm -> tm_min);
-    printf("hours: %d, ", tm -> tm_hour);
-    printf("day of month: %d, ", tm -> tm_mday);
-    printf("month: %d, ", tm -> tm_mon);
-    printf("year: %d, ", tm -> tm_year);
-    printf("weekday: %d, ", tm -> tm_wday);
-    printf("day of year: %d\n", tm -> tm_yday);
-    printf("summer time in effect? %d\n", tm -> tm_isdst);
-    printf("offset from UTC in seconds: %d\n", tm -> tm_gmtoff);
-    printf("timezone name: %s\n", tm -> tm_zone);
+    printf("seconds: %d, ", tm_val -> tm_sec);
+    printf("minutes: %d, ", tm_val -> tm_min);
+    printf("hours: %d, ", tm_val -> tm_hour);
+    printf("day of month: %d, ", tm_val -> tm_mday);
+    printf("month: %d, ", tm_val -> tm_mon);
+    printf("year: %d, ", tm_val -> tm_year);
+    printf("weekday: %d, ", tm_val -> tm_wday);
+    printf("day of year: %d\n", tm_val -> tm_yday);
+    printf("summer time in effect? %d\n", tm_val -> tm_isdst);
+    printf("offset from UTC in seconds: %d\n", tm_val -> tm_gmtoff);
+    printf("timezone name: %s\n", tm_val -> tm_zone);
     ret = EXIT_SUCCESS;
   } else
     perror("Could not get local time");
