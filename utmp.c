@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
    * Open the /va/run/utmp file.
    */
   if((fd = open(_PATH_UTMP, O_RDONLY)) >= 0) {
-    while(read(fd, (void *) &record, sizeof(struct utmp)) >= 0) {
+    while(read(fd, (void *) &record, sizeof(struct utmp)) > 0) {
       if(record.ut_name[ 0 ] != '\0') {
 	printf("line: %.*s, ", UT_LINESIZE, record.ut_line);
 	printf("name: %.*s, ", UT_NAMESIZE, record.ut_name);
