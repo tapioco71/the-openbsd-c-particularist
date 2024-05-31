@@ -1,6 +1,6 @@
 /* -*- mode: c-mode; -*- */
 /*
- * passwd program.
+ * group program.
  */
 #include <stdio.h>
 #include <stdlib.h>
