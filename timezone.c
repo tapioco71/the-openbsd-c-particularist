@@ -41,14 +41,15 @@ int main(int argc, char *argv[])
   /*
    * get-time-of-the-day.
    */
-  if(gettimeofday(&now, &tz) >= 0) {
+  if((tz = timezone()) != NULL) {
     printf("time in seconds: %ld, ", now.tv_sec);
     printf("time in microseconds: %ld\n", now.tv_usec);
     printf("date: %s\n", ctime(&now.tv_sec));
     printf("minutes west of Greenwich: %d, ", tz.tz_minuteswest);
     printf("type of DST correction: %s\n", dst(tz.tz_dsttime));
     ret = EXIT_SUCCESS;
-  }
+  } else
+    perror("Could not get timezone");
   exit(ret);
 }
 
