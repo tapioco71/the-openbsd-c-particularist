@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
     printf("time in microseconds: %ld\n", now.tv_usec);
     printf("date: %s\n", ctime(&now.tv_sec));
     printf("minutes west of Greenwich: %d, ", tz.tz_minuteswest);
-    printf("type of DST correction: %s\n", dst(tz.tz_dsttim));
+    printf("type of DST correction: %s\n", dst(tz.tz_dsttime));
     ret = EXIT_SUCCESS;
   }
   exit(ret);
