@@ -28,8 +28,8 @@ int main(int argc, char *argv[])
   do {
     pw = getpwent();
     if(pw) {
-      printf("user name %s:\n", pw -> pw_name);
-      printf("user id: %d\n", pw -> pw_uid);
+      printf("user name: %s, ", pw -> pw_name);
+      printf("user id: %d, ", pw -> pw_uid);
       printf("group id: %d\n", pw -> pw_gid);
     }
   } while(pw);
