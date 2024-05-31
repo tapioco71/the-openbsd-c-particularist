@@ -19,7 +19,7 @@ int main(int, char *[]);
 /*
  * Global variables.
  */
-char *dstzones[ DST_CAN + 1 ] = {
+char *dstzones[ DST_CAN + 2 ] = {
   "None",
   "USA",
   "Australia",
