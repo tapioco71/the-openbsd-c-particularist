@@ -21,21 +21,23 @@ int main(int, char *[]);
  */
 int main(int argc, char *argv[])
 {
-  int fd;
+  FILE *fp;
   long int ret = EXIT_FAILURE;
   struct utmp record;
   /*
    * Open the /va/run/utmp file.
    */
-  if((fd = open(_PATH_UTMP, O_RDONLY)) >= 0) {
-    while(read(fd, (void *) &record, sizeof(struct utmp)) > 0) {
-      printf("line: %.*s, ", record.ut_line);
-      printf("name: %.*s, ", record.ut_name);
-      printf("name: %.*s, ", record.ut_host);
-      printf("time: %s\n", ctime(&record.ut_time));
+  if((fp = fopen(_PATH_UTMP, "r")) != NULL) {
+    while(fread((char *) &record, sizeof(struct utmp), 1, fp) != NULL) {
+      if(record.ut_name[ 0 ] != '\0') {
+	printf("line: %.*s, ", record.ut_line);
+	printf("name: %.*s, ", record.ut_name);
+	printf("name: %.*s, ", record.ut_host);
+	printf("time: %s\n", ctime(&record.ut_time));
+      }
     }
     ret = EXIT_SUCCESS;
-    close(fd);
+    fclose(fp);
   } else
     perror("open /var/run/utmp");
   exit(ret);
