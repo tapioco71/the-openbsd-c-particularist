@@ -42,7 +42,6 @@ int main(int argc, char *argv[])
       close(fd_wtmp);
     } else
       perror("Could not open /var/run/wtmp");
-    close(fd_utmp);
   } else
     fprintf(stderr, "Usage: difftime name\n");
   exit(ret);
