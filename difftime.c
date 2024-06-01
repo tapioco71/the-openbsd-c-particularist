@@ -32,16 +32,24 @@ int main(int argc, char *argv[])
    */
   if(argc == 2) {
     if((fd_wtmp = open(_PATH_WTMP, O_RDONLY)) >= 0) {
-      while(read(fd_wtmp, (void *) &record, sizeof(struct utmp)) > 0) {
-	if(record.ut_name[ 0 ] != '\0') {
-	  if(strncmp(record.ut_name, (const char *) argv[ 1 ], UT_NAMESIZE) == 0)
-	    printf("%s : %s\n", record.ut_name, ctime(&record.ut_time));
-	}
-      }
-      ret = EXIT_SUCCESS;
+      if(lseek(fd_wtmp, 0, SEEK_END) >= 0) {
+	do {
+	  if(read(fd_wtmp, (void *) &record, sizeof(struct utmp)) > 0) {
+	    if(record.ut_name[ 0 ] != '\0') {
+	      if(strncmp(record.ut_name, (const char *) argv[ 1 ], UT_NAMESIZE) == 0) {
+		printf("login for %s at %s\n", record.ut_name, ctime(&record.ut_time));
+		break;
+	      }
+	    }
+	  }
+	  if(lseek(fd_wtmp, -sizeof(struct utmp), SEEK_CUR) < 0)
+	    break;
+	} while(1);
+      } else
+	perror("Could not seek in /var/log/wtmp");
       close(fd_wtmp);
     } else
-      perror("Could not open /var/run/wtmp");
+      perror("Could not open /var/log/wtmp");
   } else
     fprintf(stderr, "Usage: difftime name\n");
   exit(ret);
