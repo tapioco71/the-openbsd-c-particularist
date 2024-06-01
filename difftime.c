@@ -26,21 +26,21 @@ int main(int argc, char *argv[])
   int fd_wtmp;
   long int ret = EXIT_FAILURE;
   double d;
-  struct utmp login_record, logout_record;
+  struct utmp tmp_record, login_record, logout_record;
 
   /*
    * Open the /va/run/utmp file.
    */
   if(argc == 2) {
     if((fd_wtmp = open(_PATH_WTMP, O_RDONLY)) >= 0) {
-      while(read(fd_wtmp, (void *) &login_record, sizeof(struct utmp)) > 0) {
-	if(strncmp((const char *) argv[ 1 ], (const char *) login_record.ut_name, UT_NAMESIZE) != 0) {
-	  while(read(fd_wtmp, (void *) &logout_record, sizeof(struct utmp)) > 0) {
-	    if((logout_record.ut_name[ 0 ] == '\0') && \
-	       strncmp((const char *) login_record.ut_line, (const char *) logout_record.ut_line, UT_LINESIZE) == 0)
-	      d = difftime(logout_record.ut_time, login_record.ut_time);
-	  }
-	}
+      while(read(fd_wtmp, (void *) &tmp_record, sizeof(struct utmp)) > 0) {
+	if(strncmp((const char *) argv[ 1 ], (const char *) tmp_record.ut_name, UT_NAMESIZE) != 0)
+	  memcpy((void *) &login_record, (void *) &tmp_record, sizeof(utmp));
+      }
+      while(read(fd_wtmp, (void *) &tmp_record, sizeof(struct utmp)) > 0) {
+	if((tmp_record.ut_name[ 0 ] == '\0') &&			\
+	   strncmp((const char *) tmp_record.ut_line, (const char *) login_record.ut_line, UT_LINESIZE) == 0)
+	  d = difftime(logout_record.ut_time, tmp_record.ut_time);
       }
       printf("user %s last session time: %f s.\n", d);
       close(fd_wtmp);
