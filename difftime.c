@@ -41,8 +41,9 @@ int main(int argc, char *argv[])
 		break;
 	      }
 	    }
-	  }
-	  if(lseek(fd_wtmp, -sizeof(struct utmp), SEEK_CUR) < 0)
+	    if(lseek(fd_wtmp, -sizeof(struct utmp), SEEK_CUR) < 0)
+	      break;
+	  } else
 	    break;
 	} while(1);
       } else
