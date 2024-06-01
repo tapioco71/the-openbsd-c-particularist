@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
 	  }
 	}
       }
-      printf("user %s last session time: %f\n", d);
+      printf("user %s last session time: %f s.\n", d);
       close(fd_wtmp);
     } else
       perror("Could not open /var/log/wtmp");
