@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
       while(read(fd_wtmp, (void *) &login_record, sizeof(struct utmp)) > 0) {
 	if(strncmp((const char *) argv[ 1 ], (const char *) login_record.ut_name, UT_NAMESIZE) != 0) {
 	  if(read(fd_wtmp, (void *) &logout_record, sizeof(struct utmp)) > 0) {
-	    d = difftime(login_record.ut_time, logout_record.ut_time);
+	    d = difftime(logout_record.ut_time, login_record.ut_time);
 	  }
 	}
       }
