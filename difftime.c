@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
   int fd_wtmp;
   long int ret = EXIT_FAILURE;
   double d;
-  off_t lp;
+  off_t lp = 0;
   struct utmp tmp_record, login_record, logout_record;
 
   /*
