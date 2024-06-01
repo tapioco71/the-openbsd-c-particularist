@@ -34,9 +34,11 @@ int main(int argc, char *argv[])
   if(argc == 2) {
     if((fd_wtmp = open(_PATH_WTMP, O_RDONLY)) >= 0) {
       while(read(fd_wtmp, (void *) &tmp_record, sizeof(struct utmp)) > 0) {
-	if(strncmp((const char *) argv[ 1 ], (const char *) tmp_record.ut_name, UT_NAMESIZE) == 0) {
-	  memcpy((void *) &login_record, (void *) &tmp_record, sizeof(struct utmp));
-	  printf("Found login name: %s\n", argv[ 1 ]);
+	if(tmp_record.ut_name[ 0 ] != '\0') {
+	  if(strncmp((const char *) argv[ 1 ], (const char *) tmp_record.ut_name, UT_NAMESIZE) == 0) {
+	    memcpy((void *) &login_record, (void *) &tmp_record, sizeof(struct utmp));
+	    printf("Found login name: %s\n", argv[ 1 ]);
+	  }
 	}
 	bzero((void *) &tmp_record, sizeof(struct utmp));
       }
