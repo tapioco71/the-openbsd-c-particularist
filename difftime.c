@@ -39,9 +39,12 @@ int main(int argc, char *argv[])
       }
       while(read(fd_wtmp, (void *) &tmp_record, sizeof(struct utmp)) > 0) {
 	if((tmp_record.ut_name[ 0 ] == '\0') &&			\
-	   strncmp((const char *) tmp_record.ut_line, (const char *) login_record.ut_line, UT_LINESIZE) == 0)
-	  d = difftime(logout_record.ut_time, tmp_record.ut_time);
+	   strncmp((const char *) tmp_record.ut_line, (const char *) login_record.ut_line, UT_LINESIZE) == 0) {
+	  memcpy((void *) &logout_record, (void *) &tmp_record, sizeof(struct utmp));
+	  break;
+	}
       }
+      d = difftime(logout_record.ut_time, login_record.ut_time);
       printf("user %s last session time: %f s.\n", d);
       close(fd_wtmp);
     } else
