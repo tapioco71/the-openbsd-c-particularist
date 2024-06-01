@@ -35,18 +35,19 @@ int main(int argc, char *argv[])
       if((fd_wtmp = open(_PATH_WTMP, O_RDONLY)) >= 0) {
 	while(read(fd_utmp, (void *) &login_record, sizeof(struct utmp)) > 0) {
 	  if(login_record.ut_name[ 0 ] != '\0') {
-	    if(strncmp(login_record.ut_name, name, UT_NAMESIZE) == 0)
+	    if(strncmp(login_record.ut_name, *argv[ 1 ], UT_NAMESIZE) == 0)
 	      break;
 	  }
 	}
 	while(read(fd_wtmp, (void *) &logout_record, sizeof(struct utmp)) > 0) {
 	  if(logout_record.ut_name[ 0 ] != '\0') {
-	    if(strncmp(logout_record.ut_name, name, UT_NAMESIZE) == 0)
+	    if(strncmp(logout_record.ut_name, *argv[ 1 ], UT_NAMESIZE) == 0)
 	      break;
 	  }
 	}
 	if((login_record.ut_name[ 0 ] != '\0') && != (logout_record.ut_name[ 0 ] != '\0')) {
-	  printf("%s: time connected %lf seconds.\n", \
+	  printf("%s: time connected %lf seconds.\n",			\
+		 *argv[ 1 ],						\
 		 difftime(login_record.ut_time, login_record.ut_time));
 	  ret = EXIT_SUCCESS;
 	}
