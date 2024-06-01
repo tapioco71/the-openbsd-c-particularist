@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
 	      }
 	    }
 	    d = difftime(logout_record.ut_time, login_record.ut_time);
-	    printf("user %s last session time: %f s.\n", d);
+	    printf("user %s last session time: %f s.\n", argv[ 1 ], d);
 	  } else
 	    perror("Could not seek in /var/log/wtmp");
 	} else
