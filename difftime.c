@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
 	}
 	while(read(fd_wtmp, (void *) &logout_record, sizeof(struct utmp)) > 0) {
 	  if(logout_record.ut_name[ 0 ] != '\0') {
-	    if(strncmp(logout_record.ut_name, *argv[ 1 ], UT_NAMESIZE) == 0)
+	    if(strncmp(logout_record.ut_name, (const char *) argv[ 1 ], UT_NAMESIZE) == 0)
 	      break;
 	  }
 	}
