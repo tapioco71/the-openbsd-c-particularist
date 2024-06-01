@@ -50,10 +50,10 @@ int main(int argc, char *argv[])
 		 difftime(login_record.ut_time, login_record.ut_time));
 	  ret = EXIT_SUCCESS;
 	}
-	close(fd_logout);
+	close(fd_wtmp);
       } else
 	perror("Could not open /var/run/wtmp");
-      close(gd_login);
+      close(fd_utmp);
     } else
       perror("Could no open /var/run/utmp");
   } else
