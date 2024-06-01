@@ -46,15 +46,18 @@ int main(int argc, char *argv[])
       }
       if(lp >= 0) {
 	if(login_record.ut_name[ 0 ] != '\0') {
-	  while(read(fd_wtmp, (void *) &tmp_record, sizeof(struct utmp)) > 0) {
-	    if((tmp_record.ut_name[ 0 ] == '\0') &&			\
-	       strncmp((const char *) tmp_record.ut_line, (const char *) login_record.ut_line, UT_LINESIZE) == 0) {
-	      memcpy((void *) &logout_record, (void *) &tmp_record, sizeof(struct utmp));
-	      break;
+	  if(lseek(fd_wtmp, lp, SEEK_SET) >= 0) {
+	    while(read(fd_wtmp, (void *) &tmp_record, sizeof(struct utmp)) > 0) {
+	      if((tmp_record.ut_name[ 0 ] == '\0') &&			\
+		 strncmp((const char *) tmp_record.ut_line, (const char *) login_record.ut_line, UT_LINESIZE) == 0) {
+		memcpy((void *) &logout_record, (void *) &tmp_record, sizeof(struct utmp));
+		break;
+	      }
 	    }
-	  }
-	  d = difftime(logout_record.ut_time, login_record.ut_time);
-	  printf("user %s last session time: %f s.\n", d);
+	    d = difftime(logout_record.ut_time, login_record.ut_time);
+	    printf("user %s last session time: %f s.\n", d);
+	  } else
+	    perror("Could not seek in /var/log/wtmp");
 	} else
 	  fprintf(stderr, "no such login: %s\n", argv[ 1 ]);
       } else
