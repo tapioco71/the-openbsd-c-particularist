@@ -50,8 +50,8 @@ int main(int argc, char *argv[])
 	    bzero((void *) &logout_record, sizeof(struct utmp));
 	    while(read(fd_wtmp, (void *) &tmp_record, sizeof(struct utmp)) > 0) {
 	      if(tmp_record.ut_name[ 0 ] == '\0') {
-		printf("Found a logout...\n");
 		if(strncmp((const char *) tmp_record.ut_line, (const char *) login_record.ut_line, UT_LINESIZE) == 0) {
+		  printf("found the corresponding logout entry for %s...\n", argv[ 1 ]);
 		  memcpy((void *) &logout_record, (void *) &tmp_record, sizeof(struct utmp));
 		  break;
 		}
