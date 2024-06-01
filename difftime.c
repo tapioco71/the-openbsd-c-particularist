@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
 	      break;
 	  }
 	}
-	if((login_record.ut_name[ 0 ] != '\0') && != (logout_record.ut_name[ 0 ] != '\0')) {
+	if((login_record.ut_name[ 0 ] != '\0') && (logout_record.ut_name[ 0 ] != '\0')) {
 	  printf("%s: time connected %lf seconds.\n",			\
 		 *argv[ 1 ],						\
 		 difftime(login_record.ut_time, login_record.ut_time));
