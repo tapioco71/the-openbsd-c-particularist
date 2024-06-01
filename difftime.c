@@ -38,6 +38,7 @@ int main(int argc, char *argv[])
 	  memcpy((void *) &login_record, (void *) &tmp_record, sizeof(struct utmp));
 	  printf("Found login name: %s\n", argv[ 1 ]);
 	}
+	bzero((void *) &tmp_record, sizeof(struct utmp));
       }
       if(login_record.ut_name[ 0 ] != '\0') {
 	while(read(fd_wtmp, (void *) &tmp_record, sizeof(struct utmp)) > 0) {
@@ -46,6 +47,7 @@ int main(int argc, char *argv[])
 	    memcpy((void *) &logout_record, (void *) &tmp_record, sizeof(struct utmp));
 	    break;
 	  }
+	  bzero((void *) &tmp_record, sizeof(struct utmp));
 	}
 	d = difftime(logout_record.ut_time, login_record.ut_time);
 	printf("user %s last session time: %f s.\n", d);
