@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
       if((fd_wtmp = open(_PATH_WTMP, O_RDONLY)) >= 0) {
 	while(read(fd_utmp, (void *) &login_record, sizeof(struct utmp)) > 0) {
 	  if(login_record.ut_name[ 0 ] != '\0') {
-	    if(strncmp(login_record.ut_name, *argv[ 1 ], UT_NAMESIZE) == 0)
+	    if(strncmp(login_record.ut_name, (const char *) argv[ 1 ], UT_NAMESIZE) == 0)
 	      break;
 	  }
 	}
