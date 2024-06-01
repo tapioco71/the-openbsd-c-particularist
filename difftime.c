@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
    */
   if(argc == 2) {
     if((fd_wtmp = open(_PATH_WTMP, O_RDONLY)) >= 0) {
-      if(lseek(fd_wtmp, 0, SEEK_END) >= 0) {
+      if(lseek(fd_wtmp, -sizeof(struct utmp), SEEK_END) >= 0) {
 	do {
 	  if(read(fd_wtmp, (void *) &record, sizeof(struct utmp)) > 0) {
 	    if(record.ut_name[ 0 ] != '\0') {
