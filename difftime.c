@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
       while(read(fd_wtmp, (void *) &tmp_record, sizeof(struct utmp)) > 0) {
 	if(tmp_record.ut_name[ 0 ] != '\0') {
 	  if(strncmp((const char *) argv[ 1 ], (const char *) tmp_record.ut_name, UT_NAMESIZE) == 0) {
-	    lp = lseek(fd_wtmp, 0, SEEK_CURR);
+	    lp = lseek(fd_wtmp, 0, SEEK_CUR);
 	    memcpy((void *) &login_record, (void *) &tmp_record, sizeof(struct utmp));
 	    printf("Found login name: %s in position %d\n", argv[ 1 ], lp);
 	  }
