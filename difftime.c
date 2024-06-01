@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
       while(read(fd_wtmp, (void *) &record, sizeof(struct utmp)) > 0) {
 	if(record.ut_name[ 0 ] != '\0') {
 	  if(strncmp(record.ut_name, (const char *) argv[ 1 ], UT_NAMESIZE) == 0)
-	    printf("%s : %s\n", record.ut_name, ctime(&record.ut_time))
+	    printf("%s : %s\n", record.ut_name, ctime(&record.ut_time));
 	}
       }
       ret = EXIT_SUCCESS;
