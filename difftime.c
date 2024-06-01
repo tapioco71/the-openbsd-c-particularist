@@ -35,7 +35,9 @@ int main(int argc, char *argv[])
   if(argc == 2) {
     if((fd_wtmp = open(_PATH_WTMP, O_RDONLY)) >= 0) {
       bzero((void *) &login_record, sizeof(struct utmp));
-      while(read(fd_wtmp, (void *) &tmp_record, sizeof(struct utmp)) > 0) {
+      while(read(fd_wtmp,			\
+		 (void *) &tmp_record,		\
+		 sizeof(struct utmp)) > 0) {
 	if(tmp_record.ut_name[ 0 ] != '\0') {
 	  if(strncmp((const char *) argv[ 1 ],		\
 		     (const char *) tmp_record.ut_name, \
@@ -49,15 +51,20 @@ int main(int argc, char *argv[])
       }
       if(lp >= 0) {
 	if(login_record.ut_name[ 0 ] != '\0') {
-	  printf("Found login name: %s in position %d.\n", argv[ 1 ], lp);
+	  printf("Found login name: %s in position %d.\n", \
+		 argv[ 1 ],				   \
+		 lp);
 	  if(lseek(fd_wtmp, lp, SEEK_SET) >= 0) {
 	    bzero((void *) &logout_record, sizeof(struct utmp));
-	    while(read(fd_wtmp, (void *) &tmp_record, sizeof(struct utmp)) > 0) {
+	    while(read(fd_wtmp,				\
+		       (void *) &tmp_record,		\
+		       sizeof(struct utmp)) > 0) {
 	      if(tmp_record.ut_name[ 0 ] == '\0') {
 		if(strncmp((const char *) tmp_record.ut_line,	\
 			   (const char *) login_record.ut_line, \
 			   UT_LINESIZE) == 0) {
-		  printf("found the corresponding logout entry for %s...\n", argv[ 1 ]);
+		  printf("found the corresponding logout entry for %s...\n", \
+			 argv[ 1 ]);
 		  memcpy((void *) &logout_record,	\
 			 (void *) &tmp_record,		\
 			 sizeof(struct utmp));
