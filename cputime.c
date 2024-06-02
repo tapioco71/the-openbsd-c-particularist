@@ -36,13 +36,12 @@ int main(int argc, char *argv[])
    */
   prev = 1;
   succ = 2;
-  for(i = 1; i < rand(); i++) {
-    printf(" %d ", succ);
+  for(i = 1; i < (10 * rand()) / RAND_MAX; i++) {
+    printf("%d\n", succ);
     temp = prev + succ;
     prev = succ;
     succ = temp;
   }
-  printf("\n");
   ret = EXIT_SUCCESS;
   /*
    * Get time after computation.
