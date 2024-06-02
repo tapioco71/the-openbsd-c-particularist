@@ -24,7 +24,7 @@ int main(int, char *[]);
  */
 int main(int argc, char *argv[])
 {
-  int temp, prev, succ;
+  int i, temp, prev, succ;
   long int ret = EXIT_FAILURE;
   struct tms before, after;
   /*
