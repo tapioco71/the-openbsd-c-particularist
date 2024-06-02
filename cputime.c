@@ -37,10 +37,12 @@ int main(int argc, char *argv[])
   prev = 1;
   succ = 2;
   for(i = 1; i < rand(); i++) {
+    printf(" %d ", succ);
     temp = prev + succ;
     prev = succ;
     succ = temp;
   }
+  printf("\n");
   ret = EXIT_SUCCESS;
   /*
    * Get time after computation.
