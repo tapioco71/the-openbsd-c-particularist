@@ -34,16 +34,15 @@ int main(int argc, char *argv[])
   /*
    * some code.
    */
-  prev = 1;
-  succ = 2;
   for(i = 1; i < rand(); i++) {
-    if(succ < 1836311903) {
+    prev = 1;
+    succ = 2;
+    do {
       printf("%d\n", prev);
       temp = prev + succ;
       prev = succ;
       succ = temp;
-    } else
-      break;
+    } while(succ < 1836311903);
   }
   ret = EXIT_SUCCESS;
   /*
