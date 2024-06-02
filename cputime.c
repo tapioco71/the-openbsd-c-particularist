@@ -24,7 +24,7 @@ int main(int, char *[]);
  */
 int main(int argc, char *argv[])
 {
-  int i, temp, prev, succ;
+  int i, temp, prev, succ, value;
   long int ret = EXIT_FAILURE;
   struct tms before, after;
   /*
@@ -37,10 +37,17 @@ int main(int argc, char *argv[])
   prev = 1;
   succ = 2;
   for(i = 1; i < rand(); i++) {
-    printf("%d\n", succ);
-    temp = prev + succ;
-    prev = succ;
-    succ = temp;
+    if(succ < 1836311903) {
+      if(i == 1)
+	value = prev;
+      else
+	value = succ;
+      printf("%d\n", value);
+      temp = prev + succ;
+      prev = succ;
+      succ = temp;
+    } else
+      break;
   }
   ret = EXIT_SUCCESS;
   /*
