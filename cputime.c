@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
    * Get time after computation.
    */
   times(&after);
-  printf("User time: %ld seconds.\n", after.tm_utime - before.tm_utime);
-  printf("System time: %ld seconds.\n", after.tm_stime - before.tm_stime);
+  printf("User time: %ld seconds.\n", after.tms_utime - before.tms_utime);
+  printf("System time: %ld seconds.\n", after.tms_stime - before.tms_stime);
   exit(ret);
 }
