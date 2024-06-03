@@ -47,3 +47,5 @@ int main(int argc, char *argv[])
     perror("Could not get time-of-the-day");
   exit(ret);
 }
+
+/* end of file timezone.c */
