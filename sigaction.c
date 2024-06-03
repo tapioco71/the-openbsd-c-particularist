@@ -24,6 +24,11 @@ struct sigaction sa = {
   SA_SIGINFO
 };
 
+struct sigaction sb = {
+  SIG_IGN,
+  SIGUSR2,
+};
+
 /*
  * The main function.
  */
@@ -34,7 +39,7 @@ int main(int argc, char *argv[])
    * setup signal handler for this process.
    */
   if(sigaction(SIGUSR1, &sa, NULL) >= 0) {
-    if(sigaction(SIGUSR2, SIG_IGN, NULL) >= 0) {
+    if(sigaction(SIGUSR2, &sb, NULL) >= 0) {
       ret = EXIT_SUCCESS;
       pause();
     } else
