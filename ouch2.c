@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
   /*
    * setup signal handler for this process.
    */
-  if(sigaction(SIGINT, &sa, NULL) >= 0) {
+  if(sigaction(SIGINT, &sa, NULL) == SIGINT) {
     ret = EXIT_SUCCESS;
     FOREVER
       pause();
@@ -49,8 +49,7 @@ void handler(int si)
   /*
    * Handler code
    */
-  FOREVER
-    ;
+  sleep(5);
   printf("OUCH\n");
 }
 
