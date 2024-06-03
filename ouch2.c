@@ -23,7 +23,7 @@ int main(int, char *[]);
 struct sigaction sa = {
   handler,
   SIGINT,
-  SA_SIGINFO
+  SA_SIGINFO | SA_RESETHAND
 };
 
 /*
