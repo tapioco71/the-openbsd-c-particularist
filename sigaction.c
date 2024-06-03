@@ -60,6 +60,7 @@ void handler(int si)
    */
   printf("Entering handler.\n");
   /* ... */
+  printf("Signal passed to handler: %d\n", si);
   printf("Exiting handler.\n");
   /*
    * Restore the old errno value.
