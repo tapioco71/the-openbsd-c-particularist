@@ -21,7 +21,7 @@ int main(int, char *[]);
 struct sigaction sa = {
   handler,
   SIGUSR1,
-  SA_SGINFO
+  SA_SIGINFO
 };
 
 /*
