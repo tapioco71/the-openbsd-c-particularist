@@ -41,9 +41,18 @@ int main(int argc, char *argv[])
 
 void handler(int si)
 {
+  /*
+   * Saving the current errno value.
+   */
   int save_errno = errno;
   /*
-   *
+   * Handler code
+   */
+  printf("Entering handler.\n");
+  /* ... */
+  printf("Exiting handler.\n");
+  /*
+   * Restore the old errno value.
    */
   errno = save_errno;
 }
