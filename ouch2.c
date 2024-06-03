@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
   /*
    * setup signal handler for this process.
    */
-  if(sigaction(SIGINT, &sa, NULL) == SIGINT) {
+  if(sigaction(SIGINT, &sa, NULL) >= 0) {
     ret = EXIT_SUCCESS;
     FOREVER
       pause();
