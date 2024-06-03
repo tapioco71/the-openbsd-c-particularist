@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
   exit(ret);
 }
 
-void handler(in si)
+void handler(int si)
 {
   int save_errno = errno;
   /*
