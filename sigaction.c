@@ -35,6 +35,7 @@ int main(int argc, char *argv[])
    */
   if(sigaction(SIGUSR1, &sa, NULL) >= 0) {
     ret = EXIT_SUCCESS;
+    pause();
   }
   exit(ret);
 }
