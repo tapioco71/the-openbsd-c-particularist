@@ -47,3 +47,5 @@ void handler(in si)
    */
   errno = save_errno;
 }
+
+/* End of file sigaction.c */
