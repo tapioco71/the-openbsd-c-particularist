@@ -34,9 +34,13 @@ int main(int argc, char *argv[])
    * setup signal handler for this process.
    */
   if(sigaction(SIGUSR1, &sa, NULL) >= 0) {
-    ret = EXIT_SUCCESS;
-    pause();
-  }
+    if(sigaction(SIGUSR2, SIG_IGN, NULL) >= 0) {
+      ret = EXIT_SUCCESS;
+      pause();
+    } else
+      perror("Could not setup SIGUSR2");
+  } else
+    perror("Could not setup SIGUSR1");
   exit(ret);
 }
 
