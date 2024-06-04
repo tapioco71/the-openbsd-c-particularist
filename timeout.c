@@ -22,7 +22,7 @@ int main(int, char *[]);
  * Global variables.
  */
 struct sigaction sa = {
-  handler,
+  timeout,
   SIGALRM,
   SA_SIGINFO | SA_RESETHAND
 };
@@ -75,7 +75,7 @@ int timeout(int sig)
    * Ignore the signal for the duration of this
    * routine.
    */
-  sigaction(sig, SIG_IGN, NULL);
+  sigaction(sig, SIGIGN, NULL);
   /*
    * We would perform any timeout-related
    * functions here; in this case there
