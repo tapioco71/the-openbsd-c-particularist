@@ -75,22 +75,25 @@ void timeout(int sig)
    * Ignore the signal for the duration of this
    * routine.
    */
-  sigaction(sig, SIG_IGN, NULL);
-  /*
-   * We would perform any timeout-related
-   * functions here; in this case there
-   * are none.
-   */
-  ;
-  /*
-   * Restore the action of the alarm signal.
-   */
-  sigaction(SIGALRM, &sa, NULL);
-  /*
-   * Return to the main routine at setjmp
-   * and make setjmp return 1.
-   */
-  longjmp(env, 1);
+  if(sig == SIGALRM) {
+    /*
+     * Restore the action of the alarm signal.
+     */
+    if(sigaction(SIGALRM, &sa, NULL) >= 0) {
+      /*
+       * We would perform any timeout-related
+       * functions here; in this case there
+       * are none.
+       */
+      ;
+      /*
+       * Return to the main routine at setjmp
+       * and make setjmp return 1.
+       */
+      ;
+      longjmp(env, 1);
+    }
+  }
 }
 
 /* End of file timeout.c */
