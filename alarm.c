@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
     ret = EXIT_SUCCESS;
     FOREVER {
       printf("Waiting!\n");
-      pause(5);
+      sleep(5);
     }
   } else
     perror("Could not setup SIGINT");
