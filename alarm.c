@@ -56,4 +56,4 @@ void handler(int si)
     printf("Alarm received.\n");
 }
 
-/* End of file ouch2.c */
+/* End of file alarm.c */
