@@ -16,7 +16,7 @@
 /*
  * Functions prototypes.
  */
-int timeout(int);
+void timeout(int);
 int main(int, char *[]);
 /*
  * Global variables.
@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
   exit(ret);
 }
 
-int timeout(int sig)
+void timeout(int sig)
 {
   /*
    * Ignore the signal for the duration of this
