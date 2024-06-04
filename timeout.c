@@ -75,7 +75,7 @@ int timeout(int sig)
    * Ignore the signal for the duration of this
    * routine.
    */
-  sigaction(sig, SIGIGN, NULL);
+  sigaction(sig, SIG_IGN, NULL);
   /*
    * We would perform any timeout-related
    * functions here; in this case there
