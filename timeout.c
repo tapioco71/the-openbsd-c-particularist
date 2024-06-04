@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
     } else {
       strncpy(buff, "WORD", BUFSIZ);
     }
-    printf("\nThe word is %s.\n", buff);
+    printf("\nThe word is %s\n", buff);
   } else
     perror("Could not setup SIGINT");
   exit(ret);
