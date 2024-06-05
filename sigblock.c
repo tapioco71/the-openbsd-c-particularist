@@ -19,17 +19,14 @@ void handler(int, siginfo_t *, void *);
 int main(int, char *[]);
 
 /* Global variables. */
-struct sigaction signals = {
-  handler,
-  0,
-  0
-};
+struct sigaction signals;
 
 /* Main function. */
 int main(int argc, char *argv[])
 {
   long int ret = EXIT_FAILURE;
   /* Setup signal set for this process. */
+  signals.sa_sigaction = handler;
   if(sigfillset(&signals.sa_mask) >= 0) {
     printf("Current signal mask set: 0x%8x\n", signals.sa_mask);
     ret = EXIT_SUCCESS;
