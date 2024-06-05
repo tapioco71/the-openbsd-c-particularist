@@ -9,6 +9,7 @@
 #include <errno.h>
 #include <signal.h>
 #include <setjmp.h>
+#include <sys/signal.h>
 
 /* sigblock.c program. */
 #define FOREVER for(;;)
