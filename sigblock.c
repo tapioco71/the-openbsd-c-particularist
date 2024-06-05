@@ -20,6 +20,7 @@ int main(int, char *[]);
 
 /* Global variables. */
 struct sigaction signals;
+jmp_buf env;
 
 /* Main function. */
 int main(int argc, char *argv[])
@@ -29,14 +30,21 @@ int main(int argc, char *argv[])
   signals.sa_sigaction = handler;
   if(sigfillset(&signals.sa_mask) >= 0) {
     printf("Current signal mask set: 0x%8x\n", signals.sa_mask);
-    ret = EXIT_SUCCESS;
+    /* Blocking all signals. */
+    if(sigprocmask(SIG_BLOCK, &signal.sa_mask, NULL) >= 0)
+      if(setjmp(env) == 0) {
+	FOREVER {
+	  ;
+	}
+      } else
+	ret = EXIT_SUCCESS;
   }
   exit(ret);
 }
 
 void handler(int sig, siginfo_t *mask, void *d)
 {
-  ;
+  longjmp(env, 1);
 }
 
 /* End of timeout.c file. */
