@@ -87,7 +87,7 @@ void handler(int sig, siginfo_t *mask, void *d)
   struct rlimit limits;
   /* Increase the stack limit to the maximum. */
   if(getrlimit(RLIMIT_STACK, &limits) >= 0) {
-    limits.rlimit_cur = limits.rlimit_max;
+    limits.rlim_cur = limits.rlim_max;
     if(setrlimit(RLIMIT_STACK, &limits) >= 0) {
       tooksig = 1;
       ret = EXIT_SUCCESS;
