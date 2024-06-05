@@ -31,7 +31,11 @@ int main(int argc, char *argv[])
   if(sigfillset(&signals.sa_mask) >= 0) {
     if(sigdelset(&signals.sa_mask, SIGUSR1) >= 0) {
       printf("Current signal mask set: 0x%8x\n", signals.sa_mask);
-      /* Blocking all signals but SIGUSR1. */
+      /*
+       * Blocking all signals but SIGUSR1.
+       * Use # `kill -s SIGUSR1 pid` to terminate the
+       * process.
+       */
       if(sigprocmask(SIG_BLOCK, &signals.sa_mask, NULL) >= 0) {
 	if(setjmp(env) == 0) {
 	  FOREVER {
@@ -50,4 +54,4 @@ void handler(int sig, siginfo_t *mask, void *d)
   longjmp(env, 1);
 }
 
-/* End of timeout.c file. */
+/* End of sigblock.c file. */
