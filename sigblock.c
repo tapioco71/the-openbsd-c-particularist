@@ -1,6 +1,6 @@
 /* -*- mode: c-mode; -*- */
 
-/* timeout.c file. */
+/* sigblock.c file. */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -11,7 +11,7 @@
 #include <setjmp.h>
 #include <sys/signal.h>
 
-/* sigblock.c program. */
+/* sigblock program. */
 #define FOREVER for(;;)
 
 /* Functions prototypes. */
