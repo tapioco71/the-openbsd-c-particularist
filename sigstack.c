@@ -91,7 +91,6 @@ void handler(int sig, siginfo_t *mask, void *d)
     limits.rlim_cur = limits.rlim_max;
     if(setrlimit(RLIMIT_STACK, &limits) >= 0) {
       tooksig = 1;
-      ret = EXIT_SUCCESS;
       return;
     } else
       fprintf(stderr, "Could not set current stack limit.\n");
