@@ -13,6 +13,11 @@
 /* sigblock.c program. */
 #define FOREVER for(;;)
 
+/* Global variables. */
+struct sigaction signals = {
+  handler,
+};
+
 /* Functions prototypes. */
 void timeout(int);
 int main(int, char *[]);
@@ -20,11 +25,10 @@ int main(int, char *[]);
 /* Main function. */
 int main(int argc, char *argv[])
 {
-  sigset_t s;
   long int ret = EXIT_FAILURE;
   /* Setup signal set for this process. */
-  if(sigfillset(&s) >= 0) {
-    printf("Current signal mask set: 0x%8x\n", s);
+  if(sigfillset(&signals.sa_mask) >= 0) {
+    printf("Current signal mask set: 0x%8x\n", signals.sa_mask);
     ret = EXIT_SUCCESS;
   }
   exit(ret);
