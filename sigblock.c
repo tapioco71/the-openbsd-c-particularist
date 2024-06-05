@@ -31,13 +31,15 @@ int main(int argc, char *argv[])
   if(sigfillset(&signals.sa_mask) >= 0) {
     printf("Current signal mask set: 0x%8x\n", signals.sa_mask);
     /* Blocking all signals. */
-    if(sigprocmask(SIG_BLOCK, &signal.sa_mask, NULL) >= 0)
+    if(sigprocmask(SIG_BLOCK, &signals.sa_mask, NULL) >= 0) {
+      printf("Current signal mask set: 0x%8x\n", signals.sa_mask);
       if(setjmp(env) == 0) {
 	FOREVER {
 	  ;
 	}
       } else
 	ret = EXIT_SUCCESS;
+    }
   }
   exit(ret);
 }
