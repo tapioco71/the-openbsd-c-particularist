@@ -20,6 +20,8 @@ int main(int, char *[]);
 /* Global variables. */
 struct sigaction signals = {
   handler,
+  0,
+  0
 };
 
 /* Main function. */
