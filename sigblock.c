@@ -13,14 +13,14 @@
 /* sigblock.c program. */
 #define FOREVER for(;;)
 
+/* Functions prototypes. */
+void handler(int, siginfo_t *, void *);
+int main(int, char *[]);
+
 /* Global variables. */
 struct sigaction signals = {
   handler,
 };
-
-/* Functions prototypes. */
-void handler(int, siginfo_t *, void *);
-int main(int, char *[]);
 
 /* Main function. */
 int main(int argc, char *argv[])
