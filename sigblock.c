@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
   long int ret = EXIT_FAILURE;
   /* Setup signal set for this process. */
   if(sigfillset(&s) >= 0) {
-    printf("Current signal mask set: 0x%x8\n", s);
+    printf("Current signal mask set: 0x%8x\n", s);
     ret = EXIT_SUCCESS;
   }
   exit(ret);
