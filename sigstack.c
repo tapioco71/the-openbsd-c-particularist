@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
        * on the interrupt stack.
        */
       signals.sa_mask = 0;
-      signals.sa_handler = handler;
+      signals.sa_sigaction = handler;
       signals.sa_flags = SA_ONSTACK;
       if(sigaction(SIGILL, &signals, NULL) >= 0) {
 	/*
@@ -63,6 +63,7 @@ int main(int argc, char *argv[])
 	  ss.ss_sp = (void *) stack;
 	  if(sigaltstack(&ss, NULL) >= 0) {
 	    /* Start using the stack. */
+	    ret = EXIT_SUCCESS;
 	    fn();
 	  } else {
 	    fprintf(stderr, "Cannot configure alternate signal stack.\n");
