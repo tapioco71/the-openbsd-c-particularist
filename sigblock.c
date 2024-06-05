@@ -29,16 +29,17 @@ int main(int argc, char *argv[])
   /* Setup signal set for this process. */
   signals.sa_sigaction = handler;
   if(sigfillset(&signals.sa_mask) >= 0) {
-    printf("Current signal mask set: 0x%8x\n", signals.sa_mask);
-    /* Blocking all signals. */
-    if(sigprocmask(SIG_BLOCK, &signals.sa_mask, NULL) >= 0) {
+    if(sigdelset(&signals.sa_mask, SIGUSR1) >= 0) {
       printf("Current signal mask set: 0x%8x\n", signals.sa_mask);
-      if(setjmp(env) == 0) {
-	FOREVER {
-	  ;
-	}
-      } else
-	ret = EXIT_SUCCESS;
+      /* Blocking all signals but SIGUSR1. */
+      if(sigprocmask(SIG_BLOCK, &signals.sa_mask, NULL) >= 0) {
+	if(setjmp(env) == 0) {
+	  FOREVER {
+	    ;
+	  }
+	} else
+	  ret = EXIT_SUCCESS;
+      }
     }
   }
   exit(ret);
