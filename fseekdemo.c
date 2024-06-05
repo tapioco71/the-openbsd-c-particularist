@@ -1,6 +1,11 @@
+/* -*- mode: c-mode; -*- */
+
+/* fseekdemo.c file. */
 #include <stdio.h>
 #include <stdlib.h>
 
+/* fseekdemo program. */
+/* structure and type definition. */
 struct tagRecord {
   int uid;
   char login[ 9 ];
@@ -8,6 +13,7 @@ struct tagRecord {
 
 typedef struct tagRecord tRecord;
 
+/* Global variables. */
 tRecord records[ 5 ] = {
   { 1, "user1" },
   { 2, "user2" },
@@ -16,34 +22,22 @@ tRecord records[ 5 ] = {
   { 5, "user5" }
 };
 
-/*
- * Function prototypes.
- */
-
+/* Function prototypes. */
 int putRecord(FILE *, int, tRecord *);
 int main(int, char *[]);
 
-/*
-  The main function.
-*/
-
+/* Main function. */
 int main(int argc, char *argv[])
 {
   int i;
   FILE *fp;
   tRecord rec;
-
-  /*
-   * Open the data file for writing.
-   */
+  /* Open the data file for writing. */
   if((fp = fopen("datafile.dat", "w")) == NULL) {
     perror("Could not open datafile.dat for writing.\n");
     exit(EXIT_FAILURE);
   }
-
-  /*
-   * For each user, going backwards...
-   */
+  /* For each user, going backwards... */
   for(i = 4; i >= 0; i--) {
     /*
      * Output the record.  Notice we pass the address
@@ -78,3 +72,5 @@ int putRecord(FILE *fp, int i, tRecord *r)
     }
   return ret;
 }
+
+/* End of fseekdemo.c file. */

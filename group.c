@@ -1,7 +1,6 @@
 /* -*- mode: c-mode; -*- */
-/*
- * group program.
- */
+
+/* group.c file. */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -9,22 +8,18 @@
 #include <errno.h>
 #include <grp.h>
 
-/*
- * Functions prototypes.
- */
+/* group program. */
+
+/* Functions prototypes. */
 int main(int, char *[]);
 
-/*
- * The main function.
- */
+/* Main function. */
 int main(int argc, char *argv[])
 {
   long int ret = EXIT_FAILURE;
   struct group *grp;
   char **members;
-  /*
-   * Open the group database file.
-   */
+  /* Open the group database file. */
   setgrent();
   do {
     grp = getgrent();
@@ -46,3 +41,5 @@ int main(int argc, char *argv[])
   ret = EXIT_SUCCESS;
   exit(ret);
 }
+
+/* End of group.c file. */

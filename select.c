@@ -1,7 +1,6 @@
 /* -*- mode: c-mode; -*- */
-/*
- * select program.
- */
+
+/* select.c file. */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -13,16 +12,13 @@
 #include <sys/time.h>
 #include <sys/ioctl.h>
 
+/* select program. */
 #define BUFFER_SIZE 32
 
-/*
- * Functions prototypes.
- */
+/* Functions prototypes. */
 int main(int, char *[]);
 
-/*
- * The main function.
- */
+/* Main function. */
 int main(int argc, char *argv[])
 {
   int n, nfds;
@@ -37,15 +33,11 @@ int main(int argc, char *argv[])
    */
   FD_ZERO(&readfds);
   FD_SET(0, &readfds);
-  /*
-   * Set the timeout for 10 seconds.
-   */
+  /* Set the timeout for 10 seconds. */
   bzero((void *) &tv, sizeof(struct timeval));
   tv.tv_sec = 15;
   tv.tv_usec = 0;
-  /*
-   * Prompt for input.
-   */
+  /* Prompt for input. */
   printf("Type a word; if you don't in 10 ");
   printf("seconds I'll use \"WORD\": ");
   fflush(stdout);
@@ -79,3 +71,5 @@ int main(int argc, char *argv[])
   ret = EXIT_SUCCESS;
   exit(ret);
 }
+
+/* End of select.c file. */

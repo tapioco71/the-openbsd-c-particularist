@@ -1,7 +1,6 @@
 /* -*- mode: c-mode; -*- */
-/*
- * difftime program.
- */
+
+/* difftime.c file. */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -13,14 +12,11 @@
 #include <sys/types.h>
 #include <sys/time.h>
 
-/*
- * Functions prototypes.
- */
+/* difftime program. */
+/* Functions prototypes. */
 int main(int, char *[]);
 
-/*
- * The main function.
- */
+/* Main function. */
 int main(int argc, char *argv[])
 {
   int fd_wtmp;
@@ -28,10 +24,7 @@ int main(int argc, char *argv[])
   double d;
   off_t lp = 0;
   struct utmp tmp_record, login_record, logout_record;
-
-  /*
-   * Open the /va/run/utmp file.
-   */
+  /* Open the /va/run/utmp file. */
   if(argc == 2) {
     if((fd_wtmp = open(_PATH_WTMP, O_RDONLY)) >= 0) {
       bzero((void *) &login_record, sizeof(struct utmp));
@@ -87,3 +80,5 @@ int main(int argc, char *argv[])
     fprintf(stderr, "Usage: difftime name\n");
   exit(ret);
 }
+
+/* End of difftime.c file. */

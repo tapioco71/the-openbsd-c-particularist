@@ -1,7 +1,6 @@
 /* -*- mode: c-mode; -*- */
-/*
- * passwd program.
- */
+
+/* passwd.c file. */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -9,21 +8,16 @@
 #include <errno.h>
 #include <pwd.h>
 
-/*
- * Functions prototypes.
- */
+/* passwd program. */
+/* Functions prototypes. */
 int main(int, char *[]);
 
-/*
- * The main function.
- */
+/* Main function. */
 int main(int argc, char *argv[])
 {
   long int ret = EXIT_FAILURE;
   struct passwd *pw;
-  /*
-   * Open the password database file.
-   */
+  /* Open the password database file. */
   setpwent();
   do {
     pw = getpwent();
@@ -34,10 +28,9 @@ int main(int argc, char *argv[])
     }
   } while(pw);
   ret = EXIT_SUCCESS;
-
-  /*
-   * Close the password database.
-   */
+  /* Close the password database file. */
   endpwent();
   exit(ret);
 }
+
+/* End of passwd.c file. */

@@ -1,7 +1,6 @@
 /* -*- mode: c-mode; -*- */
-/*
- * timezone program.
- */
+
+/* timezone.c file. */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -11,22 +10,17 @@
 #include <time.h>
 #include <sys/time.h>
 
-/*
- * Functions prototypes.
- */
+/* timezone program. */
+/* Functions prototypes. */
 int main(int, char *[]);
 
-/*
- * The main function.
- */
+/* Main function. */
 int main(int argc, char *argv[])
 {
   long int ret = EXIT_FAILURE;
   struct timeval now;
   struct tm *tm_val;
-  /*
-   * get-time-of-the-day.
-   */
+  /* get-time-of-the-day. */
   if(gettimeofday(&now, NULL) >= 0) {
     if((tm_val = localtime(&now.tv_sec)) != NULL) {
       printf("seconds: %d, ", tm_val -> tm_sec);
@@ -48,4 +42,4 @@ int main(int argc, char *argv[])
   exit(ret);
 }
 
-/* end of file timezone.c */
+/* End of timezone.c file. */

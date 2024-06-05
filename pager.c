@@ -1,7 +1,6 @@
 /* -*- mode: c-mode; -*- */
-/*
- * speaker program.
- */
+
+/* pager.c file. */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -13,45 +12,34 @@
 #include <sys/tty.h>
 #include <sys/ttycom.h>
 
-/*
- * Functions prototypes.
- */
+/* pager program. */
+
+/* Functions prototypes. */
 void prompt(void);
 long int more(char *);
 int main(int, char *[]);
 
-/*
- * The main function.
- */
-
+/* Main function. */
 int main(int argc, char *argv[])
 {
   int fd, i;
   long int ret = EXIT_FAILURE;
   struct termios old_tos, new_tos;
-  /*
-   * Check arguments count.
-   */
+  /* Check arguments count. */
   if(argc >= 2) {
     if((fd = open("/dev/tty", O_RDWR | O_NOCTTY)) >= 0) {
-      /*
-       * Retrieve terminal informations.
-       */
+      /* Retrieve terminal informations. */
       if(ioctl(fd, TIOCGETA, &old_tos) >= 0) {
 	memcpy((void *) &new_tos, (void *) &old_tos, sizeof(struct termios));
 	new_tos.c_iflag &= ~IGNBRK;     /* not ignore BREAK. */
 	new_tos.c_lflag &= ~ECHO;       /* disable ECHO. */
 	new_tos.c_lflag &= ~ISIG;       /* disable signals: INTR, QUIT, DSUSP, SUSP. */
 	if(ioctl(fd, TIOCSETA, &new_tos) >= 0) {
-	  /*
-	   * printout files.
-	   */
+	  /* Printout files. */
 	  while(--argc)
 	    if(more(*++argv) == EXIT_FAILURE)
 	      break;
-	  /*
-	   * Reset the terminal configuration.
-	   */
+	  /* Reset the terminal configuration. */
 	  if(ioctl(fd, TIOCSETA, &old_tos) >= 0)
 	    ret = EXIT_SUCCESS;
 	  else
@@ -74,14 +62,9 @@ long int more(char *name)
   FILE *fp;
   int line;
   char line_buf[ BUFSIZ ];
-
-  /*
-   * Check arguments.
-   */
+  /* Check arguments. */
   if(name) {
-    /*
-     * Open the file to print.
-     */
+    /* Open the file to print. */
     if((fp = fopen(name, "r")) != NULL) {
       for(;;) {
 	line = 1;
@@ -116,3 +99,5 @@ void prompt(void)
   answer = getchar();
   putchar('\n');
 }
+
+/* End of pager.c file. */

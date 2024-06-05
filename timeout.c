@@ -1,7 +1,6 @@
 /* -*- mode: c-mode; -*- */
-/*
- * timeout.c program.
- */
+
+/* timeout.c file. */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -11,16 +10,13 @@
 #include <signal.h>
 #include <setjmp.h>
 
+/* timeout.c program. */
 #define FOREVER for(;;)
 
-/*
- * Functions prototypes.
- */
+/* Functions prototypes. */
 void timeout(int);
 int main(int, char *[]);
-/*
- * Global variables.
- */
+/* Global variables. */
 struct sigaction sa = {
   timeout,
   SIGALRM,
@@ -28,16 +24,12 @@ struct sigaction sa = {
 };
 jmp_buf env;
 
-/*
- * The main function.
- */
+/* Main function. */
 int main(int argc, char *argv[])
 {
   char buff[ BUFSIZ ];
   long int ret = EXIT_FAILURE;
-  /*
-   * setup signal handler for this process.
-   */
+  /* Setup signal handler for this process. */
   if(sigaction(SIGALRM, &sa, NULL) >= 0) {
     /*
      * The code inside the if gets executed the first
@@ -50,14 +42,10 @@ int main(int argc, char *argv[])
        * delivered in 15 seconds.
        */
       alarm(15);
-      /*
-       * Prompt for input.
-       */
+      /* Prompt for input. */
       printf("Type a word: if you don't in 15 seconds I'll use \"WORD\": ");
       fgets(buff, BUFSIZ, stdin);
-      /*
-       * Turns off the alarm.
-       */
+      /* Turns off the alarm. */
       alarm(0);
       ret = EXIT_SUCCESS;
     } else {
@@ -76,9 +64,7 @@ void timeout(int sig)
    * routine.
    */
   if(sig == SIGALRM) {
-    /*
-     * Restore the action of the alarm signal.
-     */
+    /* Restore the action of the alarm signal. */
     if(sigaction(SIGALRM, &sa, NULL) >= 0) {
       /*
        * We would perform any timeout-related
@@ -96,4 +82,4 @@ void timeout(int sig)
   }
 }
 
-/* End of file timeout.c */
+/* End of timeout.c file. */

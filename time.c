@@ -1,7 +1,6 @@
 /* -*- mode: c-mode; -*- */
-/*
- * time program.
- */
+
+/* time.c file. */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -11,21 +10,16 @@
 #include <time.h>
 #include <sys/time.h>
 
-/*
- * Functions prototypes.
- */
+/* time program. */
+/* Functions prototypes. */
 int main(int, char *[]);
 
-/*
- * The main function.
- */
+/* Main function. */
 int main(int argc, char *argv[])
 {
   long int ret = EXIT_FAILURE;
   struct timeval now;
-  /*
-   * get-time-of-the-day.
-   */
+  /* get-time-of-the-day. */
   if(gettimeofday(&now, NULL) >= 0) {
     printf("time in seconds: %ld, ", now.tv_sec);
     printf("time in microseconds: %ld\n", now.tv_usec);
@@ -34,3 +28,5 @@ int main(int argc, char *argv[])
   }
   exit(ret);
 }
+
+/* End of timer.c file. */

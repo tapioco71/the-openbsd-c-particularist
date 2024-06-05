@@ -1,7 +1,6 @@
 /* -*- mode: c-mode; -*- */
-/*
- * sigaction program.
- */
+
+/* sigaction.c file. */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -10,14 +9,12 @@
 #include <errno.h>
 #include <signal.h>
 
-/*
- * Functions prototypes.
- */
+/* sigaction program. */
+
+/* Functions prototypes. */
 void handler(int);
 int main(int, char *[]);
-/*
- * Global variables.
- */
+/* Global variables. */
 struct sigaction sa = {
   handler,
   SIGUSR1,
@@ -29,15 +26,11 @@ struct sigaction sb = {
   SIGUSR2,
 };
 
-/*
- * The main function.
- */
+/* Main function. */
 int main(int argc, char *argv[])
 {
   long int ret = EXIT_FAILURE;
-  /*
-   * setup signal handler for this process.
-   */
+  /* Setup signal handler for this process. */
   if(sigaction(SIGUSR1, &sa, NULL) >= 0) {
     if(sigaction(SIGUSR2, &sb, NULL) >= 0) {
       ret = EXIT_SUCCESS;
@@ -51,21 +44,15 @@ int main(int argc, char *argv[])
 
 void handler(int si)
 {
-  /*
-   * Saving the current errno value.
-   */
+  /* Saving the current errno value. */
   int save_errno = errno;
-  /*
-   * Handler code
-   */
+  /* Handler code. */
   printf("Entering handler.\n");
   /* ... */
   printf("Signal passed to handler: %d\n", si);
   printf("Exiting handler.\n");
-  /*
-   * Restore the old errno value.
-   */
+  /* Restore the old errno value. */
   errno = save_errno;
 }
 
-/* End of file sigaction.c */
+/* End of sigaction.c file. */

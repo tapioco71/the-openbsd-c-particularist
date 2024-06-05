@@ -1,7 +1,6 @@
 /* -*- mode: c-mode; -*- */
-/*
- * utmp program.
- */
+
+/* utmp.c file. */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -11,22 +10,17 @@
 #include <time.h>
 #include <utmp.h>
 
-/*
- * Functions prototypes.
- */
+/* utmp program. */
+/* Functions prototypes. */
 int main(int, char *[]);
 
-/*
- * The main function.
- */
+/* Main function. */
 int main(int argc, char *argv[])
 {
   int fd;
   long int ret = EXIT_FAILURE;
   struct utmp record;
-  /*
-   * Open the /va/run/utmp file.
-   */
+  /* Open the /va/run/utmp file. */
   if((fd = open(_PATH_UTMP, O_RDONLY)) >= 0) {
     while(read(fd, (void *) &record, sizeof(struct utmp)) > 0) {
       if(record.ut_name[ 0 ] != '\0') {
@@ -42,3 +36,5 @@ int main(int argc, char *argv[])
     perror("open /var/run/utmp");
   exit(ret);
 }
+
+/* End of utmp.c file. */

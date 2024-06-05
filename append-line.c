@@ -1,20 +1,24 @@
+/* -*- mode: c-mode; -*- */
+
+/* append-line.c file. */
 #include <stdio.h>
 #include <stdlib.h>
 
+/* append-line program. */
+/* Functions prototype. */
+int main(int, char *[]);
+
+/* Main function. */
 int main(int argc, char *argv[])
 {
   FILE *from, *to;
   char line[ BUFSIZ ];
-  /*
-   * Check our arguments.
-   */
+  /* Check our arguments. */
   if(argc != 3) {
     fprintf(stderr, "Usage: %s from-file to-file\n", *argv);
     exit(1);
   }
-  /*
-   * Open the from-file for reading.
-   */
+  /* Open the from-file for reading. */
   if((from = fopen(argv[ 1 ], "r")) == NULL) {
     perror(argv[ 1 ]);
     exit(1);
@@ -33,10 +37,10 @@ int main(int argc, char *argv[])
    */
   while(fgets(line, BUFSIZ, from) != NULL)
     fputs(line, to);
-  /*
-   * Now close the files.
-   */
+  /* Now close the files. */
   fclose(to);
   fclose(from);
   exit(0);
 }
+
+/* End of append-line.c file. */

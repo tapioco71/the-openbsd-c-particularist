@@ -1,16 +1,15 @@
+/* -*- mode: c-mode; -*- */
+
+/* factorial.c file. */
 #include <stdio.h>
 #include <stdlib.h>
 
-/*
- * Function prototypes.
- */
+/* factorial program. */
+/* Function prototypes. */
 int main(int, char *[]);
 unsigned long int factorial(unsigned long int);
 
-/*
- * Main function body.
- */
-
+/* Main function. */
 int main(int argc, char *argv[])
 {
   unsigned long int n, m;
@@ -33,14 +32,13 @@ int main(int argc, char *argv[])
  * The factorial function which computes
  * n! = 1 * 2 * 3 * ... * n
  */
-
 unsigned long int factorial(unsigned long int n)
 {
-  /*
-   * computes n!
-   */
+  /* computes n! */
   if((n == 0ul) || (n == 1ul))
     return 1ul;
   else
     return n * factorial(n - 1);
 }
+
+/* End of factorial.c file. */

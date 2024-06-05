@@ -1,6 +1,11 @@
+/* -*- mode: c-mode; -*- */
+
+/* fseekreadback.c file. */
 #include <stdio.h>
 #include <stdlib.h>
 
+/* fseekreadback program. */
+/* structure and type definitions. */
 struct tagRecord {
   int uid;
   char login[ 9 ];
@@ -8,37 +13,26 @@ struct tagRecord {
 
 typedef struct tagRecord tRecord;
 
+/* Global variables. */
 int positions[ 5 ] = { 3, 0, 2, 1, 4 };
 tRecord records[ 5 ];
 
-/*
- * Function prototypes.
- */
-
+/* Function prototypes. */
 int getRecord(FILE *, int, tRecord *);
 int main(int, char *[]);
 
-/*
-  The main function.
-*/
-
+/* Main function. */
 int main(int argc, char *argv[])
 {
   int i;
   FILE *fp;
   tRecord rec;
-
-  /*
-   * Open the data file for reading.
-   */
+  /* Open the data file for reading. */
   if((fp = fopen("datafile.dat", "r")) == NULL) {
     perror("Could not open datafile.dat for reading.\n");
     exit(EXIT_FAILURE);
   }
-
-  /*
-   * For each position read back the corresponding user.
-   */
+  /* For each position read back the corresponding user. */
   for(i = 0; i < 5; i++) {
     /*
      * Output the record.  Notice we pass the address
@@ -74,3 +68,5 @@ int getRecord(FILE *fp, int i, tRecord *r)
     }
   return ret;
 }
+
+/* End of fseekreadback.c file. */

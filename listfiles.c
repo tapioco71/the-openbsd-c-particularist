@@ -1,28 +1,22 @@
 /* -*- mode: c-mode; -*- */
-/*
- * Reading directory entries.
- */
+
+/* listfiles.c file. */
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/dir.h>
 
-/*
- * Function prototypes.
- */
+/* listfiles program. */
+/* Function prototypes. */
 int main(int, char *[]);
 
-/*
- * The main function.
- */
+/* Main function. */
 int main(int argc, char *argv[])
 {
   DIR *dp;
   struct dirent *dir;
   long int ret = EXIT_FAILURE;
-  /*
-   * Open the current directory.
-   */
+  /* Open the current directory. */
   if((dp = opendir(".")) != NULL) {
     /*
      * Read directory entries.  Since we're reading
@@ -32,9 +26,7 @@ int main(int argc, char *argv[])
      * at a time is very inefficient.
      */
     while((dir = readdir(dp)) != NULL) {
-      /*
-       * mark deleted file.
-       */
+      /* mark deleted file. */
       if(dir -> d_fileno == 0)
 	printf(" DELETED ");
       /*
@@ -51,4 +43,4 @@ int main(int argc, char *argv[])
   exit(ret);
 }
 
-/* End of file listfiles1.c */
+/* End of listfiles.c file. */

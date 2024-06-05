@@ -1,7 +1,6 @@
 /* -*- mode: c-mode; -*- */
-/*
- * speaker program.
- */
+
+/* speaker.c file. */
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -10,16 +9,12 @@
 #include <sys/ioctl.h>
 #include <dev/isa/spkrio.h>
 
-/*
- * Functions prototypes.
- */
+/* speaker program. */
 
+/* Functions prototypes. */
 int main(int, char *[]);
 
-/*
- * The main function.
- */
-
+/* Main function. */
 int main(int argc, char *argv[])
 {
   int fd, i;
@@ -31,9 +26,7 @@ int main(int argc, char *argv[])
     { 3320, 200 },
     { 6640, 200 }
   };
-  /*
-   * Call ioctl.
-   */
+  /* Call ioctl. */
   if((fd = open("/dev/speaker", O_WRONLY, 0)) >= 0) {
     for(i = 0; i < 5; i++) {
       if(ioctl(fd, SPKRTONE, &tones[ i ]) < 0) {
@@ -49,3 +42,5 @@ int main(int argc, char *argv[])
   }
   exit(ret);
 }
+
+/* End of speaker.c file. */

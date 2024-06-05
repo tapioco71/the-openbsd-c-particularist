@@ -1,7 +1,6 @@
 /* -*- mode: c-mode; -*- */
-/*
- * alarm.c program.
- */
+
+/* alarm.c file. */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -12,29 +11,24 @@
 
 #define FOREVER for(;;)
 
-/*
- * Functions prototypes.
- */
+/* alarm program. */
+/* Functions prototypes. */
 void handler(int);
 int main(int, char *[]);
-/*
- * Global variables.
- */
+
+/* Global variables. */
 struct sigaction sa = {
   handler,
   SIGALRM,
   SA_SIGINFO
 };
 
-/*
- * The main function.
- */
+/* The main function. */
 int main(int argc, char *argv[])
 {
   long int ret = EXIT_FAILURE;
-  /*
-   * setup signal handler for this process.
-   */
+
+  /* setup signal handler for this process. */
   if(sigaction(SIGALRM, &sa, NULL) >= 0) {
     alarm(15);
     ret = EXIT_SUCCESS;
@@ -49,11 +43,9 @@ int main(int argc, char *argv[])
 
 void handler(int si)
 {
-  /*
-   * Handler code
-   */
+  /* Handler code. */
   if(si == SIGALRM)
     printf("Alarm received.\n");
 }
 
-/* End of file alarm.c */
+/* End of alarm.c file. */

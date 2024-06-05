@@ -1,7 +1,6 @@
 /* -*- mode: c-mode; -*- */
-/*
- * ls-like program.
- */
+
+/* ls.c file. */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -12,9 +11,8 @@
 #include <sys/dir.h>
 #include <sys/stat.h>
 
-/*
- * Global variables definitions.
- */
+/* ls program. */
+/* Global variables definitions. */
 char *modes[] = {
   "---",
   "--x",
@@ -25,17 +23,13 @@ char *modes[] = {
   "rw-",
   "rwx"
 };
-/*
- * Function prototypes.
- */
+/* Function prototypes. */
 void usage(void);
 long int list(char *, uint8_t);
 void printout(char *, char *, uint8_t);
 int main(int, char *[]);
 
-/*
- * The main function.
- */
+/* Main function. */
 int main(int argc, char *argv[])
 {
   int ch;
@@ -44,16 +38,12 @@ int main(int argc, char *argv[])
   struct dirent *dir;
   DIR *dp;
   uint8_t flags;
-  /*
-   * Check arguments count.
-   */
+  /* Check arguments count. */
   flags = 0;
   if(argc < 2) {
     ret = list(".", flags);
   } else {
-    /*
-     * Process arguments.
-     */
+    /* Process arguments. */
     while((ch = getopt(argc, argv, "als")) != -1) {
       switch(ch) {
       case 'a':
@@ -106,22 +96,14 @@ long int list(char *name, uint8_t flags)
   long int ret = EXIT_FAILURE;
   DIR *dp;
   struct dirent *dir;
-  /*
-   * open the directory.
-   */
+  /* Open the directory. */
   if((dp = opendir(name)) != NULL) {
-    /*
-     * For each entry...
-     */
+    /* For each entry... */
     while((dir = readdir(dp)) != NULL) {
-      /*
-       * Skip removed file.
-       */
+      /* Skip removed file. */
       if(dir -> d_fileno == 0)
 	continue;
-      /*
-       * Print it out.
-       */
+      /* Print it out. */
       printout(name, dir -> d_name, flags);
     }
     ret = EXIT_SUCCESS;
@@ -152,9 +134,7 @@ void printout(char *dir, char *name, uint8_t flags)
      */
     stat(newname, &st_buf);
     if((flags & 0x04) != 0) {
-      /*
-       * print size in kbytes.
-       */
+      /* Print size in kbytes. */
       if((flags & 02) != 0)
 	printf("%5d ", (st_buf.st_size + S_BLKSIZE - 1) / S_BLKSIZE);
       /*
@@ -244,4 +224,4 @@ void usage(void)
   printf("Usage: ls [-asl] dir\n");
 }
 
-/* End of file ls.c */
+/* End of ls.c file. */

@@ -1,7 +1,6 @@
 /* -*- mode: c-mode; -*- */
-/*
- * winsize program.
- */
+
+/* winsize.c file. */
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -11,25 +10,17 @@
 #include <sys/tty.h>
 #include <sys/ttycom.h>
 
-
-/*
- * Functions prototypes.
- */
-
+/* winsize program. */
+/* Functions prototypes. */
 int main(int, char *[]);
 
-/*
- * The main function.
- */
-
+/* Main function. */
 int main(int argc, char *argv[])
 {
   int fd, i;
   long int ret = EXIT_FAILURE;
   struct winsize ws;
-  /*
-   * Call ioctl.
-   */
+  /* Call ioctl. */
   if((fd = open("/dev/tty", O_RDWR | O_NOCTTY)) >= 0) {
     if(ioctl(fd, TIOCGWINSZ, &ws) >= 0) {
       if((ws.ws_row == 0) && (ws.ws_col == 0))
@@ -47,3 +38,5 @@ int main(int argc, char *argv[])
   }
   return ret;
 }
+
+/* End of winsize.c file. */

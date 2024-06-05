@@ -1,7 +1,6 @@
 /* -*- mode: c-mode; -*- */
-/*
- * ouch2 program.
- */
+
+/* ouch2.c file. */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -10,31 +9,24 @@
 #include <errno.h>
 #include <signal.h>
 
+/* ouch2 program. */
 #define FOREVER for(;;)
 
-/*
- * Functions prototypes.
- */
+/* Functions prototypes. */
 void handler(int);
 int main(int, char *[]);
-/*
- * Global variables.
- */
+/* Global variables. */
 struct sigaction sa = {
   handler,
   SIGINT,
   SA_SIGINFO | SA_RESETHAND
 };
 
-/*
- * The main function.
- */
+/* Main function. */
 int main(int argc, char *argv[])
 {
   long int ret = EXIT_FAILURE;
-  /*
-   * setup signal handler for this process.
-   */
+  /* setup signal handler for this process. */
   if(sigaction(SIGINT, &sa, NULL) >= 0) {
     ret = EXIT_SUCCESS;
     FOREVER
@@ -46,11 +38,9 @@ int main(int argc, char *argv[])
 
 void handler(int si)
 {
-  /*
-   * Handler code
-   */
+  /* Handler code */
   sleep(5);
   printf("OUCH\n");
 }
 
-/* End of file ouch2.c */
+/* End of ouch2.c file. */
