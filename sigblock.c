@@ -19,7 +19,7 @@ struct sigaction signals = {
 };
 
 /* Functions prototypes. */
-void timeout(int);
+void handler(int, siginfo_t *, void *);
 int main(int, char *[]);
 
 /* Main function. */
@@ -32,6 +32,11 @@ int main(int argc, char *argv[])
     ret = EXIT_SUCCESS;
   }
   exit(ret);
+}
+
+void handler(int sig, siginfo_t *mask, void *d)
+{
+  ;
 }
 
 /* End of timeout.c file. */
