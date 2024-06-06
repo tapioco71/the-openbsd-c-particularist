@@ -54,14 +54,19 @@ void parse(char *buff, char *args[])
      * that the previous argument is tewrminated
      * automatically.
      */
-    while((*buff == ' ') || (*buff == '\t') || (*buff == '\n'))
+    while((*buff == ' ') ||			\
+	  (*buff == '\t') ||			\
+	  (*buff == '\n'))
       *buff++ = '\0';
 
     /* Save the argument. */
-    *args++ = buf;
+    *args++ = buff;
 
     /* Skip over the argument. */
-    while((*buff != '\0') && (*buff != ' ') && (*buff != '\t') || (*buff != '\n'))
+    while((*buff != '\0') &&					\
+	  (*buff != ' ') &&					\
+	  (*buff != '\t') &&					\
+	  (*buff != '\n'))
       buff++;
   }
   *args = '\0';
