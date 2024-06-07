@@ -87,7 +87,7 @@ long int execute(char *args[])
       printf("Executing: %s with pid %d\n", *args, pid);
       execvp(*args, args);
       perror(*args);
-      return ret;
+      exit(ret);
     }
 
     /* The parent executes the wait. */
