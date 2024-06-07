@@ -85,9 +85,10 @@ long int execute(char *args[])
   if((pid = fork()) >= 0) {
     if(pid == 0) {
       printf("Executing: %s with pid %d\n", *args, pid);
-      execvp(*args, args);
+      if(execvp(*args, args) < 0)
+	perror("execvp");
       perror(*args);
-      exit(ret);
+      ret = EXIT_FAILURE;
     }
 
     /* The parent executes the wait. */
