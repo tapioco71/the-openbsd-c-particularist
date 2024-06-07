@@ -37,7 +37,6 @@ int main(int argc, char *argv[])
     } else {
       printf("\n");
       ret = EXIT_FAILURE;
-      break;
     }
   } while(ret != EXIT_FAILURE);
   exit(ret);
