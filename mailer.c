@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
 	   * Make the read  side of the pipe our
 	   * standard input.
 	   */
-	  close(stdin);
+	  close(STDIN_FILENO);
 	  dup(pipefds[ 0 ]);
 	  close(pipefds[ 0 ]);
 
