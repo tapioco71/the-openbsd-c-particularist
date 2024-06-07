@@ -46,6 +46,7 @@ long int execute(cha *args[], int sin, int sout, int serr)
     /* The parent executes the wait. */
     while(wait(&status) != pid)
       ; /* empty loop... */
+    ret = EXIT_SUCCESS;
   } else {
     perror("fork");
   }
