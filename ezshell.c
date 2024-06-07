@@ -86,7 +86,7 @@ long int execute(char *args[])
     if(pid == 0) {
       execvp(*args, args);
       perror(*args);
-      ret = EXIT_FAILURE;
+      return ret;
     }
 
     /* The parent executes the wait. */
