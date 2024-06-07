@@ -1,0 +1,53 @@
+/* Functions prototypes. */
+long int execute(char *[], int, int, int);
+
+/*
+ * execute -- executes a command in a forked
+ *            process.
+ */
+long int execute(cha *args[], int sin, int sout, int serr)
+{
+  int pid, status;
+  long int ret = EXIT_FAILURE;
+
+  /* Get a child process. */
+  if((pid = fork()) >= 0) {
+
+    /* The child executes the code inside the if. */
+    if(pid == 0) {
+
+      /*
+       * For each of standard input, output,
+       * and error output, set the child's
+       * to the passed-down file descriptor.
+       * Note that we can't just close 0, 1
+       * and 2 since we might need them.
+       */
+      if(sin != 0) {
+	close(0);
+	dup(sin);
+      }
+      if(out != 1) {
+	close(1);
+	dup(sout);
+      }
+      if(serr != 2) {
+	close(2);
+	dup(serr);
+      }
+      if(execvp(*args, args) < 0)
+	perror("execvp");
+      else {
+	perror(*args);
+	ret = EXIT_FAILURE;
+      }
+    }
+
+    /* The parent executes the wait. */
+    while(wait(&status) != pid)
+      ; /* empty loop... */
+  } else {
+    perror("fork");
+  }
+  return ret;
+}
