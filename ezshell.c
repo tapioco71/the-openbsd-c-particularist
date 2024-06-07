@@ -84,7 +84,7 @@ long int execute(char *args[])
   /* Get a child process. */
   if((pid = fork()) >= 0) {
     if(pid == 0) {
-      printf("Executing: %s\n", *args)
+      printf("Executing: %s\n", *args);
       execvp(*args, args);
       perror(*args);
       return ret;
