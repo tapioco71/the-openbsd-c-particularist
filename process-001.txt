@@ -1,0 +1,122 @@
+struct process {
+  /*
+   * ps_mainproc is the original thread in the process.
+   * It's only still special for the handling of
+   * some signal and ptrace behaviors that need to be fixed.
+   */
+  struct  proc *ps_mainproc;
+  struct  ucred *ps_ucred;        /* Process owner's identity. */
+
+  LIST_ENTRY(process) ps_list;    /* List of all processes. */
+  TAILQ_HEAD(,proc) ps_threads;   /* [K|S] Threads in this process. */
+
+  LIST_ENTRY(process) ps_pglist;  /* List of processes in pgrp. */
+  struct  process *ps_pptr;       /* Pointer to parent process. */
+  LIST_ENTRY(process) ps_sibling; /* List of sibling processes. */
+  LIST_HEAD(, process) ps_children;/* Pointer to list of children. */
+  LIST_ENTRY(process) ps_hash;    /* Hash chain. */
+
+  /*
+   * An orphan is the child that has been re-parented to the
+   * debugger as a result of attaching to it.  Need to keep
+   * track of them for parent to be able to collect the exit
+   * status of what used to be children.
+   */
+  LIST_ENTRY(process) ps_orphan;  /* List of orphan processes. */
+  LIST_HEAD(, process) ps_orphans;/* Pointer to list of orphans. */
+
+  struct  sigiolst ps_sigiolst;   /* List of sigio structures. */
+  struct  sigacts *ps_sigacts;    /* [I] Signal actions, state */
+  struct  vnode *ps_textvp;       /* Vnode of executable. */
+  struct  filedesc *ps_fd;        /* Ptr to open files structure */
+  struct  vmspace *ps_vmspace;    /* Address space */
+  pid_t   ps_pid;                 /* Process identifier. */
+
+  struct  futex_list ps_ftlist;   /* futexes attached to this process */
+  struct  tslpqueue ps_tslpqueue; /* [p] queue of threads in thrsleep */
+  struct  rwlock  ps_lock;        /* per-process rwlock */
+  struct  mutex   ps_mtx;         /* per-process mutex */
+
+  /* The following fields are all zeroed upon creation in process_new. */
+#define ps_startzero    ps_klist
+  struct  klist ps_klist;         /* knotes attached to this process */
+  u_int   ps_flags;               /* [a] PS_* flags. */
+  int     ps_siglist;             /* Signals pending for the process. */
+
+  struct  proc *ps_single;        /* [S] Thread for single-threading. */
+  u_int   ps_singlecount;         /* [a] Not yet suspended threads. */
+
+  int     ps_traceflag;           /* Kernel trace points. */
+  struct  vnode *ps_tracevp;      /* Trace to vnode. */
+  struct  ucred *ps_tracecred;    /* Creds for writing trace */
+
+  u_int   ps_xexit;               /* Exit status for wait */
+  int     ps_xsig;                /* Stopping or killing signal */
+
+  pid_t   ps_ppid;                /* [a] Cached parent pid */
+  pid_t   ps_oppid;               /* [a] Save parent pid during ptrace. */
+  int     ps_ptmask;              /* Ptrace event mask */
+  struct  ptrace_state *ps_ptstat;/* Ptrace state */
+
+  struct  rusage *ps_ru;          /* sum of stats for dead threads. */
+  struct  tusage ps_tu;           /* accumulated times. */
+  struct  rusage ps_cru;          /* sum of stats for reaped children */
+  struct  itimerspec ps_timer[3]; /* [m] ITIMER_REAL timer */
+  /* [T] ITIMER_{VIRTUAL,PROF} timers */
+  struct  timeout ps_rucheck_to;  /* [] resource limit check timer */
+  time_t  ps_nextxcpu;            /* when to send next SIGXCPU, */
+  /* in seconds of process runtime */
+
+  u_int64_t ps_wxcounter;
+
+  struct unveil *ps_uvpaths;      /* unveil vnodes and names */
+  ssize_t ps_uvvcount;            /* count of unveil vnodes held */
+  size_t  ps_uvncount;            /* count of unveil names allocated */
+  int     ps_uvdone;              /* no more unveil is permitted */
+
+  /* End area that is zeroed on creation. */
+#define ps_endzero      ps_startcopy
+
+  /* The following fields are all copied upon creation in process_new. */
+#define ps_startcopy    ps_limit
+  struct  plimit *ps_limit;       /* [m,R] Process limits. */
+  struct  pgrp *ps_pgrp;          /* Pointer to process group. */
+
+  char    ps_comm[_MAXCOMLEN];    /* command name, incl NUL */
+
+  vaddr_t ps_strings;             /* User pointers to argv/env */
+  vaddr_t ps_auxinfo;             /* User pointer to auxinfo */
+  vaddr_t ps_timekeep;            /* User pointer to timekeep */
+  vaddr_t ps_sigcode;             /* [I] User pointer to signal code */
+  vaddr_t ps_sigcoderet;          /* [I] User ptr to sigreturn retPC */
+  u_long  ps_sigcookie;           /* [I] */
+  u_int   ps_rtableid;            /* [a] Process routing table/domain. */
+  char    ps_nice;                /* Process "nice" value. */
+
+  struct uprof {                  /* profile arguments */
+    caddr_t pr_base;        /* buffer base */
+    size_t  pr_size;        /* buffer size */
+    u_long  pr_off;         /* pc offset */
+    u_int   pr_scale;       /* pc scaling */
+  } ps_prof;
+
+  u_int32_t       ps_acflag;      /* Accounting flags. */
+
+  uint64_t ps_pledge;             /* [m] pledge promises */
+  uint64_t ps_execpledge;         /* [m] execpledge promises */
+
+  int64_t ps_kbind_cookie;        /* [m] */
+  u_long  ps_kbind_addr;          /* [m] */
+  /* an address that can't be in userspace or kernelspace */
+#define BOGO_PC (u_long)-1
+
+  struct pinsyscall ps_pin;       /* static or ld.so */
+  struct pinsyscall ps_libcpin;   /* libc.so, from pinsyscalls(2) */
+
+  /* End area that is copied on creation. */
+#define ps_endcopy      ps_threadcnt
+  u_int   ps_threadcnt;           /* Number of threads. */
+
+  struct  timespec ps_start;      /* starting uptime. */
+  struct  timeout ps_realit_to;   /* [m] ITIMER_REAL timeout */
+};
