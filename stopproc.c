@@ -26,7 +26,7 @@ int main(int argc, char * argv[])
   struct pgrp *pgrp = NULL;
 
   /* fork */
-  if((pid = fork()) >= 0) {
+  if((pid = fork()) == 0) {
 
     /* Child execute code if pid == 0. */
     printf("Child executed!\n");
