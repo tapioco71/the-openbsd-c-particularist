@@ -34,12 +34,15 @@ int main(int argc, char * argv[])
   } else {
 
     /* Parent executes otherwise. */
-    printf("Parent waiting.\n");
-    while(wait(&status) != pid)
-      ;
-    printf("Parent waited for child to finish.\n");
+    printf("Parent waiting 5 seconds before kill its child.\n");
+    sleep(5);
+    if(killpg(pid, SIGKILL) >= 0) {
+      printf("Parent killed its child.\n");
+      ret = EXIT_SUCCESS;
+    } else
+      perror("killpg");
   }
-  exit(EXIT_SUCCESS);
+  exit(ret);
 }
 
 /* End of stopproc.c file. */
