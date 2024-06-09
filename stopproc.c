@@ -30,7 +30,7 @@ int main(int argc, char * argv[])
     /* Child execute code if pid == 0. */
     /* Gets the process pgrp. */
     if((pgrp = pgfind(pid)) != NULL) {
-      printf("Adress 0x%8.0x\n", (size_t) pgrp);
+
       _exit(EXIT_SUCCESS);
     } else {
       perror("prfind");
