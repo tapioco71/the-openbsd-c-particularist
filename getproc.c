@@ -6,7 +6,9 @@
 #include <string.h>
 #include <errno.h>
 #include <unistd.h>
-#include <sys/sysctl.h>
+#include <sys/types.h>
+#include <sys/signal.h>
+#include <sys/proc.h>
 
 /* getproc program. */
 #define FOREVER for(;;)
