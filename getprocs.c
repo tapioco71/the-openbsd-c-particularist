@@ -5,7 +5,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
-#include <kvm.h>
 #include <sys/sysctl.h>
 
 /* getprocs program. */
@@ -48,8 +47,11 @@ struct kinfo_proc *getprocs(int *count, int threads)
   struct kinfo_proc *procbase = NULL ;
   unsigned int maxslp ;
   size_t size = sizeof(maxslp) ;
-  int maxslp_mib[] = { CTL_VM, VM_MAXSLP } ;
-  int mib[6] = {
+  int maxslp_mib[] = {
+    CTL_VM,
+    VM_MAXSLP
+  };
+  int mib[ 6 ] = {
     CTL_KERN,
     KERN_PROC,
     threads ? KERN_PROC_KTHREAD | KERN_PROC_SHOW_THREADS : KERN_PROC_KTHREAD,
@@ -93,7 +95,7 @@ struct kinfo_proc *getprocs(int *count, int threads)
  */
 long int showinfo(int threads)
 {
-  struct kinfo_proc * list, * proc ;
+  struct kinfo_proc *list, *proc;
   int count, i ;
   /* */
   if((list = getprocs(&count, threads)) == NULL) {
