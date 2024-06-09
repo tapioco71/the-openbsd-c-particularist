@@ -1,6 +1,6 @@
 /* -*- mode: c-mode; -*- */
 
-/* getproc.c file. */
+/* stopproc.c file. */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -10,7 +10,7 @@
 #include <sys/signal.h>
 #include <sys/proc.h>
 
-/* getproc program. */
+/* stopproc program. */
 #define FOREVER for(;;)
 
 /* Functions prototypes. */
@@ -28,19 +28,15 @@ int main(int argc, char * argv[])
   if((pid = fork()) >= 0) {
 
     /* Child execute code if pid == 0. */
-    /* Gets the process pgrp. */
-    if((pgrp = pgfind(pid)) != NULL) {
-
-      _exit(EXIT_SUCCESS);
-    } else {
-      perror("prfind");
-      _exit(EXIT_FAILURE);
-    }
+    printf("Child executed!\n");
+    _exit(EXIT_SUCCESS);
   } else {
 
     /* Parent executes otherwise. */
+    printf("Parent waiting.\n");
     while(wait(&status) != pid)
       ;
+    printf("Parent waited for child to finish.\n");
   }
   exit(EXIT_SUCCESS);
 }
