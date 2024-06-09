@@ -25,7 +25,10 @@ int main(int argc, char * argv[])
   int status;
   long int ret = EXIT_FAILURE;
   pid_t pid;
-
+  struct sigaction signal = {
+    SIG_IGN,
+    SIGKILL,
+  };
   /* fork */
   if((pid = fork()) == 0) {
 
@@ -38,18 +41,20 @@ int main(int argc, char * argv[])
   } else {
 
     /* Parent executes otherwise. */
-    pgrp = getpgrp();
-    printf("Parent waiting 5 seconds before kill its child.\n");
-    sleep(5);
-    if(killpg(pgrp, SIGKILL) >= 0) {
-      printf("Parent killed its child.\n");
-      while(wait(&status) != pid)
-	;
-      printf("Child killed!\n");
-      ret = EXIT_SUCCESS;
+    if(sigaction(SIGKILL, &signal) >= 0) {
+      pgrp = getpgrp();
+      printf("Parent waiting 5 seconds before kill its child.\n");
+      sleep(5);
+      if(killpg(pgrp, SIGKILL) >= 0) {
+	printf("Parent killed its child.\n");
+	while(wait(&status) != pid)
+	  ;
+	printf("Child killed!\n");
+	ret = EXIT_SUCCESS;
+      } else
+	perror("killpg");
     } else
-      perror("killpg");
-  }
+      perror("sigaction");
   exit(ret);
 }
 
