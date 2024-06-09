@@ -45,7 +45,7 @@ int main(int argc, char * argv[])
       printf("Parent killed its child.\n");
       while(wait(&status) != pid)
 	;
-      prtinf("Child killed!\n");
+      printf("Child killed!\n");
       ret = EXIT_SUCCESS;
     } else
       perror("killpg");
