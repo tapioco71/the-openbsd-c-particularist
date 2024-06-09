@@ -21,10 +21,10 @@ int main(int, char *[]);
 /* Main function. */
 int main(int argc, char * argv[])
 {
+  int pgrp;
   int status;
   long int ret = EXIT_FAILURE;
   pid_t pid;
-  int pgrp;
 
   /* fork */
   if((pid = fork()) == 0) {
@@ -43,7 +43,7 @@ int main(int argc, char * argv[])
     sleep(5);
     if(killpg(pgrp, SIGKILL) >= 0) {
       printf("Parent killed its child.\n");
-      while(wait(pid) != pid)
+      while(wait(&status) != pid)
 	;
       prtinf("Child killed!\n");
       ret = EXIT_SUCCESS;
