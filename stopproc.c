@@ -31,6 +31,9 @@ int main(int argc, char * argv[])
 
     /* Child execute code if pid == 0. */
     printf("Child executed!\n");
+    FOREVER {
+      ;
+    }
     _exit(EXIT_SUCCESS);
   } else {
 
