@@ -6,6 +6,7 @@
 #include <string.h>
 #include <errno.h>
 #include <unistd.h>
+#include <signal.h>
 #include <sys/types.h>
 #include <sys/signal.h>
 #include <sys/proc.h>
