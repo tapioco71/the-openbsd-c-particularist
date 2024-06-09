@@ -24,7 +24,7 @@ int main(int argc, char * argv[])
   int status;
   long int ret = EXIT_FAILURE;
   pid_t pid;
-  struct pgrp *pgrp = NULL;
+  int pgrp;
 
   /* fork */
   if((pid = fork()) == 0) {
@@ -35,9 +35,10 @@ int main(int argc, char * argv[])
   } else {
 
     /* Parent executes otherwise. */
+    pgrp = getpgrp();
     printf("Parent waiting 5 seconds before kill its child.\n");
     sleep(5);
-    if(killpg(pid, SIGKILL) >= 0) {
+    if(killpg(pgrp, SIGKILL) >= 0) {
       printf("Parent killed its child.\n");
       ret = EXIT_SUCCESS;
     } else
