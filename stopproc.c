@@ -43,6 +43,9 @@ int main(int argc, char * argv[])
     sleep(5);
     if(killpg(pgrp, SIGKILL) >= 0) {
       printf("Parent killed its child.\n");
+      while(wait(pid) != pid)
+	;
+      prtinf("Child killed!\n");
       ret = EXIT_SUCCESS;
     } else
       perror("killpg");
