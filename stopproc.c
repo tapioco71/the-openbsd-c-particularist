@@ -41,7 +41,7 @@ int main(int argc, char * argv[])
   } else {
 
     /* Parent executes otherwise. */
-    if(sigaction(SIGKILL, &signal) >= 0) {
+    if(sigaction(SIGKILL, &signal, NULL) >= 0) {
       pgrp = getpgrp();
       printf("Parent waiting 5 seconds before kill its child.\n");
       sleep(5);
