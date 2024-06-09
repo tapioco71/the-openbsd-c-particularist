@@ -120,3 +120,5 @@ long int showinfo(int threads)
   }
   return EXIT_SUCCESS;
 }
+
+/* End of getprocs.c file. */
