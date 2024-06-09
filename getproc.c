@@ -22,15 +22,15 @@ int main(int argc, char * argv[])
   int status;
   long int ret = EXIT_FAILURE;
   pid_t pid;
-  struct process *proc = NULL;
+  struct pgrp *pgrp = NULL;
 
   /* fork */
   if((pid = fork()) >= 0) {
 
     /* Child execute code if pid == 0. */
     /* Gets the process pgrp. */
-    if((proc = prfind(pid)) != NULL) {
-      printf("Adress 0x%8.0x\n", proc);
+    if((pgrp = pgfind(pid)) != NULL) {
+      printf("Adress 0x%8.0x\n", (size_t) pgrp);
       _exit(EXIT_SUCCESS);
     } else {
       perror("prfind");
