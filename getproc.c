@@ -19,9 +19,9 @@ int main(int, char *[]);
 /* Main function. */
 int main(int argc, char * argv[])
 {
-  int pid;
   int status;
   long int ret = EXIT_FAILURE;
+  pid_t pid;
   struct process *proc = NULL;
 
   /* fork */
