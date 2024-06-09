@@ -55,6 +55,7 @@ int main(int argc, char * argv[])
 	perror("killpg");
     } else
       perror("sigaction");
+  }
   exit(ret);
 }
 
