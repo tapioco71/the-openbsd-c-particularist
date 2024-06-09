@@ -27,7 +27,7 @@ int main(int argc, char * argv[])
   pid_t pid;
   struct sigaction signal = {
     SIG_IGN,
-    SIGSTOP,
+    SIGQUIT,
   };
   /* fork */
   if((pid = fork()) == 0) {
@@ -41,15 +41,15 @@ int main(int argc, char * argv[])
   } else {
 
     /* Parent executes otherwise. */
-    if(sigaction(SIGSTOP, &signal, NULL) >= 0) {
+    if(sigaction(SIGQUIT, &signal, NULL) >= 0) {
       pgrp = getpgrp();
-      printf("Parent waiting 5 seconds before stops its child.\n");
+      printf("Parent waiting 5 seconds before make its child quit.\n");
       sleep(5);
-      if(killpg(pgrp, SIGSTOP) >= 0) {
-	printf("Parent stopped its child.\n");
+      if(killpg(pgrp, SIGQUIT) >= 0) {
+	printf("Parent make its child quit.\n");
 	while(wait(&status) != pid)
 	  ;
-	printf("Child stopped!\n");
+	printf("Child quitted!\n");
 	ret = EXIT_SUCCESS;
       } else
 	perror("killpg");
