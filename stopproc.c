@@ -9,6 +9,7 @@
 #include <sys/types.h>
 #include <sys/signal.h>
 #include <sys/proc.h>
+#include <sys/wait.h>
 
 /* stopproc program. */
 #define FOREVER for(;;)
