@@ -91,7 +91,7 @@ struct kinfo_proc *getprocs(int *count, int threads)
 /*
  * showinfo -- show informations about threads.
  */
-int showinfo(int threads)
+long int showinfo(int threads)
 {
   struct kinfo_proc * list, * proc ;
   int count, i ;
