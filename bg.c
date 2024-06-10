@@ -24,6 +24,7 @@ int main(int argc, char * argv[])
 {
   int n;
   int pgrp;
+  int tpgrp;
   int status;
   long int ret = EXIT_FAILURE;
   pid_t pid;
@@ -31,6 +32,7 @@ int main(int argc, char * argv[])
     SIG_IGN,
     SIGQUIT,
   };
+
   /* fork */
   if((pid = fork()) == 0) {
 
@@ -49,7 +51,9 @@ int main(int argc, char * argv[])
       pgrp = getpgrp();
       printf("Child remains in foreground for 5 seconds.\n");
       sleep(5);
-      if(killpg(pgrp, SIGCONT) >= 0) {
+
+      /* Send background write request to the child. */
+      if(killpg(pgrp, SIGTTOU) >= 0) {
 	printf("Parent waiting 10 seconds before make its child quit.\n");
 	sleep(10);
 	if(killpg(pgrp, SIGQUIT) >= 0) {
