@@ -17,7 +17,6 @@
 #define FOREVER for(;;)
 
 /* Functions prototypes. */
-void handler(int, siginfo_t *, void *);
 int main(int, char *[]);
 
 /* Main function. */
@@ -29,7 +28,6 @@ int main(int argc, char * argv[])
   int status;
   long int ret = EXIT_FAILURE;
   pid_t pid;
-  struct sigaction signals;
 
   /* fork */
   pid = fork();
@@ -46,42 +44,30 @@ int main(int argc, char * argv[])
   } else if(pid > 0) {
 
     /* Parent executes otherwise. */
-    signals.sa_sigaction = handler;
-    if(sigfillset(&signals.sa_mask) >= 0) {
-      if(sigdelset(&signals.sa_mask, SIGTTOU) >= 0) {
-	pgrp = getpgrp();
-	printf("Child remains in foreground for 5 seconds.\n");
-	sleep(5);
+    pgrp = getpgrp();
+    printf("Child remains in foreground for 5 seconds.\n");
+    sleep(5);
 
-	/* Send background write request to the child. */
-	if(killpg(pgrp, SIGSTOP) >= 0) {
-	  if(killpg(pgrp, SIGCONT) >= 0) {
-	    printf("Parent waiting 10 seconds before make its child quit.\n");
-	    sleep(10);
-	    if(killpg(pgrp, SIGQUIT) >= 0) {
-	      printf("Parent make its child quit.\n");
-	      while(wait(&status) != pid)
-		;
-	      printf("Child quitted!\n");
-	      ret = EXIT_SUCCESS;
-	    } else
-	      perror("killpg");
-	  } else
-	    perror("killpg");
+    /* Send background write request to the child. */
+    if(killpg(pgrp, SIGTTOU) >= 0) {
+      if(killpg(pgrp, SIGCONT) >= 0) {
+	printf("Parent waiting 10 seconds before kills its child.\n");
+	sleep(10);
+	if(killpg(pgrp, SIGKILL) >= 0) {
+	  printf("Parent kills its child.\n");
+	  while(wait(&status) != pid)
+	    ;
+	  printf("Child quitted!\n");
+	  ret = EXIT_SUCCESS;
 	} else
 	  perror("killpg");
       } else
-	perror("sigdelset");
+	perror("killpg");
     } else
-      perror("sigfillset");
+      perror("killpg");
   } else
     perror("fork");
   exit(ret);
-}
-
-void handler(int sig, siginfo_t *mask, void *d)
-{
-  ;
 }
 
 /* End of bg.c file. */
