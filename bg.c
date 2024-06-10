@@ -81,7 +81,7 @@ int main(int argc, char * argv[])
 
 void handler(int sig)
 {
-  ;
+  printf("Received SIGTTOU.\n");
 }
 
 /* End of bg.c file. */
