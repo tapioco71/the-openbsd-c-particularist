@@ -17,7 +17,7 @@
 #define FOREVER for(;;)
 
 /* Functions prototypes. */
-int handler(int);
+void handler(int);
 int main(int, char *[]);
 
 /* Main function. */
