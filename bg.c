@@ -54,15 +54,18 @@ int main(int argc, char * argv[])
 	sleep(5);
 
 	/* Send background write request to the child. */
-	if(killpg(pgrp, SIGTTOU) >= 0) {
-	  printf("Parent waiting 10 seconds before make its child quit.\n");
-	  sleep(10);
-	  if(killpg(pgrp, SIGQUIT) >= 0) {
-	    printf("Parent make its child quit.\n");
-	    while(wait(&status) != pid)
-	      ;
-	    printf("Child quitted!\n");
-	    ret = EXIT_SUCCESS;
+	if(killpg(pgrp, SIGSTOP) >= 0) {
+	  if(killpg(pgrp, SIGCONT) >= 0) {
+	    printf("Parent waiting 10 seconds before make its child quit.\n");
+	    sleep(10);
+	    if(killpg(pgrp, SIGQUIT) >= 0) {
+	      printf("Parent make its child quit.\n");
+	      while(wait(&status) != pid)
+		;
+	      printf("Child quitted!\n");
+	      ret = EXIT_SUCCESS;
+	    } else
+	      perror("killpg");
 	  } else
 	    perror("killpg");
 	} else
