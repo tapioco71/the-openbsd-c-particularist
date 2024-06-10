@@ -50,7 +50,7 @@ int main(int argc, char * argv[])
       printf("Child remains in foreground for 5 seconds.\n");
       sleep(5);
       if(killpg(pgrp, SIGCONT) >= 0) {
-	printf("Parent waiting 5 seconds before make its child quit.\n");
+	printf("Parent waiting 10 seconds before make its child quit.\n");
 	sleep(10);
 	if(killpg(pgrp, SIGQUIT) >= 0) {
 	  printf("Parent make its child quit.\n");
