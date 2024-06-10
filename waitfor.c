@@ -49,8 +49,7 @@ int main(int argc, char * argv[])
       sleep(5);
       if(killpg(pgrp, SIGQUIT) >= 0) {
 	printf("Parent make its child quit.\n");
-	while(wait(&status) != pid)
-	  ;
+	waitfor();
 	printf("Child quitted!\n");
 	ret = EXIT_SUCCESS;
       } else
