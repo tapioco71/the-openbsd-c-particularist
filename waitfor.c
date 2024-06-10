@@ -65,7 +65,7 @@ void waitfor(void)
   int pid;
   int status;
   extern struct processlist allprocess;
-  struct process p;
+  struct pgrp grp;
 
   /* */
   while((pid = wait4(WAIT_MYPGRP, &status, WUNTRACED, NULL)) >= 0) {
