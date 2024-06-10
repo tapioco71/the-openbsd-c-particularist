@@ -17,6 +17,7 @@
 #define FOREVER for(;;)
 
 /* Functions prototypes. */
+void handler(int, siginfo_t *, void *);
 int main(int, char *[]);
 
 /* Main function. */
@@ -28,10 +29,7 @@ int main(int argc, char * argv[])
   int status;
   long int ret = EXIT_FAILURE;
   pid_t pid;
-  struct sigaction signal = {
-    SIG_IGN,
-    SIGQUIT,
-  };
+  struct sigaction signals;
 
   /* fork */
   pid = fork();
@@ -48,6 +46,7 @@ int main(int argc, char * argv[])
   } else if(pid > 0) {
 
     /* Parent executes otherwise. */
+    signals.sa_sigaction = handler;
     if(sigaction(SIGQUIT, &signal, NULL) >= 0) {
       pgrp = getpgrp();
       printf("Child remains in foreground for 5 seconds.\n");
@@ -72,6 +71,11 @@ int main(int argc, char * argv[])
   } else
     perror("fork");
   exit(ret);
+}
+
+void handler(int sig, siginfo_t *mask, void *d)
+{
+  ;
 }
 
 /* End of bg.c file. */

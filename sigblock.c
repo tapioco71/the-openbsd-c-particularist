@@ -26,11 +26,13 @@ jmp_buf env;
 int main(int argc, char *argv[])
 {
   long int ret = EXIT_FAILURE;
+
   /* Setup signal set for this process. */
   signals.sa_sigaction = handler;
   if(sigfillset(&signals.sa_mask) >= 0) {
     if(sigdelset(&signals.sa_mask, SIGUSR1) >= 0) {
       printf("Current signal mask set: 0x%8x\n", signals.sa_mask);
+
       /*
        * Blocking all signals but SIGUSR1.
        * Use # `kill -s SIGUSR1 pid` to terminate the
