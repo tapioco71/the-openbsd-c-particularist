@@ -34,7 +34,8 @@ int main(int argc, char * argv[])
   };
 
   /* fork */
-  if((pid = fork()) == 0) {
+  pid = fork();
+  if(pid == 0) {
 
     /* Child execute code if pid == 0. */
     printf("Child executed!\n");
@@ -44,7 +45,7 @@ int main(int argc, char * argv[])
       sleep(1);
     }
     _exit(EXIT_SUCCESS);
-  } else {
+  } else if(pid > 0) {
 
     /* Parent executes otherwise. */
     if(sigaction(SIGQUIT, &signal, NULL) >= 0) {
@@ -53,7 +54,7 @@ int main(int argc, char * argv[])
       sleep(5);
 
       /* Send background write request to the child. */
-      if(killpg(pgrp, SIGTTOU | SIGCONT) >= 0) {
+      if(killpg(pgrp, SIGTTOU) >= 0) {
 	printf("Parent waiting 10 seconds before make its child quit.\n");
 	sleep(10);
 	if(killpg(pgrp, SIGQUIT) >= 0) {
@@ -68,7 +69,8 @@ int main(int argc, char * argv[])
 	perror("killpg");
     } else
       perror("sigaction");
-  }
+  } else
+    perror("fork");
   exit(ret);
 }
 
