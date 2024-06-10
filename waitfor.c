@@ -69,7 +69,9 @@ void waitfor(void)
 
   /* */
   while((pid = wait4(WAIT_MYPGRP, &status, WUNTRACED, NULL)) >= 0) {
-    ;
+    LIST_FOREACH(grp, LIST_HEAD(), ps_pid) {
+      ;
+    }
   }
 }
 
