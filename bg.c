@@ -53,7 +53,7 @@ int main(int argc, char * argv[])
       sleep(5);
 
       /* Send background write request to the child. */
-      if(killpg(pgrp, SIGTTOU) >= 0) {
+      if(killpg(pgrp, SIGTTOU | SIGCONT) >= 0) {
 	printf("Parent waiting 10 seconds before make its child quit.\n");
 	sleep(10);
 	if(killpg(pgrp, SIGQUIT) >= 0) {
