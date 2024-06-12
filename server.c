@@ -30,9 +30,8 @@ int main(int argc, char *argv[])
   long int ret;
   struct sockaddr_in sa;
   /* */
-  sa.sin_family = AF_INET;
+  sa.sin_family = AF_UNSPEC;
   sa.sin_port = htons(10240);
-  res = inet_pton(AF_INET, "0.0.0.0", &sa.sin_addr);
   ret = server(&sa);
   exit(ret);
 }
@@ -49,7 +48,7 @@ long int server(struct sockaddr_in *sa)
   socklen_t addrlen = sizeof(struct sockaddr_in);
   /* */
   if(sa) {
-    if((sockfd = socket(AF_INET, SOCK_STREAM, 0)) >= 0) {
+    if((sockfd = socket(AF_UNSPEC, SOCK_STREAM, 0)) >= 0) {
       if(bind(sockfd, (struct sockaddr *) sa, sizeof(struct sockaddr_in)) >= 0) {
 	FOREVER {
 	  printf("Waiting to accept a connection...\n");
