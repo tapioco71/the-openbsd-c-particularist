@@ -55,7 +55,10 @@ int main(int argc, char *argv[])
 
       /* Send an answer. */
       if(msgsnd(msqid, &sbuf, strnlen(sbuf.mtext, MSGSZ) + 1, 0) >= 0) {
-	ret = EXIT_SUCCESS;
+	if(msgctl(msqid, IPC_RMID, NULL) >= 0)
+	  ret = EXIT_SUCCESS;
+	else
+	  perror("msgctl");
       } else
 	perror("msgsnd");
     } else
