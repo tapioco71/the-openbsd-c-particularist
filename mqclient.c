@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
       if(msgrcv(msqid, &rbuf, strnlen(rbuf.mtext, MSGSZ) + 1, 2, 0) >= 0) {
 
 	/* Print the answer. */
-	printf("%s\n", rbuf.mtext);
+	printf("server message: %s\n", rbuf.mtext);
 	ret = EXIT_SUCCESS;
       } else
 	perror("msgrcv");
