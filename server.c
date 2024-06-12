@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
 
   /* setup structures. */
   servaddr.sin_family = AF_INET;
-  servaddr.sin_addr = htonl(INADR_ANY);
+  servaddr.sin_addr = htonl(INADDR_ANY);
   servaddr.sin_port = htons(SERVER_PORT);
   ret = server(&servaddr);
   exit(ret);
@@ -59,7 +59,7 @@ long int server(struct sockaddr_in *sa)
     if((listenfd = socket(AF_INET, SOCK_STREAM, 0)) >= 0) {
       if(bind(listenfd, (struct sockaddr *) sa, sizeof(struct sockaddr)) >= 0) {
 	printf("Waiting to accept a connection...\n");
-	if(listen(listenfd, LISTENQ) >= 0) {
+	if(listen(listenfd, 0) >= 0) {
 	  FOREVER {
 	    cliaddrlen = sizeof(cliaddr);
 	    if((connfd = accept(listenfd, (struct sockaddr *) &cliaddr, &cliaddrlen)) >= 0) {
