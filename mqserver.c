@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
   long int ret = EXIT_FAILURE;
   int msqid;
   key_t key;
-  struct message_t sbuf, rbuf;
+  message_t sbuf, rbuf;
 
   /* Create a message queue with "name" 1234. */
   key = 1234;
