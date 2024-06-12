@@ -57,12 +57,16 @@ long int server(struct sockaddr_in *sa)
   if(sa) {
     bzero(&cliaddr, sizeof(struct sockaddr_in));
     if((listenfd = socket(AF_INET, SOCK_STREAM, 0)) >= 0) {
-      if(bind(listenfd, (struct sockaddr *) sa, sizeof(struct sockaddr_in)) >= 0) {
+      if(bind(listenfd,					\
+	      (struct sockaddr *) sa,			\
+	      sizeof(struct sockaddr_in)) >= 0) {
 	printf("Waiting to accept a connection...\n");
 	if(listen(listenfd, 0) >= 0) {
 	  FOREVER {
 	    cliaddrlen = sizeof(cliaddr);
-	    if((connfd = accept(listenfd, (struct sockaddr *) &cliaddr, &cliaddrlen)) >= 0) {
+	    if((connfd = accept(listenfd,		      \
+				(struct sockaddr *) &cliaddr, \
+				&cliaddrlen)) >= 0) {
 	      printf("Accepted connection from 0x%0.8x, port 0x%0.4x\n", \
 		     cliaddr.sin_addr,					\
 		     ntohs(cliaddr.sin_port));
@@ -71,7 +75,9 @@ long int server(struct sockaddr_in *sa)
 		if(gettimeofday(&now, NULL) >= 0) {
 		  buff = ctime(&now.tv_sec);
 		  if(buff) {
-		    if(send(connfd, (void *) buff, strnlen(buff, BUFSIZ), 0) >= 0) {
+		    if(send(connfd,				\
+			    (void *) buff,			\
+			    strnlen(buff, BUFSIZ), 0) >= 0) {
 		      ret = EXIT_SUCCESS;
 		      break;
 		    } else {
