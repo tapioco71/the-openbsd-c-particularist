@@ -14,6 +14,7 @@
 #include <arpa/inet.h>
 
 /* client program. */
+#define SERVER_PORT 10240
 #define FOREVER for(;;)
 
 /* Functions prototypes. */
@@ -25,12 +26,12 @@ int main(int argc, char *argv[])
 {
   int res;
   long int ret;
-  struct sockaddr_in sa;
+  struct sockaddr_in servaddr;
   /* */
-  sa.sin_family = AF_INET;
-  sa.sin_port = htons(10240);
-  res = inet_pton(AF_INET, "127.0.0.1", &sa.sin_addr);
-  ret = client(&sa);
+  servaddr.sin_family = AF_INET;
+  servaddr.sin_port = htons(SERVER_PORT);
+  res = inet_pton(AF_INET, "127.0.0.1", &servaddr.sin_addr);
+  ret = client(&servaddr);
   exit(ret);
 }
 
@@ -42,11 +43,12 @@ long int client(struct sockaddr_in *sa)
   int sockfd;
   long int ret = EXIT_FAILURE;
   char *buff[ BUFSIZ ];
+
   /* */
   if(sa) {
     if((sockfd = socket(AF_INET, SOCK_STREAM, 0)) >= 0) {
       printf("Created socket: %d\n", sockfd);
-      if(connect(sockfd, (struct sockaddr *) &sa, sizeof(struct sockaddr_in)) >= 0) {
+      if(connect(sockfd, (struct sockaddr *) sa, sizeof(struct sockaddr_in)) >= 0) {
 	printf("Connected to %d, port %d\n",	\
 	       sa -> sin_addr,			\
 	       sa -> sin_port);
