@@ -27,9 +27,9 @@ int main(int argc, char *argv[])
   long int ret;
   struct sockaddr_in sa;
   /* */
-  sa.sin_family = AF_INET;
+  sa.sin_family = AF_UNIX;
   sa.sin_port = htons(1024);
-  res = inet_pton(AF_INET, "127.0.0.1", &sa.sin_addr);
+  res = inet_pton(AF_UNIX, "127.0.0.1", &sa.sin_addr);
   ret = client(&sa);
   exit(ret);
 }
@@ -44,7 +44,7 @@ long int client(struct sockaddr_in *sa)
   char *buff[ BUFSIZ ];
   /* */
   if(sa) {
-    if((sockfd = socket(AF_INET, SOCK_STREAM, 0)) >= 0) {
+    if((sockfd = socket(AF_UNIX, SOCK_STREAM, 0)) >= 0) {
       printf("Created socket: %d\n", sockfd);
       if(connect(sockfd, (struct sockaddr *) &sa, sizeof(struct sockaddr_in)) >= 0) {
 	printf("Connected to %d, port %d\n",	\
