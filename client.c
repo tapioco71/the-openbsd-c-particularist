@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
   /* */
   sa.sin_family = AF_INET;
   sa.sin_port = htons(10240);
-  res = inet_pton(AF_UNIX, "127.0.0.1", &sa.sin_addr);
+  res = inet_pton(AF_INET, "127.0.0.1", &sa.sin_addr);
   ret = client(&sa);
   exit(ret);
 }
@@ -50,14 +50,11 @@ long int client(struct sockaddr_in *sa)
 	printf("Connected to %d, port %d\n",	\
 	       sa -> sin_addr,			\
 	       sa -> sin_port);
-	if(shutdown(sockfd, SHUT_RDWR) >= 0) {
-	  if(recv(sockfd, (void *) buff, BUFSIZ, MSG_WAITALL) >= 0) {
-	    printf("Received data from server: %s\n", buff);
-	    ret = EXIT_SUCCESS;
-	  } else
-	    perror("recv");
+	if(recv(sockfd, (void *) buff, BUFSIZ, MSG_WAITALL) >= 0) {
+	  printf("Received data from server: %s\n", buff);
+	  ret = EXIT_SUCCESS;
 	} else
-	  perror("shutdown");
+	  perror("recv");
       } else
 	perror("connect");
       close(sockfd);
