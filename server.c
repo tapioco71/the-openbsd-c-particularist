@@ -8,6 +8,9 @@
 #include <stddef.h>
 #include <inttypes.h>
 #include <unistd.h>
+#include <time.h>
+#include <errno.h>
+#include <sys/time.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -39,9 +42,10 @@ int main(int argc, char *argv[])
  */
 long int server(struct sockaddr_in *sa)
 {
+  char *buff;
   int sockfd;
   long int ret = EXIT_FAILURE;
-  char *buff[ BUFSIZ ];
+  struct timeval now;
   socklen_t addrlen = sizeof(struct sockaddr_in);
   /* */
   if(sa) {
@@ -52,7 +56,23 @@ long int server(struct sockaddr_in *sa)
 	  if(listen(sockfd, 0) >= 0) {
 	    if(accept(sockfd, (struct sockaddr *) sa, &addrlen) >= 0) {
 	      printf("Accepted connection from %s\n", sa -> sin_addr);
-	      ret = EXIT_SUCCESS;
+	      if(gettimeofday(&now, NULL) >= 0) {
+		buff = ctime(&now.tv_sec);
+		if(buff) {
+		  if(send(sockfd, (void *) buff, strnlen(buff), BUFSIZ) >= 0) {
+		    ret = EXIT_SUCCESS;
+		  } else {
+		    perror("send");
+		    break;
+		  }
+		} else {
+		  fprintf(stderr, "empty time string");
+		  break;
+		}
+	      } else {
+		perror("gettimeofday");
+		break;
+	      }
 	    } else {
 	      perror("accept");
 	      break;
@@ -64,6 +84,7 @@ long int server(struct sockaddr_in *sa)
 	}
       } else
 	perror("bind");
+      close(sockfd);
     } else
       perror("socket");
   } else
