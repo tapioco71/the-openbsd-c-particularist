@@ -7,8 +7,9 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <inttypes.h>
-#include <resolv.h>
 #include <sys/socket.h>
+#include <resolv.h>
+
 
 /* client program. */
 #define FOREVER for(;;)
