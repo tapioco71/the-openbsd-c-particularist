@@ -91,10 +91,8 @@ long int server(struct sockaddr_in *sa)
 	      break;
 	    }
 	  }
-	} else {
+	} else
 	  perror("listen");
-	  break;
-	}
       } else
 	perror("bind");
     } else
