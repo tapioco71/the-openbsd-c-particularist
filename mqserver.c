@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
     if(msgrcv(msqid, &rbuf, MSGSZ, 0, 0) >= 0) {
 
       /* Print the client message. */
-      printf("client message: %s\n", rbus.mtext);
+      printf("client message: %s\n", rbuf.mtext);
 
       /* We send a message of type 2. */
       sbuf.mtype = 2;
