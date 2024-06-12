@@ -49,11 +49,16 @@ long int server(struct sockaddr_in *sa)
       if(bind(sockfd, (struct sockaddr *) sa, sizeof(struct sockaddr_in)) >= 0) {
 	FOREVER {
 	  printf("Waiting to accept a connection...\n");
-	  if(accept(sockfd, (struct sockaddr *) sa, &addrlen) >= 0) {
-	    printf("Accepted connection from %s\n", sa -> sin_addr);
-	    ret = EXIT_SUCCESS;
+	  if(listen(sockfd, 0) >= 0) {
+	    if(accept(sockfd, (struct sockaddr *) sa, &addrlen) >= 0) {
+	      printf("Accepted connection from %s\n", sa -> sin_addr);
+	      ret = EXIT_SUCCESS;
+	    } else {
+	      perror("accept");
+	      break;
+	    }
 	  } else {
-	    perror("connect");
+	    perror("listen");
 	    break;
 	  }
 	}
