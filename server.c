@@ -59,7 +59,7 @@ long int server(struct sockaddr_in *sa)
 	      if(gettimeofday(&now, NULL) >= 0) {
 		buff = ctime(&now.tv_sec);
 		if(buff) {
-		  if(send(sockfd, (void *) buff, strnlen(buff, BUFSIZ)) >= 0) {
+		  if(send(sockfd, (void *) buff, strnlen(buff, BUFSIZ), 0) >= 0) {
 		    ret = EXIT_SUCCESS;
 		  } else {
 		    perror("send");
