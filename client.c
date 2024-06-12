@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdint.h>
+#include <stddef.h>
 #include <inttypes.h>
 #include <resolv.h>
 #include <sys/socket.h>
