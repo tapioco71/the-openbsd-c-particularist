@@ -48,7 +48,7 @@ long int server(struct sockaddr_in *sa)
   socklen_t addrlen = sizeof(struct sockaddr_in);
   /* */
   if(sa) {
-    if((sockfd = socket(AF_UNSPEC, SOCK_STREAM, 0)) >= 0) {
+    if((sockfd = socket(AF_INET, SOCK_STREAM, 0)) >= 0) {
       if(bind(sockfd, (struct sockaddr *) sa, sizeof(struct sockaddr_in)) >= 0) {
 	FOREVER {
 	  printf("Waiting to accept a connection...\n");
