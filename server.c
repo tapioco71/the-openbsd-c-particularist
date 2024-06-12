@@ -31,6 +31,7 @@ int main(int argc, char *argv[])
   struct sockaddr_in sa;
   /* */
   sa.sin_family = AF_UNSPEC;
+  sa.sin_addr = 0;
   sa.sin_port = htons(10240);
   ret = server(&sa);
   exit(ret);
