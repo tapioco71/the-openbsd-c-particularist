@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
   struct sockaddr_in sa;
   /* */
   sa.sin_family = AF_UNSPEC;
-  res = inet_pton(AF_INET, "0.0.0.0", &sa.sin_addr);
+  res = inet_pton(AF_UNSPEC, "0.0.0.0", &sa.sin_addr);
   sa.sin_port = htons(10240);
   ret = server(&sa);
   exit(ret);
