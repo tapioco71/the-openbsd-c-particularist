@@ -49,9 +49,9 @@ long int client(struct sockaddr_in *sa)
     if((sockfd = socket(AF_INET, SOCK_STREAM, 0)) >= 0) {
       printf("Created socket: %d\n", sockfd);
       if(connect(sockfd, (struct sockaddr *) sa, sizeof(struct sockaddr_in)) >= 0) {
-	printf("Connected to 0x%8x, port 0x%4x\n",	\
+	printf("Connected to 0x%0.8x, port 0x%0.4x\n",	\
 	       sa -> sin_addr,				\
-	       sa -> sin_port);
+	       ntohs(sa -> sin_port));
 	if(recv(sockfd, (void *) buff, BUFSIZ, MSG_WAITALL) >= 0) {
 	  printf("Received data from server: %s\n", buff);
 	  ret = EXIT_SUCCESS;
