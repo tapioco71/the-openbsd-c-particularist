@@ -41,14 +41,18 @@ long int client(struct sockaddr_in *sa)
 {
   int sockfd;
   long int ret = EXIT_FAILURE;
+  char *buff[ BUFSIZ ];
   /* */
   if((sockfd = socket(AF_INET, SOCK_STREAM, 0)) >= 0) {
     printf("Created socket: %d\n", sockfd);
     if(connect(sockfd, (struct sockaddr *) &sa, sizeof(sa)) >= 0) {
       printf("Connected to %d, port %d\n", sa -> sin_addr, sa -> sin_port);
       if(shutdown(sockfd, SHUT_RDWR) >= 0) {
-	;
-	ret = EXIT_SUCCESS;
+	if(recv(sockfd, (void *) buff, BUFSIZ, MSG_WAITALL) >= 0) {
+	  printf("Received data from server: %s\n", buff);
+	  ret = EXIT_SUCCESS;
+	} else
+	  perror("recv");
       } else
 	perror("shutdown");
     } else
