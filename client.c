@@ -24,13 +24,12 @@ int main(int argc, char *argv[])
 {
   int res;
   long int ret;
-  char address[ 10 ] = "127.0.0.1";
   struct sockaddr_in sa;
   /* */
   sa.sin_family = AF_INET;
   sa.sin_port = htons(1024);
   res = inet_pton(AF_INET, "127.0.0.1", &sa.sin_addr);
-  ret = client(&addr);
+  ret = client(&sa);
   exit(ret);
 }
 
