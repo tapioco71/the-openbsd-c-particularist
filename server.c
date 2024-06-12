@@ -63,7 +63,9 @@ long int server(struct sockaddr_in *sa)
 	  FOREVER {
 	    cliaddrlen = sizeof(cliaddr);
 	    if((connfd = accept(listenfd, (struct sockaddr *) &cliaddr, &cliaddrlen)) >= 0) {
-	      printf("Accepted connection from 0x%8d\n", cliaddr.sin_addr);
+	      printf("Accepted connection from 0x%0.8x, port 0x%0.4x\n", \
+		     cliaddr.sin_addr,					\
+		     ntohs(cliaddr.sin_port));
 	      if((pid = fork()) == 0) {
 		close(listenfd);
 		if(gettimeofday(&now, NULL) >= 0) {
