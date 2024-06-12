@@ -17,7 +17,7 @@
 #define FOREVER for(;;)
 
 /* Functions prototypes. */
-long int client(struct sockaddr_in *);
+long int server(struct sockaddr_in *);
 int main(int, char *[]);
 
 /* Main function. */
@@ -30,14 +30,14 @@ int main(int argc, char *argv[])
   sa.sin_family = AF_INET;
   sa.sin_port = htons(1024);
   res = inet_pton(AF_INET, "127.0.0.1", &sa.sin_addr);
-  ret = client(&sa);
+  ret = server(&sa);
   exit(ret);
 }
 
 /*
  * client -- the client function.
  */
-long int client(struct sockaddr_in *sa)
+long int server(struct sockaddr_in *sa)
 {
   int sockfd;
   long int ret = EXIT_FAILURE;
@@ -45,22 +45,17 @@ long int client(struct sockaddr_in *sa)
   /* */
   if(sa) {
     if((sockfd = socket(AF_INET, SOCK_STREAM, 0)) >= 0) {
-      printf("Created socket: %d\n", sockfd);
-      if(connect(sockfd, (struct sockaddr *) &sa, sizeof(struct sockaddr_in)) >= 0) {
-	printf("Connected to %d, port %d\n",	\
-	       sa -> sin_addr,			\
-	       sa -> sin_port);
-	if(shutdown(sockfd, SHUT_RDWR) >= 0) {
-	  if(recv(sockfd, (void *) buff, BUFSIZ, MSG_WAITALL) >= 0) {
-	    printf("Received data from server: %s\n", buff);
+      if(bind(sockfd, (struct sockaddr *) sa, sizeof(struct sockaddr_in)) >= 0) {
+	FOREVER {
+	  printf("Waiting to accept a connection...\n");
+	  if(accept(sockfd, (struct sockaddr *) sa, sizeof(struct sockaddr_in)) >= 0) {
+	    printf("Accepted connection from %s\n", sa -> sin_addr);
 	    ret = EXIT_SUCCESS;
 	  } else
-	    perror("recv");
-	} else
-	  perror("shutdown");
+	    perror("connect");
+	}
       } else
-	perror("connect");
-      close(sockfd);
+	perror("bind");
     } else
       perror("socket");
   } else
