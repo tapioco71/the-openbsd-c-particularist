@@ -10,7 +10,7 @@
 #define FOREVER for(;;)
 
 /* Functions prototypes. */
-long int client(struct address *);
+long int client(struct sockaddr_in *);
 int main(int, char *[]);
 
 /* Main function. */
