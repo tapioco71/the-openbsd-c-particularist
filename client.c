@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <resolv.h>
 #include <sys/socket.h>
 
 /* client program. */
