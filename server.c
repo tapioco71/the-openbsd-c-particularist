@@ -42,7 +42,7 @@ long int server(struct sockaddr_in *sa)
   int sockfd;
   long int ret = EXIT_FAILURE;
   char *buff[ BUFSIZ ];
-  socket_t addrlen = sizeof(struct sockaddr_in);
+  socklen_t addrlen = sizeof(struct sockaddr_in);
   /* */
   if(sa) {
     if((sockfd = socket(AF_INET, SOCK_STREAM, 0)) >= 0) {
