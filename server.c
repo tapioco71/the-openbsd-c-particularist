@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
   /* */
   sa.sin_family = AF_UNIX;
   sa.sin_port = htons(1024);
-  res = inet_pton(AF_INET, "127.0.0.1", &sa.sin_addr);
+  res = inet_pton(AF_INET, "0.0.0.0", &sa.sin_addr);
   ret = server(&sa);
   exit(ret);
 }
