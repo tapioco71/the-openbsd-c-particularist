@@ -30,8 +30,8 @@ int main(int argc, char *argv[])
   long int ret;
   struct sockaddr_in sa;
   /* */
+  memset(&sa, 0, sizeof(struct sockaddr_in));
   sa.sin_family = AF_UNSPEC;
-  res = inet_pton(AF_UNSPEC, "0.0.0.0", &sa.sin_addr);
   sa.sin_port = htons(10240);
   ret = server(&sa);
   exit(ret);
