@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
       snprintf(sbuf.mtext, MSGSZ, "I received your message.");
 
       /* Send an answer. */
-      if(msgsnd(msqid, &sbuf, strlen(sbuf.mtext) + 1, 0) >= 0) {
+      if(msgsnd(msqid, &sbuf, strnlen(sbuf.mtext, MSGSZ) + 1, 0) >= 0) {
 	ret = EXIT_SUCCESS;
       } else
 	perror("msgsnd");
