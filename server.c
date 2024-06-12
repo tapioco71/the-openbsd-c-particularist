@@ -52,8 +52,10 @@ long int server(struct sockaddr_in *sa)
 	  if(accept(sockfd, (struct sockaddr *) sa, &addrlen) >= 0) {
 	    printf("Accepted connection from %s\n", sa -> sin_addr);
 	    ret = EXIT_SUCCESS;
-	  } else
+	  } else {
 	    perror("connect");
+	    break;
+	  }
 	}
       } else
 	perror("bind");
