@@ -41,9 +41,13 @@ int main(int argc, char *argv[])
    * we use 0666 as the permissions.
    */
   if((msqid = msgget(key, IPC_CREAT | 0666)) >= 0) {
+    printf("Wait for a client message.\n");
 
     /* Receive a message. */
     if(msgrcv(msqid, &rbuf, MSGSZ, 0, 0) >= 0) {
+
+      /* Print the client message. */
+      printf("client message: %s\n", rbus.mtext);
 
       /* We send a message of type 2. */
       sbuf.mtype = 2;
