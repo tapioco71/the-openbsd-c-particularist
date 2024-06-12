@@ -1,6 +1,6 @@
 /* -*- mode: c-mode; -*- */
 
-/* File client.c */
+/* File server.c */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -16,7 +16,8 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
-/* client program. */
+/* server program. */
+#define SERVER_PORT 10240
 #define FOREVER for(;;)
 
 /* Functions prototypes. */
@@ -26,14 +27,17 @@ int main(int, char *[]);
 /* Main function. */
 int main(int argc, char *argv[])
 {
-  int res;
   long int ret;
-  struct sockaddr_in sa;
-  /* */
-  memset(&sa, 0, sizeof(struct sockaddr_in));
-  sa.sin_family = AF_UNSPEC;
-  sa.sin_port = htons(10240);
-  ret = server(&sa);
+  struct sockaddr_in servaddr;
+
+  /* clear the address structures in memory. */
+  bzero(&servaddr, sizeof(struct sockaddr_in));
+
+  /* setup structures. */
+  servaddr.sin_family = AF_INET;
+  servaddr.sin_addr = htonl(INADR_ANY);
+  servaddr.sin_port = htons(SERVER_PORT);
+  ret = server(&servaddr);
   exit(ret);
 }
 
@@ -43,48 +47,56 @@ int main(int argc, char *argv[])
 long int server(struct sockaddr_in *sa)
 {
   char *buff;
-  int sockfd;
+  int listenfd, connfd;
   long int ret = EXIT_FAILURE;
   struct timeval now;
-  socklen_t addrlen = sizeof(struct sockaddr_in);
+  struct sockaddr_in cliaddr;
+  socklen_t cliaddrlen = sizeof(struct sockaddr_in);
+  pid_t pid;
   /* */
   if(sa) {
-    if((sockfd = socket(AF_INET, SOCK_STREAM, 0)) >= 0) {
-      if(bind(sockfd, (struct sockaddr *) sa, sizeof(struct sockaddr_in)) >= 0) {
-	FOREVER {
-	  printf("Waiting to accept a connection...\n");
-	  if(listen(sockfd, 0) >= 0) {
-	    if(accept(sockfd, (struct sockaddr *) sa, &addrlen) >= 0) {
-	      printf("Accepted connection from %s\n", sa -> sin_addr);
-	      if(gettimeofday(&now, NULL) >= 0) {
-		buff = ctime(&now.tv_sec);
-		if(buff) {
-		  if(send(sockfd, (void *) buff, strnlen(buff, BUFSIZ), 0) >= 0) {
-		    ret = EXIT_SUCCESS;
+    bzero(&cliaddr, sizeof(struct sockaddr_in));
+    if((listenfd = socket(AF_INET, SOCK_STREAM, 0)) >= 0) {
+      if(bind(listenfd, (struct sockaddr *) sa, sizeof(struct sockaddr)) >= 0) {
+	printf("Waiting to accept a connection...\n");
+	if(listen(listenfd, LISTENQ) >= 0) {
+	  FOREVER {
+	    cliaddrlen = sizeof(cliaddr);
+	    if((connfd = accept(listenfd, (struct sockaddr *) &cliaddr, &cliaddrlen)) >= 0) {
+	      printf("Accepted connection from 0x%8d\n", cliaddr.sin_addr);
+	      if((pid = fork()) == 0) {
+		close(listenfd);
+		if(gettimeofday(&now, NULL) >= 0) {
+		  buff = ctime(&now.tv_sec);
+		  if(buff) {
+		    if(send(sockfd, (void *) buff, strnlen(buff, BUFSIZ), 0) >= 0) {
+		      ret = EXIT_SUCCESS;
+		      break;
+		    } else {
+		      perror("send");
+		      break;
+		    }
 		  } else {
-		    perror("send");
+		    fprintf(stderr, "empty time string");
 		    break;
 		  }
 		} else {
-		  fprintf(stderr, "empty time string");
+		  perror("gettimeofday");
 		  break;
 		}
-	      } else {
-		perror("gettimeofday");
-		break;
 	      }
+	      close(connfd);
 	    } else {
 	      perror("accept");
 	      break;
 	    }
-	  } else {
-	    perror("listen");
-	    break;
 	  }
+	} else {
+	  perror("listen");
+	  break;
 	}
       } else
 	perror("bind");
-      close(sockfd);
     } else
       perror("socket");
   } else
@@ -92,4 +104,4 @@ long int server(struct sockaddr_in *sa)
   return ret;
 }
 
-/* End of client.c file. */
+/* End of server.c file. */
