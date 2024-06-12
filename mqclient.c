@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
     if(msgsnd(msqid, &sbuf, strnlen(sbuf.mtext, MSGSZ) + 1, 0) >= 0) {
 
       /* Receive an answer of message type 2. */
-      if(msgrcv(msqid, &rbuf, strnlen(rbuf.mtext, MSGSZ) + 1, 0) >= 0) {
+      if(msgrcv(msqid, &rbuf, strnlen(rbuf.mtext, MSGSZ) + 1, 2, 0) >= 0) {
 
 	/* Print the answer. */
 	printf("%s\n", rbuf.mtext);
