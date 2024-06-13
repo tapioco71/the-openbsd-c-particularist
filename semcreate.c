@@ -19,6 +19,7 @@ int main(int argc, char *argv[])
 {
   int c, i, oflag, semid, nsems;
   long int ret = EXIT_FAILURE;
+  key_t key;
 
   /* */
   oflag = IPC_CREAT | 0666;
@@ -32,7 +33,9 @@ int main(int argc, char *argv[])
   if(optind == (argc - 2)) {
     nsems = atoi(argv[ optind + 1 ]);
     printf("Creating %d semaphore%s", nsems, nsems > 1 ? "s.\n" : ".\n");
-    if((semid = semget(ftok(argv[ optind ], 0), nsems, oflag)) >= 0) {
+    key = ftok(argv[ optind ], 0);
+    printf("key: %d\n", key);
+    if((semid = semget(key, nsems, oflag)) >= 0) {
       for(i = 0; i <= nsems; i++)
 	if(semctl(semid, i, IPC_RMID) >= 0)
 	  ret = EXIT_SUCCESS;
