@@ -31,8 +31,8 @@ int main(int argc, char *argv[])
   }
   if(optind == (argc - 2)) {
     printf("Creating %d semaphores.\n");
-    printf("%s\n", argv[ optind ]);
-    nsems = atoi(argv[ optind + 11 ]);
+    printf("%s\n", argv[ optind + 1 ]);
+    nsems = atoi(argv[ optind + 1 ]);
     if((semid = semget(ftok(argv[ optind ], 0), nsems, oflag)) >= 0) {
       for(i = 0; i <= nsems; i++)
 	if(semctl(semid, i, IPC_RMID) >= 0)
