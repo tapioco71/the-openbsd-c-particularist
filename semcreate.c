@@ -17,7 +17,7 @@ int main(int, char *[]);
 /* Main function. */
 int main(int argc, char *argv[])
 {
-  int c, oflag, semid, nsems;
+  int c, i, oflag, semid, nsems;
   long int ret = EXIT_FAILURE;
 
   /* */
@@ -31,7 +31,16 @@ int main(int argc, char *argv[])
   }
   if(optind == (argc - 2)) {
     nsems = atoi(argv[ optind + 11 ]);
-    semid = semget(ftok(argv[ optind ], 0), nsems, oflag);
+    if((semid = semget(ftok(argv[ optind ], 0), nsems, oflag)) >= 0) {
+      for(i = 0; i <= nsems; i++)
+	if(semctl(semid, i, IPC_RMID) >= 0)
+	  ret = EXIT_SUCCESS;
+	else {
+	  ret = EXIT_FAILURE;
+	  break;
+	}
+    } else
+      perror("semget");
   } else
     fprintf(stderr, "usage: semcreate [ -e ] <pathname> <nsems>\n");
   exit(ret);
