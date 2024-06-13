@@ -35,16 +35,9 @@ int main(int argc, char *argv[])
     printf("Creating %d semaphore%s", nsems, nsems > 1 ? "s.\n" : ".\n");
     if((key = ftok(argv[ optind ], 0)) >= 0) {
       printf("creating key from path %s: %d\n", argv[ optind ], key);
-      if((semid = semget(key, nsems, oflag)) >= 0) {
-	for(i = 0; i <= nsems; i++)
-	  if(semctl(semid, i, IPC_RMID) >= 0)
-	    ret = EXIT_SUCCESS;
-	  else {
-	    perror("semctl");
-	    ret = EXIT_FAILURE;
-	    break;
-	  }
-      } else
+      if((semid = semget(key, nsems, oflag)) >= 0)
+	ret = EXIT_SUCCESS;
+      else
 	perror("semget");
     } else
       perror("ftok");
