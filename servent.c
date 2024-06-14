@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
   if(argc == 3) {
 
     /* Get the specified services from the database. */
-    if((service = getservbyname(argv[ 1 ]), argv[ 2 ]) != NULL) {
+    if((service = getservbyname(argv[ 1 ], argv[ 2 ])) != NULL) {
       printf("official service name: %s\n", service -> s_name);
       printf("alias list: ");
       alias = service -> s_aliases;
