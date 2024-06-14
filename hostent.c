@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
       printf("\n");
       ret = EXIT_SUCCESS;
     } else
-      fprintf(stderr, "Host %s not found in hosts database.\n");
+      fprintf(stderr, "Host %s not found in hosts database.\n", argv[ 1 ]);
   } else
     fprintf(stderr, "Usage hostent <hostname>\n");
   exit(ret);
