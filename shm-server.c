@@ -45,6 +45,7 @@ int main(int argc, char *argv[])
       for(c = 'a'; c <= 'z'; c++)
 	*s++ = c;
       *s = '\0';
+      printf("Data at 0x%0.8x: %s\n", (size_t) shm, (char *) shm);
 
       /*
        * Finally, we wait until the other process
