@@ -18,7 +18,7 @@ int main(int, char *[]);
 int main(int argc, char *argv[])
 {
   int i;
-  char **alias
+  char **alias;
   long int ret = EXIT_FAILURE;
   struct hostent *host;
 
