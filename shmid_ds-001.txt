@@ -1,0 +1,11 @@
+struct shmid_ds {
+  struct ipc_perm  shm_perm;      /* operation permissions */
+  int              shm_segsz;     /* size of segment in bytes */
+  pid_t            shm_lpid;      /* pid of last shm op */
+  pid_t            shm_cpid;      /* pid of creator */
+  short            shm_nattch;    /* # of current attaches */
+  time_t           shm_atime;     /* last shmat() time*/
+  time_t           shm_dtime;     /* last shmdt() time */
+  time_t           shm_ctime;     /* last change by shmctl() */
+  void            *shm_internal;  /* sysv stupidity */
+};
