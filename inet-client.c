@@ -48,7 +48,9 @@ long int client(struct sockaddr_in *sa)
   if(sa) {
     if((sockfd = socket(AF_INET, SOCK_STREAM, 0)) >= 0) {
       printf("Created socket: %d\n", sockfd);
-      if(connect(sockfd, (struct sockaddr *) sa, sizeof(struct sockaddr_in)) >= 0) {
+      if(connect(sockfd,				\
+		 (struct sockaddr *) sa,		\
+		 sizeof(struct sockaddr_in)) >= 0) {
 	printf("Connected to 0x%0.8x, port 0x%0.4x\n",	\
 	       sa -> sin_addr,				\
 	       ntohs(sa -> sin_port));
