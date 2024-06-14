@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
   if(argc == 2) {
 
     /* Get the specified host from the database. */
-    if((host = gethostbyname(argv[ 1 ], )) != NULL) {
+    if((host = gethostbyname(argv[ 1 ])) != NULL) {
       printf("official host name: %s\n", host -> h_name);
       printf("alias list: ");
       alias = host -> h_aliases;
