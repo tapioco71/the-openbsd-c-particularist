@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
   pid_t pid;
 
   /* Clear the mutex object. */
-  bzero(&mutex, sizeof(struct mutex));
+  bzero(&mtx, sizeof(struct mutex));
 
   /* Initialize the mutex object. */
   mtx_init(&mtx, 0);
