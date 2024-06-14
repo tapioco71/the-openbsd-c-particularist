@@ -56,6 +56,7 @@ int main(int argc, char *argv[])
       printf("Waiting for client to change the shared memory.\n");
       while(*shm != '*')
 	sleep(1);
+      printf("Client succesfully modified shared data segment: %s\n", shm);
       ret = EXIT_SUCCESS;
     } else
       perror("shmat");
