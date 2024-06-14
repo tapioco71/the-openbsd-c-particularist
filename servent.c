@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
       while(*alias)
 	printf("%s ", *alias++);
       printf("\n");
-      printf("port: 0x%0.4x\n", service -> s_port);
+      printf("port: 0x%0.4x\n", htons(service -> s_port));
       printf("protocol: %s\n", service -> s_proto);
       ret = EXIT_SUCCESS;
     } else
