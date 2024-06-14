@@ -1,0 +1,6 @@
+struct  servent {
+  char    *s_name;        /* official name of service */
+  char    **s_aliases;    /* alias list */
+  int     s_port;         /* port service resides at */
+  char    *s_proto;       /* protocol to use */
+};
