@@ -52,6 +52,7 @@ int main(int argc, char *argv[])
        * to '*', indicating that it has read what
        * we put there.
        */
+      printf("Waiting for client to change the shared memory.\n");
       while(*shm != '*')
 	sleep(1);
       ret = EXIT_SUCCESS;
