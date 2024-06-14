@@ -18,15 +18,22 @@ int main(int, char *[]);
 int main(int argc, char *argv[])
 {
   int i;
-  char **alias;
+  char **alias, *servicename, *protocolname;
   long int ret = EXIT_FAILURE;
   struct servent *service;
 
   /* Check the arguments. */
-  if(argc == 3) {
-
-    /* Get the specified services from the database. */
-    if((service = getservbyname(argv[ 1 ], argv[ 2 ])) != NULL) {
+  if(argc < 2)
+    fprintf(stderr, "Usage servent <service name> <protocol name>\n");
+  else {
+    if (argc == 3) {
+      servicename = argv[ 1 ];
+      protocolname = argv[ 2 ];
+    } else if(argc == 2) {
+      servicename = argv[ 1 ];
+      protocolname = argv[ 2 ];
+    }
+    if((service = getservbyname(servicename, protocolname)) != NULL) {
       printf("official service name: %s\n", service -> s_name);
       printf("alias list: ");
       alias = service -> s_aliases;
@@ -41,8 +48,7 @@ int main(int argc, char *argv[])
 	      "Service %s with protocol %s not found in services database.\n", \
 	      argv[ 1 ],						\
 	      argv[ 2 ]);
-  } else
-    fprintf(stderr, "Usage servent <service name> <protocol name>\n");
+  }
   exit(ret);
 }
 
