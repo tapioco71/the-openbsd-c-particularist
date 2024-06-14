@@ -1,0 +1,5 @@
+struct mutex {
+  volatile void *mtx_owner;
+  int mtx_wantipl;
+  int mtx_oldipl;
+};
