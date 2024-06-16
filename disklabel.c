@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <fnctl.h>
+#include <fcntl.h>
 #include <errno.h>
 #include <sys/types.h>
 #include <sys/disklabel.h>
