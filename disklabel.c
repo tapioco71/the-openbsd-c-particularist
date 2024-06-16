@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
 	    printf("tracks per cylinder: 0x%0.8x\n", label.d_ntracks);
 	    printf("data cylinders per unit: 0x%0.8x\n", label.d_ncylinders);
 	    printf("data sectors per cylinder: 0x%0.8x\n", label.d_secpercyl);
-	    printf("data sectors per unit: 0x%0.8\n", label.d_secperunit);
+	    printf("data sectors per unit: 0x%0.8x\n", label.d_secperunit);
 	    ret = EXIT_SUCCESS;
 	  } else
 	    perror("read");
