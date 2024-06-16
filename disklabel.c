@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
     if((diskfd = open(argv[ 1 ], O_RDWR)) >= 0) {
       if(ioctl(diskfd, DIOCGPDINFO) >= 0) {
 	if(lseek(diskfd, 0, SEEK_SET) >= 0) {
-	  if(read(disk, &label, sizeof(struct disklabel)) >= 0) {
+	  if(read(diskfd, &label, sizeof(struct disklabel)) >= 0) {
 	    printf("magic number: 0x%0.8x\n", label.d_magic);
 	    printf("drive type: 0x%0.4x\n", label.d_type);
 	    printf("drive subtype: 0x%0.4x\n", label.d_subtype);
