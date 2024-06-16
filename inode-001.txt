@@ -1,0 +1,63 @@
+struct inode {
+  LIST_ENTRY(inode) i_hash; /* Hash chain */
+  struct  vnode  *i_vnode;/* Vnode associated with this inode. */
+  struct  ufsmount *i_ump;
+  u_int32_t i_flag;       /* flags, see below */
+  dev_t     i_dev;        /* Device associated with the inode. */
+  ufsino_t  i_number;     /* The identity of the inode. */
+  int       i_effnlink;   /* i_nlink when I/O completes */
+
+  union {                 /* Associated filesystem. */
+    struct  fs *fs;                 /* FFS */
+    struct  m_ext2fs *e2fs;         /* EXT2FS */
+  } inode_u;
+
+#define i_fs    inode_u.fs
+#define i_e2fs  inode_u.e2fs
+
+  struct   cluster_info i_ci;
+  struct   dquot *i_dquot[MAXQUOTAS]; /* Dquot structures. */
+  u_quad_t i_modrev;      /* Revision level for NFS lease. */
+  struct   lockf_state *i_lockf; /* Byte-level lock state. */
+  struct   rrwlock i_lock;/* Inode lock */
+
+  /*
+   * Side effects; used during directory lookup.
+   */
+  int32_t   i_count;      /* Size of free slot in directory. */
+  doff_t    i_endoff;     /* End of useful stuff in directory. */
+  doff_t    i_diroff;     /* Offset in dir, where we found last entry. */
+  doff_t    i_offset;     /* Offset of free space in directory. */
+  ufsino_t  i_ino;        /* Inode number of found directory. */
+  u_int32_t i_reclen;     /* Size of found directory entry. */
+  /*
+   * Inode extensions
+   */
+  union {
+    /* Other extensions could go here... */
+    struct ext2fs_inode_ext   e2fs;
+    struct dirhash *dirhash;
+  } inode_ext;
+
+#define i_e2fs_last_lblk        inode_ext.e2fs.ext2fs_last_lblk
+#define i_e2fs_last_blk         inode_ext.e2fs.ext2fs_last_blk
+#define i_e2fs_uid              inode_ext.e2fs.ext2fs_effective_uid
+#define i_e2fs_gid              inode_ext.e2fs.ext2fs_effective_gid
+#define i_e2fs_ext_cache        inode_ext.e2fs.ext2fs_extent_cache
+#define i_dirhash               inode_ext.dirhash
+
+  /*
+   * The on-disk dinode itself.
+   */
+  union {
+    struct ufs1_dinode     *ffs1_din;
+    struct ufs2_dinode     *ffs2_din;
+    struct ext2fs_dinode   *e2fs_din;
+  } dinode_u;
+
+#define i_din1  dinode_u.ffs1_din
+#define i_din2  dinode_u.ffs2_din
+#define i_e2din dinode_u.e2fs_din
+
+  struct inode_vtbl *i_vtbl;
+};
