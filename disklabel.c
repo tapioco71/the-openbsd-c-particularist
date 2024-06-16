@@ -50,3 +50,5 @@ int main(int argc, char *argv[])
     fprintf(stderr, "usage: disklabel <device>\n");
   exit(ret);
 }
+
+/* End of disklabel.c file. */
