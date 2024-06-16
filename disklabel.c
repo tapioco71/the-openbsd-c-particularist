@@ -51,6 +51,6 @@ int main(int argc, char *argv[])
     } else
       perror("open");
   } else
-    fprintf(stderr, "usage: disklabel <device>\n")
+    fprintf(stderr, "usage: disklabel <device>\n");
   exit(ret);
 }
