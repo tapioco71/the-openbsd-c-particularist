@@ -20,10 +20,10 @@
 /* Global variables. */
 uint16_t ircports[] = {
   6660, 6661, 6662, 6663, 6664, 6665, 6666, 6667, 0
-}
+};
 uint16_t sslircports[] = {
   6697, 0
-}
+};
 
 /* Functions prototypes. */
 long int client(struct sockaddr_in *);
