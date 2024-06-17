@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
     break;
   }
   if((host = gethostbyname(servername)) != NULL) {
-    printf("Address for %s: 0x%0.8x\n", serveraddress, host -> h_addr_list[ 0 ]);
+    printf("Address for %s: 0x%0.8x\n", servername, host -> h_addr_list[ 0 ]);
     ret = EXIT_SUCCESS;
   } else
     perror("gethostbyname");
