@@ -93,8 +93,12 @@ long int sendCommand(int fd, char *cmd)
   /* Check argument. */
   if(fd > 0) {
     if(cmd) {
+
+#ifdef DEBUG
+      printf("Client sends command: %s\n", cmd);
+#endif
+
       bzero(command, BUFSIZ);
-      printf("Send command: %s\n", cmd);
       snprintf(command, BUFSIZ, "%s\n\r", cmd);
       if(write(fd, command, strlen(command)) > 0)
 	ret = EXIT_SUCCESS;
@@ -117,7 +121,6 @@ long int getAnswer(int fd, char *answer, size_t length)
     if(length > 0) {
       bzero(answer, BUFSIZ);
       if((count = read(fd, answer, length)) > 0) {
-	printf("Received data from server: %s\n", answer);
 	ret = EXIT_SUCCESS;
       } else
 	perror("recv");
@@ -146,14 +149,14 @@ long int client(struct sockaddr_in *sa)
 		 (struct sockaddr *) sa,		\
 		 sizeof(struct sockaddr_in)) >= 0) {
 	printf("Connected to 0x%0.8x, port 0x%0.4x\n",	\
-	       (size_t) sa -> sin_addr.s_addr,			\
+	       sa -> sin_addr.s_addr,			\
 	       ntohs(sa -> sin_port));
 	bRun = true;
 	while(bRun) {
 	  switch(state) {
 	  case IDLE:
+	    state = END;
 	    printf("Idle state.\n");
-	    bzero(error, BUFSIZ);
 	    state = START_REGISTRATION;
 	    break;
 
@@ -168,7 +171,7 @@ long int client(struct sockaddr_in *sa)
 		if(getAnswer(sockfd, buff, BUFSIZ) == EXIT_SUCCESS) {
 		  printf("Server answer: %s\n", buff);
 		  if(sscanf(buff, "%d ", &answer) > 0) {
-		    snprintf(error, "code %d.", answer);
+		    snprintf(error, BUFSIZ, "code %d.", answer);
 		    state = ERROR;
 		  } else
 		    state = SEND_PASS;
@@ -200,7 +203,7 @@ long int client(struct sockaddr_in *sa)
 		if(getAnswer(sockfd, buff, BUFSIZ) == EXIT_SUCCESS) {
 		  printf("Server answer: %s\n", buff);
 		  if(strncmp(buff, "PING", 4) == 0) {
-		    sscanf(&buff, "PING :%s", number);
+		    sscanf(buff, "PING :%s", number);
 		    snprintf(buff, BUFSIZ, "PONG :%s", number);
 		    sendCommand(sockfd, buff);
 		  }
@@ -224,7 +227,7 @@ long int client(struct sockaddr_in *sa)
 	      if(sendCommand(sockfd, buff) == EXIT_SUCCESS) {
 		if(getAnswer(sockfd, buff, BUFSIZ) == EXIT_SUCCESS) {
 		  printf("Server answer: %s\n", buff);
-		  state = END_REGISTRATION;
+		  state = CAPABILITY_REQUEST;
 		} else {
 		  strncpy(error, "answer to USER command.", BUFSIZ);
 		  state = ERROR;
@@ -236,13 +239,26 @@ long int client(struct sockaddr_in *sa)
 	      break;
 
 	  case CAPABILITY_REQUEST:
+	    state = END;
 	    printf("Capability request state.\n");
-	    state = END;
+	    state = END_REGISTRATION;
 	    break;
-	    
+
 	  case END_REGISTRATION:
-	    printf("End registration state.\n");
 	    state = END;
+	    printf("End registration state.\n");
+	    snprintf(buff, BUFSIZ, "CAP END");
+	    if(sendCommand(sockfd, buff) == EXIT_SUCCESS) {
+	      if(getAnswer(sockfd, buff, BUFSIZ) == EXIT_SUCCESS) {
+		;
+	      } else {
+		strncpy(error, "answer to CAP END command.", BUFSIZ);
+		state = ERROR;
+	      }
+	    } else {
+	      strncpy(error, "CAP END command failed.", BUFSIZ);
+	      state = ERROR;
+	    }
 	    break;
 
 	  case ERROR:
