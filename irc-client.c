@@ -158,19 +158,28 @@ long int client(struct sockaddr_in *sa)
 	    break;
 
 	  case START_REGISTRATION:
-	    state = END;
-	    printf("Registration state.\n");
-	    if(sendCommand(sockfd, "CAP LS 302") == EXIT_SUCCESS) {
-	      if(getAnswer(sockfd, buff, BUFSIZ) == EXIT_SUCCESS) {
-		printf("Server answer: %s\n", buff);
-		state = SEND_PASS;
+	    {
+	      int answer;
+
+	      /* */
+	      state = END;
+	      printf("Registration state.\n");
+	      if(sendCommand(sockfd, "CAP LS 302") == EXIT_SUCCESS) {
+		if(getAnswer(sockfd, buff, BUFSIZ) == EXIT_SUCCESS) {
+		  printf("Server answer: %s\n", buff);
+		  if(sscanf(buff, "%d ", &answer) > 0) {
+		    snprintf(error, "code %d.", answer);
+		    state = ERROR;
+		  } else
+		    state = SEND_PASS;
+		} else {
+		  strncpy(error, "answer to CAP command.", BUFSIZ);
+		  state = ERROR;
+		}
 	      } else {
-		strncpy(error, "answer to CAP command.", BUFSIZ);
+		strncpy(error, "CAP command failed.", BUFSIZ);
 		state = ERROR;
 	      }
-	    } else {
-	      strncpy(error, "CAP command failed.", BUFSIZ);
-	      state = ERROR;
 	    }
 	    break;
 
