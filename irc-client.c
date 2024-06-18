@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 #include <stdint.h>
 #include <stddef.h>
 #include <inttypes.h>
@@ -18,26 +19,65 @@
 #define FOREVER for(;;)
 
 /* Global variables. */
+char nickname[] = "antani";
+char username[] = "blinda";
+char realname[] = "la barella";
 uint16_t ircports[] = {
   6660, 6661, 6662, 6663, 6664, 6665, 6666, 6667, 0
 };
 uint16_t sslircports[] = {
   6697, 0
 };
+enum tagIRCNumerics {
+  RPL_WELCOME = 1,
+  RPL_YOURHOST,
+  RPL_CREATED,
+  RPL_MYINFO,
+  RPL_ISUPPORT,
+  RPL_BOUNCE = 10,
+  RPL_STATSCOMMANDS = 212,
+  RPL_ENDOFSTATS = 219,
+  RPL_UMODEIS = 221,
+  RPL_STATSUPTIME = 242,
+  RPL_LUSERCLIENT = 251,
+  RPL_LUSEROP = 252,
+  RPL_LUSERUNKNOWN = 253,
+  RPL_LUSERCHANNELS = 254
+};
+  
+enum tagStates {
+  IDLE = 0,
+  START_REGISTRATION,
+  SEND_PASS,
+  SEND_NICK,
+  CAPABILITY_REQUEST,
+  SEND_USER,
+  END_REGISTRATION,
+  ERROR,
+  END
+};
+
+typedef enum tagIRCNumerics IRCNumerics_t
+typedef enum tagStates states_t;
 
 /* Functions prototypes. */
+long int sendCommand(int, char *);
 long int client(struct sockaddr_in *);
 int main(int, char *[]);
 
 /* Main function. */
 int main(int argc, char *argv[])
 {
+  char addressname[ BUFSIZ ];
+  char addressstring[ BUFSIZ ];
   char servername[ BUFSIZ ];
   char portname[ BUFSIZ ];
-  int res;
+  const char *errstr;
+  int i, res;
   long int ret;
   struct sockaddr_in serveraddress;
   struct hostent *host;
+  uint16_t port;
 
   /* Check parameters */
   switch(argc) {
@@ -56,19 +96,85 @@ int main(int argc, char *argv[])
     exit(EXIT_FAILURE);
     break;
   }
-  if((host = gethostbyname(servername)) != NULL) {
-    printf("Address for %s: %s\n", servername, host -> h_addr_list[ 0 ]);
-    ret = EXIT_SUCCESS;
+  if((host = gethostbyname2(servername, AF_INET)) != NULL) {
+    if(h_errno == NETDB_SUCCESS) {
+      memcpy(addressname, host -> h_addr_list[ 0 ], host -> h_length);
+      printf("host %s: ", host -> h_name);
+      for(i = 0; i < host -> h_length; i++) {
+	if(i == 0)
+	  snprintf(addressstring, BUFSIZ, "%u", (uint8_t) addressname[ i ]);
+	else
+	  snprintf(addressstring, BUFSIZ, "%s.%u", addressstring, (uint8_t) addressname[ i ]);
+      }
+      printf("%s\n", addressstring);
+      if(inet_pton(AF_INET, addressstring, &serveraddress.sin_addr) > 0) {
+	port = 0;
+	if(portname[ 0 ] != '\0') {
+	  if((port = strtonum(portname, 0, 65535, &errstr)) == 0) {
+	    perror("strtonum");
+	  }
+	} else
+	  port = htons(ircports[ 7 ]);
+	if(port > 0) {
+	  printf("server port: %d\n", port);
+	  serveraddress.sin_family = AF_INET;
+	  serveraddress.sin_port = htons(port);
+	  ret = client(&serveraddress);
+	} else {
+	  fprintf(stderr, "Wrong port specification.\n");
+	}
+      } else
+	perror("inet_pton");
+    } else
+      fprintf(stderr, "h_errno: %d\n", h_errno);
   } else
     perror("gethostbyname");
-
-  /*
-  servaddr.sin_family = AF_INET;
-  servaddr.sin_port = htons(SERVER_PORT);
-  res = inet_pton(AF_INET, "127.0.0.1", &servaddr.sin_addr);
-  ret = client(&servaddr);
-  */
   exit(ret);
+}
+
+/*
+ * sendCommand -- send a command string to server.
+ */
+
+long int sendCommand(int fd, char *cmd)
+{
+  char command[ BUFSIZ ];
+  long int ret = EXIT_FAILURE;
+
+  /* Check argument. */
+  if(fd > 0) {
+    if(cmd) {
+      bzero(command, BUFSIZ);
+      printf("Send command: %s\n", cmd);
+      snprintf(command, BUFSIZ, "%s\n\r", cmd);
+      if(write(fd, command, strlen(command)) > 0)
+	ret = EXIT_SUCCESS;
+    }
+  }
+  return ret;
+}
+
+/*
+ * getAnswer -- receive the server answer.
+ */
+
+long int getAnswer(int fd, char *answer, size_t length)
+{
+  int count;
+  long int ret = EXIT_FAILURE;
+
+  /* Check arguments. */
+  if(answer) {
+    if(length > 0) {
+      bzero(answer, BUFSIZ);
+      if((count = read(fd, answer, length)) > 0) {
+	printf("Received data from server: %s\n", answer);
+	ret = EXIT_SUCCESS;
+      } else
+	perror("recv");
+    }
+  }
+  return ret;
 }
 
 /*
@@ -76,11 +182,14 @@ int main(int argc, char *argv[])
  */
 long int client(struct sockaddr_in *sa)
 {
+  bool bRun;
   int sockfd;
+  states_t state = IDLE;
   long int ret = EXIT_FAILURE;
-  char *buff[ BUFSIZ ];
+  char buff[ BUFSIZ ];
+  char error[ BUFSIZ ];
 
-  /* */
+  /* Check function argument. */
   if(sa) {
     if((sockfd = socket(AF_INET, SOCK_STREAM, 0)) >= 0) {
       printf("Created socket: %d\n", sockfd);
@@ -88,13 +197,123 @@ long int client(struct sockaddr_in *sa)
 		 (struct sockaddr *) sa,		\
 		 sizeof(struct sockaddr_in)) >= 0) {
 	printf("Connected to 0x%0.8x, port 0x%0.4x\n",	\
-	       sa -> sin_addr,				\
+	       (size_t) sa -> sin_addr.s_addr,			\
 	       ntohs(sa -> sin_port));
-	if(recv(sockfd, (void *) buff, BUFSIZ, MSG_WAITALL) >= 0) {
-	  printf("Received data from server: %s\n", buff);
-	  ret = EXIT_SUCCESS;
+	bRun = true;
+	while(bRun) {
+	  switch(state) {
+	  case IDLE:
+	    printf("Idle state.\n");
+	    bzero(error, BUFSIZ);
+	    state = START_REGISTRATION;
+	    break;
+
+	  case START_REGISTRATION:
+	    state = END;
+	    printf("Registration state.\n");
+	    if(sendCommand(sockfd, "CAP LS 302") == EXIT_SUCCESS) {
+	      if(getAnswer(sockfd, buff, BUFSIZ) == EXIT_SUCCESS) {
+		printf("Server answer: %s\n", buff);
+		state = SEND_PASS;
+	      } else {
+		strncpy(error, "answer to CAP command.", BUFSIZ);
+		state = ERROR;
+	      }
+	    } else {
+	      strncpy(error, "CAP command failed.", BUFSIZ);
+	      state = ERROR;
+	    }
+	    break;
+
+	  case SEND_PASS:
+	    printf("Send password state.\n");
+	    state = SEND_NICK;
+	    break;
+
+	  case SEND_NICK:
+	    {
+	      char number[ BUFSIZ ];
+	      /* */
+	      state = END;
+	      printf("Send nick state.\n");
+	      bzero(buff, BUFSIZ);
+	      snprintf(buff, BUFSIZ, "NICK %s", nickname);
+	      if(sendCommand(sockfd, buff) == EXIT_SUCCESS) {
+		if(getAnswer(sockfd, buff, BUFSIZ) == EXIT_SUCCESS) {
+		  printf("Server answer: %s\n", buff);
+		  if(strncmp(buff, "PING", 4) == 0) {
+		    sscanf(&buff, "PING :%s", number);
+		    snprintf(buff, BUFSIZ, "PONG :%s", number);
+		    sendCommand(sockfd, buff);
+		  }
+		  state = SEND_USER;
+		} else {
+		  strncpy(error, "answer to NICK command.", BUFSIZ);
+		  state = ERROR;
+		}
+	      } else {
+		strncpy(error, "NICK command failed.", BUFSIZ);
+		state = ERROR;
+	      }
+	    }
+	    break;
+
+	  case SEND_USER:
+	    state = END;
+	      printf("Send user state.\n");
+	      bzero(buff, BUFSIZ);
+	      snprintf(buff, BUFSIZ, "USER %s 0 * :%s", username, realname);
+	      if(sendCommand(sockfd, buff) == EXIT_SUCCESS) {
+		if(getAnswer(sockfd, buff, BUFSIZ) == EXIT_SUCCESS) {
+		  printf("Server answer: %s\n", buff);
+		  state = END_REGISTRATION;
+		} else {
+		  strncpy(error, "answer to USER command.", BUFSIZ);
+		  state = ERROR;
+		}
+	      } else {
+		strncpy(error, "USER command failed.", BUFSIZ);
+		state = ERROR;
+	      }
+	      break;
+
+	  case CAPABILITY_REQUEST:
+	    printf("Capability request state.\n");
+	    state = END;
+	    break;
+	    
+	  case END_REGISTRATION:
+	    printf("End registration state.\n");
+	    state = END;
+	    break;
+
+	  case ERROR:
+	    fprintf(stderr, "Error: %s\n", error);
+	    state = END;
+	    break;
+	    
+	  case END:
+	    printf("Exiting state machine.\n");
+	    bRun = false;
+	    break;
+	  }
+	}
+	
+
+	/*
+	bzero(buff, BUFSIZ);
+	strncpy(buff, "CAP LS 302\r\n", BUFSIZ);
+	if(send(sockfd, buff, strlen(buff), 0) >= 0) {
+	  if(recv(sockfd, (void *) buff, BUFSIZ, MSG_WAITALL) >= 0) {
+	    printf("Received data from server: %s\n", buff);
+	    ret = EXIT_SUCCESS;
+	  } else
+	    perror("recv");
 	} else
-	  perror("recv");
+	  perror("sendto");
+	*/
+
+	
       } else
 	perror("connect");
       close(sockfd);
