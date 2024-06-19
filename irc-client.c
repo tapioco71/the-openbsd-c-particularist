@@ -82,9 +82,64 @@ int main(int argc, char *argv[])
 }
 
 /*
+ * executeServerCommand - fullfill a server request.
+ */
+long int executeServerCommand(int fd, command_t command)
+{
+  char buff[ BUFSIZ ];
+  long int ret = EXIT_FAILURE;
+  size_t i;
+
+  /* Check arguments. */
+  if(fd >= 0) {
+    printf("Command name: %s, ", command.c_name);
+    printf("Parameter: %s\n", command.c_parameters[ 0 ]);
+    if(strncmp(command.c_name, "PING", 4) == 0) {
+      snprintf(buff, BUFSIZ, "PONG :%s", command.c_parameters[ 0 ]);
+      printf("%s\n", buff);
+      sendCommand(fd, buff);
+      ret = EXIT_SUCCESS;
+    }
+    for(i = 0; command.c_parameters[ i ] != NULL; i++)
+      free(command.c_parameters[ i ]);
+    free(command.c_parameters);
+  }
+  return ret;
+}
+/*
+ * decodeServerAnswer - decode the server answer.
+ */
+long int decodeServerAnswer(char *buff, answer_t *answer)
+{
+  char temp[ PARAMETERLENGTH ];
+  long int ret = EXIT_FAILURE;
+
+  /* Check arguments. */
+  if(buff) {
+    if(answer) {
+      bzero(answer, sizeof(answer_t));
+      if(buff[ 0 ] == ':') {
+	answer -> a_type = 0;
+	strncpy(&answer -> a_message[ 0 ], &buff[ 0 ], MESSAGELENGTH);
+	ret = EXIT_SUCCESS;
+      } else if(((buff[ 0 ] >= 'a') && (buff[ 0 ] <= 'z')) ||
+		((buff[ 0 ] >= 'A') && (buff[ 0 ] <= 'Z'))) {
+	answer -> a_type = 1;
+	sscanf(&buff[ 0 ], "%s :%s", &answer -> a_command.c_name, temp);
+	answer -> a_command.c_parameters = (char **) malloc(sizeof(char) * 2);
+	answer -> a_command.c_parameters[ 0 ] = (char *) malloc(sizeof(char) * PARAMETERLENGTH);
+	answer -> a_command.c_parameters[ 1 ] = NULL;
+	strncpy(answer -> a_command.c_parameters[ 0 ], temp, PARAMETERLENGTH);
+	ret = EXIT_SUCCESS;
+      }
+    }
+  }
+  return ret;
+}
+
+/*
  * sendCommand -- send a command string to server.
  */
-
 long int sendCommand(int fd, char *cmd)
 {
   char command[ BUFSIZ ];
@@ -95,35 +150,53 @@ long int sendCommand(int fd, char *cmd)
     if(cmd) {
 
 #ifdef DEBUG
-      printf("Client sends command: %s\n", cmd);
+      printf("Client sending command string: \"%s\"\n", cmd);
 #endif
 
       bzero(command, BUFSIZ);
       snprintf(command, BUFSIZ, "%s\n\r", cmd);
-      if(write(fd, command, strlen(command)) > 0)
+      if(write(fd, command, strlen(command)) >= 0)
 	ret = EXIT_SUCCESS;
+      else
+	perror("write");
     }
   }
   return ret;
 }
 
 /*
- * getAnswer -- receive the server answer.
+ * getServerAnswer -- receive the server answer.
  */
-
-long int getAnswer(int fd, char *answer, size_t length)
+long int getServerAnswer(int fd, char *buff, size_t length)
 {
-  int count;
+  bool bRead;
+  size_t position;
   long int ret = EXIT_FAILURE;
 
   /* Check arguments. */
-  if(answer) {
-    if(length > 0) {
-      bzero(answer, BUFSIZ);
-      if((count = read(fd, answer, length)) > 0) {
-	ret = EXIT_SUCCESS;
-      } else
-	perror("recv");
+  if(fd >= 0) {
+    if(buff) {
+      if(length > 0) {
+	bRead = true;
+	position = 0;
+	bzero(buff, length);
+	do {
+	  if(read(fd, &buff[ position ], 1) >= 0) {
+	    if((buff[ position ] == '\n') || (buff[ position ] == '\0')) {
+	      buff[ position ] = '\0';
+	      ret = EXIT_SUCCESS;
+	      bRead = false;
+	    } else {
+	      if(position < length) {
+		++position;
+	      } else {
+		bRead = false;
+	      }
+	    }
+	  } else
+	    bRead = false;
+	} while(bRead);
+      }
     }
   }
   return ret;
@@ -157,57 +230,35 @@ long int client(struct sockaddr_in *sa)
 	  case IDLE:
 	    state = END;
 	    printf("Idle state.\n");
-	    state = START_REGISTRATION;
-	    break;
-
-	  case START_REGISTRATION:
-	    {
-	      int answer;
-
-	      /* */
-	      state = END;
-	      printf("Registration state.\n");
-	      if(sendCommand(sockfd, "CAP LS 302") == EXIT_SUCCESS) {
-		if(getAnswer(sockfd, buff, BUFSIZ) == EXIT_SUCCESS) {
-		  printf("Server answer: %s\n", buff);
-		  if(sscanf(buff, "%d ", &answer) > 0) {
-		    snprintf(error, BUFSIZ, "code %d.", answer);
-		    state = ERROR;
-		  } else
-		    state = SEND_PASS;
-		} else {
-		  strncpy(error, "answer to CAP command.", BUFSIZ);
-		  state = ERROR;
-		}
-	      } else {
-		strncpy(error, "CAP command failed.", BUFSIZ);
-		state = ERROR;
-	      }
-	    }
-	    break;
-
-	  case SEND_PASS:
-	    printf("Send password state.\n");
+	    //state = START_REGISTRATION;
 	    state = SEND_NICK;
 	    break;
 
 	  case SEND_NICK:
 	    {
 	      char number[ BUFSIZ ];
+	      answer_t answer;
+	      
 	      /* */
 	      state = END;
 	      printf("Send nick state.\n");
 	      bzero(buff, BUFSIZ);
 	      snprintf(buff, BUFSIZ, "NICK %s", nickname);
 	      if(sendCommand(sockfd, buff) == EXIT_SUCCESS) {
-		if(getAnswer(sockfd, buff, BUFSIZ) == EXIT_SUCCESS) {
+		if(getServerAnswer(sockfd, buff, BUFSIZ) == EXIT_SUCCESS) {
 		  printf("Server answer: %s\n", buff);
-		  if(strncmp(buff, "PING", 4) == 0) {
-		    sscanf(buff, "PING :%s", number);
-		    snprintf(buff, BUFSIZ, "PONG :%s", number);
-		    sendCommand(sockfd, buff);
+		  if(decodeServerAnswer(buff, &answer) == EXIT_SUCCESS) {
+		    switch(answer.a_type) {
+		    case 0:
+		      printf("%s", answer.a_message);
+		      break;
+
+		    case 1:
+		      executeServerCommand(sockfd, answer.a_command);
+		      break;
+		    }
+		    state = SEND_USER;
 		  }
-		  state = SEND_USER;
 		} else {
 		  strncpy(error, "answer to NICK command.", BUFSIZ);
 		  state = ERROR;
@@ -220,44 +271,63 @@ long int client(struct sockaddr_in *sa)
 	    break;
 
 	  case SEND_USER:
-	    state = END;
-	      printf("Send user state.\n");
+	    {
+	      int start = 0;
+	      int end = 0;
+	      int position = 0;
+	      long int s;
+	      answer_t answer;
+
+	      /* */
+	      state = END;
 	      bzero(buff, BUFSIZ);
 	      snprintf(buff, BUFSIZ, "USER %s 0 * :%s", username, realname);
 	      if(sendCommand(sockfd, buff) == EXIT_SUCCESS) {
-		if(getAnswer(sockfd, buff, BUFSIZ) == EXIT_SUCCESS) {
-		  printf("Server answer: %s\n", buff);
-		  state = CAPABILITY_REQUEST;
+		if(getServerAnswer(sockfd, buff, BUFSIZ) == EXIT_SUCCESS) {
+		  if(decodeServerAnswer(buff, &answer) == EXIT_SUCCESS) {
+		    switch(answer.a_type) {
+		    case MESSAGE:
+		      printf("%s", answer.a_message);
+		      break;
+
+		    case COMMAND:
+		      executeServerCommand(sockfd, answer.a_command);
+		      break;
+		    }
+		    state = REPL;
+		  }
 		} else {
-		  strncpy(error, "answer to USER command.", BUFSIZ);
+		  strncpy(error, "answer to NICK command.", BUFSIZ);
 		  state = ERROR;
 		}
 	      } else {
 		strncpy(error, "USER command failed.", BUFSIZ);
 		state = ERROR;
 	      }
-	      break;
-
-	  case CAPABILITY_REQUEST:
-	    state = END;
-	    printf("Capability request state.\n");
-	    state = END_REGISTRATION;
+	    }
 	    break;
 
-	  case END_REGISTRATION:
-	    state = END;
-	    printf("End registration state.\n");
-	    snprintf(buff, BUFSIZ, "CAP END");
-	    if(sendCommand(sockfd, buff) == EXIT_SUCCESS) {
-	      if(getAnswer(sockfd, buff, BUFSIZ) == EXIT_SUCCESS) {
-		;
-	      } else {
-		strncpy(error, "answer to CAP END command.", BUFSIZ);
-		state = ERROR;
-	      }
-	    } else {
-	      strncpy(error, "CAP END command failed.", BUFSIZ);
+	  case REPL:
+	    {
+	      answer_t answer;
+
+	      /* */
 	      state = ERROR;
+	      if(getServerAnswer(sockfd, buff, BUFSIZ) == EXIT_SUCCESS) {
+		if(decodeServerAnswer(buff, &answer) == EXIT_SUCCESS) {
+		  switch(answer.a_type) {
+		  case 0:
+		    printf("%s", answer.a_message);
+		    break;
+
+		  case 1:
+		    printf("Catching a server request!\n");
+		    executeServerCommand(sockfd, answer.a_command);
+		    break;
+		  }
+		  state = REPL;
+		}
+	      }
 	    }
 	    break;
 
@@ -265,29 +335,13 @@ long int client(struct sockaddr_in *sa)
 	    fprintf(stderr, "Error: %s\n", error);
 	    state = END;
 	    break;
-	    
+
 	  case END:
 	    printf("Exiting state machine.\n");
 	    bRun = false;
 	    break;
 	  }
 	}
-	
-
-	/*
-	bzero(buff, BUFSIZ);
-	strncpy(buff, "CAP LS 302\r\n", BUFSIZ);
-	if(send(sockfd, buff, strlen(buff), 0) >= 0) {
-	  if(recv(sockfd, (void *) buff, BUFSIZ, MSG_WAITALL) >= 0) {
-	    printf("Received data from server: %s\n", buff);
-	    ret = EXIT_SUCCESS;
-	  } else
-	    perror("recv");
-	} else
-	  perror("sendto");
-	*/
-
-	
       } else
 	perror("connect");
       close(sockfd);

@@ -15,6 +15,14 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
+#define DEBUG 1
+#define SERVERNAMELENGTH 128
+#define NICKNAMELENGTH 32
+#define LINELENGTH 256
+#define MESSAGELENGTH BUFSIZ
+#define COMMANDLENGTH 32
+#define PARAMETERLENGTH 16
+
 #define FOREVER for(;;)
 
 enum tagIRCNumerics {
@@ -151,6 +159,8 @@ enum tagIRCNumerics {
   RPL_SASLMECHS
 };
 
+typedef enum tagIRCNumerics IRCNumerics_t;
+
 enum tagStates {
   IDLE = 0,
   START_REGISTRATION,
@@ -159,14 +169,53 @@ enum tagStates {
   CAPABILITY_REQUEST,
   SEND_USER,
   END_REGISTRATION,
+  GETSTARTCHAR,
+  GETPARAMETERS,
+  REPL,
   ERROR,
   END
 };
 
-typedef enum tagIRCNumerics IRCNumerics_t;
 typedef enum tagStates states_t;
 
+enum tagAnswerTypes {
+  MESSAGE,
+  COMMAND,
+  JUNK
+};
+
+typedef enum tagAnswerTypes answertypes_t;
+
+struct tagCommand {
+  char c_name[ COMMANDLENGTH ];
+  char **c_parameters;
+};
+
+typedef struct tagCommand command_t;
+
+struct tagMessage {
+  char m_origin[ SERVERNAMELENGTH ];
+  size_t m_code;
+  char m_nick[ NICKNAMELENGTH ];
+  char m_message[ MESSAGELENGTH ];
+};
+
+typedef struct tagMessage message_t;
+
+struct tagAnswer {
+  answertypes_t a_type;
+  union {
+    char a_message[ MESSAGELENGTH ];
+    command_t a_command;
+  };
+};
+
+typedef struct tagAnswer answer_t;
+
 /* Functions prototypes. */
+long int executeServerCommand(int, command_t);
+long int decodeServerAnswer(char *, answer_t *);
+long int getServerAnswer(int, char *, size_t);
 long int sendCommand(int, char *);
 long int client(struct sockaddr_in *);
 int main(int, char *[]);
