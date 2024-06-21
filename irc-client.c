@@ -146,7 +146,7 @@ long int sendCommand(int fd, char *cmd)
   long int ret = EXIT_FAILURE;
 
   /* Check argument. */
-  if(fd > 0) {
+  if(fd >= 0) {
     if(cmd) {
 
 #ifdef DEBUG
@@ -170,7 +170,7 @@ long int sendCommand(int fd, char *cmd)
 long int getServerAnswer(int fd, char *buff, size_t length)
 {
   bool bRead;
-  size_t position;
+  size_t position, stop;
   long int ret = EXIT_FAILURE;
 
   /* Check arguments. */
@@ -182,8 +182,10 @@ long int getServerAnswer(int fd, char *buff, size_t length)
 	bzero(buff, length);
 	do {
 	  if(read(fd, &buff[ position ], 1) >= 0) {
+	    if(buff[ position ] == '\r')
+	      stop = position;
 	    if((buff[ position ] == '\n') || (buff[ position ] == '\0')) {
-	      buff[ position ] = '\0';
+	      buff[ stop ] = '\0';
 	      ret = EXIT_SUCCESS;
 	      bRead = false;
 	    } else {
@@ -236,9 +238,8 @@ long int client(struct sockaddr_in *sa)
 
 	  case SEND_NICK:
 	    {
-	      char number[ BUFSIZ ];
 	      answer_t answer;
-	      
+
 	      /* */
 	      state = END;
 	      printf("Send nick state.\n");
@@ -283,23 +284,7 @@ long int client(struct sockaddr_in *sa)
 	      bzero(buff, BUFSIZ);
 	      snprintf(buff, BUFSIZ, "USER %s 0 * :%s", username, realname);
 	      if(sendCommand(sockfd, buff) == EXIT_SUCCESS) {
-		if(getServerAnswer(sockfd, buff, BUFSIZ) == EXIT_SUCCESS) {
-		  if(decodeServerAnswer(buff, &answer) == EXIT_SUCCESS) {
-		    switch(answer.a_type) {
-		    case MESSAGE:
-		      printf("%s", answer.a_message);
-		      break;
-
-		    case COMMAND:
-		      executeServerCommand(sockfd, answer.a_command);
-		      break;
-		    }
-		    state = REPL;
-		  }
-		} else {
-		  strncpy(error, "answer to NICK command.", BUFSIZ);
-		  state = ERROR;
-		}
+		state = REPL;
 	      } else {
 		strncpy(error, "USER command failed.", BUFSIZ);
 		state = ERROR;
@@ -312,16 +297,16 @@ long int client(struct sockaddr_in *sa)
 	      answer_t answer;
 
 	      /* */
+	      bzero(buff, BUFSIZ);
 	      state = ERROR;
 	      if(getServerAnswer(sockfd, buff, BUFSIZ) == EXIT_SUCCESS) {
 		if(decodeServerAnswer(buff, &answer) == EXIT_SUCCESS) {
 		  switch(answer.a_type) {
 		  case 0:
-		    printf("%s", answer.a_message);
+		    printf("%s\n", answer.a_message);
 		    break;
 
 		  case 1:
-		    printf("Catching a server request!\n");
 		    executeServerCommand(sockfd, answer.a_command);
 		    break;
 		  }

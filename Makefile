@@ -38,7 +38,7 @@ else
 endif
 
 CCFLAGS=-std=gnu99	\
-        -ggdb		\
+        -glldb		\
         -c
 
 LDFLAGS=
