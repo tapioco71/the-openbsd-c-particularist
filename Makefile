@@ -54,6 +54,7 @@ all: ${TOOLCHAIN}/client
 all: ${TOOLCHAIN}/cputime
 all: ${TOOLCHAIN}/difftime
 all: ${TOOLCHAIN}/disklabel
+all: ${TOOLCHAIN}/disklabel2
 all: ${TOOLCHAIN}/ezshell
 all: ${TOOLCHAIN}/factorial
 all: ${TOOLCHAIN}/fseekdemo
@@ -135,6 +136,7 @@ ${TOOLCHAIN}/client: ${TOOLCHAIN}/client.o
 ${TOOLCHAIN}/cputime: ${TOOLCHAIN}/cputime.o
 ${TOOLCHAIN}/difftime: ${TOOLCHAIN}/difftime.o
 ${TOOLCHAIN}/disklabel: ${TOOLCHAIN}/disklabel.o
+${TOOLCHAIN}/disklabel2: ${TOOLCHAIN}/disklabel2.o
 ${TOOLCHAIN}/ezshell: ${TOOLCHAIN}/ezshell.o
 ${TOOLCHAIN}/factorial: ${TOOLCHAIN}/factorial.o
 ${TOOLCHAIN}/fseekdemo: ${TOOLCHAIN}/fseekdemo.o

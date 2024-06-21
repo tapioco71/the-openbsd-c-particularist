@@ -21,7 +21,7 @@ int main(int, char *[]);
 /* Main function. */
 int main(int argc, char *argv[])
 {
-  int diskfd;
+  int i, diskfd;
   long int ret;
   struct disklabel label;
 
@@ -30,12 +30,14 @@ int main(int argc, char *argv[])
     if(pledge("stdio disklabel unveil rpath wpath", NULL) >= 0) {
       if(unveil(argv[ 1 ], "rw") >= 0) {
 	if((diskfd = open(argv[ 1 ], O_RDWR)) >= 0) {
-	  if(ioctl(diskfd, DIOCGPDINFO, &label) >= 0) {
+	  if(ioctl(diskfd, DIOCGDINFO, &label) >= 0) {
 	    for(i = 0; i < label.d_npartitions; i++) {
-	      printf("partition number of sectors: %ld\n", (label.partition[ i ].p_size | label.partition[ i ].p_sizeh << 32));
-	      printf("partition starting sector: %zu\n", label.partition[ i ].p_offset | (label.partition[ i ].offseth << 32));
-	      printf("partition filesystem type: %d\n", label.partition[ i ].p_fstype);
-	      printf("partition encoded filesystem frag/block: %d\n", label.partition[ i ].p_fragblock
+	      printf("\npartion #%d\n", i);
+	      printf("partition number of sectors: %zu\n", (label.d_partitions[ i ].p_size | label.d_partitions[ i ].p_sizeh << 32));
+	      printf("partition starting sector: %zu\n", label.d_partitions[ i ].p_offset | (label.d_partitions[ i ].p_offseth << 32));
+	      printf("partition filesystem type: %d\n", label.d_partitions[ i ].p_fstype);
+	      printf("partition encoded filesystem frag/block: %d\n", label.d_partitions[ i ].p_fragblock);
+	      printf("partition cylinders per group: %d\n", label.d_partitions[ i ].p_cpg);
 	    }
 	    ret = EXIT_SUCCESS;
 	  } else
