@@ -50,6 +50,7 @@ all: ${TOOLCHAIN}/append-char
 all: ${TOOLCHAIN}/append-line
 all: ${TOOLCHAIN}/append2
 all: ${TOOLCHAIN}/bg
+all: ${TOOLCHAIN}/blocks
 all: ${TOOLCHAIN}/client
 all: ${TOOLCHAIN}/cputime
 all: ${TOOLCHAIN}/difftime
@@ -132,6 +133,7 @@ ${TOOLCHAIN}/append-char: ${TOOLCHAIN}/append-char.o
 ${TOOLCHAIN}/append-line: ${TOOLCHAIN}/append-line.o
 ${TOOLCHAIN}/append2: ${TOOLCHAIN}/append2.o
 ${TOOLCHAIN}/bg: ${TOOLCHAIN}/bg.o
+${TOOLCHAIN}/blocks: ${TOOLCHAIN}/blocks.o
 ${TOOLCHAIN}/client: ${TOOLCHAIN}/client.o
 ${TOOLCHAIN}/cputime: ${TOOLCHAIN}/cputime.o
 ${TOOLCHAIN}/difftime: ${TOOLCHAIN}/difftime.o

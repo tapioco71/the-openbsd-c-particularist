@@ -37,9 +37,9 @@ int main(int argc, char *argv[])
 		if(read(diskfd, sector, label.d_secsize) >= 0) {
 		  for(i = 0; i < label.d_secsize; i++) {
 		    if((i % 16) == 0) {
-		      printf("\n0x0.4x: ", i);
+		      printf("\n0x%0.4x: ", i);
 		    } else {
-		      printf("0.2x ", sector[ i ]);
+		      printf("%0.2x ", sector[ i ]);
 		    }
 		  }
 		  ret = EXIT_SUCCESS;
