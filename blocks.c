@@ -42,6 +42,7 @@ int main(int argc, char *argv[])
 		      printf("%0.2x ", sector[ i ]);
 		    }
 		  }
+		  printf("\n\n");
 		  ret = EXIT_SUCCESS;
 		} else
 		  perror("read");
