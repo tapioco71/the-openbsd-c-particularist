@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 	} else
 	  perror("open");
       } else
-	perror("nveil");
+	perror("unveil");
     } else
       perror("pledge");
   } else
