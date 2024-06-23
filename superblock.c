@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
       if(unveil(argv[ 1 ], "rw") >= 0) {
 	if((diskfd = open(argv[ 1 ], O_RDWR)) >= 0) {
 	  if(ioctl(diskfd, DIOCGDINFO, &label) >= 0) {
-	    if(lseek(diskfd, SBLOCK, SEEK_SET) >= 0) {
+	    if(lseek(diskfd, SBLOCK * SBSIZE, SEEK_SET) >= 0) {
 	      if((superblock = (struct fs *) malloc(sizeof(struct fs))) != NULL) {
 		if(read(diskfd, superblock, sizeof(struct fs)) >= 0) {
 		  printf("magic number: %d\n", superblock -> fs_magic);
