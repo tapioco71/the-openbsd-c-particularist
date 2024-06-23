@@ -88,6 +88,7 @@ all: ${TOOLCHAIN}/sigblock
 all: ${TOOLCHAIN}/sigstack
 all: ${TOOLCHAIN}/speaker
 all: ${TOOLCHAIN}/stopproc
+all: ${TOOLCHAIN}/superblock
 all: ${TOOLCHAIN}/time
 all: ${TOOLCHAIN}/timeout
 all: ${TOOLCHAIN}/timezone
@@ -171,6 +172,7 @@ ${TOOLCHAIN}/sigblock: ${TOOLCHAIN}/sigblock.o
 ${TOOLCHAIN}/sigstack: ${TOOLCHAIN}/sigstack.o
 ${TOOLCHAIN}/speaker: ${TOOLCHAIN}/speaker.o
 ${TOOLCHAIN}/stopproc: ${TOOLCHAIN}/stopproc.o
+${TOOLCHAIN}/superblock: ${TOOLCHAIN}/superblock.o
 ${TOOLCHAIN}/time: ${TOOLCHAIN}/time.o
 ${TOOLCHAIN}/timeout: ${TOOLCHAIN}/timeout.o
 ${TOOLCHAIN}/timezone: ${TOOLCHAIN}/timezone.o

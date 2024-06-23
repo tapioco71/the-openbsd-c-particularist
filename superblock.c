@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
   int i, diskfd;
   long int ret;
   struct disklabel label;
-  struct  *superblock;
+  struct fs *superblock;
 
   /* Check arguments. */
   if(argc == 2) {
