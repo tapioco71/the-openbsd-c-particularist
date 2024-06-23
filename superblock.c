@@ -12,6 +12,7 @@
 #include <sys/dkio.h>
 #include <sys/disklabel.h>
 #include <ufs/ffs/fs.h>
+#include <ufs/ufs/quota.h>
 #include <ufs/ufs/inode.h>
 
 /* program superblock. */
@@ -35,13 +36,13 @@ int main(int argc, char *argv[])
 	if((diskfd = open(argv[ 1 ], O_RDWR)) >= 0) {
 	  if(ioctl(diskfd, DIOCGDINFO, &label) >= 0) {
 	    if(lseek(diskfd, SBLOCK, SEEK_SET) >= 0) {
-	      if((superblock = (uint8_t *) malloc(sizeof(uint8_t) * SBSIZE)) != NULL) {
-		if(read(diskfd, superblock, sizeof(uint8_t) * SBSIZE) >= 0) {
+	      if((superblock = (struct fs *) malloc(SBSIZE)) != NULL) {
+		if(read(diskfd, superblock, SBSIZE) >= 0) {
 		  printf("magic number: %d\n", superblock -> fs_magic);
 		  ret = EXIT_SUCCESS;
 		} else
 		  perror("read");
-		free(sector);
+		free(superblock);
 	      } else
 		perror("malloc");
 	    } else
