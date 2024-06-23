@@ -41,7 +41,9 @@ CCFLAGS=-std=gnu99	\
         -glldb		\
         -c
 
-LDFLAGS=
+LDFLAGS=-glldb		\
+        -lc		\
+	-lutil
 
 all: ${TOOLCHAIN}
 all: ${TOOLCHAIN}/alarm
@@ -121,11 +123,11 @@ ${TOOLCHAIN}/%:
 		echo " [ LD ] ${@}";			\
 	else						\
 		echo ${LD} $(filter %.o %.a, ${^})	\
-		           ${LD_FLAGS}			\
+		           ${LDFLAGS}			\
 			   -o ${@};			\
 	fi
 	@${LD} $(filter %.o %.a, ${^})		\
-	       ${LD_FLAGS}			\
+	       ${LDFLAGS}			\
 	       -o ${@}
 
 ${TOOLCHAIN}/alarm: ${TOOLCHAIN}/alarm.o
