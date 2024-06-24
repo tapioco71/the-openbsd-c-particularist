@@ -1,0 +1,11 @@
+/* -*- mode: c-mode; -*- */
+
+/* hello1.c file. */
+#include <stdio.h>
+
+void hello(void)
+{
+  printf("Hellom world.\n");
+}
+
+/* End of hello1.c file. */

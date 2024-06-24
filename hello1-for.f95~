@@ -1,0 +1,11 @@
+! -*- mode: f90-mode; -*-
+
+! hello1-for.g95 file.
+
+program hello1
+  integer i
+  call hello
+  stop
+end program hello1
+
+! End of hello1-for.g95 file.
