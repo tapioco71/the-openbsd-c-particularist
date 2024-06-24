@@ -32,6 +32,7 @@ ifeq (${OS},OpenBSD)
 	TOOLCHAIN=clang
 	CC=$(shell which clang)
 	CXX=$(shell which clang++)
+	G95=$(shell which egfortran)
 	LD=${CC}
 else
 	$(error "Unknown OS.")
@@ -40,6 +41,8 @@ endif
 CCFLAGS=-std=gnu99	\
         -glldb		\
         -c
+
+G95FLAGS=-c
 
 LDFLAGS=-glldb		\
         -lc		\
@@ -108,6 +111,14 @@ ${TOOLCHAIN}/%.o: %.c
 		echo ${CC} ${CCFLAGS} ${<} -o ${@};	\
 	fi
 	@${CC} ${CCFLAGS} ${<} -o ${@}
+
+${TOOLCHAIN}/%.o: %.for %g77 %.g90 %.g95
+	@if [ 'x${VERBOSE}' = x ]; then			\
+		echo " [ G95 ] ${<}";			\
+	else						\
+		echo ${G95} ${G95FLAGS} ${<} -o ${@};	\
+	fi
+	@${G95} ${G95FLAGS} ${<} -o ${@}
 
 ${TOOLCHAIN}:
 	@if [ 'x${VERBOSE}' = x ];		\
