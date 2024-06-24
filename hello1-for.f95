@@ -1,6 +1,6 @@
 ! -*- mode: f90-mode; -*-
 
-! hello1-for.g95 file.
+! hello1-for.f95 file.
 
   
 program hello1
@@ -23,4 +23,4 @@ program hello1
   
 end program hello1
 
-! End of hello1-for.g95 file.
+! End of hello1-for.f95 file.
