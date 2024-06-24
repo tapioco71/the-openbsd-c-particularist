@@ -29,7 +29,7 @@
 
 OS=${shell uname -s}
 ifeq (${OS},OpenBSD)
-	TOOLCHAIN=clang
+	TOOLCHAIN=egcc
 	CC=$(shell which egcc)
 	CXX=$(shell which eg++)
 	G95=$(shell which egfortran)
@@ -111,7 +111,10 @@ all: ${TOOLCHAIN}/winsize
 
 # FORTRAN vs C
 all: ${TOOLCHAIN}/hello1
-hello1: ${TOOLCHAIN}/hello1-c.o ${TOOLCHAIN}/hello1-for.o
+all: ${TOOLCHAIN}/hello2
+
+#hello1: ${TOOLCHAIN}/hello1-c.o ${TOOLCHAIN}/hello1-for.o
+#hello2: ${TOOLCHAIN}/hello2-for.o ${TOOLCHAIN}/hello2-c.o
 
 clean:
 	@rm -rf ${TOOLCHAIN}
@@ -124,7 +127,7 @@ ${TOOLCHAIN}/%.o: %.c
 	fi
 	@${CC} ${CCFLAGS} ${<} -o ${@}
 
-${TOOLCHAIN}/%.o: %.f95
+${TOOLCHAIN}/%.o: %.f90
 	@if [ 'x${VERBOSE}' = x ]; then			\
 		echo " [ G95 ] ${<}";			\
 	else						\
@@ -207,5 +210,6 @@ ${TOOLCHAIN}/winsize: ${TOOLCHAIN}/winsize.o
 
 # FORTRAN vs C
 ${TOOLCHAIN}/hello1: ${TOOLCHAIN}/hello1-c.o ${TOOLCHAIN}/hello1-for.o
+${TOOLCHAIN}/hello2: ${TOOLCHAIN}/hello2-for.o ${TOOLCHAIN}/hello2-c.o
 
 # End of Makefile.

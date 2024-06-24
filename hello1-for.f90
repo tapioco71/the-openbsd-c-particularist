@@ -2,12 +2,12 @@
 
 ! hello1-for.f90 file.
 
-  
+
 program hello1
-  
+
   use, intrinsic :: iso_c_binding, only: c_int
   implicit none
-  
+
   interface
      subroutine hello(count) bind(C)
        use, intrinsic :: iso_c_binding, only: c_int
@@ -15,12 +15,12 @@ program hello1
        integer(c_int), value :: count
      end subroutine hello
   end interface
-  
+
   integer(c_int) :: x
   x = 10
   call hello(x)
   stop
-  
+
 end program hello1
 
 ! End of hello1-for.f90 file.
