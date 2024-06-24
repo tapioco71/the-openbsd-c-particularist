@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
       printf("weekday: %d, ", tm_val -> tm_wday);
       printf("day of year: %d\n", tm_val -> tm_yday);
       printf("summer time in effect? %d\n", tm_val -> tm_isdst);
-      printf("offset from UTC in seconds: %d\n", tm_val -> tm_gmtoff);
+      printf("offset from UTC in seconds: %ld\n", tm_val -> tm_gmtoff);
       printf("timezone name: %s\n", tm_val -> tm_zone);
       ret = EXIT_SUCCESS;
     } else

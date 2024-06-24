@@ -52,7 +52,7 @@ long int client(struct sockaddr_in *sa)
 		 (struct sockaddr *) sa,		\
 		 sizeof(struct sockaddr_in)) >= 0) {
 	printf("Connected to 0x%0.8x, port 0x%0.4x\n",	\
-	       sa -> sin_addr,				\
+	       (u_int32_t) sa -> sin_addr.s_addr,	\
 	       ntohs(sa -> sin_port));
 	if(recv(sockfd, (void *) buff, BUFSIZ, MSG_WAITALL) >= 0) {
 	  printf("Received data from server: %s\n", buff);

@@ -30,8 +30,8 @@
 OS=${shell uname -s}
 ifeq (${OS},OpenBSD)
 	TOOLCHAIN=clang
-	CC=$(shell which clang)
-	CXX=$(shell which clang++)
+	CC=$(shell which egcc)
+	CXX=$(shell which eg++)
 	G95=$(shell which egfortran)
 	LD=${CC}
 else
@@ -39,14 +39,22 @@ else
 endif
 
 CCFLAGS=-std=gnu99	\
-        -glldb		\
         -c
 
 G95FLAGS=-c
 
-LDFLAGS=-glldb		\
-        -lc		\
-	-lutil
+LDFLAGS=-lc		\
+	-lutil		\
+	-lgfortran
+
+ifeq (${DEBUG},1)
+	CCFLAGS=-ggdb		\
+		${CCFLAGS}
+	G95FLAGS=-ggdb		\
+		 ${G95FLAGS}
+	LDFLAGS=-ggdb		\
+		${LDFLAGS}
+endif
 
 all: ${TOOLCHAIN}
 all: ${TOOLCHAIN}/alarm
@@ -101,6 +109,10 @@ all: ${TOOLCHAIN}/utmp
 all: ${TOOLCHAIN}/waitfor
 all: ${TOOLCHAIN}/winsize
 
+# FORTRAN vs C
+all: ${TOOLCHAIN}/hello1
+hello1: ${TOOLCHAIN}/hello1-c.o ${TOOLCHAIN}/hello1-for.o
+
 clean:
 	@rm -rf ${TOOLCHAIN}
 
@@ -112,7 +124,7 @@ ${TOOLCHAIN}/%.o: %.c
 	fi
 	@${CC} ${CCFLAGS} ${<} -o ${@}
 
-${TOOLCHAIN}/%.o: %.for %g77 %.g90 %.g95
+${TOOLCHAIN}/%.o: %.f95
 	@if [ 'x${VERBOSE}' = x ]; then			\
 		echo " [ G95 ] ${<}";			\
 	else						\
@@ -193,5 +205,7 @@ ${TOOLCHAIN}/utmp: ${TOOLCHAIN}/utmp.o
 ${TOOLCHAIN}/waitfor: ${TOOLCHAIN}/waitfor.o
 ${TOOLCHAIN}/winsize: ${TOOLCHAIN}/winsize.o
 
+# FORTRAN vs C
+${TOOLCHAIN}/hello1: ${TOOLCHAIN}/hello1-c.o ${TOOLCHAIN}/hello1-for.o
 
 # End of Makefile.
