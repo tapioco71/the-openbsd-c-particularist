@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
       if((diskfd = opendev(name, O_RDONLY, 0, NULL)) >= 0) {
 	for(i = 0; sbtry[ i ] != 1; i++) {
 	  n = pread(diskfd, &fsun1.u_fs, SBLOCKSIZE, (off_t) sbtry[ i ]);
-	  if(n == SBLOCKSIZE &&					\
+	  if(n == SBLOCKSIZE &&						\
 	     (fsun1.u_fs.fs_magic == FS_UFS1_MAGIC ||			\
 	      (fsun1.u_fs.fs_magic == FS_UFS2_MAGIC &&			\
 	       fsun1.u_fs.fs_sblockloc == sbtry[ i ])) &&		\
