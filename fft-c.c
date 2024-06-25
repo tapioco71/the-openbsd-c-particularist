@@ -19,9 +19,9 @@ bool dft(double complex x[], size_t count)
   if(count > 0) {
     if((temp = (double complex *)				\
 	calloc(count, sizeof(double complex))) != NULL) {
+      wn = cexp(-2.0 * M_PI * I / (double) count);
       for(j = 0; j < count; j++) {
 	for(k = 0; k < count; k++) {
-	  wn = cexp(-2.0 * M_PI * I / (double) count);
 	  temp[ j ] += x[ k ] * cpow(wn, (double) (j * k));
 	}
       }
