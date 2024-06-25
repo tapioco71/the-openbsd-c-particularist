@@ -112,9 +112,7 @@ all: ${TOOLCHAIN}/winsize
 # FORTRAN vs C
 all: ${TOOLCHAIN}/hello1
 all: ${TOOLCHAIN}/hello2
-
-#hello1: ${TOOLCHAIN}/hello1-c.o ${TOOLCHAIN}/hello1-for.o
-#hello2: ${TOOLCHAIN}/hello2-for.o ${TOOLCHAIN}/hello2-c.o
+all: ${TOOLCHAIN}/mean
 
 clean:
 	@if [ 'x${VERBOSE}' = x ]; then			\
@@ -216,5 +214,6 @@ ${TOOLCHAIN}/winsize: ${TOOLCHAIN}/winsize.o
 # FORTRAN vs C
 ${TOOLCHAIN}/hello1: ${TOOLCHAIN}/hello1-c.o ${TOOLCHAIN}/hello1-for.o
 ${TOOLCHAIN}/hello2: ${TOOLCHAIN}/hello2-for.o ${TOOLCHAIN}/hello2-c.o
+${TOOLCHAIN}/mean: ${TOOLCHAIN}/mean-for.o ${TOOLCHAIN}/mean-c.o
 
 # End of Makefile.
