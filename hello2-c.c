@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int hello_(int);
+void hello_(int);
 int main(int, char *argv[]);
 
 /* Main function. */
