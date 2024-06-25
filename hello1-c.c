@@ -5,7 +5,7 @@
 
 void hello(int count)
 {
-  printf("Hello, %d worlds.\n",			\
+  printf("Hello, %d worlds.\n",\
 	 count);
 }
 
