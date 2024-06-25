@@ -63,9 +63,12 @@ int main(int argc, char *argv[])
 	       sbtry[ i ] == SBLOCK_UFS2) &&				\
 	     fsun1.u_fs.fs_bsize <= MAXBSIZE &&				\
 	     fsun1.u_fs.fs_bsize >= sizeof(struct fs)) {
-	    printf("super-block shift constant: %d\n", fsun1.u_fs.fs_fsbtodb);
-	    printf("super-block magic number: 0x%0.8x\n", fsun1.u_fs.fs_magic);
-	    printf("super-block offset: %d\n", fsun1.u_fs.fs_sblkno);
+	    printf("super-block shift constant: %d\n",	\
+		   fsun1.u_fs.fs_fsbtodb);
+	    printf("super-block magic number: 0x%0.8x\n",	\
+		   fsun1.u_fs.fs_magic);
+	    printf("super-block offset: %d\n",	\
+		   fsun1.u_fs.fs_sblkno);
 	    ret = EXIT_SUCCESS;
 	    break;
 	  }
