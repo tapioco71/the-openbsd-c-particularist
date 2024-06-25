@@ -6,8 +6,6 @@
 #include <stdint.h>
 #include <inttypes.h>
 
-double mean(double [], size_t);
-
 double mean(double values[], size_t count)
 {
   double ret = 0.;
