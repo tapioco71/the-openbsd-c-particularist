@@ -7,16 +7,6 @@ module hello2
   use, intrinsic :: iso_c_binding, only: c_int
   implicit none
 
-  interface
-
-     subroutine hello(count) bind(C)
-       use, intrinsic :: iso_c_binding, only: c_int
-       implicit none
-       integer(c_int), value :: count
-     end subroutine hello
-
-  end interface
-
 end module hello2
 
 subroutine hello(count)

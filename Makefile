@@ -117,6 +117,11 @@ all: ${TOOLCHAIN}/hello2
 #hello2: ${TOOLCHAIN}/hello2-for.o ${TOOLCHAIN}/hello2-c.o
 
 clean:
+	@if [ 'x${VERBOSE}' = x ]; then			\
+		echo " [ CLEAN ] ${<}";			\
+	else						\
+		echo "rm -rf ${TOOLCHAIN}";		\
+	fi
 	@rm -rf ${TOOLCHAIN}
 
 ${TOOLCHAIN}/%.o: %.c
