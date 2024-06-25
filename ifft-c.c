@@ -18,13 +18,28 @@ int main(int, char *[]);
 int main(int argc, char *argv[])
 {
   long int ret = EXIT_FAILURE;
+  size_t i;
   double complex x[] = {
-    1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0
+    0.0 + I * 0.0,
+    1.0 + I * 0.0,
+    2.0 + I * 0.0,
+    2.0 + I * 0.0,
+    1.0 + I * 0.0,
+    0.0 + I * 0.0,
+    -1.0 + I * 0.0,
+    -2.0 + I * 0.0,
+    -2.0 + I * 0.0,
+    -1.0 + I * 0.0,
+    0.0 + I * 0.0
   };
 
-  if(idft_(x, 10) == true) {
-    for(i = 0; i < 10; i++)
-      printf("%f\n", x[ i ]);
+  if(idft_(x, 11) == true) {
+    for(i = 0; i < 11; i++) {
+      printf("%lf ", creal(x[ i ]));
+      if(cimag(x[ i ]) >= 0.0)
+	printf(" + ");
+      printf("%lf i\n", cimag(x[ i ]));
+    }
     ret = EXIT_SUCCESS;
   }
 }

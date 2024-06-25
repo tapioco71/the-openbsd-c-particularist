@@ -116,6 +116,7 @@ all: ${TOOLCHAIN}/hello2
 all: ${TOOLCHAIN}/mean
 all: ${TOOLCHAIN}/norm2
 all: ${TOOLCHAIN}/fft
+all: ${TOOLCHAIN}/ifft
 
 clean:
 	@if [ 'x${VERBOSE}' = x ]; then			\
@@ -220,5 +221,6 @@ ${TOOLCHAIN}/hello2: ${TOOLCHAIN}/hello2-for.o ${TOOLCHAIN}/hello2-c.o
 ${TOOLCHAIN}/mean: ${TOOLCHAIN}/mean-for.o ${TOOLCHAIN}/mean-c.o
 ${TOOLCHAIN}/norm2: ${TOOLCHAIN}/norm2-for.o ${TOOLCHAIN}/norm2-c.o
 ${TOOLCHAIN}/fft: ${TOOLCHAIN}/fft-for.o ${TOOLCHAIN}/fft-c.o
+${TOOLCHAIN}/ifft: ${TOOLCHAIN}/ifft-for.o ${TOOLCHAIN}/ifft-c.o
 
 # End of Makefile.
