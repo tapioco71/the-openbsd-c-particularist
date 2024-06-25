@@ -34,14 +34,16 @@ int main(int argc, char *argv[])
 	    for(i = 0; i < label.d_npartitions; i++) {
 	      printf("\npartion #%d\n", i);
 	      printf("partition number of sectors: %u\n",		\
-		     (off_t) label.d_partitions[ i ].p_size | ((off_t) label.d_partitions[ i ].p_sizeh << 32));
+		     (off_t) label.d_partitions[ i ].p_size |		\
+		     ((off_t) label.d_partitions[ i ].p_sizeh << 32));
 	      printf("partition starting sector: %u\n",			\
-		     (off_t) label.d_partitions[ i ].p_offset | ((off_t) label.d_partitions[ i ].p_offseth << 32));
+		     (off_t) label.d_partitions[ i ].p_offset |		\
+		     ((off_t) label.d_partitions[ i ].p_offseth << 32));
 	      printf("partition filesystem type: %d\n", \
 		     label.d_partitions[ i ].p_fstype);
 	      printf("partition encoded filesystem frag/block: %d\n",	\
 		     label.d_partitions[ i ].p_fragblock);
-	      printf("partition cylinders per group: %d\n", \
+	      printf("partition cylinders per group: %d\n",	\
 		     label.d_partitions[ i ].p_cpg);
 	    }
 	    ret = EXIT_SUCCESS;
