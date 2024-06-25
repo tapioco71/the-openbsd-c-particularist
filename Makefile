@@ -79,6 +79,7 @@ all: ${TOOLCHAIN}/group
 all: ${TOOLCHAIN}/hostent
 all: ${TOOLCHAIN}/inet-client
 all: ${TOOLCHAIN}/inet-server
+all: ${TOOLCHAIN}/inode
 all: ${TOOLCHAIN}/irc-client
 all: ${TOOLCHAIN}/listfiles
 all: ${TOOLCHAIN}/ls
@@ -184,6 +185,7 @@ ${TOOLCHAIN}/group: ${TOOLCHAIN}/group.o
 ${TOOLCHAIN}/hostent: ${TOOLCHAIN}/hostent.o
 ${TOOLCHAIN}/inet-client: ${TOOLCHAIN}/inet-client.o
 ${TOOLCHAIN}/inet-server: ${TOOLCHAIN}/inet-server.o
+${TOOLCHAIN}/inode: ${TOOLCHAIN}/inode.o
 ${TOOLCHAIN}/irc-client: ${TOOLCHAIN}/irc-client.o
 ${TOOLCHAIN}/listfiles: ${TOOLCHAIN}/listfiles.o
 ${TOOLCHAIN}/ls: ${TOOLCHAIN}/ls.o
@@ -216,7 +218,7 @@ ${TOOLCHAIN}/waitfor: ${TOOLCHAIN}/waitfor.o
 ${TOOLCHAIN}/winsize: ${TOOLCHAIN}/winsize.o
 
 # FORTRAN vs C
-${TOOLCHAIN}/hello1: ${TOOLCHAIN}/hello1-c.o ${TOOLCHAIN}/hello1-for.o
+${TOOLCHAIN}/hello1: ${TOOLCHAIN}/hello1-for.o ${TOOLCHAIN}/hello1-c.o
 ${TOOLCHAIN}/hello2: ${TOOLCHAIN}/hello2-for.o ${TOOLCHAIN}/hello2-c.o
 ${TOOLCHAIN}/mean: ${TOOLCHAIN}/mean-for.o ${TOOLCHAIN}/mean-c.o
 ${TOOLCHAIN}/norm2: ${TOOLCHAIN}/norm2-for.o ${TOOLCHAIN}/norm2-c.o
