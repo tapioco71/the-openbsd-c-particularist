@@ -17,7 +17,7 @@
 #include <sys/disklabel.h>
 #include <ufs/ffs/fs.h>
 #include <ufs/ufs/quota.h>
-#include <ufs/ufs/inode.h>
+#include <ufs/ufs/dinode.h>
 
 /* program inode. */
 #define FOREVER for(;;)
@@ -30,7 +30,16 @@ union tagFS {
 
 typedef union tagFS fsu_t;
 
+union tagINode {
+  struct ufs1_dinode u_dinode1;
+  struct ufs2_dinode u_dinode2;
+  char u_pad[ DEV_BSIZE ];
+};
+
+typedef union tagINode inodeu_t;
+
 /* Functions prototypes. */
+long int print(void *, size_t, size_t);
 int main(int, char *[]);
 
 /* Main function. */
@@ -40,6 +49,7 @@ int main(int argc, char *argv[])
   int i, diskfd;
   long int ret;
   fsu_t fsun1;
+  inodeu_t inun1;
   off_t sbtry[] = SBLOCKSEARCH;
   ssize_t n;
   struct fstab *fs;
@@ -54,14 +64,17 @@ int main(int argc, char *argv[])
       printf("Opening: %s\n", name);
       if((diskfd = opendev(name, O_RDONLY, 0, NULL)) >= 0) {
 	for(i = 0; sbtry[ i ] != 1; i++) {
-	  n = pread(diskfd, &fsun1.u_fs, SBLOCKSIZE, (off_t) sbtry[ i ]);
-	  if(n == SBLOCKSIZE &&						\
+	  n = pread(diskfd,						\
+		    fsun1.u_pad,					\
+		    SBLOCKSIZE,						\
+		    (off_t) sbtry[ i ]);
+	  if(n == SBLOCKSIZE &&					\
 	     (fsun1.u_fs.fs_magic == FS_UFS1_MAGIC ||			\
-	      (fsun1.u_fs.fs_magic == FS_UFS2_MAGIC &&			\
+	      (fsun1.u_fs.fs_magic == FS_UFS2_MAGIC &&		\
 	       fsun1.u_fs.fs_sblockloc == sbtry[ i ])) &&		\
-	     !(fsun1.u_fs.fs_magic == FS_UFS1_MAGIC &&			\
+	     !(fsun1.u_fs.fs_magic == FS_UFS1_MAGIC &&		\
 	       sbtry[ i ] == SBLOCK_UFS2) &&				\
-	     fsun1.u_fs.fs_bsize <= MAXBSIZE &&				\
+	     fsun1.u_fs.fs_bsize <= MAXBSIZE &&			\
 	     fsun1.u_fs.fs_bsize >= sizeof(struct fs)) {
 	    printf("super-block shift constant: %d\n",	\
 		   fsun1.u_fs.fs_fsbtodb);
@@ -71,11 +84,35 @@ int main(int argc, char *argv[])
 		   fsun1.u_fs.fs_sblkno);
 	    printf("offset of inode-blocks: %ld\n",	\
 		   fsun1.u_fs.fs_iblkno);
-	    ret = EXIT_SUCCESS;
+	    printf("size of basic blocks: %d B\n",	\
+		   fsun1.u_fs.fs_bsize);
 	    break;
 	  }
-	  if(sbtry[ i ] == -1)
-	    printf("Could not find superblock for %s\n", argv[ 1 ]);
+	}
+	if(sbtry[ i ] == -1)
+	  printf("Could not find superblock for %s\n", argv[ 1 ]);
+	else {
+	  n = pread(diskfd,						\
+		    inun1.u_pad,					\
+		    DEV_BSIZE,						\
+		    (off_t) (fsun1.u_fs.fs_iblkno * DEV_BSIZE));
+	  if(n == DEV_BSIZE) {
+	    if(print(&inun1.u_pad[ 0 ],			\
+		     DEV_BSIZE,				\
+		     32) == EXIT_SUCCESS) {
+	      ret = EXIT_SUCCESS;
+	    }
+	  } else
+	    perror("pread");
+	  switch(fsun1.u_fs.fs_magic) {
+	  case FS_UFS1_MAGIC:
+	    ;
+	    break;
+
+	  case FS_UFS2_MAGIC:
+	    ;
+	    break;
+	  }
 	}
 	close(diskfd);
       } else
@@ -85,6 +122,31 @@ int main(int argc, char *argv[])
   } else
     fprintf(stderr, "usage: superblock <fs>\n");
   exit(ret);
+}
+
+long int print(void *data, size_t size, size_t linelength)
+{
+  long int ret = EXIT_FAILURE;
+  size_t i, j;
+
+  /* */
+  if(data) {
+    if(size > 0) {
+      if(linelength > 0) {
+	if(linelength < size) {
+	  for(i = 0; i < size; i += linelength) {
+	    printf("%0.16x: ", i);
+	    for(j = 0; j < linelength; j++) {
+	      printf("%0.2x ", ((char *) data)[ i + j ]);
+	    }
+	    printf("\n");
+	  }
+	  ret = EXIT_SUCCESS;
+	}
+      }
+    }
+  }
+  return ret;
 }
 
 /* End of inode.c file. */
