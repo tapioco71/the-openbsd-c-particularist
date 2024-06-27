@@ -48,8 +48,10 @@ int main(int argc, char *argv[])
 	printf("group ID of the file's group: %lld\n", sb.st_gid);
 	printf("device type: %d\n", sb.st_rdev);
 	printf("time of last access: %s", ctime(&sb.st_atim.tv_sec));
-	printf("time of last data modification: %s", ctime(&sb.st_mtim.tv_sec));
-	printf("time of last file status change: %s", ctime(&sb.st_ctim.tv_sec));
+	printf("time of last data modification: %s",	\
+	       ctime(&sb.st_mtim.tv_sec));
+	printf("time of last file status change: %s",	\
+	       ctime(&sb.st_ctim.tv_sec));
 	printf("file size in bytes: %lld\n", sb.st_size);
       } else
 	perror("stat");
