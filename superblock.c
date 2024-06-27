@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
 	}
 	close(diskfd);
       } else
-	perror("open");
+	perror("opendev");
     } else
       perror("pledge");
   } else

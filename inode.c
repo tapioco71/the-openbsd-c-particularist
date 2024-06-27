@@ -11,142 +11,54 @@
 #include <errno.h>
 #include <sys/types.h>
 #include <sys/param.h>
+#include <sys/time.h>
 #include <sys/ioctl.h>
 #include <sys/dkio.h>
 #include <sys/buf.h>
 #include <sys/disklabel.h>
-#include <ufs/ffs/fs.h>
-#include <ufs/ufs/quota.h>
-#include <ufs/ufs/dinode.h>
+#include <sys/stat.h>
 
 /* program inode. */
 #define FOREVER for(;;)
 
 /* Types. */
-union tagFS {
-  struct fs u_fs;
-  char u_pad[ SBSIZE ];
-};
-
-typedef union tagFS fsu_t;
-
-union tagINode {
-  struct ufs1_dinode u_dinode1;
-  struct ufs2_dinode u_dinode2;
-  char u_pad[ DEV_BSIZE ];
-};
-
-typedef union tagINode inodeu_t;
 
 /* Functions prototypes. */
-long int print(void *, size_t, size_t);
 int main(int, char *[]);
 
 /* Main function. */
 int main(int argc, char *argv[])
 {
-  char *name, *realdev;
-  int i, diskfd;
+  int i, fd;
   long int ret;
-  fsu_t fsun1;
-  inodeu_t inun1;
-  off_t sbtry[] = SBLOCKSEARCH;
+  off_t offset;
   ssize_t n;
-  struct fstab *fs;
+  struct stat sb;
 
   /* Check arguments. */
   if(argc == 2) {
-    if(pledge("stdio rpath disklabel", NULL) >= 0) {
-      if((fs = getfsfile(argv[ 1 ])) != NULL)
-	name = fs -> fs_spec;
-      else
-	name = argv[ 1 ];
-      printf("Opening: %s\n", name);
-      if((diskfd = opendev(name, O_RDONLY, 0, NULL)) >= 0) {
-	for(i = 0; sbtry[ i ] != 1; i++) {
-	  n = pread(diskfd,						\
-		    fsun1.u_pad,					\
-		    SBLOCKSIZE,						\
-		    (off_t) sbtry[ i ]);
-	  if(n == SBLOCKSIZE &&					\
-	     (fsun1.u_fs.fs_magic == FS_UFS1_MAGIC ||			\
-	      (fsun1.u_fs.fs_magic == FS_UFS2_MAGIC &&		\
-	       fsun1.u_fs.fs_sblockloc == sbtry[ i ])) &&		\
-	     !(fsun1.u_fs.fs_magic == FS_UFS1_MAGIC &&		\
-	       sbtry[ i ] == SBLOCK_UFS2) &&				\
-	     fsun1.u_fs.fs_bsize <= MAXBSIZE &&			\
-	     fsun1.u_fs.fs_bsize >= sizeof(struct fs)) {
-	    printf("super-block shift constant: %d\n",	\
-		   fsun1.u_fs.fs_fsbtodb);
-	    printf("super-block magic number: 0x%0.8x\n",	\
-		   fsun1.u_fs.fs_magic);
-	    printf("super-block offset: %d\n",	\
-		   fsun1.u_fs.fs_sblkno);
-	    printf("offset of inode-blocks: %ld\n",	\
-		   fsun1.u_fs.fs_iblkno);
-	    printf("size of basic blocks: %d B\n",	\
-		   fsun1.u_fs.fs_bsize);
-	    break;
-	  }
-	}
-	if(sbtry[ i ] == -1)
-	  printf("Could not find superblock for %s\n", argv[ 1 ]);
-	else {
-	  n = pread(diskfd,						\
-		    inun1.u_pad,					\
-		    DEV_BSIZE,						\
-		    (off_t) (fsun1.u_fs.fs_iblkno * DEV_BSIZE));
-	  if(n == DEV_BSIZE) {
-	    if(print(&inun1.u_pad[ 0 ],			\
-		     DEV_BSIZE,				\
-		     32) == EXIT_SUCCESS) {
-	      ret = EXIT_SUCCESS;
-	    }
-	  } else
-	    perror("pread");
-	  switch(fsun1.u_fs.fs_magic) {
-	  case FS_UFS1_MAGIC:
-	    ;
-	    break;
-
-	  case FS_UFS2_MAGIC:
-	    ;
-	    break;
-	  }
-	}
-	close(diskfd);
+    printf("Opening file: %s\n", argv[ 1 ]);
+    if((fd = open(argv[ 1 ], O_RDONLY, 0, NULL)) >= 0) {
+      if(fstat(fd, &sb) >= 0) {
+	printf("inode's device: %lld\n", sb.st_dev);
+	printf("inode's number: %lld\n", sb.st_ino);
+	printf("inode protection mode: 0x%0.6x\n", sb.st_mode);
+	printf("number of hard links: %lld\n", sb.st_nlink);
+	printf("user ID of the file's owner: %lld\n", sb.st_uid);
+	printf("group ID of the file's group: %lld\n", sb.st_gid);
+	printf("device type: %d\n", sb.st_rdev);
+	printf("time of last access: %s", ctime(&sb.st_atim.tv_sec));
+	printf("time of last data modification: %s", ctime(&sb.st_mtim.tv_sec));
+	printf("time of last file status change: %s", ctime(&sb.st_ctim.tv_sec));
+	printf("file size in bytes: %lld\n", sb.st_size);
       } else
-	perror("open");
+	perror("stat");
+      close(fd);
     } else
-      perror("pledge");
+      perror("open");
   } else
-    fprintf(stderr, "usage: superblock <fs>\n");
+    fprintf(stderr, "usage: inode <filename>\n");
   exit(ret);
-}
-
-long int print(void *data, size_t size, size_t linelength)
-{
-  long int ret = EXIT_FAILURE;
-  size_t i, j;
-
-  /* */
-  if(data) {
-    if(size > 0) {
-      if(linelength > 0) {
-	if(linelength < size) {
-	  for(i = 0; i < size; i += linelength) {
-	    printf("%0.16x: ", i);
-	    for(j = 0; j < linelength; j++) {
-	      printf("%0.2x ", ((char *) data)[ i + j ]);
-	    }
-	    printf("\n");
-	  }
-	  ret = EXIT_SUCCESS;
-	}
-      }
-    }
-  }
-  return ret;
 }
 
 /* End of inode.c file. */
