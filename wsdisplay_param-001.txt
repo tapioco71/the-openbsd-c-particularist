@@ -1,0 +1,7 @@
+struct wsdisplay_param {
+  int param;
+  int min;
+  int max;
+  int curval;
+  int reserved[ 4 ];
+};

@@ -1,0 +1,4 @@
+struct wsdisplay_delscreendata {
+  int idx; /* screen index */
+  int flags;
+};

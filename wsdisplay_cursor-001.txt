@@ -1,0 +1,10 @@
+struct wsdisplay_cursor {
+  u_int which;
+  u_int enable;
+  struct wsdisplay_curpos pos;
+  struct wsdisplay_curpos hot;
+  struct wsdisplay_cmap cmap;
+  struct wsdisplay_curpos size;
+  u_char *image;
+  u_char *mask;
+};

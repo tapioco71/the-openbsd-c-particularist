@@ -1,0 +1,5 @@
+struct wsdisplay_addscreendata {
+  int idx; /* screen index */
+  char screentype[ WSSCREEN_NAME_SIZE ];
+  char emul[ WSEMUL_NAME_SIZE ];
+};

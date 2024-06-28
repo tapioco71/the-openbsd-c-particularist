@@ -1,0 +1,10 @@
+struct wsdisplay_font {
+  char name[ WSFONT_NAME_SIZE ];
+  int index;
+  int firstchar, numchars;
+  int encoding;
+  u_int fontwidth, fontheight, stride;
+  int bitorder, byteorder;
+  void *cookie;
+  void *data;
+};
