@@ -111,6 +111,7 @@ all: ${TOOLCHAIN}/timezone
 all: ${TOOLCHAIN}/utmp
 all: ${TOOLCHAIN}/waitfor
 all: ${TOOLCHAIN}/winsize
+all: ${TOOLCHAIN}/wsdisplay
 
 # FORTRAN vs C
 all: ${TOOLCHAIN}/hello1
@@ -218,6 +219,7 @@ ${TOOLCHAIN}/timezone: ${TOOLCHAIN}/timezone.o
 ${TOOLCHAIN}/utmp: ${TOOLCHAIN}/utmp.o
 ${TOOLCHAIN}/waitfor: ${TOOLCHAIN}/waitfor.o
 ${TOOLCHAIN}/winsize: ${TOOLCHAIN}/winsize.o
+${TOOLCHAIN}/winsize: ${TOOLCHAIN}/wsdisplay.o
 
 # FORTRAN vs C
 ${TOOLCHAIN}/hello1: ${TOOLCHAIN}/hello1-for.o ${TOOLCHAIN}/hello1-c.o
