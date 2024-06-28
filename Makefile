@@ -87,6 +87,7 @@ all: ${TOOLCHAIN}/mailer
 all: ${TOOLCHAIN}/mqclient
 all: ${TOOLCHAIN}/mqserver
 #all: ${TOOLCHAIN}/mutex
+all: ${TOOLCHAIN}/ondisk-inode
 all: ${TOOLCHAIN}/ouch1
 all: ${TOOLCHAIN}/ouch2
 all: ${TOOLCHAIN}/pager
@@ -193,6 +194,7 @@ ${TOOLCHAIN}/mailer: ${TOOLCHAIN}/mailer.o
 ${TOOLCHAIN}/mqclient: ${TOOLCHAIN}/mqclient.o
 ${TOOLCHAIN}/mqserver: ${TOOLCHAIN}/mqserver.o
 #${TOOLCHAIN}/mutex: ${TOOLCHAIN}/mutex.o
+${TOOLCHAIN}/ondisk-inode: ${TOOLCHAIN}/ondisk-inode.o
 ${TOOLCHAIN}/ouch1: ${TOOLCHAIN}/ouch1.o
 ${TOOLCHAIN}/ouch2: ${TOOLCHAIN}/ouch2.o
 ${TOOLCHAIN}/pager: ${TOOLCHAIN}/pager.o
