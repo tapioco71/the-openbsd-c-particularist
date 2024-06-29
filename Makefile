@@ -46,7 +46,8 @@ G95FLAGS=-c
 LDFLAGS=-lc		\
 	-lm		\
 	-lutil		\
-	-lgfortran
+	-lgfortran	\
+	-z wxneeded
 
 ifeq (${DEBUG},1)
 	CCFLAGS=-ggdb		\
@@ -112,6 +113,8 @@ all: ${TOOLCHAIN}/utmp
 all: ${TOOLCHAIN}/waitfor
 all: ${TOOLCHAIN}/winsize
 all: ${TOOLCHAIN}/wsdisplay
+all: ${TOOLCHAIN}/wsdisplay2
+all: ${TOOLCHAIN}/wsdisplay-colormap
 
 # FORTRAN vs C
 all: ${TOOLCHAIN}/hello1
@@ -219,7 +222,9 @@ ${TOOLCHAIN}/timezone: ${TOOLCHAIN}/timezone.o
 ${TOOLCHAIN}/utmp: ${TOOLCHAIN}/utmp.o
 ${TOOLCHAIN}/waitfor: ${TOOLCHAIN}/waitfor.o
 ${TOOLCHAIN}/winsize: ${TOOLCHAIN}/winsize.o
-${TOOLCHAIN}/winsize: ${TOOLCHAIN}/wsdisplay.o
+${TOOLCHAIN}/wsdisplay: ${TOOLCHAIN}/wsdisplay.o
+${TOOLCHAIN}/wsdisplay2: ${TOOLCHAIN}/wsdisplay2.o
+${TOOLCHAIN}/wsdisplay-colormap: ${TOOLCHAIN}/wsdisplay-colormap.o
 
 # FORTRAN vs C
 ${TOOLCHAIN}/hello1: ${TOOLCHAIN}/hello1-for.o ${TOOLCHAIN}/hello1-c.o

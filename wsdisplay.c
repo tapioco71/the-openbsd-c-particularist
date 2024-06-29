@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <errno.h>
+#include <time.h>
 #include <inttypes.h>
 #include <sys/types.h>
 #include <sys/ioctl.h>
@@ -26,9 +27,9 @@ int main(int argc, char *argv[])
 
   /* Check arguments count. */
   if(argc == 2) {
-    fd = open(argv[ 1 ], O_RDONLY);
+    fd = open(argv[ 1 ], O_RDONLY | O_EXCL, 0666);
     if(fd >= 0) {
-      if(ioctl(fd, WSDISPLAYIO_GTYPE, gtype) >= 0) {
+      if(ioctl(fd, WSDISPLAYIO_GTYPE, &gtype) >= 0) {
 	printf("type of display for %s: %d\n", argv[ 1 ], gtype);
 	ret = EXIT_SUCCESS;
       } else
@@ -36,7 +37,9 @@ int main(int argc, char *argv[])
       close(fd);
     } else
       perror("open");
-    exit(ret);
+  } else
+    fprintf(stderr, "usage: wsdisplay <device>\n");
+  exit(ret);
 }
 
 /* End of wsdisplay.c file. */
