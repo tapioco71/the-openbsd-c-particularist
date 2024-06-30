@@ -25,6 +25,7 @@ int main(int argc, char *argv[])
 {
   int fd;
   long int ret = EXIT_FAILURE;
+  struct wskbd_bell_data o_wsbelldata, n_wsbelldata;
 
   /* Check arguments count. */
   if(argc == 2) {
@@ -32,7 +33,42 @@ int main(int argc, char *argv[])
     if(fd >= 0) {
       printf("opened %s.\n", argv[ 1 ]);
       if(ioctl(fd, WSKBDIO_BELL) >= 0) {
-	ret = EXIT_SUCCESS;
+	if(ioctl(fd, WSKBDIO_GETBELL, &o_wsbelldata) >= 0) {
+	  printf("old GETBELL: %d %d %d %d\t",	\
+		 o_wsbelldata.which,		\
+		 o_wsbelldata.pitch,		\
+		 o_wsbelldata.period,		\
+		 o_wsbelldata.volume);
+	  bzero(&n_wsbelldata, sizeof(struct wskbd_bell_data));
+	  n_wsbelldata.which = WSKBD_BELL_DOPITCH;
+	  n_wsbelldata.pitch = o_wsbelldata.pitch * 2;
+	  if(ioctl(fd, WSKBDIO_SETBELL, &n_wsbelldata) >= 0) {
+	    printf("new GETBELL: %d %d %d %d\t",	\
+		   n_wsbelldata.which,			\
+		   n_wsbelldata.pitch,			\
+		   n_wsbelldata.period,			\
+		   n_wsbelldata.volume);
+	    if(ioctl(fd, WSKBDIO_BELL) >= 0) {
+	      sleep(5);
+	      if(ioctl(fd, WSKBDIO_SETBELL, &o_wsbelldata) >= 0) {
+		printf("restore old GETBELL: %d %d %d %d\n",	\
+		       o_wsbelldata.which,			\
+		       o_wsbelldata.pitch,			\
+		       o_wsbelldata.period,			\
+		       o_wsbelldata.volume);
+		if(ioctl(fd, WSKBDIO_BELL) >= 0) {
+		  sleep(5);
+		  ret = EXIT_SUCCESS;
+		} else
+		  perror("error playing bell");
+	      } else
+		perror("error setting bell data");
+	    } else
+	      perror("error playing bell");
+	  } else
+	    perror("error setting bell data");
+	} else
+	  perror("error retrieving bell data");
       } else
 	perror("error playing bell");
       close(fd);
