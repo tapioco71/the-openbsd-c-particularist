@@ -25,13 +25,9 @@ int main(int argc, char *argv[])
 {
   int fd;
   long int ret = EXIT_FAILURE;
-  u_char *nred, *ngreen, *nblue;
-  u_char *ored, *ogreen, *oblue;
-  u_char *ocmap, ncmap;
-  u_int ogmode, ngmode;
-  u_int gstate, gtype;
+  u_int gmode, gstate, gtype;
   struct wsdisplay_fbinfo gfbinfo;
-  struct wsdisplay_cmap old_gcmap, new_gcmap;
+  struct wsdisplay_screentype gscreentype;
 
   /* Check arguments count. */
   if(argc == 2) {
@@ -40,38 +36,32 @@ int main(int argc, char *argv[])
       printf("opened %s.\n", argv[ 1 ]);
       if(ioctl(fd, WSDISPLAYIO_GTYPE, &gtype) >= 0) {
 	printf("GTYPE: %d\t", gtype);
-	if(ioctl(fd, WSDISPLAYIO_GMODE, &ogmode) >= 0) {
-	  printf("old GMODE: %d\t", ogmode);
-	  ngmode = WSDISPLAYIO_MODE_DUMBFB;
-	  if(ioctl(fd, WSDISPLAYIO_SMODE, &ngmode) >= 0) {
-	    printf("new GMODE: %d\t", ngmode);
-	    if(ioctl(fd, WSDISPLAYIO_GINFO, &gfbinfo) >= 0) {
-	      printf("GINFO: %d %d %d %d\n", \
-		     gfbinfo.height,	     \
-		     gfbinfo.width,	     \
-		     gfbinfo.depth,	     \
-		     gfbinfo.cmsize);
-	      ocmap = calloc(gfbinfo.cmsize * 3, sizeof(u_char));
-	      if(ocmap) {
-		old_gcmap.red = &ocmap[ gfbinfo.cmsize * 0 ];
-		old_gcmap.green = &ocmap[ gfbinfo.cmsize * 1 ];
-		old_gcmap.blue = &ocmap[ gfbinfo.cmsize * 2 ];
-		old_gcmap.count = gfbinfo.cmsize;
-		old_gcmap.index = 0;
-		if(ioctl(fd, WSDISPLAYIO_GETCMAP, &old_gcmap) >= 0) {
-		  printf("CMAP: %d %d\n", old_gcmap.index, old_gcmap.count);
-		}
-		if(ioctl(fd, WSDISPLAYIO_SMODE, &ogmode) >= 0) {
-		  printf("old mode restored: %d\n", ogmode);
-		  ret = EXIT_SUCCESS;
-		}
-		free(ocmap);
-	      } else
-		fprintf(stderr, "could not allocate space for old color map.\n");
-	    }
-	  }
-	}
-      }
+	if(ioctl(fd, WSDISPLAYIO_GMODE, &gmode) >= 0) {
+	  printf("GMODE: %d\t", gmode);
+	  if(ioctl(fd, WSDISPLAYIO_GINFO, &gfbinfo) >= 0) {
+	    printf("GINFO: %d %d %d %d\n",   \
+		   gfbinfo.height,	     \
+		   gfbinfo.width,	     \
+		   gfbinfo.depth,	     \
+		   gfbinfo.cmsize);
+	    if(ioctl(fd, WSDISPLAYIO_GETSCREENTYPE, &gscreentype) >= 0) {
+	      printf("SCREENTYPE: %d %d %s %d %d %d %d\n",     \
+		     gscreentype.idx,			       \
+		     gscreentype.nidx,			       \
+		     gscreentype.name,			       \
+		     gscreentype.ncols,			       \
+		     gscreentype.nrows,			       \
+		     gscreentype.fontwidth,		       \
+		     gscreentype.fontheight);
+	      ret = EXIT_SUCCESS;
+	    } else
+	      perror("error getting screen type");
+	  } else
+	    perror("error getting console info");
+	} else
+	  perror("error getting console mode");
+      } else
+	perror("error getting console type");
       close(fd);
     } else
       perror("open");
