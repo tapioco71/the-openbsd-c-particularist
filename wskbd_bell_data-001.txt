@@ -1,0 +1,6 @@
+struct wskbd_bell_data {
+  u_int   which;                          /* values to get/set */
+  u_int   pitch;                          /* pitch, in Hz */
+  u_int   period;                         /* period, in milliseconds */
+  u_int   volume;                         /* percentage of max volume */
+};
