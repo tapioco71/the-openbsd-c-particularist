@@ -1,5 +1,5 @@
 struct wskbd_keyrepeat_data {
-  u_int   which;                          /* values to get/set */
-  u_int   del1;                           /* delay before first, ms */
-  u_int   delN;                           /* delay before rest, ms */
+  u_int   which;
+  u_int   del1;
+  u_int   delN;
 };
