@@ -116,6 +116,7 @@ all: ${TOOLCHAIN}/wsdisplay
 all: ${TOOLCHAIN}/wsdisplay2
 all: ${TOOLCHAIN}/wsdisplay-colormap
 all: ${TOOLCHAIN}/wskbd
+all: ${TOOLCHAIN}/wskbd-leds
 
 # FORTRAN vs C
 all: ${TOOLCHAIN}/hello1
@@ -227,6 +228,7 @@ ${TOOLCHAIN}/wsdisplay: ${TOOLCHAIN}/wsdisplay.o
 ${TOOLCHAIN}/wsdisplay2: ${TOOLCHAIN}/wsdisplay2.o
 ${TOOLCHAIN}/wsdisplay-colormap: ${TOOLCHAIN}/wsdisplay-colormap.o
 ${TOOLCHAIN}/wskbd: ${TOOLCHAIN}/wskbd.o
+${TOOLCHAIN}/wskbd-leds: ${TOOLCHAIN}/wskbd-leds.o
 
 # FORTRAN vs C
 ${TOOLCHAIN}/hello1: ${TOOLCHAIN}/hello1-for.o ${TOOLCHAIN}/hello1-c.o
