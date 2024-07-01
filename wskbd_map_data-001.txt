@@ -1,0 +1,4 @@
+struct wskbd_map_data {
+  u_int   maplen;
+  struct wscons_keymap *map;
+};
