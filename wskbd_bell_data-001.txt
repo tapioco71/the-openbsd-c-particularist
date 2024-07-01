@@ -1,6 +1,6 @@
 struct wskbd_bell_data {
-  u_int   which;
-  u_int   pitch;
-  u_int   period;
-  u_int   volume;
+  u_int which;
+  u_int pitch;
+  u_int period;
+  u_int volume;
 };
