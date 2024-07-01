@@ -112,11 +112,6 @@ all: ${TOOLCHAIN}/timezone
 all: ${TOOLCHAIN}/utmp
 all: ${TOOLCHAIN}/waitfor
 all: ${TOOLCHAIN}/winsize
-all: ${TOOLCHAIN}/wsdisplay
-all: ${TOOLCHAIN}/wsdisplay2
-all: ${TOOLCHAIN}/wsdisplay-colormap
-all: ${TOOLCHAIN}/wskbd
-all: ${TOOLCHAIN}/wskbd-leds
 
 # FORTRAN vs C
 all: ${TOOLCHAIN}/hello1
@@ -125,6 +120,14 @@ all: ${TOOLCHAIN}/mean
 all: ${TOOLCHAIN}/norm2
 all: ${TOOLCHAIN}/fft
 all: ${TOOLCHAIN}/ifft
+
+# wscons
+all: ${TOOLCHAIN}/wsdisplay
+all: ${TOOLCHAIN}/wsdisplay2
+all: ${TOOLCHAIN}/wsdisplay-colormap
+all: ${TOOLCHAIN}/wskbd
+all: ${TOOLCHAIN}/wskbd-leds
+all: ${TOOLCHAIN}/wskbd-enc
 
 clean:
 	@if [ 'x${VERBOSE}' = x ]; then			\
@@ -224,11 +227,6 @@ ${TOOLCHAIN}/timezone: ${TOOLCHAIN}/timezone.o
 ${TOOLCHAIN}/utmp: ${TOOLCHAIN}/utmp.o
 ${TOOLCHAIN}/waitfor: ${TOOLCHAIN}/waitfor.o
 ${TOOLCHAIN}/winsize: ${TOOLCHAIN}/winsize.o
-${TOOLCHAIN}/wsdisplay: ${TOOLCHAIN}/wsdisplay.o
-${TOOLCHAIN}/wsdisplay2: ${TOOLCHAIN}/wsdisplay2.o
-${TOOLCHAIN}/wsdisplay-colormap: ${TOOLCHAIN}/wsdisplay-colormap.o
-${TOOLCHAIN}/wskbd: ${TOOLCHAIN}/wskbd.o
-${TOOLCHAIN}/wskbd-leds: ${TOOLCHAIN}/wskbd-leds.o
 
 # FORTRAN vs C
 ${TOOLCHAIN}/hello1: ${TOOLCHAIN}/hello1-for.o ${TOOLCHAIN}/hello1-c.o
@@ -237,5 +235,13 @@ ${TOOLCHAIN}/mean: ${TOOLCHAIN}/mean-for.o ${TOOLCHAIN}/mean-c.o
 ${TOOLCHAIN}/norm2: ${TOOLCHAIN}/norm2-for.o ${TOOLCHAIN}/norm2-c.o
 ${TOOLCHAIN}/fft: ${TOOLCHAIN}/fft-for.o ${TOOLCHAIN}/fft-c.o
 ${TOOLCHAIN}/ifft: ${TOOLCHAIN}/ifft-for.o ${TOOLCHAIN}/ifft-c.o
+
+# wscons
+${TOOLCHAIN}/wsdisplay: ${TOOLCHAIN}/wsdisplay.o
+${TOOLCHAIN}/wsdisplay2: ${TOOLCHAIN}/wsdisplay2.o
+${TOOLCHAIN}/wsdisplay-colormap: ${TOOLCHAIN}/wsdisplay-colormap.o
+${TOOLCHAIN}/wskbd: ${TOOLCHAIN}/wskbd.o
+${TOOLCHAIN}/wskbd-leds: ${TOOLCHAIN}/wskbd-leds.o
+${TOOLCHAIN}/wskbd-enc: ${TOOLCHAIN}/wskbd-enc.o
 
 # End of Makefile.
