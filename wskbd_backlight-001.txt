@@ -1,0 +1,5 @@
+struct wskbd_backlight {
+  unsigned int min;
+  unsigned int max;
+  unsigned int curval;
+};
