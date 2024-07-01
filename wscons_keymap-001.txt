@@ -1,0 +1,7 @@
+typedef u_int16_t keysym_t;
+
+struct wscons_keymap {
+  keysym_t command;
+  keysym_t group1[ 2 ];
+  keysym_t group2[ 2 ];
+};
