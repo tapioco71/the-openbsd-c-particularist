@@ -1,0 +1,4 @@
+struct rlimit {
+  rlim_t rlim_cur; /* current (soft) limit */
+  rlim_t rlim_max; /* hard limit */
+};
