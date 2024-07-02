@@ -1,0 +1,4 @@
+struct wsmux_device_list {
+  int ndevices;
+  struct wsmux_device devices[ WSMUX_MAXDEV ];
+};
