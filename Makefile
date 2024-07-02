@@ -112,6 +112,7 @@ all: ${TOOLCHAIN}/timezone
 all: ${TOOLCHAIN}/utmp
 all: ${TOOLCHAIN}/waitfor
 all: ${TOOLCHAIN}/winsize
+all: ${TOOLCHAIN}/wsmux
 
 # FORTRAN vs C
 all: ${TOOLCHAIN}/hello1
@@ -243,5 +244,6 @@ ${TOOLCHAIN}/wsdisplay-colormap: ${TOOLCHAIN}/wsdisplay-colormap.o
 ${TOOLCHAIN}/wskbd: ${TOOLCHAIN}/wskbd.o
 ${TOOLCHAIN}/wskbd-leds: ${TOOLCHAIN}/wskbd-leds.o
 ${TOOLCHAIN}/wskbd-enc: ${TOOLCHAIN}/wskbd-enc.o
+${TOOLCHAIN}/wsmux: ${TOOLCHAIN}/wsmux.o
 
 # End of Makefile.
