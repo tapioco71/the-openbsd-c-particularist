@@ -1,0 +1,4 @@
+struct wsmouse_parameters {
+  struct wsmouse_param *params;
+  u_int nparams;
+};
