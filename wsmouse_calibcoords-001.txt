@@ -1,12 +1,16 @@
 struct wsmouse_calibcoords {
-  int minx, miny;         /* minimum value of X/Y */
-  int maxx, maxy;         /* maximum value of X/Y */
-  int swapxy;             /* swap X/Y axis */
-  int resx, resy;         /* X/Y resolution */
-  int samplelen;          /* number of samples available or
-			     WSMOUSE_CALIBCOORDS_RESET for raw mode */
+  int minx;
+  int miny;
+  int maxx;
+  int maxy;
+  int swapxy;
+  int resx;
+  int resy;
+  int samplelen;
   struct wsmouse_calibcoord {
-    int rawx, rawy; /* raw coordinate */
-    int x, y;       /* translated coordinate */
-  } samples[WSMOUSE_CALIBCOORDS_MAX];     /* sample coordinates */
+    int rawx;
+    int rawy;
+    int x;
+    int y;
+  } samples[ WSMOUSE_CALIBCOORDS_MAX ];
 };
