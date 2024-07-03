@@ -97,6 +97,7 @@ all: ${TOOLCHAIN}/select
 all: ${TOOLCHAIN}/semcreate
 all: ${TOOLCHAIN}/servent
 all: ${TOOLCHAIN}/server
+all: ${TOOLCHAIN}/setlim
 #all: ${TOOLCHAIN}/setupjc
 all: ${TOOLCHAIN}/shm-client
 all: ${TOOLCHAIN}/shm-server
@@ -213,6 +214,7 @@ ${TOOLCHAIN}/select: ${TOOLCHAIN}/select.o
 ${TOOLCHAIN}/semcreate: ${TOOLCHAIN}/semcreate.o
 ${TOOLCHAIN}/servent: ${TOOLCHAIN}/servent.o
 ${TOOLCHAIN}/server: ${TOOLCHAIN}/server.o
+${TOOLCHAIN}/setlim: ${TOOLCHAIN}/setlim.o
 #${TOOLCHAIN}/setupjc: ${TOOLCHAIN}/setupjc.o
 ${TOOLCHAIN}/shm-client: ${TOOLCHAIN}/shm-client.o
 ${TOOLCHAIN}/shm-server: ${TOOLCHAIN}/shm-server.o
