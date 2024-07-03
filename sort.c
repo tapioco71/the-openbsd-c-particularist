@@ -7,14 +7,14 @@
 
 char *array[] = { "XX", "YYY", "Z" };
 
-#define N (sizeof(array) / sizeof(array[0]))
+#define N (sizeof(array) / sizeof(array[ 0 ]))
 
 /* Functions prototypes. */
 int cmp(const void *, const void *);
 int main(int, char *[]);
 
 /* Main function. */
-int main()
+int main(int argc, char *argv[])
 {
   long int ret = EXIT_FAILURE;
   size_t i;
