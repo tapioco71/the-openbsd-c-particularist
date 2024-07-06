@@ -25,3 +25,5 @@ int main(int argc, char *argv[])
   ret = EXIT_SUCCESS;
   exit(ret);
 }
+
+/* End of strerror.c file. */
