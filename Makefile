@@ -109,6 +109,7 @@ all: ${TOOLCHAIN}/sort
 all: ${TOOLCHAIN}/speaker
 all: ${TOOLCHAIN}/stopproc
 all: ${TOOLCHAIN}/strerror
+all: ${TOOLCHAIN}/strsignal
 all: ${TOOLCHAIN}/superblock
 all: ${TOOLCHAIN}/time
 all: ${TOOLCHAIN}/timeout
@@ -229,6 +230,7 @@ ${TOOLCHAIN}/sort: ${TOOLCHAIN}/sort.o
 ${TOOLCHAIN}/speaker: ${TOOLCHAIN}/speaker.o
 ${TOOLCHAIN}/stopproc: ${TOOLCHAIN}/stopproc.o
 ${TOOLCHAIN}/strerror: ${TOOLCHAIN}/strerror.o
+${TOOLCHAIN}/strsignal: ${TOOLCHAIN}/strsignal.o
 ${TOOLCHAIN}/superblock: ${TOOLCHAIN}/superblock.o
 ${TOOLCHAIN}/time: ${TOOLCHAIN}/time.o
 ${TOOLCHAIN}/timeout: ${TOOLCHAIN}/timeout.o
