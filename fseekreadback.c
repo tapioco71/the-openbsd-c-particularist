@@ -11,61 +11,73 @@ struct tagRecord {
   char login[ 9 ];
 };
 
-typedef struct tagRecord tRecord;
+typedef struct tagRecord record_t;
 
 /* Global variables. */
 int positions[ 5 ] = { 3, 0, 2, 1, 4 };
-tRecord records[ 5 ];
+record_t records[ 5 ];
 
 /* Function prototypes. */
-int getRecord(FILE *, int, tRecord *);
+int getRecord(FILE *, int, record_t *);
 int main(int, char *[]);
 
 /* Main function. */
 int main(int argc, char *argv[])
 {
   int i;
+  long int ret = EXIT_FAILURE;
   FILE *fp;
-  tRecord rec;
+  record_t rec;
+
   /* Open the data file for reading. */
-  if((fp = fopen("datafile.dat", "r")) == NULL) {
-    perror("Could not open datafile.dat for reading.\n");
-    exit(EXIT_FAILURE);
-  }
-  /* For each position read back the corresponding user. */
-  for(i = 0; i < 5; i++) {
-    /*
-     * Output the record.  Notice we pass the address
-     * of the structure.
-     */
-    if(getRecord(fp, positions[ i ], &rec) == EXIT_FAILURE) {
-      perror("Could not read record.\n");
-      fclose(fp);
-      exit(EXIT_FAILURE);
+  if((fp = fopen("datafile.dat", "r")) != NULL) {
+    /* For each position read back the corresponding user. */
+
+    for(i = 0; i < 5; i++) {
+
+      /*
+       * Output the record.  Notice we pass the address
+       * of the structure.
+       */
+      if(getRecord(fp, positions[ i ], &rec) != EXIT_FAILURE)
+	printf("position: %d, uid: %d, login: %s\n", positions[ i ], rec.uid, rec.login);
+      else {
+	perror("Could not read record.\n");
+	break;
+      }
+      if(i == 5)
+	ret = EXIT_SUCCESS;
     }
-    printf("uid: %d, login: %s\n", rec.uid, rec.login);
-  }
-  fclose(fp);
-  exit(EXIT_SUCCESS);
+
+    /* Now close the output file. */
+    fclose(fp);
+  } else
+    perror("Could not open datafile.dat for reading.\n");
+  exit(ret);
 }
 
-int getRecord(FILE *fp, int i, tRecord *r)
+int getRecord(FILE *fp, int i, record_t *r)
 {
   int ret = EXIT_FAILURE;
+
   /*
    * Seek to the i-th position from the beginning
    * of the file.
    */
-  if(fp)
+  if(fp) {
     if(r) {
-      if(fseek(fp, (long) (i * sizeof(tRecord)), SEEK_SET) == 0)
+      if(fseek(fp, (long) (i * sizeof(record_t)), SEEK_SET) == 0) {
+
 	/*
 	 * Write the record.  We want to write  one
 	 * object the size of a record structure.
 	 */
-	if(fread((void *) r, sizeof(tRecord), 1, fp) == 1)
+	if(fread((void *) r, sizeof(record_t), 1, fp) == 1) {
 	  ret = EXIT_SUCCESS;
+	}
+      }
     }
+  }
   return ret;
 }
 
