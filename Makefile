@@ -105,6 +105,7 @@ all: ${TOOLCHAIN}/shm-server
 all: ${TOOLCHAIN}/sigaction
 all: ${TOOLCHAIN}/sigblock
 all: ${TOOLCHAIN}/sigstack
+all: ${TOOLCHAIN}/snprintf
 all: ${TOOLCHAIN}/sort
 all: ${TOOLCHAIN}/speaker
 all: ${TOOLCHAIN}/stopproc
@@ -226,6 +227,7 @@ ${TOOLCHAIN}/shm-server: ${TOOLCHAIN}/shm-server.o
 ${TOOLCHAIN}/sigaction: ${TOOLCHAIN}/sigaction.o
 ${TOOLCHAIN}/sigblock: ${TOOLCHAIN}/sigblock.o
 ${TOOLCHAIN}/sigstack: ${TOOLCHAIN}/sigstack.o
+${TOOLCHAIN}/snprintf: ${TOOLCHAIN}/snprintf.o
 ${TOOLCHAIN}/sort: ${TOOLCHAIN}/sort.o
 ${TOOLCHAIN}/speaker: ${TOOLCHAIN}/speaker.o
 ${TOOLCHAIN}/stopproc: ${TOOLCHAIN}/stopproc.o
