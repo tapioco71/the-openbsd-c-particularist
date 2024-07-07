@@ -20,6 +20,7 @@ int main(int argc, char *argv[])
   int fd, i;
   long int ret = EXIT_FAILURE;
   struct winsize ws;
+
   /* Call ioctl. */
   if((fd = open("/dev/tty", O_RDWR | O_NOCTTY)) >= 0) {
     if(ioctl(fd, TIOCGWINSZ, &ws) >= 0) {
@@ -36,7 +37,7 @@ int main(int argc, char *argv[])
       perror("winsize");
     close(fd);
   }
-  return ret;
+  exit(ret);
 }
 
 /* End of winsize.c file. */
