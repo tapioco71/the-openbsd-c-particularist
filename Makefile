@@ -38,7 +38,10 @@ else
 	$(error "Unknown OS.")
 endif
 
-CCFLAGS=-std=gnu99	\
+INCLUDES_PATH=./includes
+
+CCFLAGS=-std=gnu99		\
+	-I${INCLUDES_PATH}	\
         -c
 
 G95FLAGS=-c
@@ -73,6 +76,7 @@ all: ${TOOLCHAIN}/disklabel
 all: ${TOOLCHAIN}/disklabel2
 all: ${TOOLCHAIN}/ezshell
 all: ${TOOLCHAIN}/factorial
+all: ${TOOLCHAIN}/find-word
 all: ${TOOLCHAIN}/fseekdemo
 all: ${TOOLCHAIN}/fseekreadback
 all: ${TOOLCHAIN}/getprocs
@@ -195,6 +199,7 @@ ${TOOLCHAIN}/disklabel: ${TOOLCHAIN}/disklabel.o
 ${TOOLCHAIN}/disklabel2: ${TOOLCHAIN}/disklabel2.o
 ${TOOLCHAIN}/ezshell: ${TOOLCHAIN}/ezshell.o
 ${TOOLCHAIN}/factorial: ${TOOLCHAIN}/factorial.o
+${TOOLCHAIN}/find-word: ${TOOLCHAIN}/find-word.o
 ${TOOLCHAIN}/fseekdemo: ${TOOLCHAIN}/fseekdemo.o
 ${TOOLCHAIN}/fseekreadback: ${TOOLCHAIN}/fseekreadback.o
 ${TOOLCHAIN}/getprocs: ${TOOLCHAIN}/getprocs.o
