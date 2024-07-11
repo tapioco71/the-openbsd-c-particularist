@@ -41,25 +41,50 @@ int main(int argc, char *argv[])
 
       /* Open system dictionary file. */
       if((dict_file = fopen(dictionary_path, "r")) != NULL) {
+
+	/*
+	 * loop starting from same length for words as
+	 * the entered sets of characters.
+	 */
 	for(count = letters_count; count >= 3; count--) {
+
+	  /* computes the number of the character combinations. */
 	  combs_count = binomial(letters_count, count);
 	  printf("combinations count: %ld\n", combs_count);
 	  combs = allocateCombs(combs_count, count);
 	  if(combs) {
 	    indices = (size_t *) calloc(count, sizeof(size_t));
 	    if(indices) {
+
+	      /* generate all character combinations without repetition. */
 	      combinations(indices, letters_count, count, combs);
 	      for(i = 0; combs[ i ] != NULL; i++) {
 		if(getCombString(combstr, letters, combs[ i ], count) == EXIT_SUCCESS)
-		fseek(dict_file, 0, SEEK_SET);
+
+		  /* reset the file pointer to the start of the file. */
+		  fseek(dict_file, 0, SEEK_SET);
+
+		/* loop the dictionary words database. */
 		while(fgets(word, BUFSIZ, dict_file) != NULL) {
 		  word[ strcspn(word, "\n") ] = '\0';
 		  m = strnlen(word, BUFSIZ);
+
+		  /*
+		   * if the word has the same length of
+		   * the combinations then check for
+		   * characters in it.
+		   */
 		  if(m == count) {
 		    combstbl = (bool *) calloc(count, sizeof(bool));
 		    if(combstbl) {
 		      chars_count = 0;
 		      bzero(combstbl, sizeof(bool) * count);
+
+		      /*
+		       * looking for characters in word.
+		       * Choose the words that contains all
+		       * the characters in the combination.
+		       */
 		      for(k = 0; k < count; k++) {
 			for(j = 0; j < count; j++) {
 			  if(word[ j ] == combstr[ k ]) {
