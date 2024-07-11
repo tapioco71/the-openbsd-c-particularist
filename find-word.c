@@ -8,18 +8,19 @@
 /* Main function. */
 int main(int argc, char *argv[])
 {
-  char ch, dictionary_path[ BUFSIZ ];
-  bool found;
-  int i, j;
-  FILE *dictionary;
+  char ch, dictionary_path[ BUFSIZ ], combstr[ BUFSIZ ];
   char *letters, word[ BUFSIZ ];
+  bool found, *combstbl;
   long int ret = EXIT_FAILURE;
-  size_t m, n, count, letters_count, *indices, **perms;
+  FILE *dict_file;
+  size_t i, j, k, m, n;
+  size_t combs_count, count, letters_count, chars_count;
+  size_t *indices, **combs;
 
   /* Check our arguments. */
   switch(argc) {
   case 2:
-    strncpy(dictionary_path, "/usr/share/dict/words", BUFSIZ);
+    strncpy(dictionary_path, DEFAULT_DICTIONARY_PATH, BUFSIZ);
     letters = argv[ 1 ];
     break;
 
@@ -34,68 +35,143 @@ int main(int argc, char *argv[])
     break;
   }
   if(letters) {
+    lowerize(letters, MAXINT);
     letters_count = strnlen(letters, MAXINT);
     if(letters_count < 21) {
 
       /* Open system dictionary file. */
-      if((dictionary = fopen(dictionary_path, "r")) != NULL) {
+      if((dict_file = fopen(dictionary_path, "r")) != NULL) {
 	for(count = letters_count; count >= 3; count--) {
-	  fseek(dictionary, 0, SEEK_SET);
-	  n = binomial(letters_count, count);
-	  printf("permutations count: %ld, word length: %ld\n", n, count);
-	  perms = calloc(n + 1, sizeof(size_t *));
-	  if(perms) {
-	    for(i = 0; i < n; i++) {
-	      perms[ i ] = (size_t *) calloc(count + 1, sizeof(size_t));
-	      if(!perms[ i ])
-		break;
-	    }
-	    if(i == n) {
-	      perms[ i ] = NULL;
-	      indices = (size_t *) calloc(letters_count, sizeof(char));
-	      if(indices) {
-		combinations(indices, letters_count, count, perms);
-		while(fgets(word, BUFSIZ, dictionary) != NULL) {
-		  word[ strnlen(word, BUFSIZ) - 1 ] = '\0';
+	  combs_count = binomial(letters_count, count);
+	  printf("combinations count: %ld\n", combs_count);
+	  combs = allocateCombs(combs_count, count);
+	  if(combs) {
+	    indices = (size_t *) calloc(count, sizeof(size_t));
+	    if(indices) {
+	      combinations(indices, letters_count, count, combs);
+	      for(i = 0; combs[ i ] != NULL; i++) {
+		if(getCombString(combstr, letters, combs[ i ], count) == EXIT_SUCCESS)
+		fseek(dict_file, 0, SEEK_SET);
+		while(fgets(word, BUFSIZ, dict_file) != NULL) {
+		  word[ strcspn(word, "\n") ] = '\0';
 		  m = strnlen(word, BUFSIZ);
-		  for(i = 0; i < m; i++)
-		    word[ i ] = tolower(word[ i ]);
 		  if(m == count) {
-		    for(i = 0; perms[ i ] != NULL; i++) {
-		      found = true;
-		      for(j = 0; j < count; j++) {
-			ch = letters[ perms[ i ][ j ] - 1 ];
-			if(strchr(word, ch) == NULL) {
-			  found = false;
-			  break;
+		    combstbl = (bool *) calloc(count, sizeof(bool));
+		    if(combstbl) {
+		      chars_count = 0;
+		      bzero(combstbl, sizeof(bool) * count);
+		      for(k = 0; k < count; k++) {
+			for(j = 0; j < count; j++) {
+			  if(word[ j ] == combstr[ k ]) {
+			    if(combstbl[ j ] == false) {
+			      combstbl[ j ] = true;
+			      ++chars_count;
+			      break;
+			    }
+			  }
 			}
 		      }
-		      if(found == true)
+		      if(chars_count == count)
 			printf("word: %s\n", word);
+		      free(combstbl);
 		    }
 		  }
 		}
-		ret = EXIT_SUCCESS;
 	      }
+	      free(indices);
 	    }
-	    for(i = 0; perms[ i ] != NULL; i++) {
-	      if(perms[ i ])
-		free(perms[ i ]);
-	    }
-	    free(perms);
-	  } else
-	    perror("could not store permutations");
+	    deallocateCombs(combs);
+	  }
 	}
-	fclose(dictionary);
+	fclose(dict_file);
       } else
 	fprintf(stderr, "could not open dictionary file: %s\n", dictionary_path);
     } else
       perror("too much letters given: > 20!");
-  } else
-    perror("no letters given");
+  }
   exit(ret);
 }
 
+/*
+ * allocateCombs -- allocate combinations arrays.
+ */
+size_t **allocateCombs(size_t n, size_t k)
+{
+  size_t **ret;
+  size_t i;
+
+  if(n > 0) {
+    if(k > 0) {
+      ret = calloc(n + 1, sizeof(size_t *));
+      if(ret) {
+	for(i = 0; i < n; i++) {
+	  ret[ i ] = (size_t *) calloc(k, sizeof(size_t));
+	  if(!ret[ i ])
+	    break;
+	}
+	ret[ i ] = NULL;
+      }
+    }
+  }
+  return ret;
+}
+
+/*
+ * deallocateCombs -- deallocate combinations arrays.
+ */
+long int deallocateCombs(size_t **c)
+{
+  long int ret = EXIT_FAILURE;
+  size_t i;
+
+  if(c) {
+    for(i = 0; c[ i ] != NULL; i++)
+      free(c[ i ]);
+    free(c);
+    ret = EXIT_SUCCESS;
+  }
+  return ret;
+}
+
+/*
+ * lowerize -- tolower every characters in a string.
+ */
+void lowerize(char *s, size_t l)
+{
+  char *p = NULL;
+
+  if(s) {
+    p = s;
+    while((*p != '\0') && ((p - s) <= l)) {
+      *p = tolower(*p);
+      ++p;
+    }
+  }
+}
+
+/*
+ * getCombString -- return the string from characters
+ *                  and indices sets.
+ */
+long int getCombString(char *comb, char *charset, size_t *indices, size_t count)
+{
+  long int ret = EXIT_FAILURE;
+  size_t i;
+
+  if(comb) {
+    if(charset) {
+      if(indices) {
+	if(count > 0) {
+	  for(i = 0; i < count; i++)
+	    comb[ i ] = charset[ indices[ i ] - 1 ];
+	  comb[ i ] = '\0';
+	  ret = EXIT_SUCCESS;
+	}
+      }
+    }
+  }
+  return ret;
+}
 /*
  * printArray -- print array
  */
@@ -155,7 +231,7 @@ void combinations(size_t *s, size_t m, size_t n, size_t **c)
 {
   size_t i, j;
 
-  /* Set the base combination: 1, 2, 3, ... */
+  /* Set the base combination: 1, 2, 3, ..., n */
   for (i = 0; i < n; i++)
     s[ i ] = n - i;
   j = 0;
