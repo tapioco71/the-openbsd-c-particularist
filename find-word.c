@@ -9,13 +9,14 @@
 int main(int argc, char *argv[])
 {
   char ch, dictionary_path[ BUFSIZ ], combstr[ BUFSIZ ];
-  char *letters, word[ BUFSIZ ];
+  char line[ BUFSIZ ], *letters, *word;
   bool found, *combstbl;
   long int ret = EXIT_FAILURE;
   FILE *dict_file;
-  size_t i, j, k, m, n;
+  size_t i, j, k, l, m, n;
   size_t combs_count, count, letters_count, chars_count;
   size_t *indices, **combs;
+  list_t *words_list = NULL;
 
   /* Check our arguments. */
   switch(argc) {
@@ -59,46 +60,23 @@ int main(int argc, char *argv[])
 	      /* generate all character combinations without repetition. */
 	      combinations(indices, letters_count, count, combs);
 	      for(i = 0; combs[ i ] != NULL; i++) {
-		if(getCombString(combstr, letters, combs[ i ], count) == EXIT_SUCCESS)
+		if(getCombString(combstr, letters, combs[ i ], count) == EXIT_SUCCESS) {
 
 		  /* reset the file pointer to the start of the file. */
 		  fseek(dict_file, 0, SEEK_SET);
+		  //printf("combination #%ld %s\n", i + 1, combstr);
 
-		/* loop the dictionary words database. */
-		while(fgets(word, BUFSIZ, dict_file) != NULL) {
-		  word[ strcspn(word, "\n") ] = '\0';
-		  m = strnlen(word, BUFSIZ);
-
-		  /*
-		   * if the word has the same length of
-		   * the combinations then check for
-		   * characters in it.
-		   */
-		  if(m == count) {
-		    combstbl = (bool *) calloc(count, sizeof(bool));
-		    if(combstbl) {
-		      chars_count = 0;
-		      bzero(combstbl, sizeof(bool) * count);
-
-		      /*
-		       * looking for characters in word.
-		       * Choose the words that contains all
-		       * the characters in the combination.
-		       */
-		      for(k = 0; k < count; k++) {
-			for(j = 0; j < count; j++) {
-			  if(word[ j ] == combstr[ k ]) {
-			    if(combstbl[ j ] == false) {
-			      combstbl[ j ] = true;
-			      ++chars_count;
-			      break;
-			    }
-			  }
-			}
+		  /* loop the dictionary words database. */
+		  while(fgets(line, BUFSIZ, dict_file) != NULL) {
+		    line[ strcspn(line, "\n") ] = '\0';
+		    lowerize(line, BUFSIZ);
+		    m = strnlen(line, BUFSIZ);
+		    if(m == count) {
+		      word = intersect(line, combstr, count);
+		      if(strnlen(word, count) == m) {
+			if(unique((void *) word, words_list, cmp) == true)
+			  words_list = push(word, &words_list);
 		      }
-		      if(chars_count == count)
-			printf("word: %s\n", word);
-		      free(combstbl);
 		    }
 		  }
 		}
@@ -109,6 +87,14 @@ int main(int argc, char *argv[])
 	  }
 	}
 	fclose(dict_file);
+	FOREVER {
+	  word = pop(&words_list);
+	  if(word) {
+	    printf("word: %s\n", word);
+	    free(word);
+	  } else
+	    break;
+	}
       } else
 	fprintf(stderr, "could not open dictionary file: %s\n", dictionary_path);
     } else
@@ -279,6 +265,66 @@ void combinations(size_t *s, size_t m, size_t n, size_t **c)
     for(s[ i ]++; i; i--)
       s[ i - 1 ] = s[ i ] + 1;
   }
+}
+
+char *intersect(char *a, char *b, size_t l)
+{
+  char *tempa, *tempb, *ret;
+  size_t i, j, k, la, lb;
+
+  if(a) {
+    if(b) {
+      if(l > 0) {
+	la = strnlen(a, l);
+	tempa = calloc(la, sizeof(char));
+	if(tempa) {
+	  strncpy(tempa, a, la);
+	  lb = strnlen(b, l);
+	  tempb = calloc(lb, sizeof(char));
+	  if(tempb) {
+	    strncpy(tempb, b, lb);
+	    ret = (char *) calloc(min(la, lb) + 1, sizeof(char));
+	    if(ret) {
+	      k = 0;
+	      for(i = 0; i < la; i++) {
+		for(j = 0; j < lb; j++) {
+		  if((tempa[ i ] == tempb[ j ]) &&
+		     (tempa[ i ] != 0) &&
+		     (tempb[ j ] != 0)) {
+		    ret[ k++ ] = tempa[ i ];
+		    tempa[ i ] = 0;
+		    tempb[ j ] = 0;
+		    break;
+		  }
+		}
+	      }
+	      ret[ k ] = 0;
+	    }
+	    free(tempb);
+	  }
+	  free(tempa);
+	}
+      }
+    }
+  }
+  return ret;
+}
+
+bool cmp(void *a, ...)
+{
+  bool ret = false;
+  char *b;
+  va_list aplist;
+
+  if(a) {
+    if(b) {
+      va_start(aplist, a);
+      b = va_arg(aplist, char *);
+      ret = strncmp((char *) a, (char *) b, BUFSIZ) == 0 ? true : false;
+      va_end(aplist);
+    }
+  }
+  return ret;
 }
 
 /* End of find-word.c file. */
