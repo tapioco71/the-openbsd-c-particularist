@@ -245,7 +245,7 @@ ${TOOLCHAIN}/utmp: ${TOOLCHAIN}/utmp.o
 ${TOOLCHAIN}/waitfor: ${TOOLCHAIN}/waitfor.o
 ${TOOLCHAIN}/winsize: ${TOOLCHAIN}/winsize.o
 
-FORTRAN vs C
+# FORTRAN vs C
 ${TOOLCHAIN}/hello1: ${TOOLCHAIN}/hello1-for.o ${TOOLCHAIN}/hello1-c.o
 ${TOOLCHAIN}/hello2: ${TOOLCHAIN}/hello2-for.o ${TOOLCHAIN}/hello2-c.o
 ${TOOLCHAIN}/mean: ${TOOLCHAIN}/mean-for.o ${TOOLCHAIN}/mean-c.o
@@ -253,7 +253,7 @@ ${TOOLCHAIN}/norm2: ${TOOLCHAIN}/norm2-for.o ${TOOLCHAIN}/norm2-c.o
 ${TOOLCHAIN}/fft: ${TOOLCHAIN}/fft-for.o ${TOOLCHAIN}/fft-c.o
 ${TOOLCHAIN}/ifft: ${TOOLCHAIN}/ifft-for.o ${TOOLCHAIN}/ifft-c.o
 
-wscons
+# wscons
 ${TOOLCHAIN}/wsdisplay: ${TOOLCHAIN}/wsdisplay.o
 ${TOOLCHAIN}/wsdisplay2: ${TOOLCHAIN}/wsdisplay2.o
 ${TOOLCHAIN}/wsdisplay-colormap: ${TOOLCHAIN}/wsdisplay-colormap.o
