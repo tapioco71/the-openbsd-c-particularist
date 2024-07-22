@@ -1,0 +1,98 @@
+/* fg and bg built-ins: called only if Flag(FMONITOR) set */
+int j_resume(const char *cp, int bg)
+{
+  Job     *j;
+  Proc    *p;
+  int     ecode;
+  int     running;
+  int     rv = 0;
+  sigset_t omask;
+
+  sigprocmask(SIG_BLOCK, &sm_sigchld, &omask);
+
+  if ((j = j_lookup(cp, &ecode)) == NULL) {
+    sigprocmask(SIG_SETMASK, &omask, NULL);
+    bi_errorf("%s: %s", cp, lookup_msgs[ecode]);
+    return 1;
+  }
+
+  if (j->pgrp == 0) {
+    sigprocmask(SIG_SETMASK, &omask, NULL);
+    bi_errorf("job not job-controlled");
+    return 1;
+  }
+
+  if (bg)
+    shprintf("[%d] ", j->job);
+
+  running = 0;
+  for (p = j->proc_list; p != NULL; p = p->next) {
+    if (p->state == PSTOPPED) {
+      p->state = PRUNNING;
+      p->status = 0;
+      running = 1;
+    }
+    shprintf("%s%s", p->command, p->next ? "| " : "");
+  }
+  shprintf("\n");
+  shf_flush(shl_stdout);
+  if (running)
+    j->state = PRUNNING;
+
+  put_job(j, PJ_PAST_STOPPED);
+  if (bg)
+    j_set_async(j);
+  else {
+    /* attach tty to job */
+    if (j->state == PRUNNING) {
+      if (ttypgrp_ok && (j->flags & JF_SAVEDTTY))
+	tcsetattr(tty_fd, TCSADRAIN, &j->ttystate);
+      /* See comment in j_waitj regarding saved_ttypgrp. */
+      if (ttypgrp_ok &&
+	  tcsetpgrp(tty_fd, (j->flags & JF_SAVEDTTYPGRP) ?
+		    j->saved_ttypgrp : j->pgrp) == -1) {
+	if (j->flags & JF_SAVEDTTY)
+	  tcsetattr(tty_fd, TCSADRAIN, &tty_state);
+	sigprocmask(SIG_SETMASK, &omask, NULL);
+	bi_errorf("1st tcsetpgrp(%d, %d) failed: %s",
+		  tty_fd,
+		  (int) ((j->flags & JF_SAVEDTTYPGRP) ?
+			 j->saved_ttypgrp : j->pgrp),
+		  strerror(errno));
+	return 1;
+      }
+    }
+    j->flags |= JF_FG;
+    j->flags &= ~JF_KNOWN;
+    if (j == async_job)
+      async_job = NULL;
+  }
+
+  if (j->state == PRUNNING && killpg(j->pgrp, SIGCONT) == -1) {
+    int     err = errno;
+
+    if (!bg) {
+      j->flags &= ~JF_FG;
+      if (ttypgrp_ok && (j->flags & JF_SAVEDTTY))
+	tcsetattr(tty_fd, TCSADRAIN, &tty_state);
+      if (ttypgrp_ok && tcsetpgrp(tty_fd, our_pgrp) == -1) {
+	warningf(true,
+		 "fg: 2nd tcsetpgrp(%d, %d) failed: %s",
+		 tty_fd, (int) our_pgrp,
+		 strerror(errno));
+      }
+    }
+    sigprocmask(SIG_SETMASK, &omask, NULL);
+    bi_errorf("cannot continue job %s: %s",
+	      cp, strerror(err));
+    return 1;
+  }
+  if (!bg) {
+    if (ttypgrp_ok) {
+      j->flags &= ~(JF_SAVEDTTY | JF_SAVEDTTYPGRP);
+    }
+    rv = j_waitj(j, JW_NONE, "jw:resume");
+  }
+  sigprocmask(SIG_SETMASK, &omask, NULL);
+  return rv;
+}
