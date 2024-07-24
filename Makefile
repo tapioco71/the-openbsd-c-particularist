@@ -69,6 +69,7 @@ all: ${TOOLCHAIN}/bg
 all: ${TOOLCHAIN}/blocks
 all: ${TOOLCHAIN}/client
 all: ${TOOLCHAIN}/cputime
+all: ${TOOLCHAIN}/dec2str
 all: ${TOOLCHAIN}/difftime
 all: ${TOOLCHAIN}/disklabel
 all: ${TOOLCHAIN}/disklabel2
@@ -192,6 +193,7 @@ ${TOOLCHAIN}/bg: ${TOOLCHAIN}/bg.o
 ${TOOLCHAIN}/blocks: ${TOOLCHAIN}/blocks.o
 ${TOOLCHAIN}/client: ${TOOLCHAIN}/client.o
 ${TOOLCHAIN}/cputime: ${TOOLCHAIN}/cputime.o
+${TOOLCHAIN}/dec2str: ${TOOLCHAIN}/dec2str.o
 ${TOOLCHAIN}/difftime: ${TOOLCHAIN}/difftime.o
 ${TOOLCHAIN}/disklabel: ${TOOLCHAIN}/disklabel.o
 ${TOOLCHAIN}/disklabel2: ${TOOLCHAIN}/disklabel2.o
