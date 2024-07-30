@@ -1,0 +1,9 @@
+struct ipc_perm {
+  uid_t           cuid;   /* creator user id */
+  gid_t           cgid;   /* creator group id */
+  uid_t           uid;    /* user id */
+  gid_t           gid;    /* group id */
+  mode_t          mode;   /* r/w permission */
+  unsigned short  seq;    /* sequence # (to generate unique msg/sem/shm id) */
+  key_t           key;    /* user specified msg/sem/shm key */
+};

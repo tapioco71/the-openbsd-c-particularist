@@ -1,0 +1,223 @@
+/* -*- mode: c-mode; -*- */
+
+/* File irc-client.h */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
+#include <stdint.h>
+#include <stddef.h>
+#include <inttypes.h>
+#include <unistd.h>
+#include <netdb.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
+#define DEBUG 1
+#define SERVERNAMELENGTH 128
+#define NICKNAMELENGTH 32
+#define LINELENGTH 256
+#define MESSAGELENGTH BUFSIZ
+#define COMMANDLENGTH 32
+#define PARAMETERLENGTH 128
+
+#define FOREVER for(;;)
+
+enum tagIRCNumerics {
+  RPL_WELCOME = 1,
+  RPL_YOURHOST,
+  RPL_CREATED,
+  RPL_MYINFO,
+  RPL_ISUPPORT,
+  RPL_BOUNCE = 10,
+  RPL_STATSCOMMANDS = 212,
+  RPL_ENDOFSTATS = 219,
+  RPL_UMODEIS = 221,
+  RPL_STATSUPTIME = 242,
+  RPL_LUSERCLIENT = 251,
+  RPL_LUSEROP = 252,
+  RPL_LUSERUNKNOWN = 253,
+  RPL_LUSERCHANNELS = 254,
+  RPL_LUSERME,
+  RPL_ADMINME,
+  RPL_ADMINLOC1,
+  RPL_ADMINLOC2,
+  RPL_ADMINEMAIL,
+  RPL_TRYAGAIN = 263,
+  RPL_LOCALUSERS = 265,
+  RPL_GLOBALUSERS,
+  RPL_WHOISCERTFP = 276,
+  RPL_NONE = 300,
+  RPL_AWAY,
+  RPL_USERHOST,
+  RPL_UNAWAY = 305,
+  RPL_NOAWAY,
+  RPL_WHOISREGNICK,
+  RPL_WHOISUSER = 311,
+  RPL_WHOISSERVER,
+  RPL_WHOISOPERATOR,
+  RPL_WHOWASUSER,
+  RPL_ENDOFWHO,
+  RPL_WHOISIDLE = 317,
+  RPL_ENDOFWHOIS,
+  RPL_WHOISCHANNELS,
+  RPL_WHOISSPECIAL,
+  RPL_LISTSTART,
+  RPL_LIST,
+  RPL_LISTEND,
+  RPL_CHANNELMODEIS,
+  RPL_CREATIONTIME = 329,
+  RPL_WHOISACCOUNT,
+  RPL_NOTOPIC,
+  RPL_TOPIC,
+  RPL_TOPICWHOTIME,
+  RPL_INVITELIST = 336,
+  RPL_ENDOFINVITELIST,
+  RPL_WHOISACTUALLY,
+  RPL_INVITING = 341,
+  RPL_INVEXLIST = 346,
+  RPL_ENDOFINVEXLIST,
+  RPL_EXCEPTLIST,
+  RPL_ENDOFEXCEPTLIST,
+  RPL_VERSION = 351,
+  RPL_WHOREPLY,
+  RPL_NAMEREPLY,
+  RPL_LINKS = 364,
+  RPL_ENDOFLINKS,
+  RPL_ENDOFNAMES,
+  RPL_BANLIST,
+  RPL_ENDOFWHOWAS,
+  RPL_INFO = 371,
+  RPL_MOTD,
+  RPL_ENDOFINFO = 374,
+  RPL_MOTDSTART,
+  RPL_ENDOFMOTD,
+  RPL_WHOISHOST = 378,
+  RPL_WHOISMODES,
+  RPL_YOUREOPER = 381,
+  RPL_REHASHING,
+  RPL_TIME = 391,
+  
+  /* Errors. */
+  ERR_UNKNOWNERROR = 400,
+  ERR_NOSUCHNICK,
+  ERR_NOSUCHSERVER,
+  ERR_NOSUCHCHANNEL,
+  ERR_CANNOTSENDTOCHAN,
+  ERR_TOOMANYCHANNELS,
+  ERR_WASNOSUCHNICK,
+  ERR_NOORIGIN = 409,
+  ERR_NORECIPIENT = 411,
+  ERR_NOTEXTOSEND,
+  ERR_INPUTTOOLONG = 417,
+  ERR_UNKNOWNCOMMAND = 421,
+  ERR_NOMOTD,
+  ERR_NONICKNAMEGIVEN = 431,
+  ERR_ERRONEUSNICKNAME,
+  ERR_NICKNAMEINUSE,
+  ERR_NICKCOLLISION = 436,
+  ERR_USERNOTINCHANNEL = 441,
+  ERR_NOTONCHANNEL,
+  ERR_USERONCHANNEL,
+  ERR_NOTREGISTERED = 451,
+  ERR_NEEDMOREPARAMS = 461,
+  ERR_ALREADYREGISTERED,
+  ERR_PASSWDMISMATCH = 464,
+  ERR_YOURBANNEDCREEP,
+  ERR_CHANNELISFULL = 471,
+  ERR_UNKNOWNMODE,
+  ERR_INVITEONLYCHAN,
+  ERR_BANNEDFROMCHAN,
+  ERR_BADCHANNELKEY,
+  ERR_BADCHANMASK,
+  ERR_NOPRIVILEGES = 481,
+  ERR_CHANOPRIVSNEEDED,
+  ERR_CANTKILLSERVER,
+  ERR_NOOPERHOST = 491,
+  ERR_UMODEUNKNOWNFLAG = 501,
+  ERR_USERDONTMATCH,
+  ERR_HELPNOTFOUND = 524,
+  ERR_INVALIDKEY,
+  RPL_STARTTLS = 670,
+  RPL_WHOISSECURE,
+  ERR_STARTTLS = 691,
+  ERR_INVALIDMODEPARAM = 696,
+  RPL_HELPSTART = 704,
+  RPL_HELPTXT,
+  RPL_ENDOFHELP,
+  ERR_NOPRIVS = 723,
+  RPL_LOGGEDIN = 900,
+  RPL_LOGGEDOUT,
+  ERR_NICKLOGGED,
+  RPL_SASLSUCCESS,
+  ERR_SASLFAL,
+  ERR_SASLTOOLONG,
+  ERR_SASLABORTED,
+  ERR_SASLREADY,
+  RPL_SASLMECHS
+};
+
+typedef enum tagIRCNumerics IRCNumerics_t;
+
+enum tagStates {
+  IDLE = 0,
+  START_REGISTRATION,
+  SEND_PASS,
+  SEND_NICK,
+  CAPABILITY_REQUEST,
+  SEND_USER,
+  END_REGISTRATION,
+  GETSTARTCHAR,
+  GETPARAMETERS,
+  REPL,
+  ERROR,
+  END
+};
+
+typedef enum tagStates states_t;
+
+enum tagAnswerTypes {
+  MESSAGE,
+  COMMAND,
+  JUNK
+};
+
+typedef enum tagAnswerTypes answertypes_t;
+
+struct tagCommand {
+  char c_name[ COMMANDLENGTH ];
+  char **c_parameters;
+};
+
+typedef struct tagCommand command_t;
+
+struct tagMessage {
+  char m_origin[ SERVERNAMELENGTH ];
+  size_t m_code;
+  char m_nick[ NICKNAMELENGTH ];
+  char m_message[ MESSAGELENGTH ];
+};
+
+typedef struct tagMessage message_t;
+
+struct tagAnswer {
+  answertypes_t a_type;
+  union {
+    char a_message[ MESSAGELENGTH ];
+    command_t a_command;
+  };
+};
+
+typedef struct tagAnswer answer_t;
+
+/* Functions prototypes. */
+long int executeServerCommand(int, command_t);
+long int decodeServerAnswer(char *, answer_t *);
+long int getServerAnswer(int, char *, size_t);
+long int sendCommand(int, char *);
+long int client(struct sockaddr_in *);
+int main(int, char *[]);
+
+/* End of irc-client.h file. */

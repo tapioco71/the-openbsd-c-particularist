@@ -1,0 +1,8 @@
+FILE *fp;
+float numbers[ 100 ];
+
+......
+
+fread(numbers, sizeof(float), 100, fp);
+
+......

@@ -1,0 +1,9 @@
+struct fstab {
+  char *fs_spec; 	/* block special device name */
+  char *fs_file; 	/* file system path prefix */
+  char *fs_vfstype; 	/* type of file system */
+  char *fs_mntops;	/* comma separated mount options */
+  char *fs_type;	/* rw, ro, sw, or xx */
+  int fs_freq;		/* dump frequency, in days */
+  int fs_passno;	/* pass number on parallel fsck */
+};

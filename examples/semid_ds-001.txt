@@ -1,0 +1,12 @@
+struct semid_ds {
+  struct ipc_perm sem_perm;       /* operation permission struct */
+  struct sem      *sem_base;      /* pointer to first semaphore in set */
+  unsigned short  sem_nsems;      /* number of sems in set */
+  time_t          sem_otime;      /* last operation time */
+  long            sem_pad1;       /* SVABI/386 says I need this here */
+  time_t          sem_ctime;      /* last change time */
+  /* Times measured in secs since */
+  /* 00:00:00 GMT, Jan. 1, 1970 */
+  long            sem_pad2;       /* SVABI/386 says I need this here */
+  long            sem_pad3[4];    /* SVABI/386 says I need this here */
+};
