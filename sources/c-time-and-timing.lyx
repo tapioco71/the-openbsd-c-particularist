@@ -1,0 +1,3509 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass memoir
+\use_default_options true
+\master the-openbsd-c-particularist.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family sfdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1.7cm
+\topmargin 1cm
+\rightmargin 1.5cm
+\bottommargin 1.2cm
+\headheight 1cm
+\headsep 1cm
+\footskip 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:time-timing"
+
+\end_inset
+
+Time and Timing.
+\end_layout
+
+\begin_layout Standard
+\align right
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "50col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:telling-time"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:sleeping-and-alarm-clocks"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:process-timing"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:changing-file-times"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:interval-timers"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+This chapter covers a miscellany of topics unrelated but for the fact that
+ they have to do with time:
+\end_layout
+
+\begin_layout Itemize
+how OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ system keeps track of time;
+\end_layout
+
+\begin_layout Itemize
+how to put processes to sleep;
+\end_layout
+
+\begin_layout Itemize
+how to determine how CPU time a process uses;
+\end_layout
+
+\begin_layout Itemize
+how to change file modification times.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:telling-time"
+
+\end_inset
+
+Time.
+\end_layout
+
+\begin_layout Standard
+The OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ operating system keeps track of the current date and time by storing the
+ number of seconds that have elapsed since January, 1, 1900 UTC
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Coordinated Universal Time, also known as Greenwich Mean Time.
+\end_layout
+
+\end_inset
+
+.
+ The time is stored in a signed 64 bit integer.
+\end_layout
+
+\begin_layout Subsection
+Obtaining the Time.
+\end_layout
+
+\begin_layout Standard
+In the OpenBSD operating system the 
+\family typewriter
+time
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+time
+\end_layout
+
+\end_inset
+
+
+\family default
+ call may be used to obtain the time of the day.
+ This function takes one argument and returns the number of seconds elapsed
+ since Jan 1 1970 00:00:00 UTC.
+ This value is also written to the memory pointed by the first argument
+ of type 
+\family typewriter
+time_t
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+time_t
+\end_layout
+
+\end_inset
+
+
+\family default
+, unless now is 
+\family typewriter
+NULL
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+NULL
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ The 
+\family typewriter
+time
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+time
+\end_layout
+
+\end_inset
+
+
+\family default
+ function is always successful, and no return value is reserved to indicate
+ an error.
+ 
+\family typewriter
+time
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+time
+\end_layout
+
+\end_inset
+
+
+\family default
+, still useable, was replaced by 
+\family typewriter
+gettimeofday
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+gettimeofday
+\end_layout
+
+\end_inset
+
+
+\family default
+ routine.
+ This function writes the absolute value of the system's Coordinated Universal
+ Time
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Coordinated Universal Time
+\end_layout
+
+\end_inset
+
+ (UTC
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+UTC
+\end_layout
+
+\end_inset
+
+) clock to the memory pointed by the first argument, unless it is 
+\family typewriter
+NULL
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+NULL
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ The UTC
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+UTC
+\end_layout
+
+\end_inset
+
+ clock's absolute value is the time elapsed since Jan 1 1970 00:00:00 +0000
+ - the Epoch
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Considered to be the UNIX birthday.
+\end_layout
+
+\end_inset
+
+.
+ The clock normally advances continuously, though it may jump discontinuously
+ if a process calls 
+\family typewriter
+settimeofday
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+settimeofday
+\end_layout
+
+\end_inset
+
+
+\family default
+ or 
+\shape italic
+clock_settime
+\shape default
+(2).
+ For this reason, 
+\family typewriter
+gettimeofday
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+gettimeofday
+\end_layout
+
+\end_inset
+
+
+\family default
+ is not generally suitable for measuring elapsed time.
+ Whenever possible, use 
+\shape italic
+clock_gettime
+\shape default
+(2) to measure elapsed time with one of the system's monotonic clocks instead.
+ The 
+\family typewriter
+settimeofday
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+settimeofday
+\end_layout
+
+\end_inset
+
+
+\family default
+ function sets the system's UTC
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+UTC
+\end_layout
+
+\end_inset
+
+ clock to the absolute value now unless now is 
+\family typewriter
+NULL
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+NULL
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ Only the super-user
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+super-user
+\end_layout
+
+\end_inset
+
+ may set the clock.
+ If the system 
+\shape italic
+securelevel
+\shape default
+(7) is 2 or greater, the clock may only be advanced.
+ This limitation prevents a malicious super-user
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+super-user
+\end_layout
+
+\end_inset
+
+ from setting arbitrary timestamps on files.
+ Setting the clock cancels any ongoing 
+\shape italic
+adjtime
+\shape default
+(2) adjustment.
+ The structure pointed to by the first argument is defined in the include
+ file 
+\family typewriter
+<sys/time.h>
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+<sys/time.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+ as:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:timeval-struct"
+
+\end_inset
+
+The timeval structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct timeval {
+\end_layout
+
+\begin_layout Plain Layout
+
+	time_t tv_sec;
+\end_layout
+
+\begin_layout Plain Layout
+
+	suseconds_t tv_usec;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+tv_sec seconds elapsed from 1/1/1970;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+tv_usec microseconds elapse from boot.
+\end_layout
+
+\begin_layout Standard
+The second argument is historical: the system no longer maintains timezone
+ information in the kernel
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+kernel
+\end_layout
+
+\end_inset
+
+.
+ This argument should always be 
+\family typewriter
+NULL
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+NULL
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ 
+\family typewriter
+gettimeofday
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+gettimeofday
+\end_layout
+
+\end_inset
+
+
+\family default
+ zeroes it if it is not NULL.
+ 
+\family typewriter
+settimeofday
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+settimeofday
+\end_layout
+
+\end_inset
+
+
+\family default
+ ignores the contents of this argument if it is not 
+\family typewriter
+NULL
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+NULL
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:time"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows a program getting the time-of-the-day:
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:time"
+
+\end_inset
+
+time - a program to show the time-of-the-day.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* time.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <unistd.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <fcntl.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <errno.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <time.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/time.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* time program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct timeval now;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* get-time-of-the-day.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(gettimeofday(&now, NULL) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		printf("time in seconds: %lld, ", now.tv_sec);
+\end_layout
+
+\begin_layout Plain Layout
+
+		printf("time in microseconds: %ld
+\backslash
+n", now.tv_usec);
+\end_layout
+
+\begin_layout Plain Layout
+
+		printf("date: %s
+\backslash
+n", ctime(&now.tv_sec));
+\end_layout
+
+\begin_layout Plain Layout
+
+		ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of timer.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Timezones.
+\end_layout
+
+\begin_layout Standard
+On the OpenBSD
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ operating system the 
+\shape italic
+timezone
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\shape italic
+timezone
+\end_layout
+
+\end_inset
+
+
+\shape default
+ information could be retrieved by 
+\family typewriter
+localtime
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+localtime
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+gmtime
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+gmtime
+\end_layout
+
+\end_inset
+
+
+\family default
+ routines.
+ They return pointers to 
+\family typewriter
+tm
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+tm
+\end_layout
+
+\end_inset
+
+
+\family default
+ structures, described below.
+ 
+\family typewriter
+localtime
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+localtime
+\end_layout
+
+\end_inset
+
+
+\family default
+ corrects for the time zone
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+time zone
+\end_layout
+
+\end_inset
+
+ and any time zone adjustments, such as Daylight Saving Time in the United
+ States.
+ After filling in the 
+\family typewriter
+tm
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+tm
+\end_layout
+
+\end_inset
+
+
+\family default
+ structure, 
+\family typewriter
+localtime
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+localtime
+\end_layout
+
+\end_inset
+
+
+\family default
+ sets the 
+\family typewriter
+tm_isdst
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+tm_isdst
+\end_layout
+
+\end_inset
+
+
+\family default
+'th element of tzname
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+tzname
+\end_layout
+
+\end_inset
+
+ to a pointer to an ASCII
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+ASCII
+\end_layout
+
+\end_inset
+
+ string that's the time zone
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+time zone
+\end_layout
+
+\end_inset
+
+ abbreviation to be used with the return value of 
+\family typewriter
+localtime
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+localtime
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:tm-struct"
+
+\end_inset
+
+The tm structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct tm {
+\end_layout
+
+\begin_layout Plain Layout
+
+	int tm_sec;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int tm_min;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int tm_hour;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int tm_mday;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int tm_mon;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int tm_year;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int tm_wday;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int tm_yday;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int tm_isdst;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long tm_gmtoff;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char *tm_zone;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+tm_sec
+\family default
+ seconds after the minute [ 0 - 60 ];
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+tm_min
+\family default
+ minutes after the hour [ 0 - 59 ];
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+tm_hour
+\family default
+ hours since midnight [ 0 - 23 ];
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+tm_mday
+\family default
+ day of the month [ 1 - 31 ];
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+
+\family typewriter
+tm_mon
+\family default
+ months since January [ 0 - 11 ];
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+tm_year
+\family default
+ years since 1900;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+tm_wday
+\family default
+ days since Sunday [ 0 - 6 ];
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+tm_yday
+\family default
+ days since January 1 [ 0 - 365 ];
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+tm_isdst
+\family default
+ Daylight Saving Time flag;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+tm_gmtoff
+\family default
+ offset from UTC in seconds;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+tm_zone
+\family default
+ timezone abbreviation.
+\end_layout
+
+\begin_layout Standard
+Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:timezone"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows how to retrieve the timezone for the machine executing the program.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:timezone"
+
+\end_inset
+
+timezone - a program to show the time-of-the-day and timezone.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* timezone.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <unistd.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <fcntl.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <errno.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <time.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/time.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* timezone program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct timeval now;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct tm *tm_val;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* get-time-of-the-day.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(gettimeofday(&now, NULL) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		if((tm_val = localtime(&now.tv_sec)) != NULL) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("seconds: %d, ", tm_val -> tm_sec);
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("minutes: %d, ", tm_val -> tm_min);
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("hours: %d, ", tm_val -> tm_hour);
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("day of month: %d, ", tm_val -> tm_mday);
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("month: %d, ", tm_val -> tm_mon);
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("year: %d, ", tm_val -> tm_year);
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("weekday: %d, ", tm_val -> tm_wday);
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("day of year: %d
+\backslash
+n", tm_val -> tm_yday);
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("summer time in effect? %d
+\backslash
+n", tm_val -> tm_isdst);
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("offset from UTC in seconds: %ld
+\backslash
+n", tm_val -> tm_gmtoff);
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("timezone name: %s
+\backslash
+n", tm_val -> tm_zone);
+\end_layout
+
+\begin_layout Plain Layout
+
+			ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+		} else
+\end_layout
+
+\begin_layout Plain Layout
+
+    	  perror("Could not get local time");
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else
+\end_layout
+
+\begin_layout Plain Layout
+
+    	perror("Could not get time-of-the-day");
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of timezone.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Time Differences.
+\end_layout
+
+\begin_layout Standard
+By using 
+\family typewriter
+gmtime
+\family default
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+gmtime
+\end_layout
+
+\end_inset
+
+, 
+\family typewriter
+difftime
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+difftime
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+asctime
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+asctime
+\end_layout
+
+\end_inset
+
+
+\family default
+ routines, it is possible to convert the difference between two times to
+ ASCII.
+ For example, to see how long a user was logged in, his login time can be
+ subtracted from his logout time.
+ This difference can then be taken as UTC and converted to an ASCII string.
+ The hours minutes and seconds fields of this result will represent the
+ difference between the two times, modulo 24 hours.
+ Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:difftime"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows a program that computes the last session time for a user.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:difftime"
+
+\end_inset
+
+difftime - a program to compute the session time of a user.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* difftime.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <unistd.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <fcntl.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <errno.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <time.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <utmp.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/types.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/time.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* difftime program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int fd_wtmp;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	double d;
+\end_layout
+
+\begin_layout Plain Layout
+
+	off_t lp = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct utmp tmp_record, login_record, logout_record;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Open the /va/run/utmp file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(argc == 2) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		if((fd_wtmp = open(_PATH_WTMP, O_RDONLY)) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			bzero((void *) &login_record, sizeof(struct utmp));
+\end_layout
+
+\begin_layout Plain Layout
+
+			while(read(fd_wtmp, (void *) &tmp_record, sizeof(struct utmp)) > 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+				if(tmp_record.ut_name[ 0 ] != '
+\backslash
+0') {
+\end_layout
+
+\begin_layout Plain Layout
+
+					if(strncmp((const char *) argv[ 1 ], (const char *) tmp_record.ut_name,
+ UT_NAMESIZE) == 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+						lp = lseek(fd_wtmp, 0, SEEK_CUR);
+\end_layout
+
+\begin_layout Plain Layout
+
+						memcpy((void *) &login_record, (void *) &tmp_record,   sizeof(struct
+ utmp));
+\end_layout
+
+\begin_layout Plain Layout
+
+					}
+\end_layout
+
+\begin_layout Plain Layout
+
+				}
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(lp >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+				if(login_record.ut_name[ 0 ] != '
+\backslash
+0') {
+\end_layout
+
+\begin_layout Plain Layout
+
+					printf("Found login name: %s in position %d.
+\backslash
+n", argv[ 1 ],  lp);
+\end_layout
+
+\begin_layout Plain Layout
+
+					if(lseek(fd_wtmp, lp, SEEK_SET) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+						bzero((void *) &logout_record, sizeof(struct utmp));
+\end_layout
+
+\begin_layout Plain Layout
+
+						while(read(fd_wtmp, (void *) &tmp_record, sizeof(struct utmp)) > 0)
+ {
+\end_layout
+
+\begin_layout Plain Layout
+
+							if(tmp_record.ut_name[ 0 ] == '
+\backslash
+0') {
+\end_layout
+
+\begin_layout Plain Layout
+
+								if(strncmp((const char *) tmp_record.ut_line, (const char *) login_record.
+ut_line, UT_LINESIZE) == 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+									printf("found the corresponding logout entry for %s...
+\backslash
+n", argv[ 1 ]);
+\end_layout
+
+\begin_layout Plain Layout
+
+									memcpy((void *) &logout_record, (void *)  &tmp_record,  sizeof(struct
+ utmp));
+\end_layout
+
+\begin_layout Plain Layout
+
+									break;
+\end_layout
+
+\begin_layout Plain Layout
+
+								}
+\end_layout
+
+\begin_layout Plain Layout
+
+							}
+\end_layout
+
+\begin_layout Plain Layout
+
+						}
+\end_layout
+
+\begin_layout Plain Layout
+
+						d = difftime(logout_record.ut_time, login_record.ut_time);
+\end_layout
+
+\begin_layout Plain Layout
+
+						printf("user %s last session time: %f s.
+\backslash
+n", argv[ 1 ], d);
+\end_layout
+
+\begin_layout Plain Layout
+
+					} else
+\end_layout
+
+\begin_layout Plain Layout
+
+						perror("Could not seek in /var/log/wtmp");
+\end_layout
+
+\begin_layout Plain Layout
+
+				} else
+\end_layout
+
+\begin_layout Plain Layout
+
+					fprintf(stderr, "no such login: %s
+\backslash
+n", argv[ 1 ]);
+\end_layout
+
+\begin_layout Plain Layout
+
+			} else
+\end_layout
+
+\begin_layout Plain Layout
+
+				perror("Could not seek in /var/log/wtmp");
+\end_layout
+
+\begin_layout Plain Layout
+
+			close(fd_wtmp);
+\end_layout
+
+\begin_layout Plain Layout
+
+		} else
+\end_layout
+
+\begin_layout Plain Layout
+
+			perror("Could not open /var/log/wtmp");
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else
+\end_layout
+
+\begin_layout Plain Layout
+
+		fprintf(stderr, "Usage: difftime name
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of difftime.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:sleeping-and-alarm-clocks"
+
+\end_inset
+
+Sleeping and Alarm Clocks.
+\end_layout
+
+\begin_layout Subsection
+Sleeping.
+\end_layout
+
+\begin_layout Standard
+Many times it is necessary for a program to 
+\begin_inset Quotes eld
+\end_inset
+
+go to sleep
+\begin_inset Quotes erd
+\end_inset
+
+ for a period of time.
+ For example, if some condition must be checked, for example, every 20 minutes
+ before checking things again.
+ The simplest way to do this is to use the 
+\family typewriter
+sleep
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+sleep
+\end_layout
+
+\end_inset
+
+
+\family default
+ system call.
+ The function suspends execution of the calling thread
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+thread
+\end_layout
+
+\end_inset
+
+ until at least the given number of seconds have elapsed or an unmasked
+ signal is delivered.
+ This version of 
+\family typewriter
+sleep
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+sleep
+\end_layout
+
+\end_inset
+
+
+\family default
+ is implemented with 
+\shape italic
+nanosleep
+\shape default
+(2), so delivery of any unmasked signal will terminate the sleep early,
+ even if 
+\family typewriter
+SA_RESTART
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+SA_RESTART
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set with 
+\shape italic
+sigaction
+\shape default
+(2) for the interrupting signal.
+ It takes one argument an unsigned int representing the seconds to sleep.
+ If 
+\family typewriter
+sleep
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+sleep
+\end_layout
+
+\end_inset
+
+
+\family default
+ sleeps for the full count of seconds, it returns 0.
+ Otherwise, it returns the number of seconds remaining from the original
+ request.
+ The function sets 
+\family typewriter
+errno
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ to 
+\family typewriter
+EINTR
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EINTR
+\end_layout
+
+\end_inset
+
+
+\family default
+ if it is interrupted by the delivery of a signal.
+\end_layout
+
+\begin_layout Subsection
+The Alarm Clock.
+\end_layout
+
+\begin_layout Standard
+Another common need is to be advised when a given amount of time has elapsed,
+ but to be able to continue executing.
+ For example, if a program is waiting for something that 
+\begin_inset Quotes eld
+\end_inset
+
+might
+\begin_inset Quotes erd
+\end_inset
+
+ happen, it needs to know when it has waited long enough and should give
+ up.
+ To schedule an 
+\shape italic
+alarm
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\shape italic
+alarm
+\end_layout
+
+\end_inset
+
+
+\shape default
+, the 
+\family typewriter
+alarm
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+alarm
+\end_layout
+
+\end_inset
+
+
+\family default
+ system call
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+ should be used.
+ The function schedules the 
+\family typewriter
+SIGALRM
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGALRM
+\end_layout
+
+\end_inset
+
+
+\family default
+ signal for delivery to the calling process after the given number of seconds
+ have elapsed.
+ If an alarm
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+alarm
+\end_layout
+
+\end_inset
+
+ is already pending, another call to 
+\family typewriter
+alarm
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+alarm
+\end_layout
+
+\end_inset
+
+
+\family default
+ will supersede the prior call.
+ It takes one argument an unsigned int which represent the number of seconds
+ to trigger the alarm.
+ If this argument is zero, any pending alarm
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+alarm
+\end_layout
+
+\end_inset
+
+ is cancelled.
+ 
+\family typewriter
+alarm
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+alarm
+\end_layout
+
+\end_inset
+
+
+\family default
+ returns the number of seconds remaining until the pending alarm
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+alarm
+\end_layout
+
+\end_inset
+
+ would have expired.
+ If it has already expired, it was cancelled, or no alarm
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+alarm
+\end_layout
+
+\end_inset
+
+ was ever scheduled, it returns zero.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:process-timing"
+
+\end_inset
+
+Process Timing.
+\end_layout
+
+\begin_layout Standard
+Top obtain information about the amount of processor time used by a process,
+ the times system call may be used.
+ The function fills in the structure pointed to by tp with time- accounting
+ information.
+ The tms structure is defined as follows:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:tms-struct"
+
+\end_inset
+
+The tms structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct tms {
+\end_layout
+
+\begin_layout Plain Layout
+
+	clock_t tms_utime;
+\end_layout
+
+\begin_layout Plain Layout
+
+	clock_t tms_stime;
+\end_layout
+
+\begin_layout Plain Layout
+
+	clock_t tms_cutime;
+\end_layout
+
+\begin_layout Plain Layout
+
+	clock_t tms_cstime;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+The elements of this structure are defined as follows:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+tms_utime
+\family default
+ CPU time charged for the execution of user instructions;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+tms_stime
+\family default
+ CPU time charged for execution by the system on behalf of the process;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+tms_cutime
+\family default
+ sum of 
+\family typewriter
+tms_utime
+\family default
+ and 
+\family typewriter
+tms_cutime
+\family default
+ for all of the child processes;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+tms_cstime
+\family default
+ sum of 
+\family typewriter
+tms_stime
+\family default
+ and 
+\family typewriter
+tms_cstime
+\family default
+ for all of the child processes.
+\end_layout
+
+\begin_layout Standard
+\noindent
+All times are in 
+\family typewriter
+CLK_TCK
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+CLK_TCK
+\end_layout
+
+\end_inset
+
+
+\family default
+s of a second.
+ The times of a terminated child process are included in the 
+\family typewriter
+tms_cutime
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+tms_cutime
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+tms_cstime
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+tms_cstime
+\end_layout
+
+\end_inset
+
+
+\family default
+ elements of the parent when one of the 
+\shape italic
+wait
+\shape default
+(2) functions returns the 
+\family typewriter
+process id
+\family default
+ of the terminated child to the parent.
+ Upon successful completion, 
+\family typewriter
+times
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+times
+\end_layout
+
+\end_inset
+
+
+\family default
+ returns the value of real time, in 
+\family typewriter
+CLK_TCK
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+CLK_TCK
+\end_layout
+
+\end_inset
+
+
+\family default
+s of a second, elapsed since an arbitrary point in the past.
+ This point does not change between invocations of 
+\family typewriter
+times
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+times
+\end_layout
+
+\end_inset
+
+
+\family default
+ so two such return values constitute a real time interval.
+ On failure, 
+\family typewriter
+times
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+times
+\end_layout
+
+\end_inset
+
+
+\family default
+ returns 
+\family typewriter
+(clock_t) -1
+\family default
+ and the global variable 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to indicate the error.
+ Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:cputime"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the proper method to calculate the amount of CPU time required by
+ a given segment of code.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:cputime"
+
+\end_inset
+
+cputime - measure cpu time used by a section of code.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* cputime.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <unistd.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <fcntl.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <errno.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <time.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <utmp.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/types.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/time.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/times.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* cputime program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int i, temp, prev, succ;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct tms before, after;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Get current time.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	times(&before);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* some code.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	for(i = 1; i < rand(); i++) {
+\end_layout
+
+\begin_layout Plain Layout
+
+    	prev = 1;
+\end_layout
+
+\begin_layout Plain Layout
+
+		succ = 2;
+\end_layout
+
+\begin_layout Plain Layout
+
+		do {
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("%d
+\backslash
+n", prev);
+\end_layout
+
+\begin_layout Plain Layout
+
+			temp = prev + succ;
+\end_layout
+
+\begin_layout Plain Layout
+
+			prev = succ;
+\end_layout
+
+\begin_layout Plain Layout
+
+			succ = temp;
+\end_layout
+
+\begin_layout Plain Layout
+
+		} while(succ < 1836311903);
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Get time after computation.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	times(&after);
+\end_layout
+
+\begin_layout Plain Layout
+
+	printf("User time: %lld seconds.
+\backslash
+n", after.tms_utime - before.tms_utime);
+\end_layout
+
+\begin_layout Plain Layout
+
+	printf("System time: %lld seconds.
+\backslash
+n", after.tms_stime - before.tms_stime);
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of cputime.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:changing-file-times"
+
+\end_inset
+
+Changing File Times.
+\end_layout
+
+\begin_layout Standard
+OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ provides several systems call to set file access and modification times.
+ Let's consider the 
+\family typewriter
+utimes
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+utimes
+\end_layout
+
+\end_inset
+
+
+\family default
+ routine.
+ It takes two arguments.
+ The first argument is a pointer to the character string containing the
+ path of the file.
+ The second argument is an array of type 
+\family typewriter
+timeval
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+timeval
+\end_layout
+
+\end_inset
+
+
+\family default
+ of size 2.
+ This contains the new access time as first value and the modification time
+ as second value in the array.
+ If the second argument is 
+\family typewriter
+NULL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+NULL
+\end_layout
+
+\end_inset
+
+
+\family default
+, the access and modification times are set to the current time.
+ The caller must be the owner of the file, have permission to write the
+ file, or be the super-user
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+super-user
+\end_layout
+
+\end_inset
+
+.
+ In either case, the file status change time is set to the current time.
+ Upon successful completion, the value 0 is returned; otherwise the value -1
+ is returned and the global variable 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to indicate the error.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:interval-timers"
+
+\end_inset
+
+Interval Timers.
+\end_layout
+
+\begin_layout Standard
+On OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ there are more general mechanism called 
+\shape italic
+interval timers
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+interval timers
+\end_layout
+
+\end_inset
+
+
+\shape default
+.
+ They are maintained in structures of type 
+\family typewriter
+itimerval
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+itimerval
+\end_layout
+
+\end_inset
+
+
+\family default
+ defined in the include file 
+\family typewriter
+<sys/time.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<sys/time.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:itimerval-struct"
+
+\end_inset
+
+The itimerval structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#define ITIMER_REAL     0
+\end_layout
+
+\begin_layout Plain Layout
+
+#define ITIMER_VIRTUAL  1
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+
+#define ITIMER_PROF     2
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct itimerval {
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct timeval it_interval;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct timeval it_value;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+
+\family typewriter
+it_interval
+\family default
+ field specifies the number of seconds and microseconds before the timer
+ should expire; if these values are zero the timer is disabled;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+it_value
+\family default
+ specifies the values the timer should be reset to when expires; if these
+ are zero the timer will not be reset.
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+The system provides each process with three interval timers, defined in
+ 
+\family typewriter
+<sys/time.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<sys/time.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ The 
+\family typewriter
+getitimer
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getitimer
+\end_layout
+
+\end_inset
+
+
+\family default
+ call needs two arguments and returns the current value for the kind of
+ timer specified in the first argument from the array pointed by the second
+ argument.
+ The 
+\family typewriter
+setitimer
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+setitimer
+\end_layout
+
+\end_inset
+
+
+\family default
+ takes three arguments.
+ The first two arguments are the same of the 
+\family typewriter
+getitimer
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getitimer
+\end_layout
+
+\end_inset
+
+
+\family default
+ system call, the third value is a pointer to the itimerval structure which
+ update the indicated value, returning the previous value of the timer if
+ the new value is non-null.
+ Setting 
+\family typewriter
+it_value
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+it_value
+\end_layout
+
+\end_inset
+
+
+\family default
+ to 0 disables a timer and setting 
+\family typewriter
+it_interval
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+it_interval
+\end_layout
+
+\end_inset
+
+
+\family default
+ to 0 causes a timer to be disabled after its next expiration, assuming
+ 
+\family typewriter
+it_value
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+it_value
+\end_layout
+
+\end_inset
+
+
+\family default
+ is non-zero.
+ Time values smaller than the resolution of the system clock are rounded
+ up to this resolution
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Typically 10 milliseconds.
+\end_layout
+
+\end_inset
+
+.
+ The 
+\family typewriter
+ITIMER_REAL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ITIMER_REAL
+\end_layout
+
+\end_inset
+
+
+\family default
+ timer decrements in real time.
+ A 
+\family typewriter
+SIGALRM
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGALRM
+\end_layout
+
+\end_inset
+
+
+\family default
+ signal is delivered when this timer expires.
+ The 
+\family typewriter
+ITIMER_VIRTUAL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ITIMER_VIRTUAL
+\end_layout
+
+\end_inset
+
+
+\family default
+ timer decrements in process virtual time.
+ It runs only when the process is executing.
+ A 
+\family typewriter
+SIGVTALRM
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGVTALRM
+\end_layout
+
+\end_inset
+
+
+\family default
+ signal is delivered when it expires.
+ The 
+\family typewriter
+ITIMER_PROF
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ITIMER_PROF
+\end_layout
+
+\end_inset
+
+
+\family default
+ timer decrements both in process virtual time and when the system is running
+ on behalf of the process.
+ It is designed to be used by interpreters in statistically profiling the
+ execution of interpreted programs.
+ Each time the 
+\family typewriter
+ITIMER_PROF
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ITIMER_PROF
+\end_layout
+
+\end_inset
+
+
+\family default
+ timer expires, the 
+\family typewriter
+SIGPROF
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGPROF
+\end_layout
+
+\end_inset
+
+
+\family default
+ signal is delivered.
+ Because this signal may interrupt in-progress system calls, programs using
+ this timer must be prepared to restart interrupted system calls.
+ Upon successful completion, the value 0 is returned; otherwise the value -1
+ is returned and the global variable 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to indicate the error.
+\end_layout
+
+\end_body
+\end_document

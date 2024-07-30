@@ -1,0 +1,9073 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass memoir
+\use_default_options true
+\master the-openbsd-c-particularist.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family sfdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command bibtex
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1.7cm
+\topmargin 1cm
+\rightmargin 1.5cm
+\bottommargin 1.2cm
+\headheight 1cm
+\headsep 1cm
+\footskip 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 2
+\paperpagestyle plain
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:introduction"
+
+\end_inset
+
+Introduction.
+\end_layout
+
+\begin_layout Standard
+\align right
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "50col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:system-calls-vs-library-routines"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:versions-of-openbsd"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:error-handling"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+Over the past several years, the use of the UNIX
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+UNIX
+\end_layout
+
+\end_inset
+
+ and UNIX-like operating systems and specifically OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ has become widespread for server, workstation and personal computers.
+ This is due mainly to the following factors:
+\end_layout
+
+\begin_layout Enumerate
+the UNIX
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+UNIX
+\end_layout
+
+\end_inset
+
+ philosophy emphasizes building simple, compact, clear, modular, and extensible
+ code that can be easily maintained and repurposed by developers other than
+ its creators.
+ It favors composability as opposed to monolithic design;
+\end_layout
+
+\begin_layout Enumerate
+\align block
+cheaper hardware with massive computational capabilities well suits the
+ UNIX
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+UNIX
+\end_layout
+
+\end_inset
+
+ philosophy stated at the previous point; UNIX can be easily adapted to
+ a variety of cpu architectures.
+ OpenBSD can run on the following cpus
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\begin_inset CommandInset href
+LatexCommand href
+name "OpenBSD Platforms"
+target "https://www.openbsd.org/plat.html"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+alpha — Digital Alpha-based systems;
+\end_layout
+
+\begin_layout Enumerate
+amd64 — AMD64-based systems;
+\end_layout
+
+\begin_layout Enumerate
+arm64 — 64-bit ARM systems;
+\end_layout
+
+\begin_layout Enumerate
+armv7 — ARM based devices, such as BeagleBone, PandaBoard, CuBox-i, SABRE
+ Lite, Nitrogen6x and Wandboard;
+\end_layout
+
+\begin_layout Enumerate
+hppa — Hewlett-Packard Precision Architecture (PA-RISC) systems;
+\end_layout
+
+\begin_layout Enumerate
+i386 — Standard PC and clones based on the Intel i386 architecture and compatibl
+e processors;
+\end_layout
+
+\begin_layout Enumerate
+landisk — IO-DATA Landisk systems (such as USL-5P) based on the SH4 cpu
+ loongson Loongson 2E- and 2F-based systems, such as the Lemote Fuloong
+ and Yeeloong, Gdium Liberty, etc.;
+\end_layout
+
+\begin_layout Enumerate
+luna88k — Omron LUNA-88K and LUNA-88K2 workstations;
+\end_layout
+
+\begin_layout Enumerate
+macppc — Apple New World PowerPC-based machines, from the iMac onwards;
+\end_layout
+
+\begin_layout Enumerate
+octeon — Cavium Octeon-based;
+\end_layout
+
+\begin_layout Enumerate
+MIPS64 — systems;
+\end_layout
+
+\begin_layout Enumerate
+powerpc64 — IBM POWER-based;
+\end_layout
+
+\begin_layout Enumerate
+PowerNV — systems;
+\end_layout
+
+\begin_layout Enumerate
+riscv64 — 64-bit RISC-V systems
+\end_layout
+
+\begin_layout Enumerate
+sparc64 — Sun SPARC (Scalable Processor ARChitecture).
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\align block
+the opensource
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+opensource
+\end_layout
+
+\end_inset
+
+ initiative which delivered and still is delivering, outstanding high quality
+ software;
+\end_layout
+
+\begin_layout Enumerate
+embedded computing and mobile devices are used to build cheaper and smarter
+ portable computers.
+ Operative Systems like UNIX and then OpenBSD are playing a central role
+ in provide development platforms and services for this kind of computing
+ devices
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+The Reader could consider the success of the TI BeagleBone or the Raspberry
+ PI.
+ Unlike the Arduino, these embedded computing solutions can run a complete
+ OS such as OpenBSD.
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In particular OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ offers a lot of features such as: 
+\shape italic
+code correctness
+\shape default
+ and 
+\shape italic
+advanced security
+\shape default
+ for server or client use.
+ Most of the open source projects such like OpenSMTPD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenSMTPD
+\end_layout
+
+\end_inset
+
+, OpenSSH
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenSSH
+\end_layout
+
+\end_inset
+
+, etc are part of this project.
+ Several books have been published on the use of OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ and on the use of the C programming language
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+C programming language
+\end_layout
+
+\end_inset
+
+, which is the primary language used in UNIX
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+UNIX
+\end_layout
+
+\end_inset
+
+ and of course in OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+The kernel is largely written in C and assembly language for different computing
+ architectures.
+\end_layout
+
+\end_inset
+
+.
+ As a result, those wanting to write system programs under this operative
+ system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+operative system
+\end_layout
+
+\end_inset
+
+ have had to learn the hard way: examining the source code of existing system
+ utilities
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Usually OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ installs source code in 
+\shape italic
+/usr/src
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+/usr/src
+\end_layout
+
+\end_inset
+
+
+\shape default
+ for the system utilities and kernel and under 
+\shape italic
+/usr/ports
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+/usr/ports
+\end_layout
+
+\end_inset
+
+
+\shape default
+ the program and utilities ported from other projects.
+\end_layout
+
+\end_inset
+
+.
+ That is a good way to understand and discover things since one of the main
+ strength of OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ is the code correctness.
+ This leads to acquire the way to do things within the system itself, leaving
+ less space to bad implementations and bugs.
+ The system provide, by design, the source code for ports, system utilities
+ and programs like Xenocara
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Xenocara is the X11 graphical server.
+\end_layout
+
+\end_inset
+
+ and the 
+\shape italic
+kernel
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+kernel
+\end_layout
+
+\end_inset
+
+
+\shape default
+.
+ This book is an attempt to enhance the learning process for a beginner
+ user: it discusses in details the use of most of the system calls and library
+ routines available to the C programmer on the OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ operating system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+operating system
+\end_layout
+
+\end_inset
+
+.
+ It is not intended as an introduction to the C programming language
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+C programming language
+\end_layout
+
+\end_inset
+
+, nor can it really be considered an 
+\shape italic
+advanced C programming guide
+\shape default
+.
+ Rather, it has been written for the person interested in learning to become
+ a 
+\shape italic
+system programmer
+\shape default
+ for the OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ operating system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+operating system
+\end_layout
+
+\end_inset
+
+.
+ The student who wishes to work for a university computer center, a system
+ programmer unfamiliar with UNIX
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+UNIX
+\end_layout
+
+\end_inset
+
+ and OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ who must now write a program for such system and finally the researcher
+ interested in writing his own tool to perform his work will find material
+ presented in this book useful.
+ The reader is expected to be fluent in C programming, including the more
+ advanced concepts such as structures and pointers.
+ The ideal reader will have been programming C for at least one year, and
+ will have had at least a minimal introduction to data structures and computer
+ algorithms such as those used for sorting and searching.
+ Additionally the reader should know how:
+\end_layout
+
+\begin_layout Enumerate
+to install programs and utilities using the package manager or ports;
+\end_layout
+
+\begin_layout Enumerate
+to compile C programs using gcc, clang, the linker ld;
+\end_layout
+
+\begin_layout Enumerate
+to debug programs using gdb or lldb;
+\end_layout
+
+\begin_layout Enumerate
+to use a text editor such as GNU Emacs
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+GNU Emacs
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "GNU Emacs"
+target "https://www.gnu.org/software/emacs/"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Standard
+\noindent
+on OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+.
+ A junior in a college-level computer sciences curriculum should have no
+ trouble with the concepts presented here.
+ Throughout this book small, heavily commented example have been provided
+ to demonstrate how the various routines being discussed are actually used.
+ The reader will benefit by actually typing these examples in, compiling
+ them, executing them and then experimenting with them in order to observe
+ first-hand how they operate.
+ 
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:system-calls-vs-library-routines"
+
+\end_inset
+
+System Calls vs.
+ Library Routines.
+\end_layout
+
+\begin_layout Standard
+Before discussing the 
+\shape italic
+library routines
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+library routines
+\end_layout
+
+\end_inset
+
+
+\shape default
+ and 
+\shape italic
+system calls
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+system calls
+\end_layout
+
+\end_inset
+
+
+\shape default
+ provided by OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ system, a few words must be said.
+ First the difference between a system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+ and a library routine
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+library routine
+\end_layout
+
+\end_inset
+
+ needs to been explained.
+ These terms are often used incorrectly: a system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+ is just what its name implies - 
+\series bold
+a request for the operating system to do something on behalf of the user's
+ program
+\series default
+.
+ For example 
+\family typewriter
+read
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+read
+\end_layout
+
+\end_inset
+
+
+\family default
+ is a system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+ which ask the operating system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+operating system
+\end_layout
+
+\end_inset
+
+ to fill a buffer with data stored on a disk drive or other device.
+ Since great chaos would result if everyone were able to access devices
+ whenever they pleased, this service must be requested dealing which each
+ device.
+ A library routine
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+library routine
+\end_layout
+
+\end_inset
+
+, on the other hand, 
+\series bold
+does not usually need the operating system
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+operating system
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+to perform its work
+\series default
+.
+ An example of a library routine
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+library routine
+\end_layout
+
+\end_inset
+
+ is the 
+\family typewriter
+sin
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+sin
+\end_layout
+
+\end_inset
+
+
+\family default
+ function, which computes the sine of an angle expressed in radians.
+ Since this is done simply by summing a finite series, the operating system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+operating system
+\end_layout
+
+\end_inset
+
+ is not needed.
+ In order to avoid confusion when the difference is unimportant, this book
+ will use the word 
+\shape italic
+routine
+\shape default
+ to describe either a system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+ or a library routine
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+library routine
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:versions-of-openbsd"
+
+\end_inset
+
+Versions of BSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+BSD
+\end_layout
+
+\end_inset
+
+ and OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The main focus of the book is on the OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ 7.5 release which is a derivative of the 4.4BSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+4.4BSD
+\end_layout
+
+\end_inset
+
+ UNIX
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+UNIX
+\end_layout
+
+\end_inset
+
+ from University of California at Berkeley
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+University of California at Berkeley
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+OpenBSD was forked by NetBSD which is a 4.4 BSD UNIX derivative.
+\end_layout
+
+\end_inset
+
+.
+ The most influential of the non-Bell Laboratories
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Bell Laboratories
+\end_layout
+
+\end_inset
+
+ and not-AT&T UNIX
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+AT&T UNIX
+\end_layout
+
+\end_inset
+
+ development groups was the University of California at Berkeley
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+University of California at Berkeley
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "McKusickBosticKarelsQuarterman:1999"
+literal "false"
+
+\end_inset
+
+.
+ Software from Berkeley is released in 
+\series bold
+Berkeley Software Distribution
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Berkeley Software Distribution
+\end_layout
+
+\end_inset
+
+ (
+\series bold
+BSD
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+BSD
+\end_layout
+
+\end_inset
+
+) - for example, as 4.3BSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+4.3BSD
+\end_layout
+
+\end_inset
+
+.
+ The first Berkeley VAX UNIX
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+UNIX
+\end_layout
+
+\end_inset
+
+ work was the addition to 32V of virtual memory
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+virtual memory
+\end_layout
+
+\end_inset
+
+, demand paging
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+demand paging
+\end_layout
+
+\end_inset
+
+, and page replacement
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+page replacement
+\end_layout
+
+\end_inset
+
+ in 1979 by William Joy and Ozalp Babaoglu, to produce 3BSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+3BSD
+\end_layout
+
+\end_inset
+
+.
+ The reason for the large virtual memory
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+virtual memory
+\end_layout
+
+\end_inset
+
+ space of 3BSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+3BSD
+\end_layout
+
+\end_inset
+
+ was the development of what at the time were large programs, such as Berkeley's
+ Franz LISP
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Franz LISP
+\end_layout
+
+\end_inset
+
+.
+ This memory management work convinced the Defence Advanced Research Projects
+ Agency
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Defence Advanced Research Projects Agency
+\end_layout
+
+\end_inset
+
+ (DARPA
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+DARPA
+\end_layout
+
+\end_inset
+
+) to fund the Berkeley team for the later development of a standard system
+ (4BSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+4BSD
+\end_layout
+
+\end_inset
+
+) for DARPA's contractors to use.
+ A goal of the 4BSD project was to provide support for the DARPA Internet
+ networking protocols
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+DARPA Internet networking protocols
+\end_layout
+
+\end_inset
+
+, TCP/IP
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+TCP/IP
+\end_layout
+
+\end_inset
+
+.
+ The networking implementation was general enough to communicate among diverse
+ network facilities, ranging from local networks, such as Ethernets
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Ethernets
+\end_layout
+
+\end_inset
+
+ and token rings
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+token rings
+\end_layout
+
+\end_inset
+
+, to long-haul networks, such as DARPA's ARPANET
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+ARPANET
+\end_layout
+
+\end_inset
+
+.
+ The 4BSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+4BSD
+\end_layout
+
+\end_inset
+
+ work for DARPA
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+DARPA
+\end_layout
+
+\end_inset
+
+ was guided by a steering committe that included many notable people from
+ both commercial and academic institutions.
+ The culmination of the original Berkeley DARPA UNIX
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Berkeley DARPA UNIX
+\end_layout
+
+\end_inset
+
+ project was the release of 4.2BSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+4.2BSD
+\end_layout
+
+\end_inset
+
+ in 1983; further research at Berkeley produced 4.3BSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+4.3BSD
+\end_layout
+
+\end_inset
+
+ in mid-1986, The next releases included the 4.3BSD Tahoe
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+4.3BSD Tahoe
+\end_layout
+
+\end_inset
+
+ release of June 1988 and the 4.3BSD Reno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+4.3BSD Reno
+\end_layout
+
+\end_inset
+
+ release of June 1990.
+ These releases were primarily ports to the Computer Consoles Incorporated
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Computer Consoles Incorporated
+\end_layout
+
+\end_inset
+
+ hardware platform.
+ Interleaved with these releases were two unencumbered networking releases:
+ 4.3BSD Net1
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+4.3BSD Net1
+\end_layout
+
+\end_inset
+
+ release of March 1989 and the 4.3BSD Net2
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+4.3BSD Net2
+\end_layout
+
+\end_inset
+
+ release of the June 1991.
+ These releases extracted nonproprietary code from 4.3BSD; they could be
+ redistributed freely in source and binary form to companies that and individual
+s who were not covered by a UNIX
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+UNIX
+\end_layout
+
+\end_inset
+
+ source license.
+ The final CSRG release was to have been two version of 4.4BSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+4.4BSD
+\end_layout
+
+\end_inset
+
+, released in June 1993.
+ One was to have been a traditional full source and binary distribution,
+ called 4.4BSD-Encumbered
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+4.4BSD-Encumbered
+\end_layout
+
+\end_inset
+
+, that required the recipient to have a UNIX source license.
+ The other was to have been a subset of the source, called 4.4BSD-Lite
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+4.4BSD-Lite
+\end_layout
+
+\end_inset
+
+, that contained no licensed code and did not require the recipient to have
+ a UNIX source license.
+ We arrive to the first version of NetBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+NetBSD
+\end_layout
+
+\end_inset
+
+ (0.8) which dates back to 1993 and comes from the 4.3BSD-Lite
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+4.3BSD-Lite
+\end_layout
+
+\end_inset
+
+ operating system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+operating system
+\end_layout
+
+\end_inset
+
+ and from the 386BSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+386BSD
+\end_layout
+
+\end_inset
+
+ system, the first BSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+BSD
+\end_layout
+
+\end_inset
+
+ port to the Intel 386 CPU
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Intel 386 CPU
+\end_layout
+
+\end_inset
+
+.
+ In the following years, 1994, modifications from the 4.4BSD-Lite
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+4.4BSD-Lite
+\end_layout
+
+\end_inset
+
+ release, the last release from the Berkeley group, were integrated into
+ the system.
+ The BSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+BSD
+\end_layout
+
+\end_inset
+
+ branch of UNIX
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+UNIX
+\end_layout
+
+\end_inset
+
+ has had a great importance and influence on the history of UNIX-like operating
+ systems, to which it has contributed many tools, ideas and improvements
+ which are now standard: the vi editor
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+vi editor
+\end_layout
+
+\end_inset
+
+, the C shell
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+C shell
+\end_layout
+
+\end_inset
+
+, job control
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+job control
+\end_layout
+
+\end_inset
+
+, the Berkeley Fast File System
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Berkeley Fast File System
+\end_layout
+
+\end_inset
+
+, reliable signals
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+signals
+\end_layout
+
+\end_inset
+
+, support for virtual memory
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+virtual memory
+\end_layout
+
+\end_inset
+
+ and TCP/IP
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+TCP/IP
+\end_layout
+
+\end_inset
+
+, just to name a few.
+ This tradition of research and development survives today in the BSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+BSD
+\end_layout
+
+\end_inset
+
+ systems and, in particular, in OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+.
+ In December 1994, Theo de Raadt
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Theo de Raadt
+\end_layout
+
+\end_inset
+
+, a founding member of the NetBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+NetBSD
+\end_layout
+
+\end_inset
+
+ project, resigned from the core team and in October 1995, he founded OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+, a new project forked from NetBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+NetBSD
+\end_layout
+
+\end_inset
+
+ 1.0.
+ The initial release, OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ 1.2, was made in July 1996, followed by OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ 2.0 in October of the same year.
+ Since then, the project has issued a release every six months, each of
+ which is supported for one year.
+ The OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ project produces a freely available, multi-platform 4.4BSD-based
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+4.4BSD-based
+\end_layout
+
+\end_inset
+
+ UNIX-like operating system.
+ It places emphasis on correctness, security, standardization, and portability.
+ OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ runs on many different hardware platforms and is thought of as the most
+ secure UNIX-like operating system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+operating system
+\end_layout
+
+\end_inset
+
+ by many security professionals, as a result of the never-ending comprehensive
+ source code audit.
+ OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ is a full-featured UNIX-like operating system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+operating system
+\end_layout
+
+\end_inset
+
+ available in source and binary form at no charge.
+ It integrates cutting-edge security technology suitable for building firewalls
+ and private network services in a distributed environment.
+ OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ sources and binary are free and all its parts have reasonable copyright
+ terms permitting free redistribution.
+ The current, May 2024, version of OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ is the 7.5.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:error-handling"
+
+\end_inset
+
+Error Handling.
+\end_layout
+
+\begin_layout Standard
+Error conditions appear when the program perform one or more actions which
+ are not allowed by the system.
+ Programs are in fact lists of instructions which are sequentially executed
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+We can apply this even to a multitasking system in which threads could be
+ considered standalone programs which execute their own instructions lists.
+\end_layout
+
+\end_inset
+
+.
+ Those instructions must comply to rules, within the operating system, to
+ perform the task for which they are designed.
+ For example let's consider the following example: a program wants to open
+ a file on the disk for writing and store in it 256 MB of data in it, but
+ the disk is full, which is a condition not depending by the program itself,
+ we can say that it is an external factor.
+ As the program tries to write those data, the operative system signals
+ the problem and generates an error, forcing the program to abort the operation.
+ Usually the operative system signals the error, after aborting the requested
+ operation, by placing a numerical code in memory by storing it in a system-wide
+ accessible variable and/or make the called routine returns that code to
+ the program.
+ All of the routines in the Standard I/O Library
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Standard I/O Library
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+stdio
+\shape default
+(3).
+\end_layout
+
+\end_inset
+
+ return one of the predefined constants 
+\family typewriter
+EOF
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+EOF
+\end_layout
+
+\end_inset
+
+
+\family default
+ or 
+\family typewriter
+NULL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+NULL
+\end_layout
+
+\end_inset
+
+
+\family default
+ when an error occurs.
+ Other library routines usually return either -1 or 0 on error, depending
+ on what the type of their return value is, altough some routines may return
+ different values indicating one of several different errors.
+ Unlike library routines, system calls are identical in the way they indicate
+ that an error has occurred.
+ Every system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+ returns the value -1 when an error occurs, and most return 0 on successfull
+ completion, unless they are returning some other integer value.
+ Further, the external integer 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+See 
+\shape italic
+errno
+\shape default
+(2)
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to a number indicating exactly which error occurred.
+ The 
+\shape italic
+values
+\shape default
+ of these errors are defined in the include file 
+\family typewriter
+<errno.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<errno.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+ and may be easily printed out using the 
+\family typewriter
+perror
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+perror
+\end_layout
+
+\end_inset
+
+
+\family default
+ library routine, described in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:perror-routine"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ On OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ when a system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+ detects an error, it returns an integer value indicating failure, usually
+ -1, and sets the variable 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ accordingly.
+ This allows interpretation of the failure on receiving a -1 and to take
+ action accordingly.
+ Successful calls never set 
+\family typewriter
+errno
+\family default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+; once set, it remains until another error occurs.
+ It should only be examined after an error.
+ Note that a number of system calls overload the meanings of these error
+ numbers and that the meanings must be interpreted according to the type
+ and circumstances of the call.
+ Errors are important.
+ Good programs are those that do not die a horrible death in the face of
+ an unexpected error.
+ According to Murphy's Law
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Murphy's Law
+\end_layout
+
+\end_inset
+
+: if anything could go wrong, it will.
+ Programs should be prepared for this inevitability by checking the return
+ codes from all systems calls and library routines whose failure will cause
+ problems and act accordingly.
+ Nonetheless, in order to save space and emphasize the important parts of
+ the code, many of the examples in this book do not always check return
+ codes as should be done in real life.
+ The examples should be taken as demonstrations of the concepts being discussed,
+ not as complete tools.
+ 
+\end_layout
+
+\begin_layout Subsection
+The 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ global variable.
+\end_layout
+
+\begin_layout Standard
+In the 
+\family typewriter
+<errno.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<errno.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+ include file are defined the following possible values for the 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ variable:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="98" columns="4">
+<features booktabs="true" islongtable="true" headTopDL="true" longtabularalignment="center">
+<column alignment="center" valignment="middle" width="2.5cm">
+<column alignment="center" valignment="middle" width="1.5cm">
+<column alignment="block" valignment="middle" width="3cm">
+<column alignment="block" valignment="middle" width="5cm">
+<row caption="true">
+<cell multicolumn="1" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:errors"
+
+\end_inset
+
+List of errors.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row endhead="true">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Name
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Value
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align center
+
+\family typewriter
+\series bold
+strerror
+\family default
+ output
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align center
+
+\series bold
+Explanation
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\noindent
+\align center
+Undefined Error
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Undefined Error
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\noindent
+
+\family typewriter
+EPERM
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EPERM
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\noindent
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\noindent
+Operation not permitted
+\begin_inset Index set-tabular-width 0pt set-pwidth 3cm align-block  set-decimal-point . valign-top  tabular-valign-middle  set-booktabs  set-top-space none set-bottom-space none set-interline-space none set-line-left false set-line-right false set-line-top true set-line-bottom false set-special-column none unset-multicolumn  unset-multirow  unset-rotate-tabular 90 unset-rotate-cell 90 set-longtabular  unset-ltnewpage  unset-ltcaption  unset-lthead none unset-lthead dl_above unset-lthead dl_below unset-ltfirsthead dl_above unset-ltfirsthead dl_below unset-ltfirsthead none unset-ltfirsthead empty unset-ltfoot none unset-ltfoot dl_above unset-ltfoot dl_below unset-ltlastfoot none unset-ltlastfoot dl_above unset-ltlastfoot dl_below unset-ltlastfoot empty longtabular-align-center 
+status collapsed
+
+\begin_layout Plain Layout
+Operation not permitted
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+An attempt was made to perform an operation limited to processes with appropriat
+e privileges or to the owner of a file or other resources
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\noindent
+\align center
+
+\family typewriter
+ENOENT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOENT
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\noindent
+No such file or directory
+\begin_inset Index set-tabular-width 0pt set-pwidth 6cm align-block  set-decimal-point . valign-top  tabular-valign-middle  set-booktabs  set-top-space none set-bottom-space none set-interline-space none set-line-left false set-line-right false set-line-top true set-line-bottom false set-special-column none unset-multicolumn  unset-multirow  unset-rotate-tabular 90 unset-rotate-cell 90 set-longtabular  unset-ltnewpage  unset-ltcaption  unset-lthead none unset-lthead dl_above unset-lthead dl_below unset-ltfirsthead dl_above unset-ltfirsthead dl_below unset-ltfirsthead none unset-ltfirsthead empty unset-ltfoot none unset-ltfoot dl_above unset-ltfoot dl_below unset-ltlastfoot none unset-ltlastfoot dl_above unset-ltlastfoot dl_below unset-ltlastfoot empty longtabular-align-center 
+status collapsed
+
+\begin_layout Plain Layout
+No such file or directory
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\noindent
+A component of a specified pathname did not exist, or the pathname was an
+ empty string
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align center
+
+\family typewriter
+ESRCH
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ESRCH
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No such process
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+No such process
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No process could be found which corresponds to the given process ID
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align center
+
+\family typewriter
+EINTR
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EINTR
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Interrupted system call
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Interrupted system call
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+An asynchronous signal, such as 
+\family typewriter
+SIGINT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGINT
+\end_layout
+
+\end_inset
+
+
+\family default
+ or 
+\family typewriter
+SIGQUIT
+\family default
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGQUIT
+\end_layout
+
+\end_inset
+
+, was caught by the thread during the execution of an interruptible function.
+ If the signal handler performs a normal return, the interrupted function
+ call will seem to have returned the error condition;
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\noindent
+\align center
+
+\family typewriter
+EIO
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EIO
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\noindent
+Input/output error
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Input/output error
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\noindent
+Some physical input or output error occurred.
+ This error will not be reported until a subsequent operation on the same
+ file descriptor and may be lost (overwritten) by any subsequent errors;
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\noindent
+
+\family typewriter
+ENXIO
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENXIO
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\noindent
+Device not configured
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Device not configured
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\noindent
+Input or output on a special file referred to a device that did not exist,
+ or made a request beyond the limits of the device.
+ This error may also occur when, for example, a tape drive is not online
+ or no disk pack is loaded on a drive
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\noindent
+
+\family typewriter
+E2BIG
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+E2BIG
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\noindent
+Argument list too long
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Argument list too long
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\noindent
+The number of bytes used for the argument and environment list of the new
+ process exceeded the limit 
+\family typewriter
+ARG_MAX
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ARG_MAX
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOEXEC
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOEXEC
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Exec format error
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Exec format error
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A request was made to execute a file that, although it has the appropriate
+ permissions, was not in the format required for an executable file
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EBADF
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EBADF
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bad file descriptor
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Bad file descriptor
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A file descriptor argument was out of range, referred to no open file, or
+ a read (write) request was made to a file that was only open for writing
+ (reading)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ECHILD
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ECHILD
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No child processes
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+No child processes
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A 
+\family typewriter
+wait
+\family default
+, 
+\family typewriter
+waitid
+\family default
+, or 
+\family typewriter
+waitpid
+\family default
+ function was executed by a process that had no existing or unwaited-for
+ child processes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EDEADLK
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EDEADLK
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Resource deadlock avoided
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Resource deadlock avoided
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+An attempt was made to lock a system resource that would have resulted in
+ a deadlock situation
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOMEM
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOMEM
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Cannot allocate memory
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Cannot allocate memory
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The new process image required more memory than was allowed by the hardware
+ or by system-imposed memory management constraints.
+ A lack of swap space is normally temporary; however, a lack of core is
+ not.
+ Soft limits may be increased to their corresponding hard limits
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EACCES
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EACCES
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+13
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Permission denied
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Permission denied
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+An attempt was made to access a file in a way forbidden by its file access
+ permissions
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EFAULT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EFAULT
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bad address
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Bad address
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The system detected an invalid address in attempting to use an argument
+ of a call
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOTBLK
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOTBLK
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+15
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Block device required
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Block device required
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A block device operation was attempted on a non-block device or file
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EBUSY
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EBUSY
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+16
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Device busy
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Device busy
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+An attempt to use a system resource which was in use at the time in a manner
+ which would have conflicted with the request
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EEXIST
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EEXIST
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+17
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+File exists
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+File exists
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+An existing file was mentioned in an inappropriate context, for instance,
+ as the new link name in a 
+\shape italic
+link
+\shape default
+(2) function
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EXDEV
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EXDEV
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+18
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Cross-device link
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Cross-device link
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A hard link to a file on another file system was attempted
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENODEV
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENODEV
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+19
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Operation not supported by device
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Operation not supported by device
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+An attempt was made to apply an inappropriate function to a device, for
+ example, trying to read a write-only device such as a printer
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOTDIR
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOTDIR
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+20
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Not a directory
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Not a directory
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A component of the specified pathname existed, but it was not a directory,
+ when a directory was expected
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EISDIR
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EISDIR
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+21
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Is a directory
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Is a directory
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+An attempt was made to open a directory with write mode specified
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EINVAL
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EINVAL
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+22
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Invalid argument
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Invalid argument
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Some invalid argument was supplied.
+ For example, specifying an undefined signal to a 
+\shape italic
+signal
+\shape default
+(3) or 
+\shape italic
+kill
+\shape default
+(2) function
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENFILE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENFILE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+23
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Too many open files in system
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Too many open files in system
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Maximum number of file descriptors allowable on the system has been reached
+ and a request for an open cannot be satisfied until at least one has been
+ closed.
+ The 
+\shape italic
+sysctl
+\shape default
+(2) variable kern.maxfiles contains the current limit
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EMFILE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EMFILE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+24
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Too many open files
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Too many open files
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The maximum number of file descriptors allowable for this process has been
+ reached and a request for an open cannot be satisfied until at least one
+ has been closed.
+ 
+\shape italic
+getdtablesize
+\shape default
+(3) will obtain the current limit
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOTTY
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOTTY
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+25
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Inappropriate 
+\family typewriter
+ioctl
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ioctl
+\end_layout
+
+\end_inset
+
+
+\family default
+ for device
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Inappropriate ioctl for device
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A control function, see 
+\family typewriter
+ioctl
+\family default
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ioctl
+\end_layout
+
+\end_inset
+
+, was attempted for a file or special device for which the operation was
+ inappropriate
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ETXTBSY
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ETXTBSY
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+26
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Text file busy
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Text file busy
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+An attempt was made either to execute a pure procedure, shared text, file
+ which was open for writing by another process, or to open with write access
+ a pure procedure file that is currently being executed
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EFBIG
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EFBIG
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+27
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+File too large
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+File too large
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The size of a file exceeded the maximum.
+ The system-wide maximum file size is 
+\begin_inset Formula $2^{63}$
+\end_inset
+
+ bytes.
+ Each file system may impose a lower limit for files contained within it
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOSPC
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOSPC
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+28
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No space left on device
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+No space left on device
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A 
+\family typewriter
+write
+\family default
+ to an ordinary file, the creation of a directory or symbolic link, or the
+ creation of a directory entry failed because no more disk blocks were available
+ on the file system
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+, or the allocation of an i-node
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+i-node
+\end_layout
+
+\end_inset
+
+ for a newly created file failed because no more i-nodes were available
+ on the file system
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ESPIPE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ESPIPE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+29
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Illegal seek
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Illegal seek
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+An 
+\family typewriter
+lseek
+\family default
+ function was issued on a socket, pipe or FIFO
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EROFS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EROFS
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+30
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Read-only file system
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Read-only file system
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+An attempt was made to modify a file or create a directory on a file system
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ that was read-only
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+read-only
+\end_layout
+
+\end_inset
+
+ at the time
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EMLINK
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EMLINK
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+31
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Too many links
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Too many links
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The maximum allowable number of hard links to a single file has been exceeded,
+ see 
+\family typewriter
+pathconf
+\family default
+ for how to obtain this value
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EPIPE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EPIPE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+32
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Broken pipe
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Broken pipe
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A 
+\family typewriter
+write
+\family default
+ on a pipe, socket or FIFO for which there is no process to read the data
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EDOM
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EDOM
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+33
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Numerical argument out of domain
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Numerical argument out of domain
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A numerical input argument was outside the defined domain of the mathematical
+ function
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ERANGE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ERANGE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+34
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Result too large
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Result too large
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A result of the function was too large to fit in the available space, perhaps
+ exceeded precision
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EAGAIN
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EAGAIN
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+35
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Resource temporarily unavailable
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Resource temporarily unavailable
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+This is a temporary condition and later calls to the same routine may complete
+ normally
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EINPROGRESS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EINPROGRESS
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+36
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Operation now in progress
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Operation now in progress
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+An operation that takes a long time to complete, such as a 
+\family typewriter
+connect
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+connect
+\end_layout
+
+\end_inset
+
+
+\family default
+, was attempted on a non-blocking object, see 
+\family typewriter
+fcntl
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+fcntl
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EALREADY
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EALREADY
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+37
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Operation already in progress
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Operation already in progress
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+An operation was attempted on a non-blocking object that already had an
+ operation in progress
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOTSOCK
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOTSOCK
+\end_layout
+
+\end_inset
+
+
+\family default
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+38
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Socket operation on non-socket
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Socket operation on non-socket
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Self-explanatory
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EDESTADDRREQ
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EDESTADDRREQ
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+39
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Destination address required
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Destination address required
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A required address was omitted from an operation on a socket
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EMSGSIZE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EMSGSIZE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+40
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Message too long
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Message too long
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A message sent on a socket was larger than the internal message buffer or
+ some other network limit
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EPROTOTYPE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EPROTOTYPE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+41
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Protocol wrong type for socket
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Protocol wrong type for socket
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A protocol was specified that does not support the semantics of the socket
+ type requested.
+ For example, you cannot use the Internet UDP protocol with type 
+\family typewriter
+SOCK_STREAM
+\family default
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+SOCK_STREAM
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOPROTOOPT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOPROTOOPT
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+42
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Protocol not available
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Protocol not available
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A bad option or level was specified in a 
+\family typewriter
+getsockopt
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+getsockopt
+\end_layout
+
+\end_inset
+
+
+\family default
+ or 
+\family typewriter
+setsockopt
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+setsockopt
+\end_layout
+
+\end_inset
+
+
+\family default
+ call
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EPROTONOSUPPORT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EPROTONOSUPPORT
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+43
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Protocol not supported
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Protocol not supported
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The protocol has not been configured into the system or no implementation
+ for it exists
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ESOCKTNOSUPPORT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ESOCKTNOSUPPORT
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+44
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Socket type not supported
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Socket type not supported
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The support for the socket
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+socket
+\end_layout
+
+\end_inset
+
+ type has not been configured into the system or no implementation for it
+ exists
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EOPNOTSUPP
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EOPNOTSUPP
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+45
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Operation not supported
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Operation not supported
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The attempted operation is not supported for the type of object referenced.
+ Usually this occurs when a file descriptor
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+file descriptor
+\end_layout
+
+\end_inset
+
+ refers to a file or socket that cannot support this operation, for example,
+ trying to accept a connection on a datagram socket
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EPFNOSUPPORT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EPFNOSUPPORT
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+46
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Protocol family not supported
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Protocol family not supported
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The protocol family has not been configured into the system or no implementation
+ for it exists
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EAFNOSUPPORT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EAFNOSUPPORT
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+47
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Address family not supported by protocol family
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Address family not supported by protocol family
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+An address incompatible with the requested protocol was used.
+ For example, you shouldn't necessarily expect to be able to use NS addresses
+ with Internet protocols
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EADDRINUSE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EADDRINUSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+48
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Address already in use
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Address already in use
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Only one usage of each address is normally permitted
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EADDRNOTAVAIL
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EADDRNOTAVAIL
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+49
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Can't assign requested address
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Can't assign requested address
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Normally results from an attempt to create a socket
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+socket
+\end_layout
+
+\end_inset
+
+ with an address not on this machine
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENETDOWN
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENETDOWN
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+50
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Network is down
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Network is down
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A socket
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+socket
+\end_layout
+
+\end_inset
+
+ operation encountered a dead network
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+dead network
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENETUNREACH
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENETUNREACH
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+51
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Network is unreachable
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Network is unreachable
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A socket operation
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+socket operation
+\end_layout
+
+\end_inset
+
+ was attempted to an unreachable network
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+unreachable network
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENETRESET
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENETRESET
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+52
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Network dropped connection on reset
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Network dropped connection on reset
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The host you were connected to crashed and rebooted
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ECONNABORTED
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ECONNABORTED
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+53
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Software caused connection abort
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Software caused connection abort
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A connection abort was caused internal to your host machine
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ECONNRESET
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ECONNRESET
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+54
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Connection reset by peer
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Connection reset by peer
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A connection was forcibly closed by a peer.
+ This normally results from a loss of the connection on the remote socket
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+remote socket
+\end_layout
+
+\end_inset
+
+ due to a timeout or a reboot
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOBUFS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOBUFS
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+55
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No buffer space available
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+No buffer space available
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+An operation on a socket or pipe was not performed because the system lacked
+ sufficient buffer space or because a queue was full
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EISCONN
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EISCONN
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+56
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Socket is already connected
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Socket is already connected
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A 
+\family typewriter
+connect
+\family default
+ request was made on an already connected socket; or, a 
+\family typewriter
+sendto
+\family default
+ or 
+\family typewriter
+sendmsg
+\family default
+ request on a connected socket specified a destination when already connected
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOTCONN
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOTCONN
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+57
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Socket is not connected
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Socket is not connected
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A request to send or receive data was disallowed because the socket was
+ not connected and, when sending on a datagram socket
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+datagram socket
+\end_layout
+
+\end_inset
+
+, no address was supplied
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ESHUTDOWN
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ESHUTDOWN
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+58
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Can't send after socket shutdown
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Can't send after socket shutdown
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A request to send data was disallowed because the socket
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+socket
+\end_layout
+
+\end_inset
+
+ had already been shut down with a previous 
+\family typewriter
+shutdown
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+shutdown
+\end_layout
+
+\end_inset
+
+
+\family default
+ call
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ETOOMANYREFS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ETOOMANYREFS
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+59
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Too many references: can't splice
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Too many references: can't splice
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Not used in OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ETIMEDOUT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ETIMEDOUT
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+60
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Operation timed out
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Operation timed out
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A 
+\family typewriter
+connect
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+connect
+\end_layout
+
+\end_inset
+
+
+\family default
+ or 
+\family typewriter
+send
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+send
+\end_layout
+
+\end_inset
+
+
+\family default
+ request failed because the connected party did not properly respond after
+ a period of time.
+ The timeout period is dependent on the communication protocol
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ECONNREFUSED
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ECONNREFUSED
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+61
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Connection refused
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+onnection refused
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No connection could be made because the target machine actively refused
+ it.
+ This usually results from trying to connect to a service that is inactive
+ on the foreign host
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ELOOP
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ELOOP
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+62
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Too many levels of symbolic links
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Too many levels of symbolic links
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A pathname lookup involved more than 32 (
+\family typewriter
+SYMLOOP_MAX
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+SYMLOOP_MAX
+\end_layout
+
+\end_inset
+
+
+\family default
+) symbolic links
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENAMETOOLONG
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENAMETOOLONG
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+63
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+File name too long
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+File name too long
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A component of a pathname exceeded 255 (
+\family typewriter
+NAME_MAX
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+NAME_MAX
+\end_layout
+
+\end_inset
+
+
+\family default
+) characters, or an entire pathname (including the terminating 
+\family typewriter
+NUL
+\family default
+) exceeded 1024 (
+\family typewriter
+PATH_MAX
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+PATH_MAX
+\end_layout
+
+\end_inset
+
+
+\family default
+) bytes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EHOSTDOWN
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EHOSTDOWN
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+64
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Host is down
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Host is down
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A socket operation
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+socket operation
+\end_layout
+
+\end_inset
+
+ failed because the destination host was down
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EHOSTUNREACH
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EHOSTUNREACH
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+65
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No route to host
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+No route to host
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A socket operation
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+socket operation
+\end_layout
+
+\end_inset
+
+ was attempted to an unreachable host
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+unreachable host
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOTEMPTY
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOTEMPTY
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+66
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Directory not empty
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Directory not empty
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A directory
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+directory
+\end_layout
+
+\end_inset
+
+ with entries other than ‘.’ and ‘..’ was supplied to a remove directory
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+directory
+\end_layout
+
+\end_inset
+
+ or 
+\family typewriter
+rename
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+rename
+\end_layout
+
+\end_inset
+
+
+\family default
+ call
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EPROCLIM
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EPROCLIM
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+67
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Too many processes
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Too many processes
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Self-explanatory
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EUSERS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EUSERS
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+68
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Too many users
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Too many users
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The quota system ran out of table entries
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EDQUOT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EDQUOT
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+69
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Disk quota exceeded
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Disk quota exceeded
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A 
+\family typewriter
+write
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+write
+\end_layout
+
+\end_inset
+
+
+\family default
+ to an ordinary file
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+file
+\end_layout
+
+\end_inset
+
+, the creation of a directory
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+directory
+\end_layout
+
+\end_inset
+
+ or symbolic link
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+symbolic link
+\end_layout
+
+\end_inset
+
+, or the creation of a directory entry failed because the user's quota of
+ disk blocks was exhausted, or the allocation of an i-node
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+i-node
+\end_layout
+
+\end_inset
+
+ for a newly created file failed because the user's quota of i-nodes was
+ exhausted
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ESTALE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ESTALE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+70
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Stale NFS file handle
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Stale NFS file handle
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+An attempt was made to access an open file on an NFS file system
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+NFS file system
+\end_layout
+
+\end_inset
+
+ which is now unavailable as referenced by the file descriptor
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+file descriptor
+\end_layout
+
+\end_inset
+
+.
+ This may indicate the file was deleted on the NFS server
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+NFS server
+\end_layout
+
+\end_inset
+
+ or some other catastrophic event occurred
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EREMOTE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EREMOTE
+\end_layout
+
+\end_inset
+
+
+\family default
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+71
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Too many levels of remote in path 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Self-explanatory
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EBADRPC
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EBADRPC
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+72
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RPC struct is bad
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+RPC struct is bad
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Exchange of 
+\family typewriter
+rpc
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+rpc
+\end_layout
+
+\end_inset
+
+
+\family default
+ information was unsuccessful
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ERPCMISMATCH
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ERPCMISMATCH
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+73
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RPC version wrong
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+RPC version wrong
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The version of 
+\family typewriter
+rpc
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+rpc
+\end_layout
+
+\end_inset
+
+
+\family default
+ on the remote peer is not compatible with the local version
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EPROGUNAVAIL
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EPROGUNAVAIL
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+74
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RPC program not available
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+RPC program not available
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The requested 
+\family typewriter
+rpc
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+rpc
+\end_layout
+
+\end_inset
+
+
+\family default
+ program is not registered on the remote host
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EPROGMISMATCH
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EPROGMISMATCH
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+75
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Program version wrong
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Program version wrong
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The requested version of the 
+\family typewriter
+rpc
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+rpc
+\end_layout
+
+\end_inset
+
+
+\family default
+ program is not available on the remote host
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+remote host
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EPROCUNAVAIL
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EPROCUNAVAIL
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+76
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bad procedure for program
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Bad procedure for program
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+An 
+\family typewriter
+rpc
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+rpc
+\end_layout
+
+\end_inset
+
+
+\family default
+ call was attempted for a procedure which doesn't exist in the remote program
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+remote program
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOLCK
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOLCK
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+77
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No locks available
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+No locks available
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A system-imposed limit on the number of simultaneous file locks was reached
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOSYS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOSYS
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+78
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Function not implemented
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Function not implemented
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Attempted a system call
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+ that is not available on this system
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EFTYPE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EFTYPE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+79
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Inappropriate file type or format
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Inappropriate file type or format
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The file
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+file
+\end_layout
+
+\end_inset
+
+ contains invalid data or set to invalid modes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EAUTH
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EAUTH
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+80
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Authentication error
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Authentication error
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Attempted to use an invalid authentication ticket to mount a NFS filesystem
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+NFS filesystem
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENEEDAUTH
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENEEDAUTH
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+81
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Need authenticator
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Need authenticator
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+An authentication ticket must be obtained before the given NFS file system
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+NFS file system
+\end_layout
+
+\end_inset
+
+ may be mounted
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EIPSEC
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EIPSEC
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+82
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+IPsec processing failure
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+IPsec processing failure
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+IPsec subsystem error.
+ Not used in OpenBSD
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOATTR
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOATTR
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+83
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Attribute not found
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Attribute not found
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A UFS Extended Attribute
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+UFS Extended Attribute
+\end_layout
+
+\end_inset
+
+ is not found for the specified pathname
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+pathname
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EILSEQ
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EILSEQ
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+84
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Illegal byte sequence
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Illegal byte sequence
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+An illegal sequence of bytes was used when using wide characters
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOMEDIUM
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOMEDIUM
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+85
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No medium found
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+No medium found
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Attempted to use a removable media device with no medium present
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EMEDIUMTYPE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EMEDIUMTYPE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+86
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Wrong medium type
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Wrong medium type
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Attempted to use a removable media device with incorrect or incompatible
+ medium
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EOVERFLOW
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EOVERFLOW
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+87
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Value too large to be stored in data type
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Value too large to be stored in data type
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A numerical result of the function was too large to be stored in the caller
+ provided space
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ECANCELED
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ECANCELED
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+88
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Operation canceled
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Operation canceled
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The requested operation was canceled
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EIDRM
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EIDRM
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+89
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Identifier removed
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Identifier removed
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+An IPC identifier was removed while the current thread was waiting on it
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOMSG
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOMSG
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+90
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No message of desired type
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+No message of desired type
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+An ipc message queue does not contain a message of the desired type, or
+ a message catalog does not contain the requested message
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOTSUP
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOTSUP
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+91
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Not supported
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Not supported
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The operation has requested an unsupported value
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EBADMSG
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EBADMSG
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+92
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bad message
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Bad message
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A corrupted message was detected
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOTRECOVERABLE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOTRECOVERABLE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+93
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+State not recoverable
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+State not recoverable
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The state protected by a robust mutex
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+robust mutex
+\end_layout
+
+\end_inset
+
+ is not recoverable
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EOWNERDEAD
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EOWNERDEAD
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+94
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Previous owner died
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Previous owner died
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The owner of a robust mutex
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+robust mutex
+\end_layout
+
+\end_inset
+
+ terminated while holding the mutex lock
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+EPROTO
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+EPROTO
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+95
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Protocol error
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Protocol error
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="block" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A device-specific protocol error occurred
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+In the 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:strerror"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ subsection it is showed a way to print out the errors names along their
+ codes.
+\end_layout
+
+\end_body
+\end_document

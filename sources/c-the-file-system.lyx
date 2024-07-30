@@ -1,0 +1,8593 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass memoir
+\use_default_options true
+\master the-openbsd-c-particularist.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family sfdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1.7cm
+\topmargin 1cm
+\rightmargin 1.5cm
+\bottommargin 1.2cm
+\headheight 1cm
+\headsep 1cm
+\footskip 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:file-system"
+
+\end_inset
+
+The File System.
+\end_layout
+
+\begin_layout Standard
+\align right
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "50col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:disk-terminology"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:the-openbsd-enhanced-fast-file-system"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ offers the possibility to deal with different 
+\shape italic
+file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+file system
+\end_layout
+
+\end_inset
+
+
+\shape default
+ types to ease data exchange with other operative systems.
+ On version 7.5 we can handle:
+\end_layout
+
+\begin_layout Itemize
+ext2, ext3, ext4 linux file systems;
+\end_layout
+
+\begin_layout Itemize
+Microsoft MS-DOS, FAT and NTFS file systems;
+\end_layout
+
+\begin_layout Itemize
+ISO9660 file system;
+\end_layout
+
+\begin_layout Itemize
+NFS file system;
+\end_layout
+
+\begin_layout Itemize
+UDF file system;
+\end_layout
+
+\begin_layout Itemize
+UNIX Fast File System
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+UNIX Fast File System
+\end_layout
+
+\end_inset
+
+ and UNIX Enhanced Fast File System
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+UNIX Enhanced Fast File System
+\end_layout
+
+\end_inset
+
+ which is the default choice for system disks.
+\end_layout
+
+\begin_layout Standard
+\noindent
+A file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ is a way to organize data on a storage media such like disks, tape or a
+ DVD optical disk in a way that it is possible to manipulate easily those
+ data and more important to store them for an undefined amount of time.
+ 
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:disk-terminology"
+
+\end_inset
+
+Disk Terminology.
+\end_layout
+
+\begin_layout Standard
+A 
+\shape italic
+disk
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+disk
+\end_layout
+
+\end_inset
+
+
+\shape default
+ is a device than can store data by means of write operations and then the
+ stored data can be retrieved by means of read operations.
+ A disk is usually connected to the computer using electronic interfaces
+ and it is configured and managed by a disk driver software in the operative
+ system.
+ To store and manage data a disk could use different technologies.
+ The most convenient and used kind of disks are:
+\end_layout
+
+\begin_layout Itemize
+mechanical;
+\end_layout
+
+\begin_layout Itemize
+solid state;
+\end_layout
+
+\begin_layout Itemize
+optical.
+\end_layout
+
+\begin_layout Standard
+\noindent
+whatever technology is involved, the disk
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+disk
+\end_layout
+
+\end_inset
+
+ is composed of two main parts: a media for the physical storage of data
+ and a controlling electronics which operates on the media part to perform
+ certain operations such as write and read.
+ The first media technology involved in the storage of data was the mechanical
+ one which survived until now.
+ A mechanical disk is composed roughly of a number of coaxial rigid disc
+ plates whose surface are made with a magnetic material
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+On both sides.
+\end_layout
+
+\end_inset
+
+ and are flown by heads.
+ Those disks are spinned by a motor which can reach speeds from 3000 rpm
+ to 10000 rpm depending on the disk type.
+ Modern disk drive unit has got one disk and two heads, one per side.
+ The heads are connected rigidly by a rod moved by an actuator by means
+ of an arm so they can swing spanning on the two disk surfaces and thus
+ assume a precise position.
+ If one 
+\shape italic
+head
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+head
+\end_layout
+
+\end_inset
+
+
+\shape default
+ reach a position on the surface of the disk to a precise distance from
+ the rotational center, as the disk rotates under the head, it describes
+ a circle which is called a 
+\shape italic
+track
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+track
+\end_layout
+
+\end_inset
+
+
+\shape default
+.
+ The tracks on the disk which are identified by the same position of the
+ heads on the respective surfaces and thus are all at the same distance
+ from the center, form a 
+\shape italic
+cylinder
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+cylinder
+\end_layout
+
+\end_inset
+
+
+\shape default
+.
+ Since the tracks on the surface of a disk are concentric, so are the correspond
+ing cylinders.
+ Unlike the vinil disks, an hard disk have several tracks per surface that
+ can be accessed just moving the head assembly.
+ A part of a track with a fixed length is called a 
+\shape italic
+sector
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+sector
+\end_layout
+
+\end_inset
+
+
+\shape default
+.
+ Heads, sectors, tracks and cylinders are referred as the 
+\shape italic
+disk geometry
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+disk geometry
+\end_layout
+
+\end_inset
+
+
+\shape default
+.
+ Nowadays mechanical disks are still used for data storage but they are
+ often replaced by static mass storage memories, the ssd.
+ Those devices are totally static they are more reliable and faster compared
+ to same size mechanical counterpart.
+ 
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="middle" width="3cm">
+<column alignment="center" valignment="middle" width="3cm">
+<column alignment="center" valignment="middle" width="3cm">
+<column alignment="center" valignment="middle" width="3cm">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Mechanical Disk
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Solid State Disk
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+USB pendrive Disk
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Interface
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SATA 6 GB/s
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4 port PCIe G4 NVMe 2.0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+USB3.1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Maximum Transfer rate in MB/s (R/W)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+190
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7400/6400
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+300/200
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Capacity in TB
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.048
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Bytes per sectors in B
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4096
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Weight in g
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+630
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+51
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+MTBF in h
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.8\cdot10^{6}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Power in W
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5.7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Comparison between mass storage devices.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Optical disks, used for removable media devices, use a technology based
+ on the laser.
+ Data is encoded on a surface of a disk using non reflective or reflective
+ spots.
+ The reading/writing head provide a laser LED to create non reflective spots
+ and a sensor to detect reflected laser light.
+ Unlike the mechanical disk drive which uses the magnetization of a surface
+ to read and write data.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:the-openbsd-enhanced-fast-file-system"
+
+\end_inset
+
+The OpenBSD Enhanced Fast File System.
+\end_layout
+
+\begin_layout Standard
+The 
+\shape italic
+Enhanced Fast Filesystem
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+Enhanced Fast Filesystem
+\end_layout
+
+\end_inset
+
+
+\shape default
+ (FFS2) is the new file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ by default on nearly all architectures, since OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ 6.7.
+ Some characteristics are:
+\end_layout
+
+\begin_layout Itemize
+FFS2 is faster than its predecessor FFS when creating the file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+, as well as analyzing it with 
+\shape italic
+fsck
+\shape default
+(8);
+\end_layout
+
+\begin_layout Itemize
+FFS2 uses 64-bit timestamps and block numbers; so it is not subject to the
+ Y2038 bug;
+\end_layout
+
+\begin_layout Itemize
+FFS2 supports very large partitions (>= 1TB, since 4.2).
+ 
+\end_layout
+
+\begin_layout Subsection
+The disk label.
+\end_layout
+
+\begin_layout Standard
+\noindent
+Each 
+\shape italic
+disk
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+disk
+\end_layout
+
+\end_inset
+
+
+\shape default
+ or 
+\shape italic
+disk pack
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+disk pack
+\end_layout
+
+\end_inset
+
+
+\shape default
+ on a system may contain a 
+\shape italic
+disk label
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+disk label
+\end_layout
+
+\end_inset
+
+
+\shape default
+ which provides detailed information about the geometry of the disk and
+ the partitions into which the disk is divided.
+ The disk label
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+disk label
+\end_layout
+
+\end_inset
+
+ structure is defined in 
+\family typewriter
+<sys/disklabel.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<sys/disklabel.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#define NDDATA 5
+\end_layout
+
+\begin_layout Plain Layout
+
+#define NSPARE 4
+\end_layout
+
+\begin_layout Plain Layout
+
+#define MAXMAXPARTITIONS 22
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct disklabel {
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int32_t d_magic;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int16_t d_type;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int16_t d_subtype;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char d_typename[ 16 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	char d_packname[ 16 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int32_t d_secsize;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int32_t d_nsectors;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int32_t d_ntracks;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int32_t d_ncylinders;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int32_t d_secpercyl;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int32_t d_secperunit;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_char d_uid[ 8 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int32_t d_acylinders;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int16_t d_bstarth;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int16_t d_bendh;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int32_t d_bstart;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int32_t d_bend;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int32_t d_flags;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int32_t d_spare4[ NDDATA ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int16_t d_secperunith;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int16_t d_version;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int32_t d_spare[ NSPARE ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int32_t d_magic2;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int16_t d_checksum;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int16_t d_npartitions;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int32_t d_spare2;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int32_t d_spare3;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct  partition {
+\end_layout
+
+\begin_layout Plain Layout
+
+		u_int32_t p_size;
+\end_layout
+
+\begin_layout Plain Layout
+
+		u_int32_t p_offset;
+\end_layout
+
+\begin_layout Plain Layout
+
+		u_int16_t p_offseth;
+\end_layout
+
+\begin_layout Plain Layout
+
+		u_int16_t p_sizeh;
+\end_layout
+
+\begin_layout Plain Layout
+
+		u_int8_t p_fstype;
+\end_layout
+
+\begin_layout Plain Layout
+
+		u_int8_t p_fragblock;
+\end_layout
+
+\begin_layout Plain Layout
+
+		u_int16_t p_cpg;
+\end_layout
+
+\begin_layout Plain Layout
+
+	} d_partitions[ MAXPARTITIONS ];
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+d_magic
+\family default
+ the magic number;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+d_type
+\family default
+ drive type:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\family typewriter
+DTYPE_SMD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DTYPE_SMD
+\end_layout
+
+\end_inset
+
+
+\family default
+ — SMD, XSMD; VAX hp/up;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+DTYPE_MSCP
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DTYPE_MSCP
+\end_layout
+
+\end_inset
+
+
+\family default
+ — MSCP;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+DTYPE_DEC
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DTYPE_DEC
+\end_layout
+
+\end_inset
+
+
+\family default
+ — other DEC (rk, rl);
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+DTYPE_SCSI
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DTYPE_SCSI
+\end_layout
+
+\end_inset
+
+
+\family default
+ — SCSI;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+DTYPE_ESDI
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DTYPE_ESDI
+\end_layout
+
+\end_inset
+
+
+\family default
+ — ESDI interface;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+DTYPE_ST506
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DTYPE_ST506
+\end_layout
+
+\end_inset
+
+
+\family default
+ — ST506 etc.;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+DTYPE_HPIB
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DTYPE_HPIB
+\end_layout
+
+\end_inset
+
+
+\family default
+ — CS/80 on HP-IB;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+DTYPE_HPFL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DTYPE_HPFL
+\end_layout
+
+\end_inset
+
+
+\family default
+ — HP Fiber-link;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+DTYPE_FLOPPY
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DTYPE_FLOPPY
+\end_layout
+
+\end_inset
+
+
+\family default
+ — floppy;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+DTYPE_CCD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DTYPE_CCD
+\end_layout
+
+\end_inset
+
+
+\family default
+ — was: concatenated disk device;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+DTYPE_VND
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DTYPE_VND
+\end_layout
+
+\end_inset
+
+
+\family default
+ — vnode pseudo-disk;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+DTYPE_ATAPI
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DTYPE_ATAPI
+\end_layout
+
+\end_inset
+
+
+\family default
+ — ATAPI;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+DTYPE_RAID
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DTYPE_RAID
+\end_layout
+
+\end_inset
+
+
+\family default
+ — was: RAIDframe;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+DTYPE_RDROOT
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DTYPE_RDROOT
+\end_layout
+
+\end_inset
+
+
+\family default
+ — ram disk root;
+\end_layout
+
+\end_deeper
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+d_subtype
+\family default
+ controller/d_type specific;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+d_typename
+\family default
+ type name, e.g.
+ "eagle";
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+d_packname
+\family default
+ pack identifier;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+d_secsize
+\family default
+ number of bytes per sector; 
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+d_nsectors
+\family default
+ number of data sectors per track;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+d_ntracks
+\family default
+ number of tracks per cylinder;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+d_ncylinders
+\family default
+ number of data cylinders per unit;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+d_secpercyl
+\family default
+ number of data sectors per cylinder;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+d_secperunit
+\family default
+ number of data sectors (low part);
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+d_uid
+\family default
+ unique label identifier;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+d_acylinders
+\family default
+ number of alt.
+ cylinders per unit;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+d_bstarth
+\family default
+ start of useable region (high part);
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+d_bendh
+\family default
+ size of useable region (high part);
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+d_bstart
+\family default
+ start of useable region;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+d_bend
+\family default
+ end of useable region;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+d_flags
+\family default
+ generic flags;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+d_spare4
+\family default
+ structure pad data;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+d_secperunith
+\family default
+ number of data sectors (high part);
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+d_version
+\family default
+ version number (1=48 bit addressing);
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+d_spare
+\family default
+ structure pad data, reserved for future use;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+d_magic2
+\family default
+ the magic number (again);
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+d_checksum
+\family default
+ xor of data incl.
+ partitions;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+d_npartitions
+\family default
+ number of partitions in following;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+d_spare2
+\family default
+ spare member;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+d_spare3
+\family default
+ spare member;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+d_partitions
+\family default
+ the partition table, array of a structure with the following members:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\family typewriter
+p_size
+\family default
+ — number of sectors (low part);
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+p_offset
+\family default
+ — starting sector (low part);
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+p_offseth
+\family default
+ — starting sector (high part);
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+p_sizeh
+\family default
+ — number of sectors (high part);
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+p_fstype
+\family default
+ — filesystem type, see below;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+p_fragblock
+\family default
+ — encoded filesystem frag/block;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+p_cpg
+\family default
+ — UFS: FS cylinders per group.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\noindent
+It should be initialized when the disk is formatted, and may be changed
+ later with the 
+\shape italic
+disklabel
+\shape default
+(8) program.
+ This information is used by the system disk driver
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system disk driver
+\end_layout
+
+\end_inset
+
+ and by the bootstrap program
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+bootstrap program
+\end_layout
+
+\end_inset
+
+ to determine how to program the drive and where to find the file systems
+ on the disk partitions.
+ Additional information is used by the file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ in order to use the disk most efficiently and to locate important information.
+ The description of each partition contains an identifier for the partition
+ type: standard file system, swap area, etc..
+ The file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ updates the in-core copy of the label if it contains incomplete information
+ about the file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ itself.
+ The 
+\shape italic
+label
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+label
+\end_layout
+
+\end_inset
+
+
+\shape default
+ is located in sector number 
+\family typewriter
+LABELSECTOR
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+LABELSECTOR
+\end_layout
+
+\end_inset
+
+
+\family default
+ of the drive, usually sector 0 where it may be found without any information
+ about the disk geometry.
+ It is at an offset 
+\family typewriter
+LABELOFFSET
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+LABELOFFSET
+\end_layout
+
+\end_inset
+
+
+\family default
+ from the beginning of the sector, to allow room for the initial bootstrap.
+ A copy of the in-core label
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+label
+\end_layout
+
+\end_inset
+
+ for a disk can be obtained with the 
+\family typewriter
+DIOCGDINFO
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DIOCGDINFO
+\end_layout
+
+\end_inset
+
+
+\family default
+ 
+\family typewriter
+ioctl
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ioctl
+\end_layout
+
+\end_inset
+
+
+\family default
+; this works with a file descriptor
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file descriptor
+\end_layout
+
+\end_inset
+
+ for a block or character, 
+\shape italic
+raw
+\shape default
+, device for any partition of the disk.
+ The in-core copy of the label
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+label
+\end_layout
+
+\end_inset
+
+ is set by the 
+\family typewriter
+DIOCSDINFO
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DIOCSDINFO
+\end_layout
+
+\end_inset
+
+
+\family default
+ 
+\family typewriter
+ioctl
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ioctl
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ The offset of a partition cannot generally be changed while it is open,
+ nor can it be made smaller while it is open.
+ One exception is that any change is allowed if no label was found on the
+ disk and the driver was able to construct only a 
+\shape italic
+skeletal label
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+skeletal label
+\end_layout
+
+\end_inset
+
+
+\shape default
+ without partition information.
+ The 
+\family typewriter
+DIOCWDINFO
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DIOCWDINFO
+\end_layout
+
+\end_inset
+
+
+\family default
+ 
+\family typewriter
+ioctl
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ioctl
+\end_layout
+
+\end_inset
+
+
+\family default
+ operation sets the 
+\shape italic
+in-core label
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+in-core label
+\end_layout
+
+\end_inset
+
+
+\shape default
+ and then updates the 
+\shape italic
+on-disk label
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+on-disk label
+\end_layout
+
+\end_inset
+
+
+\shape default
+; there must be an existing label
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+label
+\end_layout
+
+\end_inset
+
+ on the disk for this operation to succeed.
+ Thus, the initial label for a disk or disk pack must be installed by writing
+ to the raw disk.
+ The 
+\family typewriter
+DIOCGPDINFO
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DIOCGPDINFO
+\end_layout
+
+\end_inset
+
+
+\family default
+ 
+\family typewriter
+ioctl
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ioctl
+\end_layout
+
+\end_inset
+
+
+\family default
+ operation gets the default label for a disk.
+ This simulates the case where there is no physical label on the disk itself
+ and can be used to see the label the kernel would construct in that case.
+ The 
+\family typewriter
+DIOCRLDINFO
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DIOCRLDINFO
+\end_layout
+
+\end_inset
+
+
+\family default
+ 
+\family typewriter
+ioctl
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ioctl
+\end_layout
+
+\end_inset
+
+
+\family default
+ operation causes the kernel to update its copy of the label based on the
+ physical label on the disk.
+ It can be used when the on-disk version of the label was changed directly
+ or, if there is no physical label, to update the kernel's skeletal label
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+skeletal label
+\end_layout
+
+\end_inset
+
+ if some variable affecting label generation has changed, e.g.
+ the fdisk partition table.
+ All of these operations are normally done using 
+\shape italic
+disklabel
+\shape default
+(8).
+ Note that when a disk has no real 
+\shape italic
+BSD disk label
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+BSD disk label
+\end_layout
+
+\end_inset
+
+
+\shape default
+ the kernel creates a default label so that the disk can be used.
+ This default label will include other partitions found on the disk if they
+ are supported on your architecture.
+ For example, on systems that support 
+\shape italic
+fdisk
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+fdisk
+\end_layout
+
+\end_inset
+
+
+\shape default
+(8) partitions the default label will also include DOS
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+DOS
+\end_layout
+
+\end_inset
+
+ and Linux
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Linux
+\end_layout
+
+\end_inset
+
+ partitions.
+ However, these entries are not dynamic, they are fixed at the time 
+\shape italic
+disklabel
+\shape default
+(8) is run.
+ That means that subsequent changes that affect non-OpenBSD partitions will
+ not be present in the default label, though you may update them by hand.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:disklabel"
+
+\end_inset
+
+disklabel - a program to retrieve disk label.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* File disklabel.c.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <unistd.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <fcntl.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <errno.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/types.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/ioctl.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/dkio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/disklabel.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* program disklabel.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#define FOREVER for(;;)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int diskfd;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct disklabel label;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Check arguments.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(argc == 2) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(pledge("stdio disklabel unveil rpath wpath", NULL) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(unveil(argv[ 1 ], "rw") >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+				if((diskfd = open(argv[ 1 ], O_RDWR)) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+					if(ioctl(diskfd, DIOCGPDINFO, &label) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+						printf("magic number: 0x%0.8x
+\backslash
+n", label.d_magic);
+\end_layout
+
+\begin_layout Plain Layout
+
+						printf("drive type: 0x%0.4x
+\backslash
+n", label.d_type);
+\end_layout
+
+\begin_layout Plain Layout
+
+						printf("drive subtype: 0x%0.4x
+\backslash
+n", label.d_subtype);
+\end_layout
+
+\begin_layout Plain Layout
+
+						printf("type name: %s
+\backslash
+n", label.d_typename);
+\end_layout
+
+\begin_layout Plain Layout
+
+						printf("pack name: %s
+\backslash
+n", label.d_packname);
+\end_layout
+
+\begin_layout Plain Layout
+
+						printf("bytes per sector: 0x%0.8x
+\backslash
+n", label.d_secsize);
+\end_layout
+
+\begin_layout Plain Layout
+
+						printf("sectors per track: 0x%0.8x
+\backslash
+n", label.d_nsectors);
+\end_layout
+
+\begin_layout Plain Layout
+
+						printf("tracks per cylinder: 0x%0.8x
+\backslash
+n", label.d_ntracks);
+\end_layout
+
+\begin_layout Plain Layout
+
+						printf("data cylinders per unit: 0x%0.8x
+\backslash
+n", label.d_ncylinders);
+\end_layout
+
+\begin_layout Plain Layout
+
+						printf("data sectors per cylinder: 0x%0.8x
+\backslash
+n", label.d_secpercyl);
+\end_layout
+
+\begin_layout Plain Layout
+
+						printf("data sectors per unit: 0x%0.8x
+\backslash
+n", label.d_secperunit);
+\end_layout
+
+\begin_layout Plain Layout
+
+						ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+					} else
+\end_layout
+
+\begin_layout Plain Layout
+
+						perror("ioctl");
+\end_layout
+
+\begin_layout Plain Layout
+
+					close(diskfd);
+\end_layout
+
+\begin_layout Plain Layout
+
+				} else
+\end_layout
+
+\begin_layout Plain Layout
+
+					perror("open");
+\end_layout
+
+\begin_layout Plain Layout
+
+			} else
+\end_layout
+
+\begin_layout Plain Layout
+
+				perror("unveil");
+\end_layout
+
+\begin_layout Plain Layout
+
+		} else
+\end_layout
+
+\begin_layout Plain Layout
+
+			perror("pledge");
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else
+\end_layout
+
+\begin_layout Plain Layout
+
+		fprintf(stderr, "usage: disklabel <device>
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of disklabel.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+In the listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:disklabel"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ we used some new system calls: 
+\family typewriter
+unveil
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+unveil
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+pledge
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+pledge
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ The latter, 
+\family typewriter
+pledge
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+pledge
+\end_layout
+
+\end_inset
+
+
+\family default
+, allows you to limit a program’s access to system calls very easily.
+ This is a huge improvement in security, for example: even if a binary is
+ compromised, its chances to misbehave are greatly reduced.
+ The usage is very simple:
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	...
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(pledge("stdio rpath", NULL) == -1)
+\end_layout
+
+\begin_layout Plain Layout
+
+		err(1, "pledge");
+\end_layout
+
+\begin_layout Plain Layout
+
+	...
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+The first call to 
+\family typewriter
+unveil
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+unveil
+\end_layout
+
+\end_inset
+
+
+\family default
+ that specifies a path removes visibility of the entire file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ from all other file system-related system calls, such as 
+\shape italic
+open
+\shape default
+(2), 
+\shape italic
+chmod
+\shape default
+(2) and 
+\shape italic
+rename
+\shape default
+(2), except for the specified path and permissions.
+ The 
+\family typewriter
+unveil
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+unveil
+\end_layout
+
+\end_inset
+
+
+\family default
+ system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+ remains capable of traversing to any path in the file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+, so additional calls can set permissions at other points in the file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ hierarchy.
+ After establishing a collection of path and permissions rules, future calls
+ to 
+\family typewriter
+unveil
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+unveil
+\end_layout
+
+\end_inset
+
+
+\family default
+ can be disabled by passing two NULL arguments.
+ Alternatively, 
+\shape italic
+pledge
+\shape default
+(2) may be used to remove the 
+\family typewriter
+unveil
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+unveil
+\end_layout
+
+\end_inset
+
+
+\family default
+ promise.
+ In listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:disklabel2"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ we showed a program to retrieve, from disklabel, the partitions information:
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\normalsize\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:disklabel2"
+
+\end_inset
+
+disklabel2 - a program to retrieve partitions information.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* File disklabel2.c.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <unistd.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <fcntl.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <errno.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/types.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/ioctl.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/dkio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/disklabel.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* program disklabel2.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#define FOREVER for(;;)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int i, diskfd;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct disklabel label;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Check arguments.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(argc == 2) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(pledge("stdio disklabel unveil rpath wpath", NULL) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(unveil(argv[ 1 ], "rw") >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+				if((diskfd = open(argv[ 1 ], O_RDWR)) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+					if(ioctl(diskfd, DIOCGDINFO, &label) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+						for(i = 0; i < label.d_npartitions; i++) {
+\end_layout
+
+\begin_layout Plain Layout
+
+							printf("
+\backslash
+npartion #%d
+\backslash
+n", i);
+\end_layout
+
+\begin_layout Plain Layout
+
+							printf("partition number of sectors: %u
+\backslash
+n", (off_t) label.d_partitions[ i ].p_size | ((off_t) label.d_partitions[ i
+ ].p_sizeh << 32));
+\end_layout
+
+\begin_layout Plain Layout
+
+							printf("partition starting sector: %u
+\backslash
+n", (off_t) label.d_partitions[ i ].p_offset | ((off_t) label.d_partitions[
+ i ].p_offseth << 32));
+\end_layout
+
+\begin_layout Plain Layout
+
+							printf("partition filesystem type: %d
+\backslash
+n",     label.d_partitions[ i ].p_fstype);
+\end_layout
+
+\begin_layout Plain Layout
+
+							printf("partition encoded filesystem frag/block: %d
+\backslash
+n",      label.d_partitions[ i ].p_fragblock);
+\end_layout
+
+\begin_layout Plain Layout
+
+							printf("partition cylinders per group: %d
+\backslash
+n",     label.d_partitions[ i ].p_cpg);
+\end_layout
+
+\begin_layout Plain Layout
+
+						}
+\end_layout
+
+\begin_layout Plain Layout
+
+						ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+					} else
+\end_layout
+
+\begin_layout Plain Layout
+
+						perror("ioctl");
+\end_layout
+
+\begin_layout Plain Layout
+
+					close(diskfd);
+\end_layout
+
+\begin_layout Plain Layout
+
+				} else
+\end_layout
+
+\begin_layout Plain Layout
+
+					perror("open");
+\end_layout
+
+\begin_layout Plain Layout
+
+			} else
+\end_layout
+
+\begin_layout Plain Layout
+
+				perror("unveil");
+\end_layout
+
+\begin_layout Plain Layout
+
+		} else
+\end_layout
+
+\begin_layout Plain Layout
+
+			perror("pledge");
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else
+\end_layout
+
+\begin_layout Plain Layout
+
+		fprintf(stderr, "usage: disklabel <device>
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of disklabel2.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+The file system.
+\end_layout
+
+\begin_layout Standard
+The files 
+\family typewriter
+<ufs/ffs/fs.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<ufs/ffs/fs.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+<ufs/ufs/inode.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<ufs/ufs/inode.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+ declare several structures and define variables and macros which are used
+ to create and manage the underlying format of file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ objects on random access devices such as disks.
+ The 
+\shape italic
+block size
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+block size
+\end_layout
+
+\end_inset
+
+
+\shape default
+ and 
+\shape italic
+number of blocks
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+number of blocks
+\end_layout
+
+\end_inset
+
+
+\shape default
+ are defining parameters of the file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+.
+ Sectors beginning at 
+\family typewriter
+BBLOCK
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+BBLOCK
+\end_layout
+
+\end_inset
+
+
+\family default
+ and continuing for 
+\family typewriter
+BBSIZE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+BBSIZE
+\end_layout
+
+\end_inset
+
+
+\family default
+ are used for a 
+\shape italic
+disklabel
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+disklabel
+\end_layout
+
+\end_inset
+
+
+\shape default
+ and for some hardware primary and secondary bootstrapping programs.
+ The actual file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ begins at sector 
+\family typewriter
+SBLOCK
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SBLOCK
+\end_layout
+
+\end_inset
+
+
+\family default
+ with the super-block
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+super-block
+\end_layout
+
+\end_inset
+
+ that is of size 
+\family typewriter
+SBSIZE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SBSIZE
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ The following structure describes the super-block
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+super-block
+\end_layout
+
+\end_inset
+
+ and is from the file 
+\family typewriter
+<ufs/ffs/fs.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<ufs/ffs/fs.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:fs-struct"
+
+\end_inset
+
+The fs structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#define FS_MAGIC 0x011954
+\end_layout
+
+\begin_layout Plain Layout
+
+#define MAXMNTLEN 468
+\end_layout
+
+\begin_layout Plain Layout
+
+#define MAXVOLLEN 32
+\end_layout
+
+\begin_layout Plain Layout
+
+#define NOCSPTRS ((128 / sizeof(void *)) - 4)
+\end_layout
+
+\begin_layout Plain Layout
+
+#define FSMAXSNAP 20
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct fs {
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_firstfield;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_unused_1;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_sblkno;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_cblkno;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_iblkno;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_dblkno;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_cgoffset;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_cgmask;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_ffs1_time;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_ffs1_size;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_ffs1_dsize;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_ncg;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_bsize;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_fsize;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_frag;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_minfree;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_rotdelay;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_rps;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_bmask;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_fmask;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_bshift;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_fshift;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_maxcontig;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_maxbpg;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_fragshift;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_fsbtodb;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_sbsize;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_csmask;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_csshift;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_nindir;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_inopb;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_nspf;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_optim;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_npsect;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_interleave;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_trackskew;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_id[ 2 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_ffs1_csaddr;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_cssize;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_cgsize;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_ntrak;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_nsect;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_spc;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_ncyl;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_cpg;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_ipg;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_fpg;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct csum fs_ffs1_cstotal;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int8_t fs_fmod;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int8_t fs_clean;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int8_t fs_ronly;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int8_t fs_ffs1_flags;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_char fs_fsmnt[ MAXMNTLEN ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_char fs_volname[ MAXVOLLEN ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int64_t fs_swuid;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_pad;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_cgrotor;
+\end_layout
+
+\begin_layout Plain Layout
+
+	void *fs_ocsp[ NOCSPTRS ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int8_t *fs_contigdirs;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct csum *fs_csp;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t *fs_maxcluster;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_char *fs_active;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_cpc;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_maxbsize;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int64_t fs_spareconf64[ 17 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	int64_t fs_sblockloc;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct csum_total fs_cstotal;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int64_t fs_time;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int64_t fs_size;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int64_t fs_dsize;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int64_t fs_csaddr;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int64_t fs_pendingblocks;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_pendinginodes;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_snapinum[ FSMAXSNAP ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_avgfilesize;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_avgfpdir;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_sparecon[ 26 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int32_t fs_flags;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_fscktime;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_contigsumsize;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_maxsymlinklen;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_inodefmt;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int64_t fs_maxfilesize;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int64_t fs_qbmask;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int64_t fs_qfmask;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_state;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_postblformat;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_nrpos;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_postbloff;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_rotbloff;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t fs_magic;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int8_t fs_space[ 1 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+The members are:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_firstfield
+\family default
+ historic file system linked list, used for incore super blocks;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_unused_1
+\family default
+ unused member;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_sblkno
+\family default
+ address of super-block / frags;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_cblkno
+\family default
+ offset of cylinder-block / frags;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_iblkno
+\family default
+ offset of inode-blocks / frags;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_dblkno
+\family default
+ offset of first data / frags;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_cgoffset
+\family default
+ cylinder group offset in cylinder;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_cgmask
+\family default
+ used to calc mod fs_ntrak;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_ffs1_time
+\family default
+ last time written;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_ffs1_size
+\family default
+ number of blocks in fs / frags;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_ffs1_dsize
+\family default
+ number of data blocks in fs;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_ncg
+\family default
+ number of cylinder groups;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_bsize
+\family default
+ size of basic blocks / bytes;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_fsize
+\family default
+ size of frag blocks / bytes;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_frag
+\family default
+ number of frags in a block in fs;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_minfree
+\family default
+ minimum percentage of free blocks;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_rotdelay
+\family default
+ number of ms for optimal next block;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_rps
+\family default
+ disk revolutions per second;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_bmask
+\family default
+ 
+\begin_inset Quotes eld
+\end_inset
+
+blkoff
+\begin_inset Quotes erd
+\end_inset
+
+ calc of blk offsets;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_fmask
+\family default
+ 
+\begin_inset Quotes eld
+\end_inset
+
+fragoff
+\begin_inset Quotes erd
+\end_inset
+
+ calc of frag offsets;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_bshift
+\family default
+ 
+\begin_inset Quotes eld
+\end_inset
+
+lblkno
+\begin_inset Quotes erd
+\end_inset
+
+ calc of logical blkno;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_fshift
+\family default
+ 
+\begin_inset Quotes eld
+\end_inset
+
+numfrags
+\begin_inset Quotes erd
+\end_inset
+
+ calc number of frags;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_maxcontig
+\family default
+ maximum number of contiguous blocks;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_maxbpg
+\family default
+ maximum number of blocks per cylinder group;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_fragshift
+\family default
+ block to frag shift;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_fsbtodb
+\family default
+ fsbtodb and dbtofsb shift constant;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_sbsize
+\family default
+ actual size of super block;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_csmask
+\family default
+ csum block offset (now unused);
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_csshift
+\family default
+ csum block number (now unused);
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_nindir
+\family default
+ value of NINDIR;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_inopb
+\family default
+ i-nodes per file system block;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_nspf
+\family default
+ 
+\family typewriter
+DEV_BSIZE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DEV_BSIZE
+\end_layout
+
+\end_inset
+
+
+\family default
+ sectors per frag;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_optim
+\family default
+ optimization preference;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_npsect
+\family default
+ 
+\family typewriter
+DEV_BSIZE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DEV_BSIZE
+\end_layout
+
+\end_inset
+
+
+\family default
+ sectors/track + spares;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_interleave
+\family default
+ 
+\family typewriter
+DEV_BSIZE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DEV_BSIZE
+\end_layout
+
+\end_inset
+
+
+\family default
+ sector interleave;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_trackskew
+\family default
+ sector 0 skew, per track;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_id
+\family default
+ unique filesystem id;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_ffs1_csaddr
+\family default
+ block address of cylinder groyup summary area;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_cssize
+\family default
+ cylinder group summary area size / bytes;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_cgsize
+\family default
+ cylinder group block size / bytes;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_ntrak
+\family default
+ tracks per cylinder;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_nsect
+\family default
+ 
+\family typewriter
+DEV_BSIZE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DEV_BSIZE
+\end_layout
+
+\end_inset
+
+
+\family default
+ sectors per track;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_spc
+\family default
+ 
+\family typewriter
+DEV_BSIZE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DEV_BSIZE
+\end_layout
+
+\end_inset
+
+
+\family default
+ sectors per cylinder;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_ncyl
+\family default
+ cylinders in file system;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_cpg
+\family default
+ cylinders per group;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_ipg
+\family default
+ inodes per group;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_fpg
+\family default
+ blocks per group * fs_frag;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_ffs1_cstotal
+\family default
+ cylinder summary information;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_fmod
+\family default
+ super-block modified flag;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_clean
+\family default
+ file system is clean flag;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_ronly
+\family default
+ mounted read-only flag;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_ffs1_flags
+\family default
+ see FS_ below;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_fsmnt
+\family default
+ name mounted on;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_volname
+\family default
+ volume name;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_swuid
+\family default
+ system-wide uid;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_pad
+\family default
+ due to alignment of fs_swuid;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_cgrotor
+\family default
+ last cg searched;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_ocsp
+\family default
+ padding; was list of fs_cs bufs;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_contigdirs
+\family default
+ number of contiguously allocated directories;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_csp
+\family default
+ cg summary info buffer for fs_cs;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_maxcluster
+\family default
+ maximum cluster in each cylinder group;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_active
+\family default
+ reserved for snapshots;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_cpc
+\family default
+ cylinder per cycle in postbl;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_maxbsize
+\family default
+ maximum blocking factor permitted;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_spareconf64
+\family default
+ old rotation block list head;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_sblockloc
+\family default
+ offset of standard super block;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_cstotal
+\family default
+ cylinder summary information;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_time
+\family default
+ time last written;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_size
+\family default
+ number of blocks in fs;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_dsize
+\family default
+ number of data blocks in fs;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_csaddr
+\family default
+ block address of cylinder group summary area;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_pendingblocks
+\family default
+ blocks in process of being freed;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_pendinginodes
+\family default
+ i-nodes in process of being freed;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_snapinum
+\family default
+ space reserved for snapshots;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_avgfilesize
+\family default
+ expected average file size;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_avgfpdir
+\family default
+ expected number of files per directory;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_sparecon
+\family default
+ reserved for future constants;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_flags
+\family default
+ see FS_ flags below;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_fscktime
+\family default
+ last time 
+\shape italic
+fsck
+\shape default
+(8)ed;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_contigsumsize
+\family default
+ size of cluster summary array;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_maxsymlinklen
+\family default
+ maximum length of an internal symlink;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_inodefmt
+\family default
+ format of on-disk i-nodes;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_maxfilesize
+\family default
+ maximum representable file size;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_qbmask
+\family default
+ ~fs_bmask - for use with quad size;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_qfmask
+\family default
+ ~fs_fmask - for use with quad size;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_state
+\family default
+ validate fs_clean field;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_postblformat
+\family default
+ format of positional layout tables;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_nrpos
+\family default
+ number of rotational positions;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_postbloff
+\family default
+ (u_int16) rotation block list head;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_rotbloff
+\family default
+ (u_int8) blocks for each rotation;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_magic
+\family default
+ magic number;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_space
+\family default
+ list of blocks for each rotation.
+\end_layout
+
+\begin_layout Standard
+\noindent
+Each disk drive contains some number of file systems.
+ A file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ consists of a number of cylinder groups.
+ Each 
+\shape italic
+cylinder group
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+cylinder group
+\end_layout
+
+\end_inset
+
+
+\shape default
+ has 
+\shape italic
+inodes
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+inodes
+\end_layout
+
+\end_inset
+
+
+\shape default
+ and data.
+ A file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ is described by its super-block
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+super-block
+\end_layout
+
+\end_inset
+
+, which in turn describes the cylinder groups.
+ The super-block
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+super-block
+\end_layout
+
+\end_inset
+
+ is critical data and is replicated in each cylinder group
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+cylinder group
+\end_layout
+
+\end_inset
+
+ to protect against catastrophic loss.
+ This is done at file system creation time and the critical super-block
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+super-block
+\end_layout
+
+\end_inset
+
+ data does not change, so the copies need not be referenced further unless
+ disaster strikes.
+ Addresses stored in inodes are capable of addressing fragments of 
+\begin_inset Quotes eld
+\end_inset
+
+blocks
+\begin_inset Quotes erd
+\end_inset
+
+.
+ File system blocks of at most size 
+\family typewriter
+MAXBSIZE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+MAXBSIZE
+\end_layout
+
+\end_inset
+
+
+\family default
+ can be optionally broken into 2, 4, or 8 pieces, each of which is addressable;
+ these pieces may be 
+\family typewriter
+DEV_BSIZE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DEV_BSIZE
+\end_layout
+
+\end_inset
+
+
+\family default
+, or some multiple of a 
+\family typewriter
+DEV_BSIZE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DEV_BSIZE
+\end_layout
+
+\end_inset
+
+
+\family default
+ unit.
+ Large files consist of exclusively large data blocks.
+ To avoid undue wasted disk space, the last data block of a small file is
+ allocated only as many fragments of a large block as are necessary.
+ The file system format retains only a single pointer to such a fragment,
+ which is a piece of a single large block that has been divided.
+ The size of such a fragment is determinable from information in the inode
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+inode
+\end_layout
+
+\end_inset
+
+, using the 
+\family typewriter
+blksize
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+blksize
+\end_layout
+
+\end_inset
+
+
+\family default
+ macro.
+ The file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ records space availability at the fragment level; to determine block availabili
+ty, aligned fragments are examined.
+ The 
+\shape italic
+root inode
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+root inode
+\end_layout
+
+\end_inset
+
+
+\shape default
+, as the name implies, is the root of the file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+.
+ Inode 0 can't be used for normal purposes and historically bad blocks were
+ linked to inode 1
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\noindent
+Inode 1 is no longer used for this purpose; however, numerous dump tapes
+ make this assumption, so we are stuck with it.
+\end_layout
+
+\end_inset
+
+ .
+ Thus the root inode
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+root inode
+\end_layout
+
+\end_inset
+
+ is 2.
+ The 
+\family typewriter
+fs_minfree
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fs_minfree
+\end_layout
+
+\end_inset
+
+
+\family default
+ element gives the minimum acceptable percentage of file system blocks that
+ may be free.
+ If the freelist drops below this level, only the super-user
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+super-user
+\end_layout
+
+\end_inset
+
+ may continue to allocate blocks.
+ The 
+\family typewriter
+fs_minfree
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fs_minfree
+\end_layout
+
+\end_inset
+
+
+\family default
+ element may be set to 0 if no reserve of free blocks is deemed necessary,
+ although severe performance degradations will be observed if the file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ is run at greater than 95% full; thus the default value of 
+\family typewriter
+fs_minfree
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fs_minfree
+\end_layout
+
+\end_inset
+
+
+\family default
+ is 5%.
+ Empirically the best trade-off between block fragmentation and overall
+ disk utilization at a loading of 95% comes with a fragmentation of 8; thus
+ the default fragment size is an eighth of the block size.
+ The element 
+\family typewriter
+fs_optim
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fs_optim
+\end_layout
+
+\end_inset
+
+
+\family default
+ specifies whether the file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ should try to minimize the time spent allocating blocks (
+\family typewriter
+FS_OPTTIME
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+FS_OPTTIME
+\end_layout
+
+\end_inset
+
+
+\family default
+), or if it should attempt to minimize the space fragmentation on the disk
+ (
+\family typewriter
+FS_OPTSPACE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+FS_OPTSPACE
+\end_layout
+
+\end_inset
+
+
+\family default
+).
+ If the value of 
+\family typewriter
+fs_minfree
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fs_minfree
+\end_layout
+
+\end_inset
+
+
+\family default
+ is less than 5%, then the file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ defaults to optimizing for space to avoid running out of full sized blocks.
+ If the value of 
+\family typewriter
+fs_minfree
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fs_minfree
+\end_layout
+
+\end_inset
+
+
+\family default
+ is greater than or equal to 5%, fragmentation is unlikely to be problematical
+ and the file system defaults to optimizing for time.
+ The 
+\family typewriter
+fs_flags
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fs_flags
+\end_layout
+
+\end_inset
+
+
+\family default
+ element specifies how the file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ was mounted:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+
+\family typewriter
+FS_UNCLEAN
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+FS_UNCLEAN
+\end_layout
+
+\end_inset
+
+
+\family default
+ the file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ was mounted uncleanly.
+\end_layout
+
+\begin_layout Subsection
+Cylinder group related limits.
+\end_layout
+
+\begin_layout Standard
+\noindent
+Each cylinder keeps track of the availability of blocks at different rotational
+ positions, so that sequential blocks can be laid out with minimum rotational
+ latency.
+ With the default of 1 distinct rotational position, the resolution of the
+ summary information is 16 ms for a typical 3600 RPM drive.
+ The element 
+\family typewriter
+fs_rotdelay
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fs_rotdelay
+\end_layout
+
+\end_inset
+
+
+\family default
+ was once used to tweak block layout.
+ Each file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ has a statically allocated number of inodes, determined by its size and
+ the desired number of file data bytes per inode at the time it was created.
+ See 
+\shape italic
+newfs
+\shape default
+(8) for details on how to set this and other file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ parameters.
+ By default, the inode
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+inode
+\end_layout
+
+\end_inset
+
+ allocation strategy is extremely conservative.
+ 
+\family typewriter
+MINBSIZE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+MINBSIZE
+\end_layout
+
+\end_inset
+
+
+\family default
+ is the smallest allowable block size.
+ With a 
+\family typewriter
+MINBSIZE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+MINBSIZE
+\end_layout
+
+\end_inset
+
+
+\family default
+ of 4096 it is possible to create files of size 
+\begin_inset Formula $2^{32}$
+\end_inset
+
+ with only two levels of indirection.
+ 
+\family typewriter
+MINBSIZE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+MINBSIZE
+\end_layout
+
+\end_inset
+
+
+\family default
+ must be big enough to hold a cylinder group block
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+cylinder group block
+\end_layout
+
+\end_inset
+
+, thus changes to 
+\family typewriter
+struct cg
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+struct cg
+\end_layout
+
+\end_inset
+
+
+\family default
+ must keep its size within 
+\family typewriter
+MINBSIZE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+MINBSIZE
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ Note that super-blocks are never more than size 
+\family typewriter
+SBSIZE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SBSIZE
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ The path name
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+path name
+\end_layout
+
+\end_inset
+
+ on which the file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ is mounted is maintained in 
+\family typewriter
+fs_fsmnt
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fs_fsmnt
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ 
+\family typewriter
+MAXMNTLEN
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+MAXMNTLEN
+\end_layout
+
+\end_inset
+
+
+\family default
+ defines the amount of space allocated in the super-block
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+super-block
+\end_layout
+
+\end_inset
+
+ for this name.
+ Per 
+\shape italic
+cylinder group information
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+cylinder group information
+\end_layout
+
+\end_inset
+
+
+\shape default
+ is summarized in blocks allocated from the first cylinder group's data
+ blocks.
+ These blocks are read in from 
+\family typewriter
+fs_csaddr
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fs_csaddr
+\end_layout
+
+\end_inset
+
+
+\family default
+, of size 
+\family typewriter
+fs_cssize
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fs_cssize
+\end_layout
+
+\end_inset
+
+
+\family default
+, in addition to the 
+\family typewriter
+super-block
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+super-block
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ Note that 
+\family typewriter
+sizeof(struct csum)
+\family default
+ must be a power of two in order for the 
+\family typewriter
+fs_cs
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fs_cs
+\end_layout
+
+\end_inset
+
+
+\family default
+ macro to work.
+ 
+\end_layout
+
+\begin_layout Subsection
+\noindent
+Super-block for a file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The size of the 
+\shape italic
+rotational layout tables
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+rotational layout tables
+\end_layout
+
+\end_inset
+
+
+\shape default
+ is limited by the fact that the super-block
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+super-block
+\end_layout
+
+\end_inset
+
+ is of size 
+\family typewriter
+SBSIZE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SBSIZE
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ The size of these tables is inversely proportional to the block size of
+ the file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+.
+ The size of the tables is increased when sector sizes are not powers of
+ two, as this increases the number of cylinders included before the rotational
+ pattern repeats, 
+\family typewriter
+fs_cpc
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fs_cpc
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ The size of the rotational layout tables is derived from the number of
+ bytes remaining in 
+\family typewriter
+struct fs
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+struct fs
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ The number of blocks of data per cylinder group
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+cylinder group
+\end_layout
+
+\end_inset
+
+ is limited because cylinder groups are at most one block.
+ The inode
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+inode
+\end_layout
+
+\end_inset
+
+ and free block tables must fit into a single block after deducting space
+ for the cylinder group structure 
+\family typewriter
+struct cg
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+struct cg
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ In listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:superblock"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ we show a program that read the superblock of a file system and shows some
+ informations.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:superblock"
+
+\end_inset
+
+superblock - a program to retrieve a file system superblock.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* File superblock.c.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <unistd.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <fcntl.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <util.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <fstab.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <errno.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/types.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/param.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/ioctl.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/dkio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/buf.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/disklabel.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <ufs/ffs/fs.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <ufs/ufs/quota.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <ufs/ufs/inode.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* program superblock.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#define FOREVER for(;;)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Types.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+union tagFS {
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct fs u_fs;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char u_pad[ SBSIZE ];
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+typedef union tagFS fsu_t;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	char *name, *realdev;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int i, diskfd;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret;
+\end_layout
+
+\begin_layout Plain Layout
+
+	fsu_t fsun1;
+\end_layout
+
+\begin_layout Plain Layout
+
+	off_t sbtry[] = SBLOCKSEARCH;
+\end_layout
+
+\begin_layout Plain Layout
+
+	ssize_t n;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct fstab *fs;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Check arguments.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(argc == 2) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(pledge("stdio rpath disklabel", NULL) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			if((fs = getfsfile(argv[ 1 ])) != NULL)
+\end_layout
+
+\begin_layout Plain Layout
+
+				name = fs -> fs_spec;
+\end_layout
+
+\begin_layout Plain Layout
+
+			else
+\end_layout
+
+\begin_layout Plain Layout
+
+				name = argv[ 1 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("Opening: %s
+\backslash
+n", name);
+\end_layout
+
+\begin_layout Plain Layout
+
+			if((diskfd = opendev(name, O_RDONLY, 0, NULL)) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+				for(i = 0; sbtry[ i ] != 1; i++) {
+\end_layout
+
+\begin_layout Plain Layout
+
+					n = pread(diskfd, &fsun1.u_fs, SBLOCKSIZE, (off_t) sbtry[ i ]);
+\end_layout
+
+\begin_layout Plain Layout
+
+					if(n == SBLOCKSIZE && (fsun1.u_fs.fs_magic == FS_UFS1_MAGIC ||	
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+						(fsun1.u_fs.fs_magic == FS_UFS2_MAGIC &&					
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+						fsun1.u_fs.fs_sblockloc == sbtry[ i ])) &&				
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+						!(fsun1.u_fs.fs_magic == FS_UFS1_MAGIC &&				
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+						sbtry[ i ] == SBLOCK_UFS2) &&							
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+						fsun1.u_fs.fs_bsize <= MAXBSIZE &&						
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+						fsun1.u_fs.fs_bsize >= sizeof(struct fs)) {
+\end_layout
+
+\begin_layout Plain Layout
+
+						printf("super-block shift constant: %d
+\backslash
+n", fsun1.u_fs.fs_fsbtodb);
+\end_layout
+
+\begin_layout Plain Layout
+
+						printf("super-block magic number: 0x%0.8x
+\backslash
+n", sun1.u_fs.fs_magic);
+\end_layout
+
+\begin_layout Plain Layout
+
+						printf("super-block offset: %d
+\backslash
+n", fsun1.u_fs.fs_sblkno);
+\end_layout
+
+\begin_layout Plain Layout
+
+						ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+						break;
+\end_layout
+
+\begin_layout Plain Layout
+
+					}
+\end_layout
+
+\begin_layout Plain Layout
+
+					if(sbtry[ i ] == -1)
+\end_layout
+
+\begin_layout Plain Layout
+
+						fprintf(stderr, "Could not find superblock for %s
+\backslash
+n", argv[ 1 ]);
+\end_layout
+
+\begin_layout Plain Layout
+
+				}
+\end_layout
+
+\begin_layout Plain Layout
+
+				close(diskfd);
+\end_layout
+
+\begin_layout Plain Layout
+
+			} else
+\end_layout
+
+\begin_layout Plain Layout
+
+				perror("opendev");
+\end_layout
+
+\begin_layout Plain Layout
+
+		} else
+\end_layout
+
+\begin_layout Plain Layout
+
+			perror("pledge");
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else
+\end_layout
+
+\begin_layout Plain Layout
+
+		fprintf(stderr, "usage: superblock <fs>
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of superblock.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+The program shows also the usage of the system call 
+\family typewriter
+getfsfile
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getfsfile
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ This function return a pointer to an object with the following structure
+ containing the broken-out fields of a line in the file system description
+ file 
+\family typewriter
+<fstab.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<fstab.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:fstab-struct"
+
+\end_inset
+
+The fstab structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct fstab {
+\end_layout
+
+\begin_layout Plain Layout
+
+	char *fs_spec;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char *fs_file;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char *fs_vfstype;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char *fs_mntops;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char *fs_type;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int fs_freq;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int fs_passno;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+The members are:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_spec
+\family default
+ block special device name;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_file
+\family default
+ file system path prefix;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_vfstype
+\family default
+ type of file system;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_mntops
+\family default
+ comma separated mount options;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+fs_type
+\family default
+ rw, ro, sw, or xx;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_freq
+\family default
+ dump frequency, in days;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+fs_passno
+\family default
+ pass number on parallel fsck.
+\end_layout
+
+\begin_layout Standard
+\noindent
+The fields have meanings described in 
+\shape italic
+fstab
+\shape default
+(5).
+ 
+\family typewriter
+getfsfile
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getfsfile
+\end_layout
+
+\end_inset
+
+
+\family default
+ function searches the entire file, opening it if necessary, for a matching
+ special file name or file system file name.
+ All entries in the file with a type field equivalent to FSTAB_XX are ignored.
+ Lines which are formatted incorrectly are silently ignored.
+ The 
+\family typewriter
+getfsfile
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getfsfile
+\end_layout
+
+\end_inset
+
+
+\family default
+ function returns a null pointer on EOF or error.
+ It is interesting to note that depending on the file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ type, the super-block
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+super-block
+\end_layout
+
+\end_inset
+
+ is located at different positions.
+ To achieve a correct search, the offset in pread have to assume the values
+ in the array 
+\family typewriter
+sbtry
+\family default
+ which values are provided by the 
+\family typewriter
+SBLOCKSEARCH
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SBLOCKSEARCH
+\end_layout
+
+\end_inset
+
+
+\family default
+ macro from 
+\family typewriter
+<ufs/ffs/fs.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<ufs/ffs/fs.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+:
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#define BBSIZE          8192
+\end_layout
+
+\begin_layout Plain Layout
+
+#define SBSIZE          8192
+\end_layout
+
+\begin_layout Plain Layout
+
+#define BBOFF           ((off_t)(0))
+\end_layout
+
+\begin_layout Plain Layout
+
+#define SBOFF           ((off_t)(BBOFF + BBSIZE))
+\end_layout
+
+\begin_layout Plain Layout
+
+#define BBLOCK          ((daddr_t)(0))
+\end_layout
+
+\begin_layout Plain Layout
+
+#define SBLOCK          ((daddr_t)(BBLOCK + BBSIZE / DEV_BSIZE))
+\end_layout
+
+\begin_layout Plain Layout
+
+#define SBLOCK_UFS1     8192
+\end_layout
+
+\begin_layout Plain Layout
+
+#define SBLOCK_UFS2     65536
+\end_layout
+
+\begin_layout Plain Layout
+
+#define SBLOCK_PIGGY    262144
+\end_layout
+
+\begin_layout Plain Layout
+
+#define SBLOCKSIZE      8192
+\end_layout
+
+\begin_layout Plain Layout
+
+#define SBLOCKSEARCH 
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        { SBLOCK_UFS2, SBLOCK_UFS1, SBLOCK_PIGGY, -1 }
+\end_layout
+
+\end_inset
+
+To computes right values for the various quantities involved in the file
+ system structure there are a number of macros defined in 
+\family typewriter
+<ufs/ffs/fs.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<ufs/ffs/fs.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+\noindent
+
+\family typewriter
+fsbtodb(fs,b)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+fsbtodb(fs,b)
+\end_layout
+
+\end_inset
+
+
+\family default
+ turn file system block numbers into disk block addresses;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+\noindent
+\align block
+
+\family typewriter
+dbtofsb(fs,b)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+dbtofsb(fs,b)
+\end_layout
+
+\end_inset
+
+
+\family default
+ this maps file system blocks to DEV_BSIZE (a.k.a.
+ 512-byte) size disk blocks.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+The following are cylinder group macros to locate things in cylinder groups,
+ they compute file system addresses of cylinder group data structures:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+\noindent
+
+\family typewriter
+cgbase(fs,c)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+cgbase(fs,c)
+\end_layout
+
+\end_inset
+
+
+\family default
+ cylinder group base;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+\noindent
+\align block
+
+\family typewriter
+cgdata(fs,c)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+cgdata(fs,c)
+\end_layout
+
+\end_inset
+
+
+\family default
+ cylinder group data zone;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+\noindent
+\align block
+
+\family typewriter
+cgmeta(fs,c)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+cgmeta(fs,c)
+\end_layout
+
+\end_inset
+
+
+\family default
+ cylinder group meta data;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+\noindent
+\align block
+
+\family typewriter
+cgdmin(fs,c)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+cgdmin(fs,c)
+\end_layout
+
+\end_inset
+
+
+\family default
+ cylinder group 1st data;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+\noindent
+\align block
+
+\family typewriter
+cgimin(fs,c)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+cgimin(fs,c)
+\end_layout
+
+\end_inset
+
+
+\family default
+ cylinder group inode blk;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+\noindent
+\align block
+
+\family typewriter
+cgsblock(fs,c)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+cgsblock(fs,c)
+\end_layout
+
+\end_inset
+
+
+\family default
+ cylinder group super blk;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+\noindent
+\align block
+
+\family typewriter
+cgtod(fs,c)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+cgtod(fs,c)
+\end_layout
+
+\end_inset
+
+
+\family default
+ cylinder group block;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+\noindent
+\align block
+
+\family typewriter
+cgstart(fs,c)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+cgstart(fs,c)
+\end_layout
+
+\end_inset
+
+
+\family default
+ start of cylinder group;
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+Macros for handling inode numbers:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+\noindent
+\align block
+
+\family typewriter
+ino_to_cg(fs,x)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ino_to_cg(fs,x)
+\end_layout
+
+\end_inset
+
+
+\family default
+ inode number to file system block offset;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+\noindent
+
+\family typewriter
+ino_to_fsba(fs,x)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ino_to_fsba(fs,x)
+\end_layout
+
+\end_inset
+
+
+\family default
+ inode number to file system block address;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+\noindent
+\align block
+
+\family typewriter
+ino_to_fsbo(fs,x)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ino_to_fsbo(fs,x)
+\end_layout
+
+\end_inset
+
+
+\family default
+ inode number to file system block offset;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+\noindent
+\align block
+
+\family typewriter
+dtog(fs,d)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+dtog(fs,d)
+\end_layout
+
+\end_inset
+
+
+\family default
+ give cylinder group number for a file system block;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+\noindent
+\align block
+
+\family typewriter
+dtogd(fs,d)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+dtogd(fs,d)
+\end_layout
+
+\end_inset
+
+
+\family default
+ give frag block number in cylinder group for a file system block;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+\noindent
+\align block
+
+\family typewriter
+blkmap(fs,map,loc)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+blkmap(fs,map,loc)
+\end_layout
+
+\end_inset
+
+
+\family default
+ extract the bits for a block from a map;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+\noindent
+\align block
+
+\family typewriter
+cbtocylno(fs,bno)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+cbtocylno(fs,bno)
+\end_layout
+
+\end_inset
+
+
+\family default
+ compute the cylinder block address;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+\noindent
+\align block
+
+\family typewriter
+cbtorpos(fs,bno)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+cbtorpos(fs,bno)
+\end_layout
+
+\end_inset
+
+
+\family default
+ compute the cylinder rotational position block address;
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+The following macros optimize certain frequently calculated quantities by
+ using shifts and masks in place of divisions /, modulos % and multiplications
+ *:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+\noindent
+\align block
+
+\family typewriter
+blkoff(fs,loc)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+blkoff(fs,loc)
+\end_layout
+
+\end_inset
+
+
+\family default
+ calculates 
+\family typewriter
+(loc % fs->fs_bsize)
+\family default
+;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+\noindent
+\align block
+
+\family typewriter
+fragoff(fs,loc)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+fragoff(fs,loc)
+\end_layout
+
+\end_inset
+
+
+\family default
+ calculates 
+\family typewriter
+(loc % fs->fs_fsize)
+\family default
+;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+\noindent
+\align block
+
+\family typewriter
+lblktosize(fs,blk)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+lblktosize(fs,blk)
+\end_layout
+
+\end_inset
+
+
+\family default
+ calculates 
+\family typewriter
+((off_t) blk * fs->fs_bsize)
+\family default
+;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+\noindent
+\align block
+
+\family typewriter
+lblkno(fs,loc)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+lblkno(fs,loc)
+\end_layout
+
+\end_inset
+
+
+\family default
+ calculates 
+\family typewriter
+(loc / fs->fs_bsize)
+\family default
+;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+
+\family typewriter
+numfrags(fs,loc)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+numfrags(fs,loc)
+\end_layout
+
+\end_inset
+
+
+\family default
+ calculates 
+\family typewriter
+(loc / fs->fs_fsize)
+\family default
+;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+
+\family typewriter
+blkroundup(fs,size)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+blkroundup(fs,size)
+\end_layout
+
+\end_inset
+
+
+\family default
+ calculates 
+\family typewriter
+roundup(size, fs->fs_bsize)
+\family default
+;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+
+\family typewriter
+fragroundup(fs,size)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+fragroundup(fs,size)
+\end_layout
+
+\end_inset
+
+
+\family default
+ calculates 
+\family typewriter
+roundup(size, fs->fs_fsize)
+\family default
+;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+
+\family typewriter
+fragstoblks(fs,frags)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+fragstoblks(fs,frags)
+\end_layout
+
+\end_inset
+
+
+\family default
+ calculates 
+\family typewriter
+(frags / fs->fs_frag)
+\family default
+;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+
+\family typewriter
+blkstofrags(fs,blks)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+blkstofrags(fs,blks)
+\end_layout
+
+\end_inset
+
+
+\family default
+ calculates 
+\family typewriter
+(blks * fs->fs_frag)
+\family default
+;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+
+\family typewriter
+fragnum(fs,fsb)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+fragnum(fs,fsb)
+\end_layout
+
+\end_inset
+
+
+\family default
+ calculates 
+\family typewriter
+(fsb % fs->fs_frag)
+\family default
+;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+
+\family typewriter
+blknum(fs,fsb)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+blknum(fs,fsb)
+\end_layout
+
+\end_inset
+
+
+\family default
+ calculates 
+\family typewriter
+rounddown(fsb, fs->fs_frag)
+\family default
+;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+
+\family typewriter
+freespace(fs,p)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+freespace(fs,p)
+\end_layout
+
+\end_inset
+
+
+\family default
+ determine the number of available frags given a percentage to hold in reserve.
+\end_layout
+
+\begin_layout Standard
+Determining the size of a file block in the file system:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+
+\family typewriter
+blksize(fs,ip,lbn)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+blksize(fs,ip,lbn)
+\end_layout
+
+\end_inset
+
+
+\family default
+ dimension of a block;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+
+\family typewriter
+dblksize(fs,dip,lbn)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+dblksize(fs,dip,lbn)
+\end_layout
+
+\end_inset
+
+
+\family default
+ dimension of dinode block;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+
+\family typewriter
+sblksize(fs,size,lbn)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+sblksize(fs,size,lbn)
+\end_layout
+
+\end_inset
+
+
+\family default
+ dimension of the super-block;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+
+\family typewriter
+NSPB(fs)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+NSPB(fs)
+\end_layout
+
+\end_inset
+
+
+\family default
+ number of disk sectors per block; assumes 
+\family typewriter
+DEV_BSIZE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DEV_BSIZE
+\end_layout
+
+\end_inset
+
+
+\family default
+ byte sector size;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+
+\family typewriter
+NSPF(fs)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+NSPF(fs)
+\end_layout
+
+\end_inset
+
+
+\family default
+ number of disk sectors per fragment; assumes 
+\family typewriter
+DEV_BSIZE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DEV_BSIZE
+\end_layout
+
+\end_inset
+
+
+\family default
+ byte sector size;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+
+\family typewriter
+INOPB(fs)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+INOPB(fs)
+\end_layout
+
+\end_inset
+
+
+\family default
+ number of inodes per file system block 
+\family typewriter
+(fs->fs_bsize)
+\family default
+;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+
+\family typewriter
+INOPF(fs)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+INOPF(fs)
+\end_layout
+
+\end_inset
+
+
+\family default
+ number of inodes per file system fragment 
+\family typewriter
+(fs->fs_fsize)
+\family default
+;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+
+\family typewriter
+NINDIR(fs)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+NINDIR(fs)
+\end_layout
+
+\end_inset
+
+
+\family default
+ number of indirects in a file system block.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000000.0000000000.0000000000
+
+\family typewriter
+FS_KERNMAXFILESIZE(pgsiz,fs)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+FS_KERNMAXFILESIZE(pgsiz,fs)
+\end_layout
+
+\end_inset
+
+
+\family default
+ maximum file size the kernel
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+kernel
+\end_layout
+
+\end_inset
+
+ allows.
+ Even though ffs can handle files up to 16 TB, the max file is limited to
+ 
+\begin_inset Formula $2^{31}$
+\end_inset
+
+ pages to prevent overflow of a 32-bit unsigned int.
+ The buffer cache has its own checks but a little added paranoia never hurts:
+\end_layout
+
+\begin_layout Subsection
+\noindent
+Inodes.
+\end_layout
+
+\begin_layout Standard
+The inode
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+inode
+\end_layout
+
+\end_inset
+
+ is the focus of all file activity in the UNIX file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+UNIX file system
+\end_layout
+
+\end_inset
+
+.
+ There is a unique inode
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+inode
+\end_layout
+
+\end_inset
+
+ allocated for each active file, each current directory, each mounted-on
+ file, text file and the root.
+ An i-node
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+i-node
+\end_layout
+
+\end_inset
+
+ is 
+\shape italic
+named
+\shape default
+ by its device/i-number pair.
+ The 
+\shape italic
+on-disk inode
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+on-disk inode
+\end_layout
+
+\end_inset
+
+
+\shape default
+ structure is called 
+\family typewriter
+dinode
+\family default
+ and is defined in the include file 
+\family typewriter
+<ufs/ufs/dinode.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<ufs/ufs/dinode.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:dinode-struct"
+
+\end_inset
+
+The dinode structures.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#define NXADDR 2   /* External addresses in inode */
+\end_layout
+
+\begin_layout Plain Layout
+
+#define NDADDR 12  /* Direct addresses in inode.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#define NIADDR 3   /* Indirect addresses in inode.
+ */ 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct  ufs1_dinode {
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int16_t di_mode;        /*   0: IFMT, permissions; see below.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	int16_t di_nlink;         /*   2: File link count.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	union {
+\end_layout
+
+\begin_layout Plain Layout
+
+		u_int16_t oldids[2];    /*   4: Ffs: old user and group ids.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+		u_int32_t inumber;      /*   4: Lfs: inode number.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	} di_u;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int64_t di_size;        /*   8: File byte count.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t di_atime;         /*  16: Last access time.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t di_atimensec;     /*  20: Last access time.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t di_mtime;         /*  24: Last modified time.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t di_mtimensec;     /*  28: Last modified time.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t di_ctime;         /*  32: Last inode change time.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t di_ctimensec;     /*  36: Last inode change time.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t di_db[ NDADDR ];  /*  40: Direct disk blocks.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t di_ib[ NIADDR ];  /*  88: Indirect disk blocks.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int32_t di_flags;       /* 100: Status flags (chflags).
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t di_blocks;        /* 104: Blocks actually held.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int32_t di_gen;         /* 108: Generation number.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int32_t di_uid;         /* 112: File owner.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int32_t di_gid;         /* 116: File group.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t di_spare[ 2 ];    /* 120: Reserved; currently unused */
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct ufs2_dinode {
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int16_t di_mode;        /*   0: IFMT, permissions; see below.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	int16_t di_nlink;         /*   2: File link count.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int32_t di_uid;         /*   4: File owner.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int32_t di_gid;         /*   8: File group.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int32_t di_blksize;     /*  12: Inode blocksize.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int64_t di_size;        /*  16: File byte count.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int64_t di_blocks;      /*  24: Bytes actually held.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	int64_t di_atime;         /*  32: Last access time.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	int64_t di_mtime;         /*  40: Last modified time.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	int64_t di_ctime;         /*  48: Last inode change time.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	int64_t di_birthtime;     /*  56: Inode creation time.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t di_mtimensec;     /*  64: Last modified time.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t di_atimensec;     /*  68: Last access time.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t di_ctimensec;     /*  72: Last inode change time.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t di_birthnsec;     /*  76: Inode creation time.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t di_gen;           /*  80: Generation number.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int32_t di_kernflags;   /*  84: Kernel flags.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int32_t di_flags;       /*  88: Status flags (chflags).
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	int32_t di_extsize;       /*  92: External attributes block.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	int64_t di_extb[ NXADDR ];/*  96: External attributes block.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	int64_t di_db[ NDADDR ];  /* 112: Direct disk blocks.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	int64_t di_ib[ NIADDR ];  /* 208: Indirect disk blocks.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	int64_t di_spare[ 3 ];    /* 232: Reserved; currently unused */
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+As mentioned previously, one of the reasons to read the raw file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ structure rather than going through the operating system is to calculate
+ disk space usage.
+ To retrieve informations about a directory or a file we can use fstat which
+ reads these from the disk.
+ fstat and related struct fstat are defined in 
+\family typewriter
+<sys/stat.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<sys/stat.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+ described in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:stat-struct"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Listing takes inode informations from a file specified in the command:
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:inode"
+
+\end_inset
+
+inode - a program to retrieve a file inode information.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* File inode.c.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <unistd.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <fcntl.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <util.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <fstab.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <errno.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/types.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/param.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/time.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/ioctl.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/dkio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/buf.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/disklabel.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/stat.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* program inode.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#define FOREVER for(;;)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Types.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int i, fd;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret;
+\end_layout
+
+\begin_layout Plain Layout
+
+	off_t offset;
+\end_layout
+
+\begin_layout Plain Layout
+
+	ssize_t n;  /* sysv stupidity */
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct stat sb;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Check arguments.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(argc == 2) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		printf("Opening file: %s
+\backslash
+n", argv[ 1 ]);
+\end_layout
+
+\begin_layout Plain Layout
+
+		if((fd = open(argv[ 1 ], O_RDONLY, 0, NULL)) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(fstat(fd, &sb) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("inode's device: %lld
+\backslash
+n", sb.st_dev);
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("inode's number: %lld
+\backslash
+n", sb.st_ino);
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("inode protection mode: 0x%0.6x
+\backslash
+n", sb.st_mode);
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("number of hard links: %lld
+\backslash
+n", sb.st_nlink);
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("user ID of the file's owner: %lld
+\backslash
+n", sb.st_uid);
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("group ID of the file's group: %lld
+\backslash
+n", sb.st_gid);
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("device type: %d
+\backslash
+n", sb.st_rdev);
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("time of last access: %s", ctime(&sb.st_atim.tv_sec));
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("time of last data modification: %s", ctime(&sb.st_mtim.tv_sec));
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("time of last file status change: %s", ctime(&sb.st_ctim.tv_sec));
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("file size in bytes: %lld
+\backslash
+n", sb.st_size);
+\end_layout
+
+\begin_layout Plain Layout
+
+			} else
+\end_layout
+
+\begin_layout Plain Layout
+
+				perror("stat");
+\end_layout
+
+\begin_layout Plain Layout
+
+			close(fd);
+\end_layout
+
+\begin_layout Plain Layout
+
+		} else
+\end_layout
+
+\begin_layout Plain Layout
+
+			perror("open");
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else
+\end_layout
+
+\begin_layout Plain Layout
+
+		fprintf(stderr, "usage: inode <filename>
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of inode.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

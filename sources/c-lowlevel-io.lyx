@@ -1,0 +1,2835 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass memoir
+\use_default_options true
+\master the-openbsd-c-particularist.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family sfdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1.7cm
+\topmargin 1cm
+\rightmargin 1.5cm
+\bottommargin 1.2cm
+\headheight 1cm
+\headsep 1cm
+\footskip 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:low-level-io"
+
+\end_inset
+
+Low-level I/O.
+\end_layout
+
+\begin_layout Standard
+\align right
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "50col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:file-descriptors"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:opening-and-creating-files-1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:closing-files-1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:reading-and-writing-files-1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:moving-around-in-files-1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:converting-file-descriptors-to-file-pointers"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+As discussed in the previous chapter, the Standard I/O Library
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Standard I/O Library
+\end_layout
+
+\end_inset
+
+ provides different methods for reading and writing data efficiently and
+ easily.
+ However, the task performed by these routines, namely buffering and input/outpu
+t conversion, are not always desirable.
+ For example, when performing input and output directly to and from a device
+ such a tape drive, the programmer needs to be able to determine the buffer
+ sizes to be used, rather than letting the stdio
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+stdio
+\end_layout
+
+\end_inset
+
+ routines do it.
+ Of course, routines do exist that provide that level of control.
+ The Standard I/O Library
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Standard I/O Library
+\end_layout
+
+\end_inset
+
+ is simply a user-friendly interface to the system calls described in this
+ chapter, which will call the 
+\shape italic
+low-level
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+low-level
+\end_layout
+
+\end_inset
+
+
+\shape default
+ interface.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:file-descriptors"
+
+\end_inset
+
+File Descriptors.
+\end_layout
+
+\begin_layout Standard
+The reader should recall that in the Standard I/O Library
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Standard I/O Library
+\end_layout
+
+\end_inset
+
+, a file is referred to by a file pointer, of type 
+\family typewriter
+FILE *
+\family default
+.
+ When using the low-level
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+low-level
+\end_layout
+
+\end_inset
+
+ interface, a file is referred to using a 
+\shape italic
+file descriptor
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+file descriptor
+\end_layout
+
+\end_inset
+
+
+\shape default
+, which is simply a small integer.
+ As with stdio
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+stdio
+\end_layout
+
+\end_inset
+
+, there are three predefined file descriptors: 
+\family typewriter
+STDIN_FILENO
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+STDIN_FILENO
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+STDOUT_FILENO
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+STDOUT_FILENO
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+STDERR_FILENO
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+STDERR_FILENO
+\end_layout
+
+\end_inset
+
+
+\family default
+, which refer to the standard input
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+standard input
+\end_layout
+
+\end_inset
+
+, standard output
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+standard output
+\end_layout
+
+\end_inset
+
+ and standard error
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+standard error
+\end_layout
+
+\end_inset
+
+ stream respectively.
+ The files 
+\shape italic
+/dev/fd/0
+\shape default
+ through 
+\shape italic
+/dev/fd/#
+\shape default
+ refer to file descriptors which can be accessed through the file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+.
+ If the file descriptor
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file descriptor
+\end_layout
+
+\end_inset
+
+ is open and the mode the file is being opened with is a subset of the mode
+ of the existing descriptor, the call:
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+fd = open("/dev/fd/0", mode);
+\end_layout
+
+\end_inset
+
+and the call:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+fd = fcntl(0, F_DUPFD, 0);
+\end_layout
+
+\end_inset
+
+are equivalent.
+ Unlike the Standard I/O Library
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Standard I/O Library
+\end_layout
+
+\end_inset
+
+, which provides a 
+\shape italic
+shorthand
+\shape default
+ set of routines to deal with the standard input and output, all the low-level
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+low-level
+\end_layout
+
+\end_inset
+
+ I/O routines require that a valid file descriptor
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file descriptor
+\end_layout
+
+\end_inset
+
+ be passed to them.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:opening-and-creating-files-1"
+
+\end_inset
+
+Opening and Creating Files.
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+open
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+open
+\end_layout
+
+\end_inset
+
+
+\family default
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+open
+\shape default
+(2).
+\end_layout
+
+\end_inset
+
+ routine is used to open a file for reading and/or writing, or to create
+ it.
+ 
+\family typewriter
+open
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+open
+\end_layout
+
+\end_inset
+
+
+\family default
+ takes a variable number of arguments: a character string containing the
+ complete path name of the file to open, an integer specifying how the file
+ is to be opened and an optional integer mode for use when creating a file.
+ It returns an integer which is the file descriptor
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file descriptor
+\end_layout
+
+\end_inset
+
+, on success or -1 if the file could not be opened.
+ The second argument to open is made up of various constants ORed together.
+ These constants are defined in the file 
+\family typewriter
+<fcntl.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<fcntl.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+O_RDONLY
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+O_RDONLY
+\end_layout
+
+\end_inset
+
+
+\family default
+ open for reading only;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+O_WRONLY
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+O_WRONLY
+\end_layout
+
+\end_inset
+
+
+\family default
+ open for writing only;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+O_RDWR
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+O_RDWR
+\end_layout
+
+\end_inset
+
+
+\family default
+ open for reading and writing.
+\end_layout
+
+\begin_layout Standard
+Any combination of the following flags may additionally be used:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+O_NONBLOCK
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+O_NONBLOCK
+\end_layout
+
+\end_inset
+
+
+\family default
+ do not block on open or for data to become available;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+O_APPEND
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+O_APPEND
+\end_layout
+
+\end_inset
+
+
+\family default
+ append on each write;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+O_CREAT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+O_CREAT
+\end_layout
+
+\end_inset
+
+
+\family default
+ create file if it does not exist.
+ An additional argument of type 
+\family typewriter
+mode_t
+\family default
+ must be supplied to the call;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+O_TRUNC
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+O_TRUNC
+\end_layout
+
+\end_inset
+
+
+\family default
+ truncate size to 0;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+O_EXCL
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+O_EXCL
+\end_layout
+
+\end_inset
+
+
+\family default
+ error if 
+\family typewriter
+O_CREAT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+O_CREAT
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set and file exists;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+O_SYNC
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+O_SYNC
+\end_layout
+
+\end_inset
+
+
+\family default
+ perform synchronous I/O operations;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+O_SHLOCK
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+O_SHLOCK
+\end_layout
+
+\end_inset
+
+ 
+\family default
+atomically obtain a shared lock;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+O_EXLOCK
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+O_EXLOCK
+\end_layout
+
+\end_inset
+
+
+\family default
+ atomically obtain an exclusive lock;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+O_NOFOLLOW
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+O_NOFOLLOW
+\end_layout
+
+\end_inset
+
+
+\family default
+ if last path element is a symlink, don't follow it;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+O_CLOEXEC
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+O_CLOEXEC
+\end_layout
+
+\end_inset
+
+
+\family default
+ set 
+\family typewriter
+FD_CLOEXEC
+\family default
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+FD_CLOEXEC
+\end_layout
+
+\end_inset
+
+, the close-on-exec flag, on the new file descriptor;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+O_DIRECTORY
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+O_DIRECTORY
+\end_layout
+
+\end_inset
+
+
+\family default
+ error if path does not name a directory.
+\end_layout
+
+\begin_layout Standard
+\noindent
+If the 
+\family typewriter
+O_CREAT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+O_CREAT
+\end_layout
+
+\end_inset
+
+
+\family default
+ option is given, the optional third argument should contain the mode which
+ the file should to be created.
+ This mode specifies the access permissions on the file and is described
+ in more detail in Chapter 4, 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "chap:files-directories"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:closing-files-1"
+
+\end_inset
+
+Closing Files.
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+close
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+close
+\end_layout
+
+\end_inset
+
+
+\family default
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+close
+\shape default
+(2).
+\end_layout
+
+\end_inset
+
+ system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+ is used to close an open file.
+ 
+\family typewriter
+close
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+close
+\end_layout
+
+\end_inset
+
+
+\family default
+ takes a single argument, the file descriptor
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file descriptor
+\end_layout
+
+\end_inset
+
+ referring to the file to be closed.
+ 0 is returned on success, -1 is returned if an error occurs.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:reading-and-writing-files-1"
+
+\end_inset
+
+Reading and Writing Files.
+\end_layout
+
+\begin_layout Standard
+At this point the reader can easily open and close files, the next thing
+ to do is read and write data from and to that file.
+ There is only one way to read from a file using the low-level interface
+ and likewise, only one way to write to a file - a buffer-full at a time.
+ The size of the buffer is left up to the programmer which has to use an
+ appropriate dimension.
+ For example, if the programmer reads or writes characters one at a time,
+ instead of in units of a few thousand, the operating system will access
+ the disk, or the device, once for each character resulting in a slower
+ program speed
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+This is actually not entirely true since peripherals are always buffered
+ for I/O operations.
+\end_layout
+
+\end_inset
+
+.
+ The 
+\family typewriter
+read
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+read
+\end_layout
+
+\end_inset
+
+
+\family default
+ system call takes three arguments: the first is the file descriptor
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file descriptor
+\end_layout
+
+\end_inset
+
+ for the open file to read.
+ The second is the pointer to the buffer which will contains data and the
+ third is the number of bytes to read from the file and store into the buffer.
+ If successful, the number of bytes actually read is returned.
+ Upon reading end-of-file
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+end-of-file
+\end_layout
+
+\end_inset
+
+, 0 is returned.
+ Otherwise, a -1 is returned and the global variable 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to indicate the error.
+ The 
+\family typewriter
+write
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+write
+\end_layout
+
+\end_inset
+
+
+\family default
+ system call takes three arguments: first is the file descriptor
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file descriptor
+\end_layout
+
+\end_inset
+
+ to an open file for write.
+ The second argument is a pointer to the buffer containing the data to be
+ written to the file and the third argument is the count, in bytes, of elements
+ from the beginning of the buffer to be written in the file.
+ Similarly to 
+\family typewriter
+read
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+read
+\end_layout
+
+\end_inset
+
+
+\family default
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+read
+\shape default
+(2).
+\end_layout
+
+\end_inset
+
+ system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+, upon successful completion the number of bytes which were written is returned.
+ Otherwise, a -1 is returned and the global variable 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to indicate the error.
+ Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:append2"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows a low-level version of our file appending program.
+ Note that because read and write cause the system to access the disk each
+ times they are called, it is important for the programmer to specify reasonably
+ large buffer sizes or else his/her program, and the system, will run very
+ slowly.
+ Try experimenting with large and small buffer sizes to get a feel for the
+ difference, the reader may need to use a file of one or five bilion characters
+ to really appreciate the difference.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:append2"
+
+\end_inset
+
+append2 - append one file to another using the low-level interface.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* append2.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <unistd.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <fcntl.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <errno.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* append2.c program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int n;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int fromfd, tofd;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char buf[ BUFSIZ ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	long ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Check our arguments.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(argc == 3) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		/* Open the from-file for reading.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+		if((fromfd = open(argv[ 1 ], O_RDONLY)) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			/*
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * Open the to-file for appending.
+  If to-file does
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * not exist, open will create it with mode 0644
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * -rw-r--r--.
+  Note that we specify the mode in octal
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * not decimal.
+\end_layout
+
+\begin_layout Plain Layout
+
+			 */
+\end_layout
+
+\begin_layout Plain Layout
+
+			if((tofd = open(argv[ 2 ], O_WRONLY | O_CREAT | O_APPEND, 0644)) >= 0)
+ {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+				/*
+\end_layout
+
+\begin_layout Plain Layout
+
+				 * Now read a buffer-full line at a time from from-file
+\end_layout
+
+\begin_layout Plain Layout
+
+				 * and write it to the to-file.
+  Note that we only
+\end_layout
+
+\begin_layout Plain Layout
+
+			 	* write the number of characters read  read in,
+\end_layout
+
+\begin_layout Plain Layout
+
+				 * rather than always writing BUFSIZ characters.
+\end_layout
+
+\begin_layout Plain Layout
+
+				 */
+\end_layout
+
+\begin_layout Plain Layout
+
+				while((n = read(fromfd, buf, sizeof(buf))) > 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+					if(write(tofd, buf, n) != n) {
+\end_layout
+
+\begin_layout Plain Layout
+
+						write(STDERR_FILENO, "Could not write to to-file.
+\backslash
+n", 28);
+\end_layout
+
+\begin_layout Plain Layout
+
+						break;
+\end_layout
+
+\begin_layout Plain Layout
+
+					}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+				/* Now close the files.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+				close(tofd);
+\end_layout
+
+\begin_layout Plain Layout
+
+				if(errno == 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+					ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+			} else {
+\end_layout
+
+\begin_layout Plain Layout
+
+				write(STDERR_FILENO, argv[ 2 ], strlen(argv[ 2 ]));
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+			close(fromfd);
+\end_layout
+
+\begin_layout Plain Layout
+
+		} else {
+\end_layout
+
+\begin_layout Plain Layout
+
+			write(STDERR_FILENO, argv[ 1 ], strlen(argv[ 1 ]));
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else {
+\end_layout
+
+\begin_layout Plain Layout
+
+    	write(STDERR_FILENO, "Usage: ", 7);
+\end_layout
+
+\begin_layout Plain Layout
+
+	    write(STDERR_FILENO, *argv, strlen(argv[ 0 ]));
+\end_layout
+
+\begin_layout Plain Layout
+
+		write(STDERR_FILENO, " from-file to-file
+\backslash
+n", 19);
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of append2.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+In the example above one could disagree with the fact that error messages
+ are printed using the low-level
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+low-level
+\end_layout
+
+\end_inset
+
+ 
+\family typewriter
+write
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+write
+\end_layout
+
+\end_inset
+
+
+\family default
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+write
+\shape default
+(2).
+\end_layout
+
+\end_inset
+
+ routine.
+ The purpose of this is to explain the usage of the routine itself.
+ It is clear that, 
+\family typewriter
+perror
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+perror
+\end_layout
+
+\end_inset
+
+
+\family default
+ would be quite a good choice, in fact that way one has not to give the
+ size of the character string to print.
+ Using 
+\family typewriter
+read
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+read
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+write
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+write
+\end_layout
+
+\end_inset
+
+
+\family default
+ always involve to deal with buffers and their dimensions.
+ Another problem is the usage of strlen.
+ This routine, defined in 
+\family typewriter
+<string.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<string.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+, is capable of computing the length of a nul-terminated string.
+ The reader should try to pass a non nul-terminated string to this routine
+ and see the effect.
+ A safer way to get the length for a string is 
+\family typewriter
+strnlen
+\family default
+ which thatkes to arguments: a string and a maximum length to return.
+ In fact if, for whatever reason, the length overflow the value specified
+ in the second argument, the routine returns it.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:moving-around-in-files-1"
+
+\end_inset
+
+Moving Around in Files.
+\end_layout
+
+\begin_layout Standard
+As mentioned before, it is often necessary to move to a specific location
+ in a file before reading or writing data.
+ The low-level routine
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+low-level routine
+\end_layout
+
+\end_inset
+
+ for moving around in a file is called 
+\family typewriter
+lseek
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+lseek
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ The function repositions the offset of the file descriptor
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file descriptor
+\end_layout
+
+\end_inset
+
+ in the first argument to the second argument of type 
+\family typewriter
+off_t
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+off_t
+\end_layout
+
+\end_inset
+
+
+\family default
+ which is an offset according to the third argument the 
+\shape italic
+whence
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+whence
+\end_layout
+
+\end_inset
+
+
+\shape default
+ directive.
+ The first argument must be an open file descriptor
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file descriptor
+\end_layout
+
+\end_inset
+
+.
+ 
+\family typewriter
+lseek
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+lseek
+\end_layout
+
+\end_inset
+
+
+\family default
+ repositions the file pointer as follows:
+\end_layout
+
+\begin_layout Itemize
+if whence is 
+\family typewriter
+SEEK_SET
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+SEEK_SET
+\end_layout
+
+\end_inset
+
+
+\family default
+, the offset is set to offset bytes;
+\end_layout
+
+\begin_layout Itemize
+if whence is 
+\family typewriter
+SEEK_CUR
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SEEK_CUR
+\end_layout
+
+\end_inset
+
+
+\family default
+, the offset is set to its current location plus offset bytes;
+\end_layout
+
+\begin_layout Itemize
+if whence is 
+\family typewriter
+SEEK_END
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SEEK_END
+\end_layout
+
+\end_inset
+
+
+\family default
+, the offset is set to the size of the file plus offset bytes.
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+lseek
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+lseek
+\end_layout
+
+\end_inset
+
+
+\family default
+ function allows the file offset to be set beyond the end of the existing
+ end-of-file
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+end-of-file
+\end_layout
+
+\end_inset
+
+ of the file.
+ If data is later written at this point, subsequent reads of the data in
+ the gap return bytes of zeros, until data is actually written into the
+ gap.
+ Some devices are incapable of seeking and thus the value of the pointer
+ associated with such a device is undefined.
+ Upon successful completion, 
+\family typewriter
+lseek
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+lseek
+\end_layout
+
+\end_inset
+
+
+\family default
+ returns the resulting offset location as measured in bytes from the beginning
+ of the file.
+ Otherwise, a value of -1 is returned and 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to indicate the error.
+\end_layout
+
+\begin_layout Subsection
+Duplicating File Descriptors.
+\end_layout
+
+\begin_layout Standard
+Occasionally it is necessary to have more than one file descriptor
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file descriptor
+\end_layout
+
+\end_inset
+
+ referring to the same file.
+ This is common when forking and executing new processes.
+ To obtain a new file descriptor
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file descriptor
+\end_layout
+
+\end_inset
+
+ which refers to the same file:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+int fd, fd2;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+......
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+fd2 = dup(fd);
+\end_layout
+
+\end_inset
+
+
+\family typewriter
+fd2
+\family default
+ will now refer to the same file as 
+\family typewriter
+fd
+\family default
+ did.
+ 
+\family typewriter
+dup
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+dup
+\end_layout
+
+\end_inset
+
+
+\family default
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+dup
+\shape default
+(2).
+ 
+\end_layout
+
+\end_inset
+
+ returns -1 if an error occurs.
+ Two alternate forms of the call allows the programmer to select which file
+ descriptor the user wishes to refer to the file and additional flags.
+ For example suppose that standard input should be connected to a given
+ disk file referred by a file descriptor
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file descriptor
+\end_layout
+
+\end_inset
+
+ stored in the variable 
+\family typewriter
+fd
+\family default
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+This is how the shell handles the '<' redirect.
+\end_layout
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=4"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+int fd;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+......
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+dup2(fd, 0);
+\end_layout
+
+\end_inset
+
+In 
+\family typewriter
+dup2
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+dup2
+\end_layout
+
+\end_inset
+
+
+\family default
+, the value of the second argument, the new descriptor, is specified.
+ If this descriptor is already in use, it is first deallocated as if a 
+\family typewriter
+close
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+close
+\end_layout
+
+\end_inset
+
+
+\family default
+ call had been done first.
+ When the second argument equals the first argument, 
+\family typewriter
+dup2
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+dup2
+\end_layout
+
+\end_inset
+
+
+\family default
+ just returns without affecting the close-on-exec
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+close-on-exec
+\end_layout
+
+\end_inset
+
+ flag.
+ In 
+\family typewriter
+dup3
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+dup3
+\end_layout
+
+\end_inset
+
+
+\family default
+, both the value of the second argument, the new descriptor and the close-on-exe
+c flag on the second argument, the new file descriptor
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file descriptor
+\end_layout
+
+\end_inset
+
+, are specified: the second argument specifies the value and the 
+\family typewriter
+O_CLOEXEC
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+O_CLOEXEC
+\end_layout
+
+\end_inset
+
+
+\family default
+ bit in the third argument specifies the close-on-exec
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+close-on-exec
+\end_layout
+
+\end_inset
+
+ flag.
+ Unlike 
+\family typewriter
+dup2
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+dup2
+\end_layout
+
+\end_inset
+
+
+\family default
+, if the first argument and the second argument are equal then 
+\family typewriter
+dup3
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+dup3
+\end_layout
+
+\end_inset
+
+
+\family default
+ fails.
+ Otherwise, if the third argument is 0 then 
+\family typewriter
+dup3
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+dup3
+\end_layout
+
+\end_inset
+
+
+\family default
+ is identical to a call to 
+\family typewriter
+dup2
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+dup2
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:converting-file-descriptors-to-file-pointers"
+
+\end_inset
+
+Converting File Descriptors to File Pointers.
+\end_layout
+
+\begin_layout Standard
+Sometimes is desirable to convert an existing low-level
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+low-level
+\end_layout
+
+\end_inset
+
+ file descriptor
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file descriptor
+\end_layout
+
+\end_inset
+
+ referring to an open file into something that can be used with the Standard
+ I/O Library
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Standard I/O Library
+\end_layout
+
+\end_inset
+
+.
+ For example the 
+\family typewriter
+pipe
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+pipe
+\end_layout
+
+\end_inset
+
+
+\family default
+ system call, described in Chapter 9, 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "chap:executing-programs"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, returns a file descriptor
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file descriptor
+\end_layout
+
+\end_inset
+
+ connected to the output stream of another program.
+ If this program prints nothing but a list of numbers, it would be useful
+ to be able to use 
+\family typewriter
+fscanf
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fscanf
+\end_layout
+
+\end_inset
+
+
+\family default
+ to read them in.
+ The stdio
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+stdio
+\end_layout
+
+\end_inset
+
+ routine 
+\family typewriter
+fdopen
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fdopen
+\end_layout
+
+\end_inset
+
+
+\family default
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+fdopen
+\shape default
+(3).
+\end_layout
+
+\end_inset
+
+ takes two arguments: a file descriptor
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file descriptor
+\end_layout
+
+\end_inset
+
+ referring to an open file and a character string indicating how the file
+ descriptor
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file descriptor
+\end_layout
+
+\end_inset
+
+ is to be used.
+ This second argument is identical to the second argument used with 
+\family typewriter
+fopen
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fopen
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ Upon successful completion, 
+\family typewriter
+fdopen
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fdopen
+\end_layout
+
+\end_inset
+
+
+\family default
+ return a 
+\family typewriter
+FILE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+FILE
+\end_layout
+
+\end_inset
+
+
+\family default
+ pointer.
+ Otherwise, 
+\family typewriter
+NULL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+NULL
+\end_layout
+
+\end_inset
+
+
+\family default
+ is returned and the global variable 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to indicate the error.
+ As reference the second argument, indicating the mode, points to a string
+ beginning with one of the following sequences, additional characters may
+ follow these sequences:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+\begin_inset Quotes eld
+\end_inset
+
+r
+\begin_inset Quotes erd
+\end_inset
+
+|“rb”
+\family default
+ open file for reading;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+“r+”|“rb+”|
+\begin_inset Quotes erd
+\end_inset
+
+r+b”
+\family default
+ open for reading and writing;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+“w”|“wb”
+\family default
+ open for writing.
+ The file is created if it does not exist, otherwise it is truncated;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+“w+”|“wb+”|“w+b”
+\family default
+ open for reading and writing.
+ The file is created if it does not exist, otherwise it is truncated;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+“a”|“ab”
+\family default
+ open for writing.
+ The file is created if it does not exist;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+“a+”
+\family default
+|
+\family typewriter
+“ab+”
+\family default
+|
+\family typewriter
+“a+b” 
+\family default
+open for reading and writing.
+ The file is created if it does not exist.
+\end_layout
+
+\begin_layout Standard
+The letter 
+\family typewriter
+“b”
+\family default
+ in the mode strings above is strictly for compatibility with ANSI X3.159-1989
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+ANSI X3.159-1989
+\end_layout
+
+\end_inset
+
+ (“ANSI C89
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+ANSI C89
+\end_layout
+
+\end_inset
+
+”) and has no effect; the 
+\family typewriter
+“b”
+\family default
+ is ignored.
+ After any of the above prefixes, the mode string can also include zero
+ or more of the following:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family typewriter
+“e”
+\family default
+ the close-on-exec
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+close-on-exec
+\end_layout
+
+\end_inset
+
+ flag is set on the underlying file descriptor
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file descriptor
+\end_layout
+
+\end_inset
+
+ of the new 
+\family typewriter
+FILE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+FILE
+\end_layout
+
+\end_inset
+
+
+\family default
+;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family typewriter
+“x”
+\family default
+ if the mode string starts with 
+\family typewriter
+“w”
+\family default
+ or 
+\family typewriter
+“a”
+\family default
+ then the function shall fail if the file specified by path already exists,
+ as if the 
+\family typewriter
+O_EXCL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+O_EXCL
+\end_layout
+
+\end_inset
+
+
+\family default
+ flag was passed to the 
+\family typewriter
+open
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+open
+\end_layout
+
+\end_inset
+
+
+\family default
+ function.
+ It has no effect if used with 
+\family typewriter
+fdopen
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fdopen
+\end_layout
+
+\end_inset
+
+
+\family default
+ or the mode string begins with 
+\family typewriter
+“r”
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+Like described for 
+\family typewriter
+fopen
+\family default
+ in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:opening-and-creating-files"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\end_body
+\end_document

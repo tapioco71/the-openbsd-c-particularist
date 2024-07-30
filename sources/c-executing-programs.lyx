@@ -1,0 +1,6907 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass memoir
+\use_default_options true
+\master the-openbsd-c-particularist.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family sfdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1.7cm
+\topmargin 1cm
+\rightmargin 1.5cm
+\bottommargin 1.2cm
+\headheight 1cm
+\headsep 1cm
+\footskip 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:executing-programs"
+
+\end_inset
+
+Executing Programs
+\end_layout
+
+\begin_layout Standard
+\align right
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "50col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:the-system-library-routine"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:executing-programs-directly"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:redirecting-input-and-output"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:setting-up-pipelines"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+One of the most powerful tools provided for the UNIX
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+UNIX
+\end_layout
+
+\end_inset
+
+ programmer on OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ is the ability to have one program execute another.
+ For example, the command interpreter
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Called the 
+\shape italic
+shell
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+shell
+\end_layout
+
+\end_inset
+
+
+\shape default
+.
+\end_layout
+
+\end_inset
+
+ is a simple program like any other, which executes programs for the user.
+ It is possible for anyone to write a shell
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+shell
+\end_layout
+
+\end_inset
+
+ if the user doesn't like the ones provided and several people have.
+ This chapter describes the methods used to execute programs from within
+ other programs.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:the-system-library-routine"
+
+\end_inset
+
+The System Library Routine.
+\end_layout
+
+\begin_layout Standard
+The simplest way to execute a program is by using the 
+\family typewriter
+system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+system
+\end_layout
+
+\end_inset
+
+
+\family default
+ library routine.
+ This takes a single argument, a character string containing the command
+ to be executed.
+ The 
+\family typewriter
+system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+system
+\end_layout
+
+\end_inset
+
+
+\family default
+ function hands the argument string to the command interpreter 
+\shape italic
+sh
+\shape default
+(1).
+ The calling process waits for the shell
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+shell
+\end_layout
+
+\end_inset
+
+ to finish executing the command, ignoring 
+\family typewriter
+SIGINT
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGINT
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+SIGQUIT
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGQUIT
+\end_layout
+
+\end_inset
+
+
+\family default
+ and blocking 
+\family typewriter
+SIGCHLD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGCHLD
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ If the argument string is 
+\family typewriter
+NULL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+NULL
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+system
+\end_layout
+
+\end_inset
+
+
+\family default
+ will return non-zero.
+ Otherwise, it returns the termination status of the shell
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+shell
+\end_layout
+
+\end_inset
+
+ in the format specified by 
+\shape italic
+waitpid
+\shape default
+(2).
+ Note that fork handlers established using 
+\shape italic
+pthread_atfork
+\shape default
+(3) are not called when a multithreaded program calls 
+\family typewriter
+system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+system
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ If a child process cannot be created, or the termination status of the
+ shell
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+shell
+\end_layout
+
+\end_inset
+
+ cannot be obtained, 
+\family typewriter
+system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+system
+\end_layout
+
+\end_inset
+
+
+\family default
+ returns -1 and sets 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ to indicate the error.
+ If execution of the shell
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+shell
+\end_layout
+
+\end_inset
+
+ fails, 
+\family typewriter
+system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+system
+\end_layout
+
+\end_inset
+
+
+\family default
+ returns the termination status for a program that terminates with a call
+ of 
+\family typewriter
+exit(127)
+\family default
+.
+ There are three major problems with 
+\family typewriter
+system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+system
+\end_layout
+
+\end_inset
+
+
+\family default
+: first, it is not versatile: 
+\end_layout
+
+\begin_layout Itemize
+commands may be executed, but the process executing them has no control
+ over the subprocess;
+\end_layout
+
+\begin_layout Itemize
+a lot of overhead is required.
+ Before executing the desired command, 
+\family typewriter
+system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+system
+\end_layout
+
+\end_inset
+
+
+\family default
+ executes a shell process.
+ Because the shell will immediately be executing something else, this is
+ a waste of processor time;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+system
+\end_layout
+
+\end_inset
+
+
+\family default
+ is a security hole.
+ In order to prevent random system cracking, the security problems presented
+ by 
+\family typewriter
+system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+system
+\end_layout
+
+\end_inset
+
+
+\family default
+ will be not described here.
+ Suffice to say that a set-user-id, particularly to the super-user
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+super-user
+\end_layout
+
+\end_inset
+
+, program should never use 
+\family typewriter
+system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+system
+\end_layout
+
+\end_inset
+
+
+\family default
+ to execute its sub processes.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:executing-programs-directly"
+
+\end_inset
+
+Executing Programs Directly.
+\end_layout
+
+\begin_layout Standard
+The alternative to using 
+\family typewriter
+system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+system
+\end_layout
+
+\end_inset
+
+
+\family default
+ is to create new processes and execute programs directly.
+ There are three distinct steps to executing programs: creating new processes,
+ making them execute other programs and waiting for them to terminate.
+ In order to execute a program, it is first necessary to create a new process
+ for that program to run in.
+ A running program creates a new process by making a copy of itself.
+ This copy is then immediately overlaid with the new program to be executed.
+\end_layout
+
+\begin_layout Subsection
+Creating Processes.
+\end_layout
+
+\begin_layout Standard
+The system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+ to create a new process is called 
+\family typewriter
+fork
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fork
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ 
+\family typewriter
+fork
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fork
+\end_layout
+
+\end_inset
+
+
+\family default
+ causes creation of a new process: this is called 
+\shape italic
+child process
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+child process
+\end_layout
+
+\end_inset
+
+
+\shape default
+ which is an exact copy of the calling process, called 
+\shape italic
+parent process
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+parent process
+\end_layout
+
+\end_inset
+
+
+\shape default
+, except for the following:
+\end_layout
+
+\begin_layout Itemize
+the child process
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+child process
+\end_layout
+
+\end_inset
+
+ has a unique process id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+process id
+\end_layout
+
+\end_inset
+
+, which also does not match any existing process group id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+process group id
+\end_layout
+
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Itemize
+the child process
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+child process
+\end_layout
+
+\end_inset
+
+ has a different parent process id
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+I.e., the process id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+process id
+\end_layout
+
+\end_inset
+
+ of the parent process.
+\end_layout
+
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Itemize
+the child process
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+child process
+\end_layout
+
+\end_inset
+
+ has a single thread;
+\end_layout
+
+\begin_layout Itemize
+the child process
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+child process
+\end_layout
+
+\end_inset
+
+ has its own copy of the parent's descriptors.
+ These descriptors reference the same underlying objects, so that, for instance,
+ file pointers in file objects are shared between the child and the parent,
+ so that an 
+\shape italic
+lseek
+\shape default
+(2) on a descriptor in the child process can affect a subsequent 
+\shape italic
+read
+\shape default
+(2) or 
+\shape italic
+write
+\shape default
+(2) by the parent.
+ This descriptor copying is also used by the shell to establish standard
+ input and output for newly created processes as well as to set up pipes;
+\end_layout
+
+\begin_layout Itemize
+the child process
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+child process
+\end_layout
+
+\end_inset
+
+ has no 
+\shape italic
+fcntl
+\shape default
+(2)-style file locks;
+\end_layout
+
+\begin_layout Itemize
+the child process
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+child process
+\end_layout
+
+\end_inset
+
+' resource utilizations are set to 0
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+getrusage
+\shape default
+(2).
+\end_layout
+
+\end_inset
+
+; 
+\end_layout
+
+\begin_layout Itemize
+all interval timers are cleared
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+setitimer
+\shape default
+(2).
+\end_layout
+
+\end_inset
+
+; 
+\end_layout
+
+\begin_layout Itemize
+the child process
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+child process
+\end_layout
+
+\end_inset
+
+' semaphore undo values are set to 0
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+semop
+\shape default
+(2).
+\end_layout
+
+\end_inset
+
+; 
+\end_layout
+
+\begin_layout Itemize
+the child process
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+child process
+\end_layout
+
+\end_inset
+
+' pending signals set is empty;
+\end_layout
+
+\begin_layout Itemize
+the child process
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+child process
+\end_layout
+
+\end_inset
+
+ has no memory locks
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+mlock
+\shape default
+(2) and 
+\shape italic
+mlockall
+\shape default
+(2).
+\end_layout
+
+\end_inset
+
+; 
+\end_layout
+
+\begin_layout Standard
+\noindent
+In general, the child process
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+child process
+\end_layout
+
+\end_inset
+
+ should call 
+\shape italic
+_exit
+\shape default
+(2) rather than 
+\shape italic
+exit
+\shape default
+(3).
+ Otherwise, any stdio
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+stdio
+\end_layout
+
+\end_inset
+
+ buffers that exist both in the parent and child will be flushed twice.
+ Similarly, 
+\shape italic
+_exit
+\shape default
+(2) should be used to prevent 
+\shape italic
+atexit
+\shape default
+(3) routines from being called twice
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Once in the parent and once in the child
+\end_layout
+
+\end_inset
+
+.
+ Upon successful completion, 
+\family typewriter
+fork
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fork
+\end_layout
+
+\end_inset
+
+
+\family default
+ returns a value of 0 to the child process
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+child process
+\end_layout
+
+\end_inset
+
+ and returns the process id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+process id
+\end_layout
+
+\end_inset
+
+ of the child process to the parent process.
+ Otherwise, a value of -1 is returned to the parent process
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+parent process
+\end_layout
+
+\end_inset
+
+, no child process
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+child process
+\end_layout
+
+\end_inset
+
+ is created, and the global variable 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to indicate the error.
+\end_layout
+
+\begin_layout Subsection
+Executing Programs.
+\end_layout
+
+\begin_layout Standard
+The system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+ to execute programs is generically called 
+\family typewriter
+exec
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+exec
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ It exists in several forms described below, but all forms of the call share
+ certain properties.
+ The 
+\family typewriter
+exec
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+exec
+\end_layout
+
+\end_inset
+
+
+\family default
+ family of functions shall replace the current process image with a new
+ process image.
+ The new image shall be constructed from a regular, executable file called
+ the 
+\shape italic
+new process image file
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+new process image file
+\end_layout
+
+\end_inset
+
+
+\shape default
+.
+ There shall be no return from a successful 
+\family typewriter
+exec
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+exec
+\end_layout
+
+\end_inset
+
+
+\family default
+, because the calling process image is overlaid by the new process image.
+ The 
+\family typewriter
+fexecve
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fexecve
+\end_layout
+
+\end_inset
+
+
+\family default
+ function shall be equivalent to the 
+\family typewriter
+execve
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+execve
+\end_layout
+
+\end_inset
+
+
+\family default
+ function except that the file to be executed is determined by the file
+ descriptor
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file descriptor
+\end_layout
+
+\end_inset
+
+ in the first argument instead of a pathname.
+ The file offset
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file offset
+\end_layout
+
+\end_inset
+
+ of the first argument, the file descriptor
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file descriptor
+\end_layout
+
+\end_inset
+
+, is ignored.
+ When a C-language program is executed as a result of a call to one of the
+ 
+\family typewriter
+exec
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+exec
+\end_layout
+
+\end_inset
+
+
+\family default
+ family of functions, it shall be entered as a C-language function call
+ as follows:
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+int main (int argc, char *argv[]);
+\end_layout
+
+\end_inset
+
+where 
+\family typewriter
+argc
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+argc
+\end_layout
+
+\end_inset
+
+
+\family default
+ is the argument count and 
+\family typewriter
+argv
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+argv
+\end_layout
+
+\end_inset
+
+
+\family default
+ is an array of character pointers to the arguments themselves.
+ In addition, the following variable, which must be declared by the user
+ if it is to be used directly:
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+extern char **environ;
+\end_layout
+
+\end_inset
+
+is initialized as a pointer to an array of character pointers to the environment
+ strings.
+ The 
+\family typewriter
+argv
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+argv
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+environ
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+environ
+\end_layout
+
+\end_inset
+
+
+\family default
+ arrays are each terminated by a null pointer.
+ The null pointer terminating the 
+\family typewriter
+argv
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+argv
+\end_layout
+
+\end_inset
+
+
+\family default
+ array is not counted in 
+\family typewriter
+argc
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+argc
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ Applications can change the entire environment in a single operation by
+ assigning the 
+\family typewriter
+environ
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+environ
+\end_layout
+
+\end_inset
+
+
+\family default
+ variable to point to an array of character pointers to the new environment
+ strings.
+ After assigning a new value to 
+\family typewriter
+environ
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+environ
+\end_layout
+
+\end_inset
+
+
+\family default
+, applications should not rely on the new environment strings remaining
+ part of the environment, as a call to 
+\family typewriter
+getenv
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getenv
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+putenv
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+putenv
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+setenv
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+setenv
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+unsetenv
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+unsetenv
+\end_layout
+
+\end_inset
+
+
+\family default
+, or any function that is dependent on an environment variable may, on noticing
+ that 
+\family typewriter
+environ
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+environ
+\end_layout
+
+\end_inset
+
+
+\family default
+ has changed, copy the environment strings to a new array and assign environ
+ to point to it.
+ Any application that directly modifies the pointers to which the 
+\family typewriter
+environ
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+environ
+\end_layout
+
+\end_inset
+
+
+\family default
+ variable points has undefined behavior.
+ Conforming multi-threaded applications shall not use the 
+\family typewriter
+environ
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+environ
+\end_layout
+
+\end_inset
+
+
+\family default
+ variable to access or modify any environment variable while any other thread
+ is concurrently modifying any environment variable.
+ A call to any function dependent on any environment variable shall be considere
+d a use of the 
+\family typewriter
+environ
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+environ
+\end_layout
+
+\end_inset
+
+
+\family default
+ variable to access that environment variable.
+ The arguments specified by a program with one of the 
+\family typewriter
+exec
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+exec
+\end_layout
+
+\end_inset
+
+
+\family default
+ functions shall be passed on to the new process image in the corresponding
+ 
+\family typewriter
+main
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+main
+\end_layout
+
+\end_inset
+
+
+\family default
+ arguments.
+ The first argument of the functions: 
+\family typewriter
+execl
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+execl
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+execle
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+execle
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+execlp
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+execlp
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+execv
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+execv
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+execve
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+execve
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+execvp
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+execvp
+\end_layout
+
+\end_inset
+
+
+\family default
+ represents a pointer to the pathname string that identifies the new process
+ image file
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+process image file
+\end_layout
+
+\end_inset
+
+.
+ For the system calls: execlp and execvp the first argument is used to construct
+ a pathname that identifies the new process image file.
+ If the file argument contains a '/' character, the file argument shall
+ be used as the pathname for this file.
+ Otherwise, the path prefix for this file is obtained by a search of the
+ directories passed as the environment variable 
+\family typewriter
+PATH
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See the Base Definitions volume of POSIX.1-2017, Chapter 8, Environment Variables.
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+PATH
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ If this environment variable is not present, the results of the search
+ are implementation-defined.
+ There are two distinct ways in which the contents of the process image
+ file may cause the execution to fail, distinguished by the setting of 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ to either 
+\family typewriter
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOEXEC
+\end_layout
+
+\end_inset
+
+ENOEXEC
+\family default
+ or 
+\family typewriter
+EINVAL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+EINVAL
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ In the cases where the other members of the 
+\family typewriter
+exec
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+exec
+\end_layout
+
+\end_inset
+
+
+\family default
+ family of functions would fail and set errno to 
+\family typewriter
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ENOEXEC
+\end_layout
+
+\end_inset
+
+ENOEXEC
+\family default
+, the 
+\family typewriter
+execlp
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+execlp
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+execvp
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+execvp
+\end_layout
+
+\end_inset
+
+
+\family default
+ functions shall execute a command interpreter and the environment of the
+ executed command shall be as if the process invoked the sh utility using
+ 
+\family typewriter
+execl
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+execl
+\end_layout
+
+\end_inset
+
+
+\family default
+ as follows:
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+execl(<shell path>, arg0, file, arg1, ..., (char *) 0);
+\end_layout
+
+\end_inset
+
+where 
+\family typewriter
+<shell path>
+\family default
+ is an unspecified pathname for the sh utility, 
+\family typewriter
+file
+\family default
+ is the process image file, and for 
+\family typewriter
+execvp
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+execvp
+\end_layout
+
+\end_inset
+
+
+\family default
+, where 
+\family typewriter
+arg0
+\family default
+, 
+\family typewriter
+arg1
+\family default
+, and so on correspond to the values passed to 
+\family typewriter
+execvp
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+execvp
+\end_layout
+
+\end_inset
+
+
+\family default
+ in 
+\family typewriter
+argv[0]
+\family default
+, 
+\family typewriter
+argv[1]
+\family default
+, and so on.
+ The arguments represented by 
+\family typewriter
+arg0
+\family default
+,
+\family typewriter
+ ...
+
+\family default
+ are pointers to null-terminated character strings.
+ These strings shall constitute the argument list available to the new process
+ image.
+ The list is terminated by a null pointer.
+ The argument 
+\family typewriter
+arg0
+\family default
+ should point to a filename string that is associated with the process being
+ started by one of the exec functions.
+ The argument 
+\family typewriter
+argv
+\family default
+ is an array of character pointers to null-terminated strings.
+ The application shall ensure that the last member of this array is a null
+ pointer.
+ These strings shall constitute the argument list available to the new process
+ image.
+ The value in 
+\family typewriter
+argv[0]
+\family default
+ should point to a filename string that is associated with the process being
+ started by one of the exec functions.
+ In the functions 
+\family typewriter
+execle
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+execle
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+fexecve
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fexecve
+\end_layout
+
+\end_inset
+
+
+\family default
+ the last argument is an array of character pointers to null-terminated
+ strings.
+ These strings shall constitute the environment for the new process image.
+ This array is terminated by a null pointer.
+ For those forms not containing an array for the environment: 
+\family typewriter
+execl
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+execl
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+execv
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+execv
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+execlp
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+execlp
+\end_layout
+
+\end_inset
+
+
+\family default
+, and 
+\family typewriter
+execvp
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+execvp
+\end_layout
+
+\end_inset
+
+
+\family default
+, the environment for the new process image shall be taken from the external
+ variable environ in the calling process.
+ The number of bytes available for the new process' combined argument and
+ environment lists is 
+\family typewriter
+{ARG_MAX}
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+{ARG_MAX}
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ It is implementation-defined whether null terminators, pointers, and/or
+ any alignment bytes are included in this total.
+ File descriptors open in the calling process image shall remain open in
+ the new process image, except for those whose close-on-exec
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+close-on-exec
+\end_layout
+
+\end_inset
+
+ flag 
+\family typewriter
+FD_CLOEXEC
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+FD_CLOEXEC
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set.
+ For those file descriptors that remain open, all attributes of the open
+ file description remain unchanged.
+ For any file descriptor that is closed for this reason, file locks are
+ removed as a result of the close as described in 
+\family typewriter
+close
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+close
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ Locks that are not removed by closing of file descriptors remain unchanged.
+ If file descriptor 0, 1, or 2 would otherwise be closed after a successful
+ call to one of the 
+\family typewriter
+exec
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+exec
+\end_layout
+
+\end_inset
+
+
+\family default
+ family of functions, implementations may open an unspecified file for the
+ file descriptor in the new process image.
+ If a standard utility or a conforming application is executed with file
+ descriptor 0 not open for reading or with file descriptor 1 or 2 not open
+ for writing, the environment in which the utility or application is executed
+ shall be deemed non-conforming, and consequently the utility or application
+ might not behave as described in this standard.
+ Directory streams open in the calling process image shall be closed in
+ the new process image.
+ The state of the floating-point environment in the initial thread of the
+ new process image shall be set to the default.
+ The state of conversion descriptors and message catalog descriptors in
+ the new process image is undefined.
+ For the new process image, the equivalent of:
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+setlocale(LC_ALL, "C")
+\end_layout
+
+\end_inset
+
+shall be executed at start-up.
+ Signals set to the default action, 
+\family typewriter
+SIG_DFL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIG_DFL
+\end_layout
+
+\end_inset
+
+
+\family default
+, in the calling process image shall be set to the default action in the
+ new process image.
+ Except for 
+\family typewriter
+SIGCHLD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGCHLD
+\end_layout
+
+\end_inset
+
+
+\family default
+, signals set to be ignored, 
+\family typewriter
+SIG_IGN
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIG_IGN
+\end_layout
+
+\end_inset
+
+
+\family default
+, by the calling process image shall be set to be ignored by the new process
+ image.
+ Signals set to be caught by the calling process image shall be set to the
+ default action in the new process image
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\family typewriter
+<signal.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<signal.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+\end_layout
+
+\end_inset
+
+.
+ If the 
+\family typewriter
+SIGCHLD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGCHLD
+\end_layout
+
+\end_inset
+
+
+\family default
+ signal is set to be ignored by the calling process image, it is unspecified
+ whether the 
+\family typewriter
+SIGCHLD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGCHLD
+\end_layout
+
+\end_inset
+
+
+\family default
+ signal is set to be ignored or to the default action in the new process
+ image.
+ After a successful call to any of the 
+\family typewriter
+exec
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+exec
+\end_layout
+
+\end_inset
+
+
+\family default
+ functions, alternate signal stacks are not preserved and the 
+\family typewriter
+SA_ONSTACK
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SA_ONSTACK
+\end_layout
+
+\end_inset
+
+
+\family default
+ flag shall be cleared for all signals.
+ After a successful call to any of the 
+\family typewriter
+exec
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+exec
+\end_layout
+
+\end_inset
+
+
+\family default
+ functions, any functions previously registered by the 
+\family typewriter
+atexit
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+atexit
+\end_layout
+
+\end_inset
+
+
+\family default
+ or 
+\family typewriter
+pthread_atfork
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+pthread_atfork
+\end_layout
+
+\end_inset
+
+
+\family default
+ functions are no longer registered.
+ If the 
+\family typewriter
+ST_NOSUID
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ST_NOSUID
+\end_layout
+
+\end_inset
+
+
+\family default
+ bit is set for the file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ containing the new process image file, then the effective user id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+effective user id
+\end_layout
+
+\end_inset
+
+, effective group id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+effective group id
+\end_layout
+
+\end_inset
+
+, saved set-user-id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+set-user-id
+\end_layout
+
+\end_inset
+
+, and saved set-group-id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+set-group-id
+\end_layout
+
+\end_inset
+
+ are unchanged in the new process image.
+ Otherwise, if the set-user-id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+set-user-id
+\end_layout
+
+\end_inset
+
+ mode bit of the new process image file is set, the effective user id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+effective user id
+\end_layout
+
+\end_inset
+
+ of the new process image shall be set to the user id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+user id
+\end_layout
+
+\end_inset
+
+ of the new process image file.
+ Similarly, if the set-group-ID mode bit of the new process image file is
+ set, the effective group ID of the new process image shall be set to the
+ group id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+group id
+\end_layout
+
+\end_inset
+
+ of the new process image file.
+ The real user id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+real user id
+\end_layout
+
+\end_inset
+
+, real group id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+real group id
+\end_layout
+
+\end_inset
+
+, and supplementary group ids of the new process image shall remain the
+ same as those of the calling process image.
+ The effective user id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+effective user id
+\end_layout
+
+\end_inset
+
+ and effective group id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+effective group id
+\end_layout
+
+\end_inset
+
+ of the new process image shall be saved, as the saved set-user-id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+set-user-id
+\end_layout
+
+\end_inset
+
+ and the saved set-group-id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+set-group-id
+\end_layout
+
+\end_inset
+
+, for use by 
+\family typewriter
+setuid
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+setuid
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ Any shared memory segments attached to the calling process image shall
+ not be attached to the new process image.
+ Any named semaphores open in the calling process shall be closed as if
+ by appropriate calls to 
+\family typewriter
+sem_close
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+sem_close
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ Any blocks of typed memory that were mapped in the calling process are
+ unmapped, as if 
+\family typewriter
+munmap
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+munmap
+\end_layout
+
+\end_inset
+
+
+\family default
+ was implicitly called to unmap them.
+ Memory locks established by the calling process via calls to 
+\family typewriter
+mlockall
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+mlockall
+\end_layout
+
+\end_inset
+
+
+\family default
+ or 
+\family typewriter
+mlock
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+mlock
+\end_layout
+
+\end_inset
+
+
+\family default
+ shall be removed.
+ If locked pages in the address space of the calling process are also mapped
+ into the address spaces of other processes and are locked by those processes,
+ the locks established by the other processes shall be unaffected by the
+ call by this process to the 
+\family typewriter
+exec
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+exec
+\end_layout
+
+\end_inset
+
+
+\family default
+ function.
+ If the 
+\family typewriter
+exec
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+exec
+\end_layout
+
+\end_inset
+
+
+\family default
+ function fails, the effect on memory locks is unspecified.
+ Memory mappings created in the process are unmapped before the address
+ space is rebuilt for the new process image.
+ When the calling process image does not use the 
+\family typewriter
+SCHED_FIFO
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SCHED_FIFO
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+SCHED_RR
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SCHED_RR
+\end_layout
+
+\end_inset
+
+
+\family default
+, or 
+\family typewriter
+SCHED_SPORADIC
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SCHED_SPORADIC
+\end_layout
+
+\end_inset
+
+
+\family default
+ scheduling policies, the scheduling policy and parameters of the new process
+ image and the initial thread in that new process image are implementation-defin
+ed.
+ When the calling process image uses the 
+\family typewriter
+SCHED_FIFO
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SCHED_FIFO
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+SCHED_RR
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SCHED_RR
+\end_layout
+
+\end_inset
+
+
+\family default
+, or 
+\family typewriter
+SCHED_SPORADIC
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SCHED_SPORADIC
+\end_layout
+
+\end_inset
+
+
+\family default
+ scheduling policies, the process policy and scheduling parameter settings
+ shall not be changed by a call to an 
+\family typewriter
+exec
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+exec
+\end_layout
+
+\end_inset
+
+
+\family default
+ function.
+ The initial thread in the new process image shall inherit the process schedulin
+g policy and parameters.
+ It shall have the default system contention scope, but shall inherit its
+ allocation domain from the calling process image.
+ Per-process timers created by the calling process shall be deleted before
+ replacing the current process image with the new process image.
+ All open message queue descriptors in the calling process shall be closed,
+ as described in 
+\family typewriter
+mq_close
+\family default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+mq_close
+\end_layout
+
+\end_inset
+
+.
+ Any outstanding asynchronous I/O operations may be canceled.
+ Those asynchronous I/O operations that are not canceled shall complete
+ as if the 
+\family typewriter
+exec
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+exec
+\end_layout
+
+\end_inset
+
+
+\family default
+ function had not yet occurred, but any associated signal notifications
+ shall be suppressed.
+ It is unspecified whether the 
+\family typewriter
+exec
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+exec
+\end_layout
+
+\end_inset
+
+
+\family default
+ function itself blocks awaiting such I/O completion.
+ In no event, however, shall the new process image created by the 
+\family typewriter
+exec
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+exec
+\end_layout
+
+\end_inset
+
+
+\family default
+ function be affected by the presence of outstanding asynchronous I/O operations
+ at the time the 
+\family typewriter
+exec
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+exec
+\end_layout
+
+\end_inset
+
+
+\family default
+ function is called.
+ Whether any I/O is canceled, and which I/O may be canceled upon 
+\family typewriter
+exec
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+exec
+\end_layout
+
+\end_inset
+
+
+\family default
+, is implementation-defined.
+ The new process image shall inherit the CPU-time clock of the calling process
+ image.
+ This inheritance means that the process CPU-time clock of the process being
+ exec-ed shall not be reinitialized or altered as a result of the exec function
+ other than to reflect the time spent by the process executing the exec
+ function itself.
+ The initial value of the CPU-time clock of the initial thread of the new
+ process image shall be set to zero.
+ If the calling process is being traced, the new process image shall continue
+ to be traced into the same trace stream as the original process image,
+ but the new process image shall not inherit the mapping of trace event
+ names to trace event type identifiers that was defined by calls to the
+ 
+\family typewriter
+posix_trace_eventid_open
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+posix_trace_eventid_open
+\end_layout
+
+\end_inset
+
+
+\family default
+ or the 
+\family typewriter
+posix_trace_trid_eventid_open
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+posix_trace_trid_eventid_open
+\end_layout
+
+\end_inset
+
+
+\family default
+ functions in the calling process image.
+ If the calling process is a trace controller process, any trace streams
+ that were created by the calling process shall be shut down as described
+ in the 
+\family typewriter
+posix_trace_shutdown
+\family default
+ function.
+ The thread id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+thread id
+\end_layout
+
+\end_inset
+
+ of the initial thread in the new process image is unspecified.
+ The size and location of the stack on which the initial thread in the new
+ process image runs is unspecified.
+ The initial thread in the new process image shall have its cancellation
+ type set to 
+\family typewriter
+PTHREAD_CANCEL_DEFERRED
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+PTHREAD_CANCEL_DEFERRED
+\end_layout
+
+\end_inset
+
+
+\family default
+ and its cancellation state set to 
+\family typewriter
+PTHREAD_CANCEL_ENABLED
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+PTHREAD_CANCEL_ENABLED
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ The initial thread in the new process image shall have all thread-specific
+ data values set to 
+\family typewriter
+NULL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+NULL
+\end_layout
+
+\end_inset
+
+
+\family default
+ and all thread-specific data keys shall be removed by the call to exec
+ without running destructors.
+ The initial thread in the new process image shall be joinable, as if created
+ with the detachstate attribute set to 
+\family typewriter
+PTHREAD_CREATE_JOINABLE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+PTHREAD_CREATE_JOINABLE
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ The new process shall inherit at least the following attributes from the
+ calling process image:
+\end_layout
+
+\begin_layout Itemize
+nice value
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\family typewriter
+nice
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+nice
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+\end_layout
+
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+semadj
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+semadj
+\end_layout
+
+\end_inset
+
+
+\family default
+ values
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\family typewriter
+semop
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+semop
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+\end_layout
+
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Itemize
+process id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+process id
+\end_layout
+
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Itemize
+parent process id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+parent process id
+\end_layout
+
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Itemize
+process group id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+process group id
+\end_layout
+
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Itemize
+session membership;
+\end_layout
+
+\begin_layout Itemize
+real user id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+real user id
+\end_layout
+
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Itemize
+real group id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+real group id
+\end_layout
+
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Itemize
+supplementary group ids;
+\end_layout
+
+\begin_layout Itemize
+time left until an alarm clock signal
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\family typewriter
+alarm
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+alarm
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+\end_layout
+
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Itemize
+current working directory;
+\end_layout
+
+\begin_layout Itemize
+root directory;
+\end_layout
+
+\begin_layout Itemize
+file mode creation mask
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\family typewriter
+umask
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+umask
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+\end_layout
+
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Itemize
+file size limit
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\family typewriter
+getrlimit
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getrlimit
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+setrlimit
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+setrlimit
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+process signal mask
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\family typewriter
+pthread_sigmask
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+pthread_sigmask
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+\end_layout
+
+\end_inset
+
+; 
+\end_layout
+
+\begin_layout Itemize
+pending signal
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\family typewriter
+sigpending
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+sigpending
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+\end_layout
+
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+tms_utime
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+tms_utime
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+tms_stime
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+tms_stime
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+tms_cutime
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+tms_cutime
+\end_layout
+
+\end_inset
+
+
+\family default
+, and 
+\family typewriter
+tms_cstime
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+tms_cstime
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\family typewriter
+times
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+times
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+\end_layout
+
+\end_inset
+
+
+\family default
+;
+\end_layout
+
+\begin_layout Itemize
+resource limits;
+\end_layout
+
+\begin_layout Itemize
+controlling terminal;
+\end_layout
+
+\begin_layout Itemize
+interval timers.
+\end_layout
+
+\begin_layout Standard
+\noindent
+The initial thread of the new process shall inherit at least the following
+ attributes from the calling thread:
+\end_layout
+
+\begin_layout Itemize
+signal mask
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\family typewriter
+sigprocmask
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+sigprocmask
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+pthread_sigmask
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+pthread_sigmask
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+\end_layout
+
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Itemize
+pending signals
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\family typewriter
+sigpending
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+sigpending
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+All other process attributes defined in this volume of POSIX.1-2017
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+POSIX.1-2017
+\end_layout
+
+\end_inset
+
+ shall be inherited in the new process image from the old process image.
+ All other thread attributes defined in this volume of POSIX.1-2017
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+POSIX.1-2017
+\end_layout
+
+\end_inset
+
+ shall be inherited in the initial thread in the new process image from
+ the calling thread in the old process image.
+ The inheritance of process or thread attributes not defined by this volume
+ of POSIX.1-2017
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+POSIX.1-2017
+\end_layout
+
+\end_inset
+
+ is implementation-defined.
+ A call to any 
+\family typewriter
+exec
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+exec
+\end_layout
+
+\end_inset
+
+
+\family default
+ function from a process with more than one thread shall result in all threads
+ being terminated and the new executable image being loaded and executed.
+ No destructor functions or cleanup handlers shall be called.
+ Upon successful completion, the 
+\family typewriter
+exec
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+exec
+\end_layout
+
+\end_inset
+
+
+\family default
+ functions shall mark for update the last data access timestamp of the file.
+ If an 
+\family typewriter
+exec
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+exec
+\end_layout
+
+\end_inset
+
+
+\family default
+ function failed but was able to locate the process image file, whether
+ the last data access timestamp is marked for update is unspecified.
+ Should the 
+\family typewriter
+exec
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+exec
+\end_layout
+
+\end_inset
+
+
+\family default
+ function succeed, the process image file shall be considered to have been
+ opened with 
+\family typewriter
+open
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+open
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ The corresponding 
+\family typewriter
+close
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+close
+\end_layout
+
+\end_inset
+
+
+\family default
+ shall be considered to occur at a time after this open, but before process
+ termination or successful completion of a subsequent call to one of the
+ exec functions, 
+\family typewriter
+posix_spawn
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+posix_spawn
+\end_layout
+
+\end_inset
+
+
+\family default
+ or 
+\family typewriter
+posix_spawnp
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+posix_spawnp
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ The 
+\family typewriter
+argv[]
+\family default
+ and 
+\family typewriter
+envp[]
+\family default
+ arrays of pointers and the strings to which those arrays point shall not
+ be modified by a call to one of the 
+\family typewriter
+exec
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+exec
+\end_layout
+
+\end_inset
+
+
+\family default
+ functions, except as a consequence of replacing the process image.
+ The saved resource limits in the new process image are set to be a copy
+ of the process' corresponding hard and soft limits.
+ If one of the 
+\family typewriter
+exec
+\family default
+ functions returns to the calling process image, an error has occurred;
+ the return value shall be -1, and 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ shall be set to indicate the error.
+\end_layout
+
+\begin_layout Subsection
+Waiting for Processes to Terminate.
+\end_layout
+
+\begin_layout Standard
+After spawning a new process, the parent process is free to go about its
+ business.
+ The two processes will be executing at the same time; neither will wait
+ on the other.
+ This is the way the shell starts up a process in the background; it simply
+ spawns a new process which executes the new program and the parent prints
+ another prompt to you.
+ Unfortunately, the above is not always desirable.
+ Often the parent cannot continue until the program the child executes has
+ completed its work.
+ For this reason, the 
+\family typewriter
+wait
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wait
+\end_layout
+
+\end_inset
+
+
+\family default
+ system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+ is provided.
+ The function takes one argument, a pointer to an 
+\family typewriter
+int
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+int
+\end_layout
+
+\end_inset
+
+
+\family default
+ which represent the status of the child process
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+child process
+\end_layout
+
+\end_inset
+
+.
+ 
+\family typewriter
+wait
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wait
+\end_layout
+
+\end_inset
+
+
+\family default
+ suspends execution of its calling process until status information is available
+ for a terminated child process
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+child process
+\end_layout
+
+\end_inset
+
+, or a signal is received.
+ On return from a successful 
+\family typewriter
+wait
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wait
+\end_layout
+
+\end_inset
+
+
+\family default
+ call, the status area, if non-zero, is filled in with termination information
+ about the process that exited.
+ The 
+\shape italic
+wait4
+\shape default
+() call provides a more general interface for programs that need to wait
+ for certain child processes, that need resource utilization statistics
+ accumulated by child processes, or that require options.
+ The other 
+\family typewriter
+wait
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wait
+\end_layout
+
+\end_inset
+
+
+\family default
+ functions are implemented using 
+\shape italic
+wait4
+\shape default
+().
+ In the 
+\family typewriter
+waitpid
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+waitpid
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+wait4
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wait4
+\end_layout
+
+\end_inset
+
+
+\family default
+ system calls the first argument, the wpid parameter, specifies the set
+ of child processes for which to wait.
+ The following symbolic constants are currently defined in 
+\family typewriter
+<sys/wait.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<sys/wait.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+:
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#define WAIT_ANY (-1) /* any process */
+\end_layout
+
+\begin_layout Plain Layout
+
+#define WAIT_MYPGRP 0 /* any process in my process group */
+\end_layout
+
+\end_inset
+
+If the first argument is set to 
+\family typewriter
+WAIT_ANY
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+WAIT_ANY
+\end_layout
+
+\end_inset
+
+
+\family default
+, the call waits for any child process.
+ If it is set to 
+\family typewriter
+WAIT_MYPGRP
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+WAIT_MYPGRP
+\end_layout
+
+\end_inset
+
+
+\family default
+, the call waits for any child process
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+child process
+\end_layout
+
+\end_inset
+
+ in the process group of the caller.
+ If it is greater than zero, the call waits for the process with process
+ id equals to the first argument.
+ Finally if is less than -1, the call waits for any process whose process
+ group id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+process group id
+\end_layout
+
+\end_inset
+
+ equals the absolute value of the first argument.
+ The status parameter is defined below.
+ The options argument is the bitwise OR of zero or more of the following
+ values:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+\align block
+
+\family typewriter
+WCONTINUED
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+WCONTINUED
+\end_layout
+
+\end_inset
+
+
+\family default
+ Causes status to be reported for stopped child processes that have been
+ continued by receipt of a 
+\family typewriter
+SIGCONT
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGCONT
+\end_layout
+
+\end_inset
+
+
+\family default
+ signal.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+WNOHANG
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+WNOHANG
+\end_layout
+
+\end_inset
+
+
+\family default
+ Indicates that the call should not block if there are no processes that
+ wish to report status.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+WUNTRACED
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+WUNTRACED
+\end_layout
+
+\end_inset
+
+
+\family default
+ If set, children of the current process that are stopped due to a 
+\family typewriter
+SIGTTIN
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGTTIN
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+SIGTTOU
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGTTOU
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+SIGTSTP
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGTSTP
+\end_layout
+
+\end_inset
+
+
+\family default
+, or 
+\family typewriter
+SIGSTOP
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGSTOP
+\end_layout
+
+\end_inset
+
+
+\family default
+ signal also have their status reported.
+\end_layout
+
+\begin_layout Standard
+\noindent
+in 
+\family typewriter
+wait3
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wait3
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+wait4
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wait4
+\end_layout
+
+\end_inset
+
+
+\family default
+, if the last argument is non-zero, a summary of the resources used by the
+ terminated process and all its children is returned
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+This information is currently not available for stopped processes.
+\end_layout
+
+\end_inset
+
+.
+ When the 
+\family typewriter
+WNOHANG
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+WNOHANG
+\end_layout
+
+\end_inset
+
+
+\family default
+ option is specified and no processes wish to report status, 
+\family typewriter
+wait4
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wait4
+\end_layout
+
+\end_inset
+
+
+\family default
+ returns a process id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+process id
+\end_layout
+
+\end_inset
+
+ of 0.
+ The 
+\family typewriter
+waitpid
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+waitpid
+\end_layout
+
+\end_inset
+
+
+\family default
+ call is identical to 
+\family typewriter
+wait4
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wait4
+\end_layout
+
+\end_inset
+
+
+\family default
+ with the last argument value of zero.
+ The older 
+\family typewriter
+wait3
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wait3
+\end_layout
+
+\end_inset
+
+
+\family default
+ call is the same as 
+\family typewriter
+wait4
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wait4
+\end_layout
+
+\end_inset
+
+
+\family default
+ with a first argument value of -1.
+ The following macros may be used to test the manner of exit of the process.
+ One of the first three macros will evaluate to a non-zero (true) value:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.00000000
+\noindent
+
+\family typewriter
+WIFCONTINUED
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WIFCONTINUED
+\end_layout
+
+\end_inset
+
+(status)
+\family default
+ True if the process has not terminated, and has continued after a job control
+ stop.
+ This macro can be true only if the wait call specified the 
+\family typewriter
+WCONTINUED
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+WCONTINUED
+\end_layout
+
+\end_inset
+
+
+\family default
+ option.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.00000000
+
+\family typewriter
+WIFEXITED
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WIFEXITED
+\end_layout
+
+\end_inset
+
+(status)
+\family default
+ True if the process terminated normally by a call to 
+\shape italic
+_exit
+\shape default
+(2) or 
+\shape italic
+exit
+\shape default
+(3).
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.00000000
+
+\family typewriter
+WIFSIGNALED
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WIFSIGNALED
+\end_layout
+
+\end_inset
+
+(status)
+\family default
+ True if the process terminated due to receipt of a signal.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.00000000
+
+\family typewriter
+WIFSTOPPED
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WIFSTOPPED
+\end_layout
+
+\end_inset
+
+(status)
+\family default
+ True if the process has not terminated, but has stopped and can be restarted.
+ This macro can be true only if the wait call specified the 
+\family typewriter
+WUNTRACED
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+WUNTRACED
+\end_layout
+
+\end_inset
+
+
+\family default
+ option or if the child process is being traced
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+ptrace
+\shape default
+(2).
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+Depending on the values of those macros, the following macros produce the
+ remaining status information about the child process:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.00000000
+\noindent
+
+\family typewriter
+WEXITSTATUS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WEXITSTATUS
+\end_layout
+
+\end_inset
+
+(status)
+\family default
+ If 
+\family typewriter
+WIFEXITED(status)
+\family default
+ is true, evaluates to the low-order 8 bits of the argument passed to 
+\shape italic
+_exit
+\shape default
+(2) or 
+\shape italic
+exit
+\shape default
+(3) by the child.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.00000000
+
+\family typewriter
+WTERMSIG
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WTERMSIG
+\end_layout
+
+\end_inset
+
+(status)
+\family default
+ If 
+\family typewriter
+WIFSIGNALED(status)
+\family default
+ is true, evaluates to the number of the signal that caused the termination
+ of the process.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.00000000
+
+\family typewriter
+WCOREDUMP
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WCOREDUMP
+\end_layout
+
+\end_inset
+
+(status)
+\family default
+ If 
+\family typewriter
+WIFSIGNALED(status)
+\family default
+ is true, evaluates as true if the termination of the process was accompanied
+ by the creation of a core file
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+core file
+\end_layout
+
+\end_inset
+
+ containing an image of the process when the signal was received.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.00000000
+
+\family typewriter
+WSTOPSIG
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSTOPSIG
+\end_layout
+
+\end_inset
+
+(status)
+\family default
+ If 
+\family typewriter
+WIFSTOPPED(status)
+\family default
+ is true, evaluates to the number of the signal that caused the process
+ to stop.
+ If 
+\family typewriter
+wait
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wait
+\end_layout
+
+\end_inset
+
+
+\family default
+ returns due to a stopped or terminated child process
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+child process
+\end_layout
+
+\end_inset
+
+, the process id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+process id
+\end_layout
+
+\end_inset
+
+ of the child is returned to the calling process.
+ Otherwise, a value of -1 is returned and 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to indicate the error.
+\end_layout
+
+\begin_layout Standard
+\noindent
+If 
+\family typewriter
+wait4
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wait4
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+wait3
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wait3
+\end_layout
+
+\end_inset
+
+
+\family default
+ or 
+\family typewriter
+waitpid
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+waitpid
+\end_layout
+
+\end_inset
+
+
+\family default
+ returns due to a stopped or terminated child process, the process id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+process id
+\end_layout
+
+\end_inset
+
+ of the child is returned to the calling process.
+ If there are no children not previously awaited, -1 is returned with 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ set to 
+\family typewriter
+ECHILD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ECHILD
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ Otherwise, if 
+\family typewriter
+WNOHANG
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+WNOHANG
+\end_layout
+
+\end_inset
+
+
+\family default
+ is specified and there are no stopped or exited children, 0 is returned.
+ If an error is detected or a caught signal aborts the call, a value of
+ -1 is returned and 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to indicate the error.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:ezshell"
+
+\end_inset
+
+ezshell - a simple shell program.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* ezshell.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <unistd.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/wait.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Some general usage macros.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#define FOREVER for(;;)
+\end_layout
+
+\begin_layout Plain Layout
+
+#define BUFFER_SIZE 1024
+\end_layout
+
+\begin_layout Plain Layout
+
+#define ARGS_SIZE 64
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* ezshell program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+long int execute(char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+void parse(char *, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	char buff[ BUFFER_SIZE ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	char *args[ ARGS_SIZE ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Main loop.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	do {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		/* Prompt for read a command.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+		printf("Command: ");
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(fgets(buff, BUFFER_SIZE, stdin) != NULL) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			/* Split the string into arguments.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+			parse(buff, args);
+\end_layout
+
+\begin_layout Plain Layout
+
+			ret = execute(args);
+\end_layout
+
+\begin_layout Plain Layout
+
+		} else {
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+			ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+	} while(ret != EXIT_FAILURE);
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/*
+\end_layout
+
+\begin_layout Plain Layout
+
+ * parse -- split the command in buff into
+\end_layout
+
+\begin_layout Plain Layout
+
+ *          individual arguments.
+\end_layout
+
+\begin_layout Plain Layout
+
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+void parse(char *buff, char *args[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	while(*buff != '
+\backslash
+0') {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		/*
+\end_layout
+
+\begin_layout Plain Layout
+
+		 * Strip whitespace.
+  Use nulls, so
+\end_layout
+
+\begin_layout Plain Layout
+
+		 * that the previous argument is tewrminated
+\end_layout
+
+\begin_layout Plain Layout
+
+		 * automatically.
+\end_layout
+
+\begin_layout Plain Layout
+
+		 */
+\end_layout
+
+\begin_layout Plain Layout
+
+		while((*buff == ' ') || (*buff == '
+\backslash
+t') || (*buff == '
+\backslash
+n'))
+\end_layout
+
+\begin_layout Plain Layout
+
+			*buff++ = '
+\backslash
+0';
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		/* Save the argument.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+		*args++ = buff;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		/* Skip over the argument.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+		while((*buff != '
+\backslash
+0') && (*buff != ' ') && (*buff != '
+\backslash
+t') &&   (*buff != '
+\backslash
+n'))
+\end_layout
+
+\begin_layout Plain Layout
+
+			buff++;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	*args = '
+\backslash
+0';
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/*
+\end_layout
+
+\begin_layout Plain Layout
+
+ * execute -- spawn a child process and execute
+\end_layout
+
+\begin_layout Plain Layout
+
+ *            the program.
+\end_layout
+
+\begin_layout Plain Layout
+
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+long int execute(char *args[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int pid, status;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Get a child process.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if((pid = fork()) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(pid == 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("Executing: %s with pid %d
+\backslash
+n", *args, pid);
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(execvp(*args, args) < 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+				perror("execvp");
+\end_layout
+
+\begin_layout Plain Layout
+
+			perror(*args);
+\end_layout
+
+\begin_layout Plain Layout
+
+			ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		/* The parent executes the wait.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+		while(wait(&status) != pid)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			/* empty ...
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+			;
+\end_layout
+
+\begin_layout Plain Layout
+
+		ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else
+\end_layout
+
+\begin_layout Plain Layout
+
+		perror("fork");
+\end_layout
+
+\begin_layout Plain Layout
+
+	return ret;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of ezshell.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:redirecting-input-and-output"
+
+\end_inset
+
+Redirecting Input and Output.
+\end_layout
+
+\begin_layout Standard
+Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:ezshell"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ is useful, perhaps even as a very primitive shell.
+ It reads a command name from the standard input and then executes it.
+ Unfortunately, there is no way to make the command read from a file, nor
+ write to one as the real shell does.
+ Fortunately, this is relatively easy to do.
+ Chapter 3, 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "chap:low-level-io"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, described the 
+\family typewriter
+dup
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+dup
+\end_layout
+
+\end_inset
+
+
+\family default
+ system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+, which could be used to obtain a new file descriptor
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file descriptor
+\end_layout
+
+\end_inset
+
+ referring to the same file as its argument.
+ Further, as mentioned above, files stay open across calls to 
+\family typewriter
+exec
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+exec
+\end_layout
+
+\end_inset
+
+
+\family default
+ and child processes are identical in every way to their parents.
+ This implies that to make a process read and write files instead of the
+ terminal, it is only necessary to open the files and issue the appropriate
+ calls to dup in the child process.
+ Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:execute-function"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows a modified version of the 
+\family typewriter
+execute
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+execute
+\end_layout
+
+\end_inset
+
+
+\family default
+ routine from Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:ezshell"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ This routine takes four arguments: the arguments to the program and file
+ descriptors referring to the files which should be used as the new program's
+ standard input
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+standard input
+\end_layout
+
+\end_inset
+
+, standard output
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+standard output
+\end_layout
+
+\end_inset
+
+ and standard error output
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+standard error output
+\end_layout
+
+\end_inset
+
+.
+ If no file is to be used, the caller of execute can simply pass down 0,
+ 1 or 2 respectively.
+ The program must check, however that it does not inadvertently close one
+ of these descriptors, since the call to dup would the fail, in other words,
+ it is not possible to make dup return its argument.
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:execute-function"
+
+\end_inset
+
+The execute function.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+long int execute(char *[], int, int, int);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/*
+\end_layout
+
+\begin_layout Plain Layout
+
+ * execute -- executes a command in a forked
+\end_layout
+
+\begin_layout Plain Layout
+
+ *            process.
+\end_layout
+
+\begin_layout Plain Layout
+
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+long int execute(cha *args[], int sin, int sout, int serr)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int pid, status;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Get a child process.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if((pid = fork()) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		/* The child executes the code inside the if.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(pid == 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			/*
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * For each of standard input, output,
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * and error output, set the child's
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * to the passed-down file descriptor.
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * Note that we can't just close 0, 1
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * and 2 since we might need them.
+\end_layout
+
+\begin_layout Plain Layout
+
+			 */
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(sin != 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+				close(0);
+\end_layout
+
+\begin_layout Plain Layout
+
+				dup(sin);
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(out != 1) {
+\end_layout
+
+\begin_layout Plain Layout
+
+				close(1);
+\end_layout
+
+\begin_layout Plain Layout
+
+				dup(sout);
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(serr != 2) {
+\end_layout
+
+\begin_layout Plain Layout
+
+				close(2);
+\end_layout
+
+\begin_layout Plain Layout
+
+				dup(serr);
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(execvp(*args, args) < 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+				perror("execvp");
+\end_layout
+
+\begin_layout Plain Layout
+
+			else {
+\end_layout
+
+\begin_layout Plain Layout
+
+				perror(*args);
+\end_layout
+
+\begin_layout Plain Layout
+
+				ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		/* The parent executes the wait.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+		while(wait(&status) != pid)
+\end_layout
+
+\begin_layout Plain Layout
+
+			; /* empty loop...
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+		ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else
+\end_layout
+
+\begin_layout Plain Layout
+
+    	perror("fork");
+\end_layout
+
+\begin_layout Plain Layout
+
+	return ret;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:setting-up-pipelines"
+
+\end_inset
+
+Setting Up Pipelines.
+\end_layout
+
+\begin_layout Standard
+One of the most powerful features of the UNIX operating system and OpenBSD
+ is the ability to construct a pipeline pf commands.
+ This pipeline is set up such that the output of the first command is sent
+ to the input of the second, the output of the second command is sent to
+ the input of the third and so forth.
+ This eliminates the need to run each command separately, saving the intermediat
+e results in temporary files.
+\end_layout
+
+\begin_layout Subsection
+The 
+\family typewriter
+popen
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+popen
+\end_layout
+
+\end_inset
+
+
+\family default
+ Library Routine.
+\end_layout
+
+\begin_layout Standard
+One way to create a pipe is to use 
+\family typewriter
+popen
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+popen
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ The function “opens” a process by creating a pipe, forking, and invoking
+ the shell
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+shell
+\end_layout
+
+\end_inset
+
+.
+ Since a pipe is by definition unidirectional, the second argument may specify
+ only reading or writing, not both; the resulting stream is correspondingly
+ read-only
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+read-only
+\end_layout
+
+\end_inset
+
+ or write-only
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+write-only
+\end_layout
+
+\end_inset
+
+.
+ The first argument is a pointer to a NUL-terminated
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+NUL-terminated
+\end_layout
+
+\end_inset
+
+ string containing a shell
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+shell
+\end_layout
+
+\end_inset
+
+ command line.
+ This string is passed to 
+\shape italic
+/bin/sh
+\shape default
+ using the -c flag; interpretation, if any, is performed by the shell
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+shell
+\end_layout
+
+\end_inset
+
+.
+ The second argument is a pointer to a NUL-terminated string which must
+ be either 
+\family typewriter
+"r"
+\family default
+ or 
+\family typewriter
+"re"
+\family default
+ for reading or 
+\family typewriter
+"w"
+\family default
+ or 
+\family typewriter
+"we"
+\family default
+ for writing.
+ If the letter 
+\family typewriter
+"e"
+\family default
+ is present in the string then the close-on-exec
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+close-on-exec
+\end_layout
+
+\end_inset
+
+ flag shall be set on the file descriptor underlying the FILE that is returned.
+ The return value from 
+\family typewriter
+popen
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+popen
+\end_layout
+
+\end_inset
+
+
+\family default
+ is a normal standard I/O stream
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+standard I/O stream
+\end_layout
+
+\end_inset
+
+ in all respects except that it must be closed with 
+\family typewriter
+pclose
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+pclose
+\end_layout
+
+\end_inset
+
+
+\family default
+ rather than 
+\shape italic
+fclose
+\shape default
+(3).
+ Writing to such a stream writes to the standard input of the command; the
+ command's standard output is the same as that of the process that called
+ 
+\family typewriter
+popen
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+popen
+\end_layout
+
+\end_inset
+
+
+\family default
+, unless this is altered by the command itself.
+ Conversely, reading from a “popened” stream reads the command's standard
+ output, and the command's standard input is the same as that of the process
+ that called 
+\family typewriter
+popen
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+popen
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ Note that 
+\family typewriter
+popen
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+popen
+\end_layout
+
+\end_inset
+
+
+\family default
+ output streams are fully buffered by default.
+ In addition, fork handlers established using 
+\shape italic
+pthread_atfork
+\shape default
+(3) are not called when a multithreaded program calls 
+\family typewriter
+popen
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+popen
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ The 
+\family typewriter
+pclose
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+pclose
+\end_layout
+
+\end_inset
+
+
+\family default
+ function waits for the associated process to terminate and returns the
+ exit status of the command as returned by 
+\shape italic
+wait4
+\shape default
+(2).
+ The 
+\family typewriter
+popen
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+popen
+\end_layout
+
+\end_inset
+
+
+\family default
+ function returns 
+\family typewriter
+NULL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+NULL
+\end_layout
+
+\end_inset
+
+
+\family default
+ if the 
+\shape italic
+fork
+\shape default
+(2) or 
+\shape italic
+pipe
+\shape default
+(2) calls fail, or if it cannot allocate memory.
+ The 
+\family typewriter
+pclose
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+pclose
+\end_layout
+
+\end_inset
+
+
+\family default
+ function returns -1 if stream is not associated with a “popened” command,
+ if stream already 
+\shape italic
+pclosed
+\shape default
+, or if 
+\shape italic
+wait4
+\shape default
+(2) returns an error.
+\end_layout
+
+\begin_layout Subsection
+Creating Pipes Directly.
+\end_layout
+
+\begin_layout Standard
+The system call to create a pipe is called 
+\family typewriter
+pipe
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+pipe
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ Which is an object allowing unidirectional data flow, and allocates a pair
+ of file descriptors.
+ The first argument holds an array of two file descriptors: the first connects
+ to the read end of the pipe and the second connects to the write end, so
+ that data written to the second value in the array appears on, i.e., can
+ be read from, the first entry.
+ This allows the output of one program to be sent to another program: the
+ source's standard output is set up to be the write end of the pipe and
+ the sink's standard input is set up to be the read end of the pipe.
+ The pipe itself persists until all its associated descriptors are closed.
+ A pipe whose read or write end has been closed is considered widowed.
+ Writing on such a pipe causes the writing process to receive a 
+\family typewriter
+SIGPIPE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGPIPE
+\end_layout
+
+\end_inset
+
+
+\family default
+ signal.
+ Widowing a pipe is the only way to deliver end-of-file to a reader: after
+ the reader consumes any buffered data, reading a widowed pipe returns a
+ zero count.
+ The 
+\family typewriter
+pipe2
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+pipe2
+\end_layout
+
+\end_inset
+
+
+\family default
+ function is identical to pipe except that the non-blocking I/O mode on
+ both ends of the pipe is determined by the 
+\family typewriter
+O_NONBLOCK
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+O_NONBLOCK
+\end_layout
+
+\end_inset
+
+
+\family default
+ flag in the flags argument and the close-on-exec flag on both the new file
+ descriptors is determined by the 
+\family typewriter
+O_CLOEXEC
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+O_CLOEXEC
+\end_layout
+
+\end_inset
+
+
+\family default
+ flag in the second argument.
+ Upon successful completion, the value 0 is returned; otherwise the value -1
+ is returned and the global variable errno is set to indicate the error.
+ Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:mailer"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows a program that opens a pipe to the email program mutt and sends a
+ message to the person executing it.
+ The fdopen function takes a low-level file descriptor and a mode as arguments
+ and returns an stdio file pointer which refers to the same file.
+ This enables programs to use low-level I/O routines for a time and then
+ convert to high-level routines.
+ Note that there is no real need for the parent to wait on the child process
+ to terminate.
+ In fact, deleting the wait has the advantage of making the child run in
+ the background so that the user doesn't have to wait for it to finish.
+ The reader is invited to modify this program to execute other programs
+ and read from the pipe instead of writing or perhaps both.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:mailer"
+
+\end_inset
+
+mailer - open a pipe to the mutt command and send email.
+\end_layout
+
+\end_inset
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* mailer.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <unistd.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/wait.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Some general usage macros.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#define FOREVER for(;;)
+\end_layout
+
+\begin_layout Plain Layout
+
+#define BUFFER_SIZE 1024
+\end_layout
+
+\begin_layout Plain Layout
+
+#define ARGS_SIZE 64
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* mailer program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+char *getlogin(void);
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	char *username;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int pid, pipefds[ 2 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+	FILE *fp;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Get user's name.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if((username = getlogin()) != NULL) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		/*
+\end_layout
+
+\begin_layout Plain Layout
+
+		 * Create the pipe.
+  This has to be done
+\end_layout
+
+\begin_layout Plain Layout
+
+		 * BEFORE the fork.
+\end_layout
+
+\begin_layout Plain Layout
+
+		 */
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(pipe(pipefds) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			if((pid = fork()) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+				/*
+\end_layout
+
+\begin_layout Plain Layout
+
+				 * The child process executes  the stuff inside
+\end_layout
+
+\begin_layout Plain Layout
+
+				 * the if.
+\end_layout
+
+\begin_layout Plain Layout
+
+				 */
+\end_layout
+
+\begin_layout Plain Layout
+
+				if(pid == 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+					/*
+\end_layout
+
+\begin_layout Plain Layout
+
+					 * Make the read  side of the pipe our
+\end_layout
+
+\begin_layout Plain Layout
+
+					 * standard input.
+\end_layout
+
+\begin_layout Plain Layout
+
+					 */
+\end_layout
+
+\begin_layout Plain Layout
+
+					close(STDIN_FILENO);
+\end_layout
+
+\begin_layout Plain Layout
+
+					dup(pipefds[ 0 ]);
+\end_layout
+
+\begin_layout Plain Layout
+
+					close(pipefds[ 0 ]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+					/*
+\end_layout
+
+\begin_layout Plain Layout
+
+					 * Close the write  side of the pipe;
+\end_layout
+
+\begin_layout Plain Layout
+
+					 * we'll let our output  go to the screen.
+\end_layout
+
+\begin_layout Plain Layout
+
+					 */
+\end_layout
+
+\begin_layout Plain Layout
+
+					close(pipefds[ 1 ]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+					/* Execute the command "mutt username".
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+					if(execl("/usr/local/bin/mutt", "-s 
+\backslash
+"ERROR Messages
+\backslash
+"",   "myemail@gmail.com", "-a logFile.log", NULL) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+						;
+\end_layout
+
+\begin_layout Plain Layout
+
+					} else
+\end_layout
+
+\begin_layout Plain Layout
+
+					    perror("execl");
+\end_layout
+
+\begin_layout Plain Layout
+
+				} else {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+					/* The parent executes this code.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+					/*
+\end_layout
+
+\begin_layout Plain Layout
+
+					 * Close the read side of the pipe; we
+\end_layout
+
+\begin_layout Plain Layout
+
+					 * don't need it and the child is not
+\end_layout
+
+\begin_layout Plain Layout
+
+					 * writing on the pipe anyway.
+\end_layout
+
+\begin_layout Plain Layout
+
+					 */
+\end_layout
+
+\begin_layout Plain Layout
+
+					close(pipefds[ 0 ]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+					/* Convert the write side of the pipe to stdio.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+					if((fp = fdopen(pipefds[ 1 ], "w")) != NULL) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+						/* send a message.
+ close the pipe.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+						fprintf(fp, "Errors from your porgram.
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+						fclose(fp);
+\end_layout
+
+\begin_layout Plain Layout
+
+						ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+						while(wait(NULL) != pid)
+\end_layout
+
+\begin_layout Plain Layout
+
+							;
+\end_layout
+
+\begin_layout Plain Layout
+
+					} else {
+\end_layout
+
+\begin_layout Plain Layout
+
+						perror("fdopen");
+\end_layout
+
+\begin_layout Plain Layout
+
+					}
+\end_layout
+
+\begin_layout Plain Layout
+
+				}
+\end_layout
+
+\begin_layout Plain Layout
+
+			} else {
+\end_layout
+
+\begin_layout Plain Layout
+
+				perror("fork");
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+		} else
+\end_layout
+
+\begin_layout Plain Layout
+
+			perror("pipe");
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else
+\end_layout
+
+\begin_layout Plain Layout
+
+    	fprintf(stderr, "Who are you?
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of mailer.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,3532 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass memoir
+\use_default_options true
+\master the-openbsd-c-particularist.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family sfdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1.7cm
+\topmargin 1cm
+\rightmargin 1.5cm
+\bottommargin 1.2cm
+\headheight 1cm
+\headsep 1cm
+\footskip 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 2
+\paperpagestyle plain
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:information-about-users"
+
+\end_inset
+
+Information About Users.
+\end_layout
+
+\begin_layout Standard
+\align right
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "50col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:the-login-name"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:the-user-id"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:the-group-id"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:reading-the-password-file"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "c:passwd-struct"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:reading-utmp-wtmp-files"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Several pieces of information are maintained about each user of the system.
+ Most of this information is stored in the 
+\shape italic
+password file
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+password file
+\end_layout
+
+\end_inset
+
+
+\shape default
+ 
+\shape italic
+/etc/passwd
+\shape default
+ and the 
+\shape italic
+group file
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+group file
+\end_layout
+
+\end_inset
+
+
+\shape default
+ 
+\shape italic
+/etc/group
+\shape default
+.
+ This chapter describes each piece of information, what the operating system
+ uses ir for and how programs can access and change it.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:the-login-name"
+
+\end_inset
+
+The Login Name.
+\end_layout
+
+\begin_layout Standard
+Each user on the system is given a unique 
+\shape italic
+login name
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+login name
+\end_layout
+
+\end_inset
+
+
+\shape default
+.
+ It is recommended that login names contain only lowercase characters and
+ digits.
+ They may also contain uppercase characters, non-leading hyphens, periods,
+ underscores, and a trailing ‘$’.
+ Login names may not be longer than 31 characters
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+adduser
+\shape default
+(8).
+\end_layout
+
+\end_inset
+
+.
+ A user uses his login name to identify himself/herself to the system when
+ logging in.
+ Login names are also used for the electronic mail system, to label output
+ printed on a networked printer, etc..
+ OpenBSD kernel does not use the login name for anything: it is only used
+ by user-level programs.
+ To obtain the login name of the user executing a program, this may use
+ the 
+\family typewriter
+getlogin
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getlogin
+\end_layout
+
+\end_inset
+
+
+\family default
+ routine, see the 
+\shape italic
+getlogin
+\shape default
+(2) manual entry.
+ It takes no argument and if the call to he routine succeeds, it returns
+ a pointer to a NUL- terminated string in a static buffer.
+ If the name has not been set, it returns 
+\family typewriter
+NULL
+\family default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+NULL
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:the-user-id"
+
+\end_inset
+
+The User Id.
+\end_layout
+
+\begin_layout Standard
+Each process in the system is associated with in two integers number called
+ the 
+\shape italic
+real user id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+real user id
+\end_layout
+
+\end_inset
+
+
+\shape default
+ and the 
+\shape italic
+effective user id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+effective user id
+\end_layout
+
+\end_inset
+
+
+\shape default
+.
+ These numbers are used by OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ kernel
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+kernel
+\end_layout
+
+\end_inset
+
+ to determine the process's access permissions, record accounting information,
+ etc..
+ The real user id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+real user id
+\end_layout
+
+\end_inset
+
+ always identifies the user executing the process.
+ Only the super-user
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+super-user
+\end_layout
+
+\end_inset
+
+ may change his real user id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+real user id
+\end_layout
+
+\end_inset
+
+, thus becoming another user.
+ The effective user id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+effective user id
+\end_layout
+
+\end_inset
+
+ is used to determine the process's permissions.
+ Normally, the effective user id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+effective user id
+\end_layout
+
+\end_inset
+
+ is equal to the real user id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+real user id
+\end_layout
+
+\end_inset
+
+.
+ By changing its effective user id, a process gains the permissions associated
+ with the new user id and, at least temporarily, loses those associated
+ with its real user id.
+ A user id is always unique and refers to only one user of the system.
+ The 
+\family typewriter
+getuid
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getuid
+\end_layout
+
+\end_inset
+
+
+\family default
+ function returns the real user id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+real user id
+\end_layout
+
+\end_inset
+
+ of the calling process.
+ The 
+\family typewriter
+geteuid
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+geteuid
+\end_layout
+
+\end_inset
+
+
+\family default
+ function returns the effective user id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+effective user id
+\end_layout
+
+\end_inset
+
+ of the calling process.
+ The real user id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+real user id
+\end_layout
+
+\end_inset
+
+ is that of the user who has invoked the program.
+ As the effective user id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+effective user id
+\end_layout
+
+\end_inset
+
+ gives the process additional permissions during execution of set-user-ID
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+set-user-ID
+\end_layout
+
+\end_inset
+
+ mode processes, 
+\family typewriter
+getuid
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getuid
+\end_layout
+
+\end_inset
+
+
+\family default
+ is used to determine the real user id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+real user id
+\end_layout
+
+\end_inset
+
+ of the calling process.
+ The 
+\family typewriter
+getuid
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getuid
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+geteuid
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+geteuid
+\end_layout
+
+\end_inset
+
+
+\family default
+ functions are always successful, and no return value is reserved to indicate
+ an error.
+ The real and effective user ids are changed using 
+\family typewriter
+setuid
+\family default
+ and 
+\family typewriter
+seteuid
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+seteuid
+\end_layout
+
+\end_inset
+
+
+\family default
+ system calls respectively.
+ They take one argument of 
+\family typewriter
+uid_t
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+uid_t
+\end_layout
+
+\end_inset
+
+
+\family default
+ type.
+ The 
+\family typewriter
+setuid
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+setuid
+\end_layout
+
+\end_inset
+
+
+\family default
+ function sets the real and effective user ids and the saved set-user-ID
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+set-user-ID
+\end_layout
+
+\end_inset
+
+ of the current process to the specified value.
+ The 
+\family typewriter
+setuid
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+setuid
+\end_layout
+
+\end_inset
+
+
+\family default
+ function is permitted if the effective user id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+effective user id
+\end_layout
+
+\end_inset
+
+ is that of the super-user
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+super-user
+\end_layout
+
+\end_inset
+
+, or if the specified user id is the same as the effective user id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+effective user id
+\end_layout
+
+\end_inset
+
+.
+ If not, but the specified user id is the same as the real user id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+real user id
+\end_layout
+
+\end_inset
+
+, 
+\family typewriter
+setuid
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+setuid
+\end_layout
+
+\end_inset
+
+
+\family default
+ will set the effective user id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+effective user id
+\end_layout
+
+\end_inset
+
+ to the real user id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+real user id
+\end_layout
+
+\end_inset
+
+.
+ The 
+\family typewriter
+seteuid
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+seteuid
+\end_layout
+
+\end_inset
+
+
+\family default
+ function sets the effective user id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+effective user id
+\end_layout
+
+\end_inset
+
+ of the current process.
+ The effective user id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+effective user id
+\end_layout
+
+\end_inset
+
+ may be set to the value of the real user id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+real user id
+\end_layout
+
+\end_inset
+
+ or the saved set-user-ID
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+set-user-ID
+\end_layout
+
+\end_inset
+
+, see 
+\shape italic
+intro
+\shape default
+(2) and 
+\shape italic
+execve
+\shape default
+(2); in this way, the effective user id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+effective user id
+\end_layout
+
+\end_inset
+
+ of a set-user-ID
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+set-user-ID
+\end_layout
+
+\end_inset
+
+ executable may be toggled by switching to the real user id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+real user id
+\end_layout
+
+\end_inset
+
+, then re-enabled by reverting to the set-user-ID
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+set-user-ID
+\end_layout
+
+\end_inset
+
+ value.
+ The 
+\family typewriter
+setuid
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+setuid
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+seteuid
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+seteuid
+\end_layout
+
+\end_inset
+
+
+\family default
+ functions return the value 0 if successful; otherwise the value -1 is returned
+ and the global variable 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to indicate the error.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:the-group-id"
+
+\end_inset
+
+The Group Id.
+\end_layout
+
+\begin_layout Standard
+In addition to the real and effective user ids, OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ system associates a 
+\shape italic
+real group id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+real group id
+\end_layout
+
+\end_inset
+
+
+\shape default
+ and an 
+\shape italic
+effective group id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+effective group id
+\end_layout
+
+\end_inset
+
+
+\shape default
+ with each process.
+ These numbers are entirely analogous to the real and effective user ids,
+ with the exception that they do not uniquely identify a specific user.
+ Instead, several users may be members of the same group, permitting them
+ to have access to files owned by that group while denying others access.
+ To get the real group id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+real group id
+\end_layout
+
+\end_inset
+
+ and the effective group id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+effective group id
+\end_layout
+
+\end_inset
+
+ of the calling process we use 
+\family typewriter
+getgid
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getgid
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+getegid
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getegid
+\end_layout
+
+\end_inset
+
+
+\family default
+ respectively.
+ They take no arguments.
+ The real group id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+real group id
+\end_layout
+
+\end_inset
+
+ is specified at login time and it is the group of the user who invoked
+ the program.
+ As the effective group id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+effective group id
+\end_layout
+
+\end_inset
+
+ gives the process additional permissions during the execution of set-group-ID
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+set-group-ID
+\end_layout
+
+\end_inset
+
+ mode processes, 
+\family typewriter
+getgid
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getgid
+\end_layout
+
+\end_inset
+
+
+\family default
+ is used to determine the real group id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+real group id
+\end_layout
+
+\end_inset
+
+ of the calling process.
+ The 
+\family typewriter
+setgid
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+setgid
+\end_layout
+
+\end_inset
+
+
+\family default
+ function sets the real and effective group ids and the saved set-group-ID
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+set-group-ID
+\end_layout
+
+\end_inset
+
+ of the current process to the specified value.
+ The 
+\family typewriter
+setgid
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+setgid
+\end_layout
+
+\end_inset
+
+
+\family default
+ function is permitted if the effective user id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+effective user id
+\end_layout
+
+\end_inset
+
+ is that of the super-user
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+super-user
+\end_layout
+
+\end_inset
+
+, or if the specified group id is the same as the effective group id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+effective group id
+\end_layout
+
+\end_inset
+
+.
+ If not, but the specified group id is the same as the real group id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+real group id
+\end_layout
+
+\end_inset
+
+, 
+\family typewriter
+setgid
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+setgid
+\end_layout
+
+\end_inset
+
+
+\family default
+ will set the effective group id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+effective group id
+\end_layout
+
+\end_inset
+
+ to the real group id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+real group id
+\end_layout
+
+\end_inset
+
+.
+ Supplementary group ids remain unchanged.
+ The 
+\family typewriter
+setegid
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+setegid
+\end_layout
+
+\end_inset
+
+
+\family default
+ function sets the effective group id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+effective group id
+\end_layout
+
+\end_inset
+
+ of the current process.
+ The effective group id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+effective group id
+\end_layout
+
+\end_inset
+
+ may be set to the value of the real group id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+real group id
+\end_layout
+
+\end_inset
+
+ or the saved set-group-ID
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+set-group-ID
+\end_layout
+
+\end_inset
+
+; in this way, the effective group id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+effective group id
+\end_layout
+
+\end_inset
+
+ of a set-group-ID
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+set-group-ID
+\end_layout
+
+\end_inset
+
+ executable may be toggled by switching to the real group id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+real group id
+\end_layout
+
+\end_inset
+
+, then re-enabled by reverting to the set-group-ID
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+set-group-ID
+\end_layout
+
+\end_inset
+
+ value.
+ The 
+\family typewriter
+setgid
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+setgid
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+setegid
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+setegid
+\end_layout
+
+\end_inset
+
+
+\family default
+ functions return the value 0 if successful; otherwise the value -1 is returned
+ and the global variable 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to indicate the error.
+\end_layout
+
+\begin_layout Subsection
+The OpenBSD Group Mechanism.
+\end_layout
+
+\begin_layout Standard
+A user could be in more groups at once and the processes he executes have
+ the permissions associated with all those groups instead of only one at
+ a time.
+ In order to manipulate this mechanism, there are two system calls: 
+\family typewriter
+getgroups
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getgroups
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+setgroups
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+setgroups
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ 
+\family typewriter
+getgroups
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getgroups
+\end_layout
+
+\end_inset
+
+
+\family default
+ takes two arguments and gets the current 
+\shape italic
+group access list
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+group access list
+\end_layout
+
+\end_inset
+
+
+\shape default
+ of the current user process and stores it in the array pointed by the second
+ argument of type 
+\family typewriter
+gid_t
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+gid_t
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ The first argument of type 
+\family typewriter
+int
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+int
+\end_layout
+
+\end_inset
+
+
+\family default
+ indicates the number of entries that may be placed in the array pointed
+ by the second argument.
+ 
+\family typewriter
+getgroups
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getgroups
+\end_layout
+
+\end_inset
+
+
+\family default
+ returns the actual number of groups returned in the second argument.
+ No more than 
+\family typewriter
+NGROUPS_MAX
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+NGROUPS_MAX
+\end_layout
+
+\end_inset
+
+
+\family default
+ will ever be returned.
+ If the first argument is 0, 
+\family typewriter
+getgroups
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getgroups
+\end_layout
+
+\end_inset
+
+
+\family default
+ returns the number of groups without modifying the second argument array.
+ A successful call returns the number of groups in the group set.
+ A value of -1 indicates that an error occurred, and the error code is stored
+ in the global variable 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ Likewise 
+\family typewriter
+setgroups
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+setgroups
+\end_layout
+
+\end_inset
+
+
+\family default
+ sets the group access list
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+group access list
+\end_layout
+
+\end_inset
+
+ of the current user process according to the array pointed by the second
+ argument of type 
+\family typewriter
+gid_t
+\family default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+gid_t
+\end_layout
+
+\end_inset
+
+.
+ The first argument, a parameter of type 
+\family typewriter
+int
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+int
+\end_layout
+
+\end_inset
+
+
+\family default
+, indicates the number of entries in the the second argument array and must
+ be no more than 
+\family typewriter
+NGROUPS_MAX
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+NGROUPS_MAX
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ Only the super-user
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+super-user
+\end_layout
+
+\end_inset
+
+ may set new groups.
+ Upon successful completion, the value 0 is returned; otherwise the value -1
+ is returned and the global variable 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to indicate the error.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:reading-the-password-file"
+
+\end_inset
+
+Reading the Password File.
+\end_layout
+
+\begin_layout Standard
+The password file
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+password file
+\end_layout
+
+\end_inset
+
+ contains almost all the information commonly maintained about each user
+ of the system.
+ A super-user
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+super-user
+\end_layout
+
+\end_inset
+
+ accessible only file is 
+\shape italic
+/etc/master.passwd
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+/etc/master.passwd
+\end_layout
+
+\end_inset
+
+
+\shape default
+ consists of newline-separated records, one per user, containing ten colon-separ
+ated fields.
+ These fields are as follows:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+name user's login name;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+password user's encrypted password;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+uid user's login user id; 
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+gid user's login group id;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+class user's general classification, see 
+\shape italic
+login.conf
+\shape default
+(5);
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+change password change time;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+expire account expiration time;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+gecos general information about the user;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+home_dir user's home directory;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+shell user's login shell.
+\end_layout
+
+\begin_layout Standard
+\noindent
+The publicly-readable password file is generated from the 
+\shape italic
+/etc/master.passwd
+\shape default
+ and resides in 
+\shape italic
+/etc/passwd
+\shape default
+.
+ Each line in the file describes a separate user.
+ The differences between these two files are that the latter lacks class,
+ change, expire fields removed and the password field is replaced with and
+ asterisk '*'.
+ To operate on the password database file which is described in 
+\shape italic
+passwd
+\shape default
+(5) there are several system calls: 
+\family typewriter
+getpwnam
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getpwnam
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+getpwuid
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getpwuid
+\end_layout
+
+\end_inset
+
+
+\family default
+ are some of these.
+ Each entry of this database are in the structure 
+\family typewriter
+passwd
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+passwd
+\end_layout
+
+\end_inset
+
+
+\family default
+ defined in the include file 
+\family typewriter
+<pwd.h>
+\family default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<pwd.h>
+\end_layout
+
+\end_inset
+
+:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:passwd-struct"
+
+\end_inset
+
+The passwd structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct passwd {
+\end_layout
+
+\begin_layout Plain Layout
+
+	char *pw_name;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char *pw_passwd;
+\end_layout
+
+\begin_layout Plain Layout
+
+	uid_t pw_uid;
+\end_layout
+
+\begin_layout Plain Layout
+
+	gid_t pw_gid;
+\end_layout
+
+\begin_layout Plain Layout
+
+	time_t pw_change;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char *pw_class;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char *pw_gecos;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char *pw_dir;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char *pw_shell;
+\end_layout
+
+\begin_layout Plain Layout
+
+	time_t pw_expire;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+
+\family typewriter
+pw_name
+\family default
+ is the user name string;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+
+\family typewriter
+pw_passwd
+\family default
+ is a string containing an encrypted password;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+
+\family typewriter
+pw_uid user id
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+
+\family typewriter
+pw_gid
+\family default
+ group id;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+
+\family typewriter
+pw_change
+\family default
+ is the last change time;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+
+\family typewriter
+pw_class
+\family default
+ is the user access class;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+
+\family typewriter
+pw_gecos
+\family default
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\noindent
+The 
+\family typewriter
+pw_gecos
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+pw_gecos
+\end_layout
+
+\end_inset
+
+
+\family default
+ member called Honeywell login info, the GECOS
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+GECOS
+\end_layout
+
+\end_inset
+
+ field, normally contains comma ',' separated subfields as follows:
+\end_layout
+
+\begin_layout Itemize
+name – user's full name
+\end_layout
+
+\begin_layout Itemize
+office – user's office number
+\end_layout
+
+\begin_layout Itemize
+wphone – user's work phone number
+\end_layout
+
+\begin_layout Itemize
+hphone – user's home phone number
+\end_layout
+
+\begin_layout Plain Layout
+The full name may contain an ampersand '&' which will be replaced by the
+ capitalized login name when the GECOS
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+GECOS
+\end_layout
+
+\end_inset
+
+ field is displayed or used by various programs such as 
+\shape italic
+finger
+\shape default
+(1), 
+\shape italic
+sendmail
+\shape default
+(8), etc..
+ The office and phone number subfields are used by the 
+\shape italic
+finger
+\shape default
+(1) program, and possibly other applications.
+\end_layout
+
+\end_inset
+
+ is the Honeywell login info string;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+
+\family typewriter
+pw_dir
+\family default
+ is the user home directory path;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+
+\family typewriter
+pw_shell
+\family default
+ is the user shell interpreter path;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+
+\family typewriter
+pw_expire
+\family default
+ is the expiration date for the user account.
+\end_layout
+
+\begin_layout Standard
+\noindent
+Several routines are provided to read the password file; all of them return
+ a pointer to structure of type 
+\family typewriter
+passwd
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+passwd
+\end_layout
+
+\end_inset
+
+
+\family default
+, or 
+\family typewriter
+NULL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+NULL
+\end_layout
+
+\end_inset
+
+
+\family default
+ on end-of-file
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+end-of-file
+\end_layout
+
+\end_inset
+
+ or error
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Quotes eld
+\end_inset
+
+entry not found
+\begin_inset Quotes erd
+\end_inset
+
+ is considered an error.
+\end_layout
+
+\end_inset
+
+.
+ It points to static data that is overwritten at each call; programs must
+ copy the data into another structure if it is to be saved.
+ The 
+\family typewriter
+getpwent
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getpwent
+\end_layout
+
+\end_inset
+
+
+\family default
+ routine requires no arguments and returns the next entry in the password
+ file, reading sequentially from the beginning.
+ 
+\family typewriter
+getpwuid
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getpwuid
+\end_layout
+
+\end_inset
+
+
+\family default
+ takes a numeric user id as an argument and returns the entry for that user
+ id.
+ 
+\family typewriter
+getpwnam
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getpwnam
+\end_layout
+
+\end_inset
+
+
+\family default
+ takes a pointer to a character string containing a login name
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+login name
+\end_layout
+
+\end_inset
+
+ as an argument and returns the entry for that login name
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+login name
+\end_layout
+
+\end_inset
+
+.
+ The routines 
+\family typewriter
+setpwent
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+setpwent
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+endpwent
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+endpwent
+\end_layout
+
+\end_inset
+
+
+\family default
+ are used to open and close the password file respectively.
+ These should be used to rewind the password file and 
+\begin_inset Quotes eld
+\end_inset
+
+reset
+\begin_inset Quotes erd
+\end_inset
+
+ the 
+\family typewriter
+getpwent
+\family default
+ routine.
+ Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:passwd"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the usage of the routines 
+\family typewriter
+setpwent
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+setpwent
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+endpwent
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+endpwent
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+getpwent
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getpwent
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:passwd"
+
+\end_inset
+
+passwd - program to demonstrate the password database system calls.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* passwd.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <unistd.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <errno.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <pwd.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* passwd program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct passwd *pw;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Open the password database file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	setpwent();
+\end_layout
+
+\begin_layout Plain Layout
+
+	do {
+\end_layout
+
+\begin_layout Plain Layout
+
+		pw = getpwent();
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(pw) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("user name: %s, ", pw -> pw_name);
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("user id: %d, ", pw -> pw_uid);
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("group id: %d
+\backslash
+n", pw -> pw_gid);
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+	} while(pw);
+\end_layout
+
+\begin_layout Plain Layout
+
+	ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Close the password database file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	endpwent();
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of passwd.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:reading-the-group-file"
+
+\end_inset
+
+Reading the Group File.
+\end_layout
+
+\begin_layout Standard
+\noindent
+The group file
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+group file
+\end_layout
+
+\end_inset
+
+, 
+\shape italic
+/etc/group
+\shape default
+, also contains lines of colon-separated fields.
+ These lines are described by the group structure, defined in the include
+ file 
+\family typewriter
+<grp.h>
+\family default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<grp.h>
+\end_layout
+
+\end_inset
+
+:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:group-struct"
+
+\end_inset
+
+The group structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct group {
+\end_layout
+
+\begin_layout Plain Layout
+
+	char *gr_name;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char *gr_passwd;
+\end_layout
+
+\begin_layout Plain Layout
+
+	gid_t gr_gid;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char **gr_mem;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+The fields are:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+gr_name
+\family default
+ the name of the group;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+gr_passwd
+\family default
+ the encrypted password for the group.
+ The field is almost always left blank.
+ If non-blank, then the newgrp command prompts for a password before permitting
+ a user to change to this group.
+ Because of the group mechanism, this field is meaningless in OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+gr_gid
+\family default
+ the numeric group id of the group;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+gr_mem
+\family default
+ pointers to the login names of the members of the group.
+ The list is null-terminated.
+\end_layout
+
+\begin_layout Standard
+\noindent
+The routines to read the group file are patterned directly after those to
+ read the password file.
+ All the routines return a pointer to a structure of type group or NULL
+ on error/end.
+ The routines are called getgrent, getgrgid and getgrnam.
+ The routines setgrent and endgrent are also available.
+ Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:group"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ provides an example of usage for the system calls to handle the groups
+ database.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:group"
+
+\end_inset
+
+group - program to demonstrate the group database system calls.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* group.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <unistd.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <errno.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <grp.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* group program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct group *grp;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char **members;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Open the group database file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	setgrent();
+\end_layout
+
+\begin_layout Plain Layout
+
+	do {
+\end_layout
+
+\begin_layout Plain Layout
+
+		grp = getgrent();
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(grp) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("group name: %s, ", grp -> gr_name);
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("group password: %s, ", grp -> gr_passwd);
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("group id: %d
+\backslash
+n", grp -> gr_gid);
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("group members: ");
+\end_layout
+
+\begin_layout Plain Layout
+
+			members = grp -> gr_mem;
+\end_layout
+
+\begin_layout Plain Layout
+
+			while(*members) {
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("%s", *members++);
+\end_layout
+
+\begin_layout Plain Layout
+
+				if(*members)
+\end_layout
+
+\begin_layout Plain Layout
+
+					printf(", ");
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+	} while(grp);
+\end_layout
+
+\begin_layout Plain Layout
+
+	endgrent();
+\end_layout
+
+\begin_layout Plain Layout
+
+	ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of group.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:reading-utmp-wtmp-files"
+
+\end_inset
+
+Reading the 
+\shape italic
+/var/run/utmp
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+/var/run/utmp
+\end_layout
+
+\end_inset
+
+
+\shape default
+ and 
+\shape italic
+/var/log/wtmp
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+/var/log/wtmp
+\end_layout
+
+\end_inset
+
+
+\shape default
+ Files.
+\end_layout
+
+\begin_layout Standard
+The file 
+\shape italic
+/var/run/utmp
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+/var/run/utmp
+\end_layout
+
+\end_inset
+
+
+\shape default
+ contains a record of all users currently logged in on the system.
+ The 
+\family typewriter
+<utmp.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<utmp.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+ file declares the structures used to record information about current users
+ in the utmp file, logins and logouts in the wtmp file, and last logins
+ in the lastlog file.
+ The timestamps of date changes, shutdowns, and reboots are also logged
+ in the wtmp file.
+ wtmp file can grow rapidly on busy systems, so daily or weekly rotation
+ is recommended.
+ If any one of these files does not exist, it is not created.
+ They must be created manually and are maintained by 
+\shape italic
+newsyslog
+\shape default
+(8).
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:lastlog-utmp-struct"
+
+\end_inset
+
+The lastlog and utmp structures.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#define _PATH_UTMP "/var/run/utmp"
+\end_layout
+
+\begin_layout Plain Layout
+
+#define _PATH_WTMP "/var/log/wtmp"
+\end_layout
+
+\begin_layout Plain Layout
+
+#define _PATH_LASTLOG"/var/log/lastlog"
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#define UT_NAMESIZE 32
+\end_layout
+
+\begin_layout Plain Layout
+
+#define UT_LINESIZE 8
+\end_layout
+
+\begin_layout Plain Layout
+
+#define UT_HOSTSIZE 256
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct lastlog {
+\end_layout
+
+\begin_layout Plain Layout
+
+	time_t ll_time;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char ll_line[ UT_LINESIZE ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	char ll_host[ UT_HOSTSIZE ];
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct utmp {
+\end_layout
+
+\begin_layout Plain Layout
+
+	char ut_line[ UT_LINESIZE ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	char ut_name[ UT_NAMESIZE ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	char ut_host[ UT_HOSTSIZE ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	time_t ut_time;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+To read the 
+\shape italic
+/var/run/utmp
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+/var/run/utmp
+\end_layout
+
+\end_inset
+
+
+\shape default
+ file just open it as showed in the previous chapters.
+ Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:utmp"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows how to read the utmp file.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:utmp"
+
+\end_inset
+
+utmp - program to read /var/run/utmp.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* utmp.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <unistd.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <fcntl.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <errno.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <time.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <utmp.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* utmp program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int fd;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct utmp record;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Open the /va/run/utmp file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if((fd = open(_PATH_UTMP, O_RDONLY)) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		while(read(fd, (void *) &record, sizeof(struct utmp)) > 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(record.ut_name[ 0 ] != '
+\backslash
+0') {
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("line: %.*s, ", UT_LINESIZE, record.ut_line);
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("name: %.*s, ", UT_NAMESIZE, record.ut_name);
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("name: %.*s, ", UT_HOSTSIZE, record.ut_host);
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("time: %s", ctime(&record.ut_time));
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+		ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+		close(fd);
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else
+\end_layout
+
+\begin_layout Plain Layout
+
+		perror("open /var/run/utmp");
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of utmp.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

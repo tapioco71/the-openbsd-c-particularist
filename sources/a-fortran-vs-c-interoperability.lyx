@@ -1,0 +1,4080 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass memoir
+\use_default_options true
+\master the-openbsd-c-particularist.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family sfdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1.7cm
+\topmargin 1cm
+\rightmargin 1.5cm
+\bottommargin 1.2cm
+\headheight 1cm
+\headsep 1cm
+\footskip 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "app:fortran-vs-c"
+
+\end_inset
+
+FORTRAN vs C Interoperability.
+\end_layout
+
+\begin_layout Standard
+\align right
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "50col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:data-representation"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:routines-naming"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:returning-values-from-functions"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:passing-arguments"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+The OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ gcc
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+gcc
+\end_layout
+
+\end_inset
+
+ C
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+C
+\end_layout
+
+\end_inset
+
+ and g95
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+g95
+\end_layout
+
+\end_inset
+
+ FORTRAN
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+FORTRAN
+\end_layout
+
+\end_inset
+
+ compilers were written to use the same object code format.
+ This feature permits the programmer to call FORTRAN
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+FORTRAN
+\end_layout
+
+\end_inset
+
+ functions from C programs and vice-versa.
+ FORTRAN
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+FORTRAN
+\end_layout
+
+\end_inset
+
+ programs can use many of the C library functions, system calls.
+ C programs can call funtions from FORTRAN
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+FORTRAN
+\end_layout
+
+\end_inset
+
+ libraries.
+ Note that the information in this appendix is based on the OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ gcc
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+gcc
+\end_layout
+
+\end_inset
+
+ C
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+C
+\end_layout
+
+\end_inset
+
+ and g95
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+g95
+\end_layout
+
+\end_inset
+
+ FORTRAN
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+FORTRAN
+\end_layout
+
+\end_inset
+
+ compilers on amd64 architecture.
+ 
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:data-representation"
+
+\end_inset
+
+Data Representation.
+\end_layout
+
+\begin_layout Standard
+\noindent
+The following tab.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:fortran-c-decls"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ is of corresponding FORTRAN
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+FORTRAN
+\end_layout
+
+\end_inset
+
+ and C
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+C
+\end_layout
+
+\end_inset
+
+ variable declarations.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="36" columns="3">
+<features booktabs="true" islongtable="true" longtabularalignment="center">
+<column alignment="center" valignment="top" width="6.5cm">
+<column alignment="center" valignment="top" width="4.5cm">
+<column alignment="center" valignment="top" width="2cm">
+<row endhead="true" caption="true">
+<cell multicolumn="1" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:fortran-c-decls"
+
+\end_inset
+
+FORTRAN 90 vs C Declarations.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row endhead="true">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size small
+FORTRAN 90
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size small
+C
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size small
+Extension
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+integer(c_int) :: x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+int x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+no
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+integer(c_short) :: x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+short int x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+no
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+integer(c_long) :: x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+long int x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+no
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+integer(c_long_long) :: x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+long long int x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+no
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+integer(c_signed_char) :: x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+char x; unsigned char x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+no
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+integer(c_size_t) :: x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+size_t x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+no
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+integer(c_int8_t) :: x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+int8_t x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+no
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+integer(c_int16_t) :: x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+int16_t x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+no
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+integer(c_int32_t) :: x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+int32_t x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+no
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+integer(c_int64_t) :: x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+int64_t x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+no
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+integer(c_int128_t) :: x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+int128_t x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+yes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+integer(c_int_least8_t) :: x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+int_least8_t x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+no
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+integer(c_int_least16_t) :: x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+int_least16_t x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+no
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+integer(c_int_least32_t) :: x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+int_least32_t x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+no
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+integer(c_int_least64_t) :: x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+int_least64_t x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+no
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+integer(c_int_least128_t) :: x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+int_least128_t x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+yes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+integer(c_int_fast8_t) :: x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+int_fast8_t x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+no
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+integer(c_int_fast16_t) :: x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+int_fast16_t x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+no
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+integer(c_int_fast32_t) :: x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+int_fast32_t x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+no
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+integer(c_int_fast64_t) :: x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+int_fast64_t x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+no
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+integer(c_int_fst128_t) :: x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+int_fast128_t x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+yes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+integer(c_intmax_t) :: x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+intmax_t x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+no
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+integer(c_intptr_t) :: x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+intptr_t x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+no
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+integer(c_ptrdiff_t) :: x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+ptrdiff_t x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+TS 29113
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+real(c_float) :: x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+float x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+no
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+real(c_double) :: x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+double x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+no
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+real(c_long_double) :: x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+long double x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+no
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+real(c_float128) :: x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+_Float128 x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+yes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+complex(c_float_complex) :: x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+float _Complex x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+no
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+complex(c_double_complex) :: x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+double _Complex x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+no
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+complex(c_long_double_complex) :: x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+long double _Complex x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+no
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+complex(c_float128_complex) :: x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+_Float128 _Complex x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+yes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+logical(c_bool)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+_Bool x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+no
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row endhead="true">
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+character(c_char) :: x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size small
+char x;
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+no
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+It should be noted that when dealing with arrays, C arrays are starting
+ from element indexed as 0 to n-1, while FORTRAN
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+FORTRAN
+\end_layout
+
+\end_inset
+
+ arrays are indexed from 1 to n by default.
+ FORTRAN
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+FORTRAN
+\end_layout
+
+\end_inset
+
+ arrays may be made of index 0 by declaring them as 
+\family typewriter
+name(0:n-1)
+\family default
+ instead of 
+\family typewriter
+name(n)
+\family default
+.
+ C stores arrays in row-major order, while FORTRAN
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+FORTRAN
+\end_layout
+
+\end_inset
+
+ stores them in column-major order.
+ This means that if a two-dimensional array in C is subscripted as 
+\family typewriter
+name[ i ][ j ]
+\family default
+, the same array in FORTRAN
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+FORTRAN
+\end_layout
+
+\end_inset
+
+ would be subscribed as 
+\family typewriter
+name(j, i)
+\family default
+.
+ Likewise, the dimensions of the array would be exchanged when declaring
+ it in the two languages.
+ In the following code example a FORTRAN 90 program is using C code, the
+ hello function:
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="2">
+<features booktabs="true" islongtable="true" longtabularalignment="center">
+<column alignment="center" valignment="top" width="6.5cm">
+<column alignment="center" valignment="top" width="6.5cm">
+<row endhead="true" caption="true">
+<cell multicolumn="1" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:hello1"
+
+\end_inset
+
+FORTRAN 90 Program using C code.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row endhead="true">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+FORTRAN Code
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+C Code
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+\begin_inset listings
+lstparams "language={[90]Fortran},basicstyle={\tiny\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+! -*- mode: f90-mode; -*-
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+! hello1-for.f90 file.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+program hello1
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  use, intrinsic :: iso_c_binding, only: c_int
+\end_layout
+
+\begin_layout Plain Layout
+
+  implicit none
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  interface
+\end_layout
+
+\begin_layout Plain Layout
+
+     subroutine hello(count) bind(C)
+\end_layout
+
+\begin_layout Plain Layout
+
+       use, intrinsic :: iso_c_binding, only: c_int
+\end_layout
+
+\begin_layout Plain Layout
+
+       implicit none
+\end_layout
+
+\begin_layout Plain Layout
+
+       integer(c_int), value :: count
+\end_layout
+
+\begin_layout Plain Layout
+
+     end subroutine hello
+\end_layout
+
+\begin_layout Plain Layout
+
+  end interface
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  integer(c_int) :: x
+\end_layout
+
+\begin_layout Plain Layout
+
+  x = 10
+\end_layout
+
+\begin_layout Plain Layout
+
+  call hello(x)
+\end_layout
+
+\begin_layout Plain Layout
+
+  stop
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+end program hello1
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+! End of hello1-for.f90 file.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+\begin_inset listings
+lstparams "language=C,basicstyle={\tiny\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* hello1-c.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+void hello(int count)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  printf("Hello, %d worlds.
+\backslash
+n",  count);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of hello1-c.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+In the second example a C program is using FORTRAN 90 code:
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="2">
+<features booktabs="true" islongtable="true" longtabularalignment="center">
+<column alignment="center" valignment="top" width="6.5cm">
+<column alignment="center" valignment="top" width="6.5cm">
+<row endhead="true" caption="true">
+<cell multicolumn="1" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:hello2"
+
+\end_inset
+
+C program using FORTRAN 90 code.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row endhead="true">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+FORTRAN Code
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+C Code
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+\begin_inset listings
+lstparams "language=C,basicstyle={\tiny\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* hello2-c.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+void hello_(int);
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *argv[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  hello_(10);
+\end_layout
+
+\begin_layout Plain Layout
+
+  exit(EXIT_SUCCESS);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of hello2-c.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+\begin_inset listings
+lstparams "language={[90]Fortran},basicstyle={\tiny\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+! -*- mode: f90-mode; -*-
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+! hello2-for.f90 file.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+subroutine hello(count)
+\end_layout
+
+\begin_layout Plain Layout
+
+  use, intrinsic :: iso_c_binding, only: c_int
+\end_layout
+
+\begin_layout Plain Layout
+
+  implicit none
+\end_layout
+
+\begin_layout Plain Layout
+
+  integer(c_int), value :: count
+\end_layout
+
+\begin_layout Plain Layout
+
+  print "('Hello, ', i3, ' worlds!')", count
+\end_layout
+
+\begin_layout Plain Layout
+
+end subroutine hello
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+! End of hello2-for.f90 file.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:routines-naming"
+
+\end_inset
+
+Routines Naming.
+\end_layout
+
+\begin_layout Standard
+The FORTRAN
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+FORTRAN
+\end_layout
+
+\end_inset
+
+ compiler appends an underscore character 
+\begin_inset Quotes eld
+\end_inset
+
+_
+\begin_inset Quotes erd
+\end_inset
+
+ to each user-defined common procedure or function.
+ The purpose is to avoid conflicts with C functions and variables of the
+ same name, most of the FORTRAN
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+FORTRAN
+\end_layout
+
+\end_inset
+
+ libraries are written in C.
+ Unfortunately, it means the programmer must be careful when naming his
+ or her procedure.
+\end_layout
+
+\begin_layout Subsection
+Naming C Routines to be Called from FORTRAN
+\end_layout
+
+\begin_layout Standard
+In order for function
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+A C function returning void could be regarded as a FORTRAN procedure.
+\end_layout
+
+\end_inset
+
+ written in C to be callable from a FORTRAN
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+FORTRAN
+\end_layout
+
+\end_inset
+
+ 90 program one can use an 
+\shape italic
+interface block
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+interface block
+\end_layout
+
+\end_inset
+
+
+\shape default
+.
+ All functions the reader have seen so far are internal functions that are
+ contained in a program or a module.
+ Functions that are not contained in any program or modules are 
+\shape italic
+external functions
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+external functions
+\end_layout
+
+\end_inset
+
+
+\shape default
+.
+ A program can use internal functions, external functions and functions
+ in modules.
+ Moreover, external functions can be in the same file of the program or
+ in several files.
+ External functions can be considered as program units that are independent
+ of each other.
+ Thus, the only way of communication among external functions, the main
+ program and modules is through arguments.
+ In other words, from outside of an external function, it is impossible
+ to use its variables, parameters and internal functions.
+ Any external function to be used should be listed in an interface block
+ along with the declaration of its arguments and their types and the type
+ of the function value.
+ Note that an external function can be in the file containing the main program
+ or module.
+ As long as that function is not contained in any program, function, or
+ module, it is external and an interface block is required in any program,
+ function or module where this function is used such as in listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:hello1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Naming FORTRAN Routines to be Called from C
+\end_layout
+
+\begin_layout Standard
+At the same time when a C program needs a FORTRAN
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+FORTRAN
+\end_layout
+
+\end_inset
+
+ 90 function or procedure we can write something like the ones in listing
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:hello2"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ In this case the calling convention is different.
+ We specified a function prototype corresponding to 
+\family typewriter
+hello()
+\family default
+ procedure from FORTRAN
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+FORTRAN
+\end_layout
+
+\end_inset
+
+ code with a 
+\begin_inset Quotes eld
+\end_inset
+
+_
+\begin_inset Quotes erd
+\end_inset
+
+ appended at the name.
+ In the C program then this function will be called 
+\family typewriter
+hello_()
+\family default
+.
+ Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:hello2"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the calling convention for a C program that wants to use FORTRAN
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+FORTRAN
+\end_layout
+
+\end_inset
+
+ 90 code.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:returning-values-from-functions"
+
+\end_inset
+
+Returning Values from Functions.
+\end_layout
+
+\begin_layout Subsection
+Return Values from C Code.
+\end_layout
+
+\begin_layout Standard
+In the listings 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "for:mean"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:mean"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ a FORTRAN
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+FORTRAN
+\end_layout
+
+\end_inset
+
+ 90 program calling a C function is presented.
+\begin_inset listings
+lstparams "language={[90]Fortran},numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "for:mean"
+
+\end_inset
+
+mean - FORTRAN code
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+! -*- mode: f90-mode; -*-
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+! mean-for.f90 file.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+program meaning
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	use, intrinsic :: iso_c_binding, only: c_size_t, c_double
+\end_layout
+
+\begin_layout Plain Layout
+
+	implicit none
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	interface
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		function mean(values, count) bind(C, name = "mean")
+\end_layout
+
+\begin_layout Plain Layout
+
+			use, intrinsic :: iso_c_binding, only: c_size_t, c_double
+\end_layout
+
+\begin_layout Plain Layout
+
+			implicit none
+\end_layout
+
+\begin_layout Plain Layout
+
+			real(c_double) :: mean
+\end_layout
+
+\begin_layout Plain Layout
+
+			integer(c_size_t), value :: count
+\end_layout
+
+\begin_layout Plain Layout
+
+			real(c_double) :: values(1,count)
+\end_layout
+
+\begin_layout Plain Layout
+
+		end function mean
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	end interface
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	integer(c_size_t), parameter :: count = 10
+\end_layout
+
+\begin_layout Plain Layout
+
+	real(c_double) :: values(count)
+\end_layout
+
+\begin_layout Plain Layout
+
+	!
+\end_layout
+
+\begin_layout Plain Layout
+
+	values(:) = (/1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0/)
+\end_layout
+
+\begin_layout Plain Layout
+
+	print "('The mean is ', f16.6)", mean(values, count)
+\end_layout
+
+\begin_layout Plain Layout
+
+	stop
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+end program meaning
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+! End of mean-for.f90 file.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:mean"
+
+\end_inset
+
+mean - C code.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* mean-c.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdint.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <inttypes.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+double mean(double values[], size_t count)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	double ret = 0.;
+\end_layout
+
+\begin_layout Plain Layout
+
+	size_t i;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Computing the mean for "count" values.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	for(i = 0; i < count; i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+		ret += values[ i ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	return (ret / (double) count);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of mean-c.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Returning Values from FORTRAN 90 Code.
+\end_layout
+
+\begin_layout Standard
+In these following listings: 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:norm2"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "for:norm2"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, a C program calls a FORTRAN
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+FORTRAN
+\end_layout
+
+\end_inset
+
+ 90 function computing the two norm of a vector.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:norm2"
+
+\end_inset
+
+norm2 - C code.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* File norm2-c.c.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdint.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <inttypes.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+double norm2_(double [], size_t);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	double values[] = {
+\end_layout
+
+\begin_layout Plain Layout
+
+		1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0
+\end_layout
+
+\begin_layout Plain Layout
+
+	};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Computes the two norm of a vector.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	printf("2 norm: %lf
+\backslash
+n", norm2_(values, 10));
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(EXIT_SUCCESS);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "language={[90]Fortran},numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "for:norm2"
+
+\end_inset
+
+norm2 - FORTRAN Code.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+! -*- mode: f90-mode; -*-
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+! norm2-for.f90 file.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+function norm2(values, count)
+\end_layout
+
+\begin_layout Plain Layout
+
+	use, intrinsic :: iso_c_binding, only: c_size_t, c_double
+\end_layout
+
+\begin_layout Plain Layout
+
+	implicit none
+\end_layout
+
+\begin_layout Plain Layout
+
+	real(c_double) :: norm2
+\end_layout
+
+\begin_layout Plain Layout
+
+	real(c_double) :: r
+\end_layout
+
+\begin_layout Plain Layout
+
+	integer(c_size_t), value :: count
+\end_layout
+
+\begin_layout Plain Layout
+
+	real(c_double) :: values(1 : count)
+\end_layout
+
+\begin_layout Plain Layout
+
+	integer :: i
+\end_layout
+
+\begin_layout Plain Layout
+
+	!
+\end_layout
+
+\begin_layout Plain Layout
+
+	do i = 1, count
+\end_layout
+
+\begin_layout Plain Layout
+
+		if (i .eq.
+ 1) then
+\end_layout
+
+\begin_layout Plain Layout
+
+			norm2 = values(1) ** 2.0
+\end_layout
+
+\begin_layout Plain Layout
+
+		else
+\end_layout
+
+\begin_layout Plain Layout
+
+			norm2 = norm2 + values(i) ** 2.0
+\end_layout
+
+\begin_layout Plain Layout
+
+		end if
+\end_layout
+
+\begin_layout Plain Layout
+
+	end do
+\end_layout
+
+\begin_layout Plain Layout
+
+	norm2 = sqrt(norm2)
+\end_layout
+
+\begin_layout Plain Layout
+
+end function norm2
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+! End of norm2-for.f90 file.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:passing-arguments"
+
+\end_inset
+
+Passing Arguments.
+\end_layout
+
+\begin_layout Subsection
+Passing Arguments to a C Function.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language={[90]Fortran},numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "for:fft"
+
+\end_inset
+
+fft - FORTRAN code.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+! -*- mode: f90-mode; -*-
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+! fft-for.f90 file.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+program ffting
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	use, intrinsic :: iso_c_binding
+\end_layout
+
+\begin_layout Plain Layout
+
+	implicit none
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	interface
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		function dft(x, count) bind(C, name = "dft")
+\end_layout
+
+\begin_layout Plain Layout
+
+			use, intrinsic :: iso_c_binding
+\end_layout
+
+\begin_layout Plain Layout
+
+			implicit none
+\end_layout
+
+\begin_layout Plain Layout
+
+			logical(c_bool) :: dft
+\end_layout
+
+\begin_layout Plain Layout
+
+			integer(c_size_t), value :: count
+\end_layout
+
+\begin_layout Plain Layout
+
+			complex(c_double_complex) :: x(1 : count)
+\end_layout
+
+\begin_layout Plain Layout
+
+		end function dft
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	end interface
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	integer(c_size_t), parameter :: count = 10
+\end_layout
+
+\begin_layout Plain Layout
+
+	complex(c_double_complex) :: x(1 : count)
+\end_layout
+
+\begin_layout Plain Layout
+
+	integer :: i
+\end_layout
+
+\begin_layout Plain Layout
+
+	!
+\end_layout
+
+\begin_layout Plain Layout
+
+	x = (/ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0 /)
+\end_layout
+
+\begin_layout Plain Layout
+
+	if (dft(x, count) .eqv.
+ .true.) then
+\end_layout
+
+\begin_layout Plain Layout
+
+		do i = 1, count
+\end_layout
+
+\begin_layout Plain Layout
+
+			print *, x(i)
+\end_layout
+
+\begin_layout Plain Layout
+
+		end do
+\end_layout
+
+\begin_layout Plain Layout
+
+	else
+\end_layout
+
+\begin_layout Plain Layout
+
+		print *, "Error computing the fft."
+\end_layout
+
+\begin_layout Plain Layout
+
+	end if
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+end program ffting
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+! End of fft-for.f90 file.
+\end_layout
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:fft"
+
+\end_inset
+
+fft - C code.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* fft-c.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdint.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdbool.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <inttypes.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <math.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <complex.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+bool dft(double complex x[], size_t count)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	bool ret = false;
+\end_layout
+
+\begin_layout Plain Layout
+
+	double complex *temp, wn;
+\end_layout
+
+\begin_layout Plain Layout
+
+	size_t j, k;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(count > 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		if((temp = (double complex *) calloc(count, sizeof(double complex))) !=
+ NULL) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			wn = cexp(-2.0 * M_PI * I / (double) count);
+\end_layout
+
+\begin_layout Plain Layout
+
+			for(j = 0; j < count; j++) {
+\end_layout
+
+\begin_layout Plain Layout
+
+				for(k = 0; k < count; k++) {
+\end_layout
+
+\begin_layout Plain Layout
+
+					temp[ j ] += x[ k ] * cpow(wn, (double) (j * k));
+\end_layout
+
+\begin_layout Plain Layout
+
+				}
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+			memcpy(x, temp, sizeof(double complex) * count);
+\end_layout
+
+\begin_layout Plain Layout
+
+			free(temp);
+\end_layout
+
+\begin_layout Plain Layout
+
+			ret = true;
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	return ret;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of fft-c.c file.*/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Passing Arguments to a FORTRAN 90 procedure/function.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language={[90]Fortran},numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "for:ifft"
+
+\end_inset
+
+ifft - FORTRAN code.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+! -*- mode: f90-mode; -*-
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+function idft(x, count)
+\end_layout
+
+\begin_layout Plain Layout
+
+	use, intrinsic :: iso_c_binding
+\end_layout
+
+\begin_layout Plain Layout
+
+	implicit none
+\end_layout
+
+\begin_layout Plain Layout
+
+	logical(c_bool) :: idft
+\end_layout
+
+\begin_layout Plain Layout
+
+	integer(c_size_t), value :: count
+\end_layout
+
+\begin_layout Plain Layout
+
+	complex(c_double_complex), intent(out) :: x(1 : count)
+\end_layout
+
+\begin_layout Plain Layout
+
+	complex(c_double_complex) :: temp(1 : count), wn
+\end_layout
+
+\begin_layout Plain Layout
+
+	real(c_double), parameter :: pi = 2.0 * asin(1.0)
+\end_layout
+
+\begin_layout Plain Layout
+
+	integer :: j, k
+\end_layout
+
+\begin_layout Plain Layout
+
+	!
+\end_layout
+
+\begin_layout Plain Layout
+
+	idft = .false.
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(count .gt.
+ 0) then
+\end_layout
+
+\begin_layout Plain Layout
+
+		wn = exp(-2.0 * (0.0, 1.0) * pi / count)
+\end_layout
+
+\begin_layout Plain Layout
+
+		do j = 1, count
+\end_layout
+
+\begin_layout Plain Layout
+
+			temp(j) = (0.0, 0.0)
+\end_layout
+
+\begin_layout Plain Layout
+
+			do k = 1, count
+\end_layout
+
+\begin_layout Plain Layout
+
+				temp(j) = temp(j) + x(k) * wn ** ((j - 1) * (k - 1))
+\end_layout
+
+\begin_layout Plain Layout
+
+			end do
+\end_layout
+
+\begin_layout Plain Layout
+
+			temp(j) = temp(j) / count
+\end_layout
+
+\begin_layout Plain Layout
+
+		end do
+\end_layout
+
+\begin_layout Plain Layout
+
+		x(1 : count) = temp(1 : count)
+\end_layout
+
+\begin_layout Plain Layout
+
+		idft = .true.
+\end_layout
+
+\begin_layout Plain Layout
+
+	end if
+\end_layout
+
+\begin_layout Plain Layout
+
+end function idft
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+! End of ifft-for.f90 file.
+\end_layout
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:ifft"
+
+\end_inset
+
+ifft - C code.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* ifft-c.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdint.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdbool.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <inttypes.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <math.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <complex.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+bool idft_(double complex [], size_t);
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	size_t i;
+\end_layout
+
+\begin_layout Plain Layout
+
+	double complex x[] = {
+\end_layout
+
+\begin_layout Plain Layout
+
+		0.0 + I * 0.0,
+\end_layout
+
+\begin_layout Plain Layout
+
+	    1.0 + I * 0.0,
+\end_layout
+
+\begin_layout Plain Layout
+
+    	2.0 + I * 0.0,
+\end_layout
+
+\begin_layout Plain Layout
+
+		2.0 + I * 0.0,
+\end_layout
+
+\begin_layout Plain Layout
+
+		1.0 + I * 0.0,
+\end_layout
+
+\begin_layout Plain Layout
+
+		0.0 + I * 0.0,
+\end_layout
+
+\begin_layout Plain Layout
+
+		-1.0 + I * 0.0,
+\end_layout
+
+\begin_layout Plain Layout
+
+		-2.0 + I * 0.0,
+\end_layout
+
+\begin_layout Plain Layout
+
+		-2.0 + I * 0.0,
+\end_layout
+
+\begin_layout Plain Layout
+
+		-1.0 + I * 0.0,
+\end_layout
+
+\begin_layout Plain Layout
+
+		0.0 + I * 0.0
+\end_layout
+
+\begin_layout Plain Layout
+
+	};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(idft_(x, 11) == true) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		for(i = 0; i < 11; i++) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("%lf ", creal(x[ i ]));
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(cimag(x[ i ]) >= 0.0)
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf(" + ");
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("%lf i
+\backslash
+n", cimag(x[ i ]));
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+		ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of ifft-c.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

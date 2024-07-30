@@ -1,0 +1,9358 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass memoir
+\use_default_options true
+\master the-openbsd-c-particularist.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family sfdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1.7cm
+\topmargin 1cm
+\rightmargin 1.5cm
+\bottommargin 1.2cm
+\headheight 1cm
+\headsep 1cm
+\footskip 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "app:wscons"
+
+\end_inset
+
+The Workstation Console Access.
+\end_layout
+
+\begin_layout Standard
+\align right
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "50col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:terminal-emulations"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:generic-display-device-support"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:generic-keyboard-device-support"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:generic-mouse-support"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:the-console-keyboard-mouse-multiplexor"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+wscons
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+wscons
+\end_layout
+
+\end_inset
+
+ stands for 
+\shape italic
+workstation console access
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+workstation console access
+\end_layout
+
+\end_inset
+
+
+\shape default
+, the driver provides support for machine-independent access to the console.
+ It is made of a number of cooperating modules, in particular:
+\end_layout
+
+\begin_layout Itemize
+hardware support for display adapters, keyboards and mice: 
+\shape italic
+wsdisplay
+\shape default
+(4), 
+\shape italic
+wskbd
+\shape default
+(4) and 
+\shape italic
+wsmouse
+\shape default
+(4);
+\end_layout
+
+\begin_layout Itemize
+\noindent
+input event multiplexor described in 
+\shape italic
+wsmux
+\shape default
+(4);
+\end_layout
+
+\begin_layout Itemize
+terminal emulation modules;
+\end_layout
+
+\begin_layout Itemize
+compatibility options to support control operations and other low-level
+ behaviour of existing terminal drivers;
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:terminal-emulations"
+
+\end_inset
+
+Terminal Emulations.
+\end_layout
+
+\begin_layout Standard
+Terminal emulations wscons does not define its own set of terminal control
+ sequences and special keyboard codes in terms of 
+\shape italic
+termcap
+\shape default
+(5).
+ Instead, a 
+\shape italic
+terminal emulation
+\shape default
+ is assigned to each virtual screen when the screen is created.
+ Different terminal emulations can be active at the same time on one display.
+ The following choices are available:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+dumb this minimal terminal support is always available.
+ No control sequences are supported besides the ASCII control characters.
+ The cursor is not addressable.
+ Only ASCII keyboard codes will be delivered, cursor and functions keys
+ do not work;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+sun The "sun" console emulation is available by default on the sparc64 architect
+ure, or if option WSEMUL_SUN was specified at kernel build time.
+ It supports the control sequences of SUN machine consoles and delivers
+ its keyboard codes for function and keypad keys, as far as present on the
+ actually used keyboard.
+ ANSI colors are also supported on this emulation, if the TERM environment
+ variable is set to rcons-color; This emulation is sufficient for full-screen
+ applications;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\noindent
+vt100 is available by default, but can be disabled with option 
+\begin_inset Newline linebreak
+\end_inset
+
+
+\family typewriter
+WSEMUL_NO_VT100
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSEMUL_NO_VT100
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ It provides the most commonly used functions of DEC VT100 terminals with
+ some extensions introduced by the DEC VT220 and DEC VT320 models.
+ The features of the original VT100 which are not, or not completely, implemente
+d are:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\noindent
+VT52 support, 132-column-mode, smooth scroll, light background, keyboard
+ autorepeat control, external printer support, keyboard locking, newline/linefee
+d switching: Escape sequences related to these features are ignored or answered
+ with standard replies.
+ (DECANM, DECCOLM, DECSCLM, DECSCNM, DECARM, DECPFF, DECPEX, KAM, LNM);
+\end_layout
+
+\begin_layout Itemize
+\noindent
+function keys are not reprogrammable and fonts cannot be downloaded.
+ DECUDK and DECDLD sequences will be ignored;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+neither C1 control set characters will be recognized nor will 8-bit keyboard
+ codes be delivered;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+the "DEC supplemental graphic" font is approximated by the ISO-latin-1 font,
+ though there are subtle differences;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+the actual rendering quality depends on the underlying graphics hardware
+ driver.
+ Characters might be missing in the available fonts and be substituted by
+ more or less fitting replacements.
+ Depending on the keyboard used, not all function keys might be available.
+\end_layout
+
+\begin_layout Standard
+In addition to the plain VT100 functions, the following features are supported:
+\end_layout
+
+\begin_layout Itemize
+ANSI colors;
+\end_layout
+
+\begin_layout Itemize
+some VT220-like presentation state settings and -reports (DECRSPS), especially
+ tabulator settings.
+\end_layout
+
+\begin_layout Standard
+In most applications, wscons will work sufficiently as a VT220 emulator.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\noindent
+The wscons infrastructure is the subdivided in four sub modules, these take
+ care of: the display device, the keyboard device, the mouse device and
+ the keyboard/mouse multiplexor.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:generic-display-device-support"
+
+\end_inset
+
+Generic Display Device Support.
+\end_layout
+
+\begin_layout Standard
+The 
+\shape italic
+wsdisplay
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+wsdisplay
+\end_layout
+
+\end_inset
+
+
+\shape default
+ driver is an abstraction layer for display devices within the 
+\shape italic
+wscons
+\shape default
+(4) framework.
+ It attaches to the hardware specific display device driver and makes it
+ available as text terminal or graphics interface.
+ Display devices have the ability to display characters on them, without
+ help of an X server, either directly by hardware or through software drawing
+ pixel data into the display memory.
+ The wsdisplay
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+wsdisplay
+\end_layout
+
+\end_inset
+
+ driver will connect a terminal emulation module and provide a tty-like
+ software interface.
+ The console locator in the configuration line refers to the device's use
+ as output part of the operating system console.
+ A device specification containing a positive value here will only match
+ if the device is in use as system console.
+ The console device selection in early system startup is not influenced.
+ This way, the console device can be connected to a known wsdisplay
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+wsdisplay
+\end_layout
+
+\end_inset
+
+ device instance.
+ The mux locator in the configuration line refers to the 
+\shape italic
+wsmux
+\shape default
+(4) that will be used to get keyboard events.
+ If this locator is -1, no mux will be used.
+ The logical unit of an independent contents displayed on a display, sometimes
+ referred to as "virtual terminal", is called a 
+\shape italic
+screen
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+screen
+\end_layout
+
+\end_inset
+
+
+\shape default
+ here.
+ If the underlying device driver supports it, multiple screens can be used
+ on one display.
+ As of this writing, only the 
+\shape italic
+lcd
+\shape default
+(4) and 
+\shape italic
+vga
+\shape default
+(4) display drivers provide this ability.
+ Screens have different minor device numbers and separate tty instances.
+ One screen possesses the 
+\shape italic
+focus
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+focus
+\end_layout
+
+\end_inset
+
+
+\shape default
+, this means it is displayed on the display and its tty device will get
+ the keyboard input.
+ In some cases, if no screen is set up or if a screen was just deleted,
+ it is possible that no focus is present at all.
+ The focus
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+focus
+\end_layout
+
+\end_inset
+
+ can be switched by either special keyboard input, typically CTL- ALT-Fn,
+ or an 
+\family typewriter
+ioctl
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ioctl
+\end_layout
+
+\end_inset
+
+
+\family default
+ command issued by a user program.
+ Screens are set up or deleted through the /dev/ttyCcfg control device,
+ preferably using the 
+\shape italic
+wsconscfg
+\shape default
+(8) utility.
+ In addition and with help from backend drivers the following features are
+ also provided:
+\end_layout
+
+\begin_layout Itemize
+loading, deleting and listing the loaded fonts;
+\end_layout
+
+\begin_layout Itemize
+browsing backwards in the screen output, the size of the buffer for saved
+ text is defined by the particular hardware driver;
+\end_layout
+
+\begin_layout Itemize
+blanking the screen by timing out on inactivity in the screen holding the
+ input focus.
+ Awakening activities consist of:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+pressing any keys on the keyboard;
+\end_layout
+
+\begin_layout Itemize
+moving or clicking the mouse;
+\end_layout
+
+\begin_layout Itemize
+any output to the screen.
+\end_layout
+
+\begin_layout Standard
+Blanking the screen is usually done by disabling the horizontal sync signal
+ on video output, but may also include blanking the vertical sync in which
+ case most monitors go into power saving mode.
+ See wsconsctl(8) for controlling variables.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\noindent
+Consult the back-end drivers' documentation for which features are supported
+ for each particular hardware type.
+\end_layout
+
+\begin_layout Subsection
+The 
+\family typewriter
+ioctl
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ioctl
+\end_layout
+
+\end_inset
+
+
+\family default
+ Interface.
+\end_layout
+
+\begin_layout Standard
+The following 
+\shape italic
+ioctl
+\shape default
+(2) calls are provided by the wsdisplay
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+wsdisplay
+\end_layout
+
+\end_inset
+
+ driver or by devices which use it.
+ Their definitions are found in 
+\family typewriter
+<dev/wscons/wsconsio.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<dev/wscons/wsconsio.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+:
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+WSDISPLAYIO_GTYPE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_GTYPE
+\end_layout
+
+\end_inset
+
+ u_int
+\family default
+ — retrieve the type of the display.
+ The list of types is in 
+\family typewriter
+<dev/wscons/wsconsio.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<dev/wscons/wsconsio.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+WSDISPLAYIO_GINFO
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_GINFO
+\end_layout
+
+\end_inset
+
+ struct wsdisplay_fbinfo 
+\family default
+— retrieve basic information about a framebuffer display.
+ The returned structure is as follows;
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:wsdisplay_fbinfo-struct"
+
+\end_inset
+
+The wsdisplay_fbinfo structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct wsdisplay_fbinfo {
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int height;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int width;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int depth;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int cmsize;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\noindent
+The height and width members are counted in pixels.
+ The depth member indicates the number of bits per pixel, and cmsize indicates
+ the number of color map entries accessible through 
+\family typewriter
+WSDISPLAYIO_GETCMAP
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_GETCMAP
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+WSDISPLAYIO_PUTCMAP
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_PUTCMAP
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ This call is likely to be unavailable on text-only displays;
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+WSDISPLAYIO_GETSCREENTYPE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_GETSCREENTYPE
+\end_layout
+
+\end_inset
+
+
+\family default
+ 
+\family typewriter
+struct wsdisplay_screentype
+\family default
+ — retrieve basic information about a screen.
+ The returned structure is as follows
+\family typewriter
+:
+\family default
+
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:wsdisplay_screentype-struct"
+
+\end_inset
+
+The wsdisplay_screentype structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#define WSSCREEN_NAME_SIZE 16
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct wsdisplay_screentype {
+\end_layout
+
+\begin_layout Plain Layout
+
+	int idx;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int nidx;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char name[ WSSCREEN_NAME_SIZE ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	int ncols;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int nrows;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int fontwidth;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int fontheight;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\noindent
+the 
+\family typewriter
+idx
+\family default
+ member indicates the index of the screen.
+ The 
+\family typewriter
+nidx
+\family default
+ member indicates the number of screens.
+ The 
+\family typewriter
+name
+\family default
+ member contains a human readable string used to identify the screen.
+ The 
+\family typewriter
+ncols
+\family default
+ and 
+\family typewriter
+nrows
+\family default
+ members indicate the available number of columns and rows.
+ The 
+\family typewriter
+fontwidth
+\family default
+ and 
+\family typewriter
+fontheight
+\family default
+ members indicate the dimensions of a character cell, in pixels;
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\family typewriter
+WSDISPLAYIO_GETCMAP
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_GETCMAP
+\end_layout
+
+\end_inset
+
+ struct wsdisplay_cmap
+\family default
+ — retrieve the current color map from the display.
+ This call needs the following structure set up beforehand:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:wsdisplay_cmap-struct"
+
+\end_inset
+
+The wsdisplay_cmap structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct wsdisplay_cmap {
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int index;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int count;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_char *red;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_char *green;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_char *blue;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\noindent
+The 
+\family typewriter
+index
+\family default
+ and 
+\family typewriter
+count
+\family default
+ members specify the range of color map entries to retrieve.
+ The 
+\family typewriter
+red
+\family default
+, 
+\family typewriter
+green
+\family default
+ and 
+\family typewriter
+blue
+\family default
+ members should each point to an array of 
+\family typewriter
+count
+\family default
+ 
+\family typewriter
+u_chars
+\family default
+.
+ On return, these will be filled in with the appropriate entries from the
+ color map.
+ On all displays that support this call, values range from 0 for minimum
+ intensity to 255 for maximum intensity, even if the display does not use
+ eight bits internally to represent intensity;
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+WSDISPLAYIO_PUTCMAP
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_PUTCMAP
+\end_layout
+
+\end_inset
+
+ struct wsdisplay_cmap
+\family default
+ — change the display's color map.
+ The argument structure is the same as for 
+\family typewriter
+
+\begin_inset Newline linebreak
+\end_inset
+
+WSDISPLAYIO_GETCMAP
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_GETCMAP
+\end_layout
+
+\end_inset
+
+
+\family default
+, but 
+\family typewriter
+red
+\family default
+, 
+\family typewriter
+green
+\family default
+ and 
+\family typewriter
+blue
+\family default
+ are taken as pointers to the values to use to set the color map.
+ This call is not available on displays with fixed color maps;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSDISPLAYIO_GVIDEO
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_GVIDEO
+\end_layout
+
+\end_inset
+
+ u_int
+\family default
+ — get the current state of the display's video output.
+ Possible values are:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\family typewriter
+WSDISPLAYIO_VIDEO_OFF
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_VIDEO_OFF
+\end_layout
+
+\end_inset
+
+
+\family default
+ — the display is blanked;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSDISPLAYIO_VIDEO_ON
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_VIDEO_ON
+\end_layout
+
+\end_inset
+
+
+\family default
+ — the display is enabled;
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\family typewriter
+WSDISPLAYIO_SVIDEO
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_SVIDEO
+\end_layout
+
+\end_inset
+
+ u_int
+\family default
+ — set the state of the display's video output.
+ See 
+\family typewriter
+
+\begin_inset Newline linebreak
+\end_inset
+
+WSDISPLAYIO_GVIDEO
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_GVIDEO
+\end_layout
+
+\end_inset
+
+
+\family default
+ above for possible values.
+\end_layout
+
+\begin_layout Itemize
+WSDISPLAYIO_GCURPOS struct wsdisplay_curpos — retrieve the current position
+ of the hardware cursor.
+ The returned structure is as follows:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:wsdisplay_curpos-struct"
+
+\end_inset
+
+The wsdisplay_curpos structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct wsdisplay_curpos {
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int x;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int y;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\noindent
+The 
+\family typewriter
+x
+\family default
+ and 
+\family typewriter
+y
+\family default
+ members count the number of pixels right and down, respectively, from the
+ top-left corner of the display to the hot spot of the cursor.
+ This call is not available on displays without a hardware cursor.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\family typewriter
+WSDISPLAYIO_SCURPOS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_SCURPOS
+\end_layout
+
+\end_inset
+
+ struct wsdisplay_curpos
+\family default
+ — set the current cursor position.
+ The argument structure, and its semantics, are the same as for 
+\family typewriter
+WSDISPLAYIO_GCURPOS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_GCURPOS
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ This call is not available on displays without a hardware cursor.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSDISPLAYIO_GCURMAX
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_GCURMAX
+\end_layout
+
+\end_inset
+
+ struct wsdisplay_curpos
+\family default
+ — retrieve the maximum size of cursor supported by the display.
+ The 
+\family typewriter
+x
+\family default
+ and 
+\family typewriter
+y
+\family default
+ members of the returned structure indicate the maximum number of pixel
+ rows and columns, respectively, in a hardware cursor on this display.
+ This call is not available on displays without a hardware cursor.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSDISPLAYIO_GCURSOR
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_GCURSOR
+\end_layout
+
+\end_inset
+
+ struct wsdisplay_cursor
+\family default
+ — retrieve some or all of the hardware cursor's attributes.
+ The argument structure is as follows:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:wsdisplay_cursor-struct"
+
+\end_inset
+
+The wsdisplay_cursor struct.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct wsdisplay_cursor {
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int which;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int enable;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct wsdisplay_curpos pos;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct wsdisplay_curpos hot;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct wsdisplay_cmap cmap;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct wsdisplay_curpos size;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_char *image;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_char *mask;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\noindent
+The 
+\family typewriter
+which
+\family default
+ member indicates which of the values the application requires to be returned.
+ It should contain the logical OR of the following flags:
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+WSDISPLAY_CURSOR_DOCUR
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAY_CURSOR_DOCUR
+\end_layout
+
+\end_inset
+
+
+\family default
+ — get enable, which indicates whether the cursor is currently displayed
+ (non-zero) or not (zero);
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+WSDISPLAY_CURSOR_DOPOS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAY_CURSOR_DOPOS
+\end_layout
+
+\end_inset
+
+
+\family default
+ — get pos, which indicates the current position of the cursor on the display,
+ as would be returned by WSDISPLAYIO_GCURPOS;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+WSDISPLAY_CURSOR_DOHOT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAY_CURSOR_DOHOT
+\end_layout
+
+\end_inset
+
+
+\family default
+ — get hot, which indicates the location of the "hot spot" within the cursor.
+ This is the point on the cursor whose position on the display is treated
+ as being the position of the cursor by other calls.
+ Its location is counted in pixels from the top-left corner of the cursor;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+WSDISPLAY_CURSOR_DOCMAP
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAY_CURSOR_DOCMAP
+\end_layout
+
+\end_inset
+
+
+\family default
+ — get cmap, which indicates the current cursor color map.
+ Unlike in a call to 
+\family typewriter
+WSDISPLAYIO_GETCMAP
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_GETCMAP
+\end_layout
+
+\end_inset
+
+
+\family default
+, cmap here need not have its index and count members initialized.
+ They will be set to 0 and 2 respectively by the call.
+ This means that cmap.red, cmap.green, and cmap.blue must each point to at
+ least enough space to hold two u_chars;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+WSDISPLAY_CURSOR_DOSHAPE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAY_CURSOR_DOSHAPE
+\end_layout
+
+\end_inset
+
+
+\family default
+ — get size, image, and mask.
+ These are, respectively, the dimensions of the cursor in pixels, the bitmap
+ of set pixels in the cursor and the bitmap of opaque pixels in the cursor.
+ The format in which these bitmaps are returned, and hence the amount of
+ space that must be provided by the application, are device-dependent;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+WSDISPLAY_CURSOR_DOALL
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAY_CURSOR_DOALL
+\end_layout
+
+\end_inset
+
+
+\family default
+ — get all of the above.
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+The device may elect to return information that was not requested by the
+ user, so those elements of struct wsdisplay_cursor which are pointers should
+ be initialized to 
+\family typewriter
+NULL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+NULL
+\end_layout
+
+\end_inset
+
+
+\family default
+ if not otherwise used.
+ This call is not available on displays without a hardware cursor.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\family typewriter
+WSDISPLAYIO_SCURSOR
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_SCURSOR
+\end_layout
+
+\end_inset
+
+ struct wsdisplay_cursor
+\family default
+ — set some or all of the hardware cursor's attributes.
+ The argument structure is the same as for WSDISPLAYIO_GCURSOR.
+ The which member specifies which attributes of the cursor are to be changed.
+ It should contain the logical OR of the following flags:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\family typewriter
+WSDISPLAY_CURSOR_DOCUR
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAY_CURSOR_DOCUR
+\end_layout
+
+\end_inset
+
+
+\family default
+ — if enable is zero, hide the cursor.
+ Otherwise, display it;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSDISPLAY_CURSOR_DOPOS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAY_CURSOR_DOPOS
+\end_layout
+
+\end_inset
+
+
+\family default
+ — set the cursor's position on the display to pos, the same as 
+\family typewriter
+WSDISPLAYIO_SCURPOS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_SCURPOS
+\end_layout
+
+\end_inset
+
+
+\family default
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSDISPLAY_CURSOR_DOHOT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAY_CURSOR_DOHOT
+\end_layout
+
+\end_inset
+
+
+\family default
+ — set the 
+\shape italic
+hot spot
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+hot spot
+\end_layout
+
+\end_inset
+
+
+\shape default
+ of the cursor, as defined above, to hot;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSDISPLAY_CURSOR_DOCMAP
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAY_CURSOR_DOCMAP
+\end_layout
+
+\end_inset
+
+
+\family default
+ — set some or all of the cursor color map based on cmap.
+ The index and count elements of cmap indicate which color map entries to
+ set, and the entries themselves come from cmap.red, cmap.green, and cmap.blue;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSDISPLAY_CURSOR_DOSHAPE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAY_CURSOR_DOSHAPE
+\end_layout
+
+\end_inset
+
+
+\family default
+ — set the cursor shape from size, image, mask.
+ See above for their meanings;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSDISPLAY_CURSOR_DOALL
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAY_CURSOR_DOALL
+\end_layout
+
+\end_inset
+
+
+\family default
+ — do all of the above.
+\end_layout
+
+\begin_layout Standard
+\noindent
+This call is not available on displays without a hardware cursor.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\family typewriter
+WSDISPLAYIO_GMODE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_GMODE
+\end_layout
+
+\end_inset
+
+ u_int
+\family default
+ — get the current mode of the display.
+ Possible results include:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\family typewriter
+WSDISPLAYIO_MODE_EMUL
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_MODE_EMUL
+\end_layout
+
+\end_inset
+
+
+\family default
+ — the display is in emulating text mode;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSDISPLAYIO_MODE_MAPPED
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_MODE_MAPPED
+\end_layout
+
+\end_inset
+
+
+\family default
+ — the display is in mapped graphics mode;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSDISPLAYIO_MODE_DUMBFB
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_MODE_DUMBFB
+\end_layout
+
+\end_inset
+
+
+\family default
+ — the display is in mapped frame buffer mode.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\family typewriter
+WSDISPLAYIO_SMODE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_SMODE
+\end_layout
+
+\end_inset
+
+ u_int
+\family default
+ — set the current mode of the display.
+ For possible arguments, see 
+\family typewriter
+WSDISPLAYIO_GMODE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_GMODE
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSDISPLAYIO_LDFONT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_LDFONT
+\end_layout
+
+\end_inset
+
+ struct wsdisplay_font
+\family default
+ — loads a font specified by the wsdisplay_font structure:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:wsdisplay_font-struct"
+
+\end_inset
+
+The wsdisplay_font structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#define WSFONT_NAME_SIZE 32
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct wsdisplay_font {
+\end_layout
+
+\begin_layout Plain Layout
+
+	char name[ WSFONT_NAME_SIZE ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	int index;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int firstchar
+\end_layout
+
+\begin_layout Plain Layout
+
+	int numchars;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int encoding;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int fontwidth;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int fontheight;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int stride;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int bitorder;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int byteorder;
+\end_layout
+
+\begin_layout Plain Layout
+
+	void *cookie;
+\end_layout
+
+\begin_layout Plain Layout
+
+	void *data;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\noindent
+The 
+\family typewriter
+name
+\family default
+ member contains a human readable string used to identify the font.
+ The 
+\family typewriter
+index
+\family default
+ member may be used to select a driver-specific font resource, for non-raster
+ frame buffers.
+ A value of -1 will pick the first available slot.
+ The 
+\family typewriter
+firstchar
+\family default
+ member contains the index of the first character in the font, starting
+ at zero.
+ The 
+\family typewriter
+numchars
+\family default
+ member contains the number of characters in the font.
+ The 
+\family typewriter
+encoding
+\family default
+ member describes the font character encoding, using one of the following
+ values:
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+WSDISPLAY_FONTEC__ISO
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAY_FONTEC__ISO
+\end_layout
+
+\end_inset
+
+
+\family default
+ — ISO-8859-1 encoding, also known as Latin-1.
+ This is the preferred encoding for raster frame buffers; 
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+WSDISPLAY_FONTENC_IBM
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAY_FONTENC_IBM
+\end_layout
+
+\end_inset
+
+
+\family default
+ — IBM code page number 437.
+ This is the preferred encoding for text-mode displays.
+\end_layout
+
+\begin_layout Standard
+\noindent
+The 
+\family typewriter
+fontwidth
+\family default
+ and 
+\family typewriter
+fontheight
+\family default
+ members specify the dimensions of a character cell.
+ The 
+\family typewriter
+stride
+\family default
+ member specify the number of bytes of font data per character cell line,
+ usually fontwidth rounded up to a byte boundary.
+ The 
+\family typewriter
+bitorder
+\family default
+ and 
+\family typewriter
+byteorder
+\family default
+ members specify the bit- and byte-ordering of the font data, using either
+ one of the following values:
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+WSDISPLAY_FONTORDER_L2R
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAY_FONTORDER_L2R
+\end_layout
+
+\end_inset
+
+
+\family default
+ — leftmost data contained in the most significant bits, left- to-right
+ ordering.
+ This is the most commonly encountered case;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+WSDISPLAY_FONTORDER_R2L
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAY_FONTORDER_R2L
+\end_layout
+
+\end_inset
+
+
+\family default
+ — leftmost data contained in the least significant bits, right- to-left
+ ordering;
+\end_layout
+
+\begin_layout Standard
+\noindent
+The data field contains the font character data to be loaded.
+ The cookie field is reserved for internal purposes.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\family typewriter
+WSDISPLAYIO_LSFONT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_LSFONT
+\end_layout
+
+\end_inset
+
+ struct wsdisplay_font
+\family default
+ — retrieves the data for a loaded font into the wsdisplay_font structure.
+ The index field is set to the font resource to query.
+ For the argument structure, see 
+\family typewriter
+WSDISPLAYIO_LDFONT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_LDFONT
+\end_layout
+
+\end_inset
+
+
+\family default
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSDISPLAYIO_USEFONT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_USEFONT
+\end_layout
+
+\end_inset
+
+ struct wsdisplay_font
+\family default
+ — selects the font specified in the name field.
+ An empty name selects the next available font.
+ For the argument structure, see 
+\family typewriter
+WSDISPLAYIO_LDFONT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_LDFONT
+\end_layout
+
+\end_inset
+
+
+\family default
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSDISPLAYIO_GBURNER
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_GBURNER
+\end_layout
+
+\end_inset
+
+ struct wsdisplay_burner
+\family default
+ — retrieves the state of the screen burner.
+ The returned structure is as follows:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:wsdisplay_burner-struct"
+
+\end_inset
+
+The wsdisplay_burner structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct wsdisplay_burner {
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int off;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int on;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int flags;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\noindent
+The 
+\family typewriter
+off
+\family default
+ member contains the inactivity time before the screen is turned off, in
+ milliseconds.
+ The 
+\family typewriter
+on
+\family default
+ member contains the time before the screen is turned back on, in milliseconds.
+ The 
+\family typewriter
+flags
+\family default
+ member contains a logical OR of the following flags:
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+WSDISPLAY_BURN_VBLANK
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAY_BURN_VBLANK
+\end_layout
+
+\end_inset
+
+
+\family default
+ — when turning the display off, disable the vertical synchronization signal;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+WSDISPLAY_BURN_KBD
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAY_BURN_KBD
+\end_layout
+
+\end_inset
+
+
+\family default
+ — monitor keyboard activity;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+WSDISPLAY_BURN_MOUSE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAY_BURN_MOUSE
+\end_layout
+
+\end_inset
+
+
+\family default
+ — monitor mouse activity, this only works for mice using the 
+\shape italic
+wsmouse
+\shape default
+(4) driver;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+WSDISPLAY_BURN_OUTPUT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAY_BURN_OUTPUT
+\end_layout
+
+\end_inset
+
+
+\family default
+ — monitor display output activity.
+\end_layout
+
+\begin_layout Standard
+\noindent
+If none of the activity source flags are set, the screen burner is disabled.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\family typewriter
+WSDISPLAYIO_SBURNER
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_SBURNER
+\end_layout
+
+\end_inset
+
+ struct wsdisplay_burner
+\family default
+ — sets the state of the screen burner.
+ The argument structure, and its semantics, are the same as for 
+\family typewriter
+WSDISPLAYIO_GBURNER
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_GBURNER
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSDISPLAYIO_ADDSCREEN
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_ADDSCREEN
+\end_layout
+
+\end_inset
+
+ struct wsdisplay_addscreendata
+\family default
+ — creates a new screen:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:wsdisplay_addscreendata-struct"
+
+\end_inset
+
+The wsdisplay_addscreendata structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#define WSEMUL_NAME_SIZE 16
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct wsdisplay_addscreendata {
+\end_layout
+
+\begin_layout Plain Layout
+
+	int idx;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char screentype[ WSSCREEN_NAME_SIZE ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	char emul[ WSEMUL_NAME_SIZE ];
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\noindent
+The 
+\family typewriter
+idx
+\family default
+ member is the index of the screen to be configured.
+ The 
+\family typewriter
+screentype
+\family default
+ member is matched against builtin screen types, which will be driver-dependent.
+ The 
+\family typewriter
+emul
+\family default
+ member indicates the terminal emulation type.
+ Available terminal emulations are:
+\end_layout
+
+\begin_layout Itemize
+\noindent
+sun — Sun terminal emulation.
+ This is the default on the sparc64 architecture;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+vt100 — Dec VT100 terminal emulation, with some VT220 features.
+ This is the default on all other architectures;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+dumb — dumb terminal.
+\end_layout
+
+\begin_layout Standard
+\noindent
+An empty string will select the default emulation;
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\family typewriter
+WSDISPLAYIO_DELSCREEN
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_DELSCREEN
+\end_layout
+
+\end_inset
+
+ struct wsdisplay_delscreendata
+\family default
+ — deletes a screen:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:wsdisplay_delscreendata-struct"
+
+\end_inset
+
+The wsdisplay_delscreendata structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct wsdisplay_delscreendata {
+\end_layout
+
+\begin_layout Plain Layout
+
+	int idx;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int flags;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\noindent
+The 
+\family typewriter
+idx
+\family default
+ member indicates the index of the screen to be deleted.
+ The 
+\family typewriter
+flags
+\family default
+ member is a logical OR of zero or more of the following:
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+WSDISPLAY_DELSCR_FORCE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAY_DELSCR_FORCE
+\end_layout
+
+\end_inset
+
+
+\family default
+ — force deletion of screen even if in use by a userspace program;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+WSDISPLAY_DELSCR_QUIET
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAY_DELSCR_QUIET
+\end_layout
+
+\end_inset
+
+
+\family default
+ — don't report deletion to console.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\family typewriter
+WSDISPLAYIO_GETSCREEN
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_GETSCREEN
+\end_layout
+
+\end_inset
+
+ struct wsdisplay_addscreendata
+\family default
+ — returns information on the screen indicated by 
+\family typewriter
+idx
+\family default
+ or the current screen if 
+\family typewriter
+idx
+\family default
+ is -1.
+ The screen and emulation types are returned in the same structure, see
+ 
+\family typewriter
+
+\begin_inset Newline linebreak
+\end_inset
+
+WSDISPLAYIO_GETPARAM
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_GETPARAM
+\end_layout
+
+\end_inset
+
+
+\family default
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSDISPLAYIO_SETSCREEN
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_SETSCREEN
+\end_layout
+
+\end_inset
+
+ u_int
+\family default
+ — switch to the screen with the given index;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSDISPLAYIO_WSMOUSED
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_WSMOUSED
+\end_layout
+
+\end_inset
+
+ struct wscons_event
+\family default
+ — this call is used by the 
+\shape italic
+wsmoused
+\shape default
+(8) daemon to inject mouse events gathered from serial mice, as well as
+ various control events;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSDISPLAYIO_GETPARAM
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_GETPARAM
+\end_layout
+
+\end_inset
+
+ struct wsdisplay_param
+\family default
+ — retrieves the state of a display parameter.
+ This call needs the following structure set up beforehand:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:wsdisplay_param-struct"
+
+\end_inset
+
+The wsdisplay_param structure.
+\end_layout
+
+\end_inset
+
+struct wsdisplay_param {
+\end_layout
+
+\begin_layout Plain Layout
+
+	int param;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int min;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int max;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int curval;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int reserved[ 4 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\noindent
+The 
+\family typewriter
+param
+\family default
+ member should be set with the parameter to be returned.
+ The following parameters are supported:
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+WSDISPLAYIO_PARAM_BACKLIGHT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_PARAM_BACKLIGHT
+\end_layout
+
+\end_inset
+
+
+\family default
+ — the intensity of the display backlight, usually on laptop computers;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+WSDISPLAYIO_PARAM_BRIGHTNESS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_PARAM_BRIGHTNESS
+\end_layout
+
+\end_inset
+
+
+\family default
+ — the brightness level;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+WSDISPLAYIO_PARAM_CONTRAST
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_PARAM_CONTRAST
+\end_layout
+
+\end_inset
+
+
+\family default
+ — the contrast level.
+\end_layout
+
+\begin_layout Standard
+\noindent
+On return, 
+\family typewriter
+min
+\family default
+ and 
+\family typewriter
+max
+\family default
+ specify the allowed range for the value, while 
+\family typewriter
+curval
+\family default
+ specifies the current setting.
+ Not all parameters are supported by all display drivers.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\family typewriter
+WSDISPLAYIO_SETPARAM
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_SETPARAM
+\end_layout
+
+\end_inset
+
+ struct wsdisplay_param
+\family default
+ — sets a display parameter.
+ The argument structure is the same as for 
+\family typewriter
+
+\begin_inset Newline linebreak
+\end_inset
+
+WSDISPLAYIO_GETPARAM
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_GETPARAM
+\end_layout
+
+\end_inset
+
+
+\family default
+, with the 
+\family typewriter
+param
+\family default
+ and 
+\family typewriter
+curval
+\family default
+ members filled in.
+ Not all parameters are supported by all display drivers.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSDISPLAYIO_LINEBYTES
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_LINEBYTES
+\end_layout
+
+\end_inset
+
+ u_int
+\family default
+ — get the number of bytes per row when the device is in 
+\family typewriter
+WSDISPLAYIO_MODE_DUMBFB
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_MODE_DUMBFB
+\end_layout
+
+\end_inset
+
+
+\family default
+ mode.
+ 
+\end_layout
+
+\begin_layout Standard
+The following code shows the usage of some of the ioctl calls listed above:
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:wsdisplay"
+
+\end_inset
+
+wsdisplay - program to show WSDISPLAYIO ioctl calls.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* wsdisplay.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdint.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <unistd.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <fcntl.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <errno.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <time.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <inttypes.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/types.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/ioctl.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <dev/wscons/wsconsio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* program wsdisplay.c */
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int fd;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int gtype;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Check arguments count.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(argc == 2) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		fd = open(argv[ 1 ], O_RDONLY | O_EXCL, 0666);
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(fd >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(ioctl(fd, WSDISPLAYIO_GTYPE, &gtype) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("type of display for %s: %d
+\backslash
+n", argv[ 1 ], gtype);
+\end_layout
+
+\begin_layout Plain Layout
+
+				ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+			} else
+\end_layout
+
+\begin_layout Plain Layout
+
+				perror("ioctl");
+\end_layout
+
+\begin_layout Plain Layout
+
+			close(fd);
+\end_layout
+
+\begin_layout Plain Layout
+
+		} else
+\end_layout
+
+\begin_layout Plain Layout
+
+			perror("open");
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else
+\end_layout
+
+\begin_layout Plain Layout
+
+		fprintf(stderr, "usage: wsdisplay <device>
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of wsdisplay.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:generic-keyboard-device-support"
+
+\end_inset
+
+Generic Keyboard Device Support.
+\end_layout
+
+\begin_layout Standard
+The wskbd driver handles common tasks for keyboards within the 
+\shape italic
+wscons
+\shape default
+(4) framework.
+ It is attached to the hardware specific keyboard drivers and provides their
+ connection to 
+\shape italic
+wsdisplay
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+wsdisplay
+\end_layout
+
+\end_inset
+
+
+\shape default
+ devices and a character device interface.
+ The common keyboard support consists of:
+\end_layout
+
+\begin_layout Itemize
+mapping from keycodes, defined by the specific keyboard driver, to keysyms,
+ hardware independent, defined in 
+\family typewriter
+<dev/wscons/wsksymdef.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<dev/wscons/wsksymdef.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+;
+\end_layout
+
+\begin_layout Itemize
+handling of 
+\shape italic
+compose
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+compose
+\end_layout
+
+\end_inset
+
+
+\shape default
+ sequences.
+ Characters commonly not present as separate keys on keyboards can be generated
+ after either a special 
+\shape italic
+compose
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+compose
+\end_layout
+
+\end_inset
+
+
+\shape default
+ key is pressed or a 
+\shape italic
+dead accent
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+dead accent
+\end_layout
+
+\end_inset
+
+
+\shape default
+ character is used;
+\end_layout
+
+\begin_layout Itemize
+certain translations, like turning an 
+\shape italic
+ALT
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+ALT
+\end_layout
+
+\end_inset
+
+
+\shape default
+ modifier into an 
+\shape italic
+ESC
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+ESC
+\end_layout
+
+\end_inset
+
+
+\shape default
+ prefix;
+\end_layout
+
+\begin_layout Itemize
+automatic key repetition, 
+\shape italic
+typematic
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+typematic
+\end_layout
+
+\end_inset
+
+
+\shape default
+;
+\end_layout
+
+\begin_layout Itemize
+parameter handling for 
+\shape italic
+keyboard bells
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+keyboard bells
+\end_layout
+
+\end_inset
+
+
+\shape default
+;
+\end_layout
+
+\begin_layout Itemize
+generation of 
+\shape italic
+keyboard events
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+keyboard events
+\end_layout
+
+\end_inset
+
+
+\shape default
+ for use by X servers.
+\end_layout
+
+\begin_layout Standard
+The wskbd driver provides a number of 
+\family typewriter
+ioctl
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ioctl
+\end_layout
+
+\end_inset
+
+
+\family default
+ functions to control key maps and other parameters.
+ These functions are accessible through the associated wsdisplay
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+wsdisplay
+\end_layout
+
+\end_inset
+
+ device as well.
+ A complete list is in 
+\family typewriter
+<dev/wscons/wsconsio.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<dev/wscons/wsconsio.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ The console locator in the configuration line refers to the device's use
+ as input part of the operating system console.
+ The wskbd driver traps certain key sequences intended to perform special
+ functions.
+ The Ctrl+Alt+Esc sequence will initiate the 
+\shape italic
+ddb
+\shape default
+(4) kernel debugger if the 
+\shape italic
+ddb.console
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+ddb.console
+\end_layout
+
+\end_inset
+
+
+\shape default
+ 
+\shape italic
+sysctl
+\shape default
+(8) variable is set.
+\end_layout
+
+\begin_layout Subsection
+The 
+\family typewriter
+ioctl
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ioctl
+\end_layout
+
+\end_inset
+
+
+\family default
+ Interface.
+\end_layout
+
+\begin_layout Standard
+As in the WSDISPLAY driver, wskbd driver provides a number of ioctl calls.
+ These calls are defined in 
+\family typewriter
+
+\begin_inset Newline linebreak
+\end_inset
+
+<dev/wscons/wsconsio.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<dev/wscons/wsconsio.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+, they are:
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSKBDIO_BELL
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBDIO_BELL
+\end_layout
+
+\end_inset
+
+
+\family default
+ — plays the wscons bell;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSKBDIO_COMPLEXBELL
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBDIO_COMPLEXBELL
+\end_layout
+
+\end_inset
+
+ struct wskbd_bell_data
+\family default
+ — it uses the 
+\begin_inset Newline linebreak
+\end_inset
+
+struct wskbd_bell_data to play the bell.
+ The structure is defined in 
+\family typewriter
+
+\begin_inset Newline linebreak
+\end_inset
+
+<dev/wscons/wsconsio.h>
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+<dev/wscons/wsconsio.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:wskbd_bell_data-struct"
+
+\end_inset
+
+The wskbd_bell_data structure.
+\end_layout
+
+\end_inset
+
+struct wskbd_bell_data {
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int which;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int pitch;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int period;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int volume;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\noindent
+The 
+\family typewriter
+which
+\family default
+ member could be one of:
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSKBD_BELL_DOPITCH
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBD_BELL_DOPITCH
+\end_layout
+
+\end_inset
+
+
+\family default
+ — to get or set the bell pitch;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSKBD_BELL_DOPERIOD
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBD_BELL_DOPERIOD
+\end_layout
+
+\end_inset
+
+
+\family default
+ — to get or set the bell period;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSKBD_BELL_DOVOLUME
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBD_BELL_DOVOLUME
+\end_layout
+
+\end_inset
+
+
+\family default
+ — to get or set the bell volume;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSKBD_BELL_DOALL
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBD_BELL_DOALL
+\end_layout
+
+\end_inset
+
+
+\family default
+ — to set all the parameters at once.
+\end_layout
+
+\begin_layout Standard
+\noindent
+The 
+\family typewriter
+pitch
+\family default
+ member is the frequency in Hz of the sound to be emitted.
+ The 
+\family typewriter
+period
+\family default
+ member is the value in milliseconds of the durantion of the bell sound
+ and the 
+\family typewriter
+volume
+\family default
+ member is the percentage of the maximum value for the bell volume.
+ In listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:wskbd"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ we manipulate the wskbd_bell_data structure to modify the bell sound;
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\family typewriter
+WSKBDIO_SETBELL
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBDIO_SETBELL
+\end_layout
+
+\end_inset
+
+ struct wskbd_bell_data
+\family default
+ — this call set the parameters for the bell as stated in the 
+\family typewriter
+WSKBDIO_COMPLEXBELL
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBDIO_COMPLEXBELL
+\end_layout
+
+\end_inset
+
+
+\family default
+ call;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSKBDIO_GETBELL
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBDIO_GETBELL
+\end_layout
+
+\end_inset
+
+ struct wskbd_bell_data
+\family default
+ — retrieve the parameters for the bell specified in the wskbd_bell_data
+ structure as stated in 
+\family typewriter
+WSKBDIO_COMPLEXBELL
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBDIO_COMPLEXBELL
+\end_layout
+
+\end_inset
+
+
+\family default
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSKBDIO_SETDEFAULTBELL
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBDIO_SETDEFAULTBELL
+\end_layout
+
+\end_inset
+
+ struct wskbd_bell_data
+\family default
+ — as the previous ioctl call but related to the default bell;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSKBDIO_GETDEFAULTBELL
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBDIO_GETDEFAULTBELL
+\end_layout
+
+\end_inset
+
+ struct wskbd_bell_data
+\family default
+ — as the previous ioctl call but related to the default bell;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSKBDIO_SETKEYREPEAT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBDIO_SETKEYREPEAT
+\end_layout
+
+\end_inset
+
+ struct wskbd_keyrepeat_data
+\family default
+ — set keyboard autorepeat settings.
+ The structure 
+\family typewriter
+wskbd_keyrepeat_data
+\family default
+ is defined in 
+\family typewriter
+
+\begin_inset Newline linebreak
+\end_inset
+
+<dev/wscons/wsconsio.h>
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+<dev/wscons/wsconsio.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:wskbd_keyrepeat_data-struct"
+
+\end_inset
+
+The wskbd_keyrepeat_data.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct wskbd_keyrepeat_data {
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int which;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int del1;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int delN;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\noindent
+The 
+\family typewriter
+which
+\family default
+ member could be one of:
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSKBD_KEYREPEAT_DODEL1
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBD_KEYREPEAT_DODEL1
+\end_layout
+
+\end_inset
+
+
+\family default
+ — get or set 
+\family typewriter
+del1
+\family default
+ member;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSKBD_KEYREPEAT_DODELN
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBD_KEYREPEAT_DODELN
+\end_layout
+
+\end_inset
+
+
+\family default
+ — get or set 
+\family typewriter
+delN
+\family default
+ member;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSKBD_KEYREPEAT_DOALL
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBD_KEYREPEAT_DOALL
+\end_layout
+
+\end_inset
+
+
+\family default
+ — all of the above.
+\end_layout
+
+\begin_layout Standard
+\noindent
+To get or set the corresponding struct member.
+ The 
+\family typewriter
+del1
+\family default
+ member represents the delay before the first pressure or a key in milliseconds
+ and the last member 
+\family typewriter
+delN
+\family default
+ sets the delay before rest in milliseconds;
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\family typewriter
+WSKBDIO_GETKEYREPEAT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBDIO_GETKEYREPEAT
+\end_layout
+
+\end_inset
+
+ struct wskbd_keyrepeat_data
+\family default
+ — get key repeat data as specified in 
+\family typewriter
+WSKBDIO_SETKEYREPEAT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBDIO_SETKEYREPEAT
+\end_layout
+
+\end_inset
+
+
+\family default
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSKBDIO_SETDEFAULTKEYREPEAT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBDIO_SETDEFAULTKEYREPEAT
+\end_layout
+
+\end_inset
+
+ struct wskbd_keyrepeat_data
+\family default
+ — set key repeat data as specified in 
+\family typewriter
+WSKBDIO_SETKEYREPEAT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBDIO_SETKEYREPEAT
+\end_layout
+
+\end_inset
+
+
+\family default
+ for the default keyboard;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSKBDIO_GETDEFAULTKEYREPEAT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBDIO_GETDEFAULTKEYREPEAT
+\end_layout
+
+\end_inset
+
+ struct wskbd_keyrepeat_data
+\family default
+ — get key repeat data as specified in 
+\family typewriter
+WSKBDIO_SETKEYREPEAT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBDIO_SETKEYREPEAT
+\end_layout
+
+\end_inset
+
+
+\family default
+ for the default keyboard;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSKBDIO_SETLEDS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBDIO_SETLEDS
+\end_layout
+
+\end_inset
+
+ int
+\family default
+ — set the status for the keyboard leds as per the following constants:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\family typewriter
+WSKBD_LED_CAPS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBD_LED_CAPS
+\end_layout
+
+\end_inset
+
+
+\family default
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSKBD_LED_NUM
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBD_LED_NUM
+\end_layout
+
+\end_inset
+
+
+\family default
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSKBD_LED_SCROLL
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBD_LED_SCROLL
+\end_layout
+
+\end_inset
+
+
+\family default
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSKBD_LED_COMPOSE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBD_LED_COMPOSE
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:wskbd-leds"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the usage of these calls.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\family typewriter
+WSKBDIO_GETLEDS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBDIO_GETLEDS
+\end_layout
+
+\end_inset
+
+ u_int
+\family default
+ — get leds status as specified in 
+\family typewriter
+
+\begin_inset Newline linebreak
+\end_inset
+
+WSKBDIO_SETLEDS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBDIO_SETLEDS
+\end_layout
+
+\end_inset
+
+
+\family default
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSKBDIO_GETMAP
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBDIO_GETMAP
+\end_layout
+
+\end_inset
+
+ struct wskbd_map_data
+\family default
+ — get the keyboard mapping settings.
+ They are stored in a structure of type wskbd_map_data:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:wskbd_map_data-struct"
+
+\end_inset
+
+The wskbd_map_data structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct wskbd_map_data {
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int maplen;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct wscons_keymap *map;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+The maplen member is the number of entries in the map, the maximum count
+ is defined in the 
+\family typewriter
+WSKBDIO_MAXMAPLEN
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBDIO_MAXMAPLEN
+\end_layout
+
+\end_inset
+
+
+\family default
+ constant.
+ The map member is a pointer to the array of struct wscons_keymap defined
+ in 
+\family typewriter
+<dev/wscons/wsksymvar.h>
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+<dev/wscons/wsksymvar.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:wscons_keymap-struct"
+
+\end_inset
+
+The wscons_keymap structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+typedef u_int16_t keysym_t;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct wscons_keymap {
+\end_layout
+
+\begin_layout Plain Layout
+
+	keysym_t command;
+\end_layout
+
+\begin_layout Plain Layout
+
+	keysym_t group1[ 2 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	keysym_t group2[ 2 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSKBDIO_SETMAP
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBDIO_SETMAP
+\end_layout
+
+\end_inset
+
+ struct wskbd_map_data
+\family default
+ — set a new keymap for the keyboard, the data is provided by 
+\family typewriter
+wskbd_map_data
+\family default
+ structure described in 
+\family typewriter
+WSKBDIO_GETMAP
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBDIO_GETMAP
+\end_layout
+
+\end_inset
+
+
+\family default
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSKBDIO_GETENCODING
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBDIO_GETENCODING
+\end_layout
+
+\end_inset
+
+ kbd_t
+\family default
+ — encodings are defined in 
+\family typewriter
+
+\begin_inset Newline linebreak
+\end_inset
+
+<dev/wscons/wksymdef.h>
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+<dev/wscons/wksymdef.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+ file.
+ See listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:wskbd-enc"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ for an example of reading and setting encoding;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSKBDIO_SETENCODING
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBDIO_SETENCODING
+\end_layout
+
+\end_inset
+
+ kbd_t
+\family default
+ — set the encoding for the keyboard.
+ See 
+\family typewriter
+WSKBDIO_GETENCODING
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBDIO_GETENCODING
+\end_layout
+
+\end_inset
+
+
+\family default
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSKBDIO_GETBACKLIGHT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBDIO_GETBACKLIGHT
+\end_layout
+
+\end_inset
+
+ struct wskbd_backlight
+\family default
+ — get configurations for the backlight on keyboards that support that features.
+ The structure wskbd_backlight is defined in 
+\family typewriter
+<dev/wscons/wsconsio.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<dev/wscons/wsconsio.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:wskbd_backlight-struct"
+
+\end_inset
+
+The wskbd_backlight structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct wskbd_backlight {
+\end_layout
+
+\begin_layout Plain Layout
+
+	unsigned int min;
+\end_layout
+
+\begin_layout Plain Layout
+
+	unsigned int max;
+\end_layout
+
+\begin_layout Plain Layout
+
+	unsigned int curval;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+The 
+\family typewriter
+min
+\family default
+ and 
+\family typewriter
+max
+\family default
+ members set the minimum and maximum intensity for the backlight.
+ The 
+\family typewriter
+curval
+\family default
+ specifies the current value;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSKBDIO_SETBACKLIGHT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBDIO_SETBACKLIGHT
+\end_layout
+
+\end_inset
+
+ struct wskbd_backlight
+\family default
+ — set the backlight configuration for keyboards that support this feature.
+ See 
+\family typewriter
+
+\begin_inset Newline linebreak
+\end_inset
+
+WSKBDIO_GETBACKLIGHT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBDIO_GETBACKLIGHT
+\end_layout
+
+\end_inset
+
+
+\family default
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSKBDIO_SETMODE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBDIO_SETMODE
+\end_layout
+
+\end_inset
+
+ u_int
+\family default
+ — sets the mode for the keyboard.
+ Possible values are:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\family typewriter
+WSKBD_TRANSLATED
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBD_TRANSLATED
+\end_layout
+
+\end_inset
+
+
+\family default
+ — keys are translated throught the keyboard map.
+ See 
+\family typewriter
+WSKBDIO_SETMAP
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBDIO_SETMAP
+\end_layout
+
+\end_inset
+
+
+\family default
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSKBD_RAW
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBD_RAW
+\end_layout
+
+\end_inset
+
+
+\family default
+ — keys are not filtered throught the keymap.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\family typewriter
+WSKBDIO_GETMODE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBDIO_GETMODE
+\end_layout
+
+\end_inset
+
+ u_int
+\family default
+ — get the current translating mode for the keyboard.
+ See 
+\family typewriter
+WSKBDIO_SETMODE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSKBDIO_SETMODE
+\end_layout
+
+\end_inset
+
+
+\family default
+;
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:wskbd"
+
+\end_inset
+
+wskbd - program to shows the usage of the wskbd driver.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* wskbd.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdint.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <unistd.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <fcntl.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <errno.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <time.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <inttypes.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/types.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/ioctl.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <dev/wscons/wsconsio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#define FOREVER for(;;)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* program wskbd.c */
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int fd;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct wskbd_bell_data o_wsbelldata, n_wsbelldata;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Check arguments count.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(argc == 2) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		fd = open(argv[ 1 ], O_RDWR | O_EXCL);
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(fd >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("opened %s.
+\backslash
+n", argv[ 1 ]);
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(ioctl(fd, WSKBDIO_BELL) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+				if(ioctl(fd, WSKBDIO_GETBELL, &o_wsbelldata) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+					printf("old GETBELL: %d %d %d %d
+\backslash
+t",	
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+						o_wsbelldata.which,	
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+						o_wsbelldata.pitch,	
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+						o_wsbelldata.period,	
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+						o_wsbelldata.volume);
+\end_layout
+
+\begin_layout Plain Layout
+
+					bzero(&n_wsbelldata, sizeof(struct wskbd_bell_data));
+\end_layout
+
+\begin_layout Plain Layout
+
+					n_wsbelldata.which = WSKBD_BELL_DOPITCH;
+\end_layout
+
+\begin_layout Plain Layout
+
+					n_wsbelldata.pitch = o_wsbelldata.pitch * 2;
+\end_layout
+
+\begin_layout Plain Layout
+
+					if(ioctl(fd, WSKBDIO_SETBELL, &n_wsbelldata) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+						printf("new GETBELL: %d %d %d %d
+\backslash
+t",	
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+							n_wsbelldata.which,	
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+							n_wsbelldata.pitch,	
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+							n_wsbelldata.period,	
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+							n_wsbelldata.volume);
+\end_layout
+
+\begin_layout Plain Layout
+
+						if(ioctl(fd, WSKBDIO_BELL) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+							sleep(5);
+\end_layout
+
+\begin_layout Plain Layout
+
+							if(ioctl(fd, WSKBDIO_SETBELL, &o_wsbelldata) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+								printf("restore old GETBELL: %d %d %d %d
+\backslash
+n",	
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+									o_wsbelldata.which,	
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+									o_wsbelldata.pitch,	
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+									o_wsbelldata.period,	
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+									o_wsbelldata.volume);
+\end_layout
+
+\begin_layout Plain Layout
+
+								if(ioctl(fd, WSKBDIO_BELL) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+									sleep(5);
+\end_layout
+
+\begin_layout Plain Layout
+
+									ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+								} else
+\end_layout
+
+\begin_layout Plain Layout
+
+									perror("error playing bell");
+\end_layout
+
+\begin_layout Plain Layout
+
+							} else
+\end_layout
+
+\begin_layout Plain Layout
+
+								perror("error setting bell data");
+\end_layout
+
+\begin_layout Plain Layout
+
+						} else
+\end_layout
+
+\begin_layout Plain Layout
+
+							perror("error playing bell");
+\end_layout
+
+\begin_layout Plain Layout
+
+					} else
+\end_layout
+
+\begin_layout Plain Layout
+
+						perror("error setting bell data");
+\end_layout
+
+\begin_layout Plain Layout
+
+				} else
+\end_layout
+
+\begin_layout Plain Layout
+
+					perror("error retrieving bell data");
+\end_layout
+
+\begin_layout Plain Layout
+
+			} else
+\end_layout
+
+\begin_layout Plain Layout
+
+				perror("error playing bell");
+\end_layout
+
+\begin_layout Plain Layout
+
+			close(fd);
+\end_layout
+
+\begin_layout Plain Layout
+
+		} else
+\end_layout
+
+\begin_layout Plain Layout
+
+			perror("open");
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else
+\end_layout
+
+\begin_layout Plain Layout
+
+		fprintf(stderr, "usage: wskbd <device>
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of wskbd.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:wskbd-leds"
+
+\end_inset
+
+wskbd-leds - program to shows the usage of the ioctl calls for leds.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* wskbd-leds.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdint.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <unistd.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <fcntl.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <errno.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <time.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <inttypes.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/types.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/ioctl.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <dev/wscons/wsconsio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#define FOREVER for(;;)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* program wskbd-leds.c */
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int fd;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int i, o_gleds;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Check arguments count.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(argc == 2) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		fd = open(argv[ 1 ], O_RDWR | O_EXCL);
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(fd >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("opened %s.
+\backslash
+n", argv[ 1 ]);
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(ioctl(fd, WSKBDIO_GETLEDS, &o_gleds) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+				for(i = 1; i <= WSKBD_LED_COMPOSE; i = (i << 1)) {
+\end_layout
+
+\begin_layout Plain Layout
+
+					printf("led = %d
+\backslash
+n", i);
+\end_layout
+
+\begin_layout Plain Layout
+
+					ioctl(fd, WSKBDIO_SETLEDS, &i);
+\end_layout
+
+\begin_layout Plain Layout
+
+					sleep(2);
+\end_layout
+
+\begin_layout Plain Layout
+
+				}
+\end_layout
+
+\begin_layout Plain Layout
+
+				ioctl(fd, WSKBDIO_SETLEDS, &o_gleds);
+\end_layout
+
+\begin_layout Plain Layout
+
+			} else
+\end_layout
+
+\begin_layout Plain Layout
+
+				perror("error getting leds");
+\end_layout
+
+\begin_layout Plain Layout
+
+			close(fd);
+\end_layout
+
+\begin_layout Plain Layout
+
+		} else
+\end_layout
+
+\begin_layout Plain Layout
+
+			perror("open");
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else
+\end_layout
+
+\begin_layout Plain Layout
+
+		fprintf(stderr, "usage: wskbd-leds <device>
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of wskbd-leds.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:wskbd-enc"
+
+\end_inset
+
+wskbd-enc - program to shows the configured encoding for the keyboard.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* wskbd-enc.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdint.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <unistd.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <fcntl.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <errno.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <time.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <inttypes.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/types.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/ioctl.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <dev/wscons/wsconsio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <dev/wscons/wsksymdef.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <dev/wscons/wsksymvar.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#define FOREVER for(;;)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* program wskbd-enc.c */
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int fd;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	kbd_t o_genc;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Check arguments count.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(argc == 2) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		fd = open(argv[ 1 ], O_RDWR | O_EXCL);
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(fd >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("opened %s.
+\backslash
+n", argv[ 1 ]);
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(ioctl(fd, WSKBDIO_GETENCODING, &o_genc) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("GETENCODING: 0x%0.8x
+\backslash
+n", KB_ENCODING(o_genc));
+\end_layout
+
+\begin_layout Plain Layout
+
+			} else
+\end_layout
+
+\begin_layout Plain Layout
+
+				perror("error getting encoding");
+\end_layout
+
+\begin_layout Plain Layout
+
+			close(fd);
+\end_layout
+
+\begin_layout Plain Layout
+
+		} else
+\end_layout
+
+\begin_layout Plain Layout
+
+			perror("open");
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else
+\end_layout
+
+\begin_layout Plain Layout
+
+		fprintf(stderr, "usage: wskbd-enc <device>
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of wskbd-enc.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:generic-mouse-support"
+
+\end_inset
+
+Generic Mouse Support.
+\end_layout
+
+\begin_layout Standard
+The wsmouse driver is an abstraction layer for mice within the 
+\shape italic
+wscons
+\shape default
+(4) framework.
+ It is attached to the hardware specific mouse drivers and provides a character
+ device interface which returns struct wscons_event via 
+\shape italic
+read
+\shape default
+(2).
+ For use with X servers, ``mouse events'' can be generated.
+ 
+\end_layout
+
+\begin_layout Subsection
+The 
+\family typewriter
+ioctl
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ioctl
+\end_layout
+
+\end_inset
+
+
+\family default
+ interface.
+\end_layout
+
+\begin_layout Standard
+The following 
+\shape italic
+ioctl
+\shape default
+(2) calls are provided by the wsmouse driver or by devices which use it.
+ Their definitions are found in 
+\family typewriter
+<dev/wscons/wsconsio.h>
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+<dev/wscons/wsconsio.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+:
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSEIO_GTYPE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSEIO_GTYPE
+\end_layout
+
+\end_inset
+
+ u_int
+\family default
+ — get the mouse type.
+ Mice types are the following:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSE_TYPE_VSXXX
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSE_TYPE_VSXXX
+\end_layout
+
+\end_inset
+
+
+\family default
+ — DEC serial;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSE_TYPE_PS2 2
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSE_TYPE_PS2 2
+\end_layout
+
+\end_inset
+
+
+\family default
+ — PS/2-compatible;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSE_TYPE_USB
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSE_TYPE_USB
+\end_layout
+
+\end_inset
+
+
+\family default
+ — USB mouse;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSE_TYPE_LMS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSE_TYPE_LMS
+\end_layout
+
+\end_inset
+
+
+\family default
+ — Logitech busmouse;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSE_TYPE_MMS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSE_TYPE_MMS
+\end_layout
+
+\end_inset
+
+
+\family default
+ — Microsoft InPort mouse;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSE_TYPE_TPANEL
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSE_TYPE_TPANEL
+\end_layout
+
+\end_inset
+
+
+\family default
+ — Generic Touch Panel;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSE_TYPE_NEXT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSE_TYPE_NEXT
+\end_layout
+
+\end_inset
+
+
+\family default
+ — NeXT mouse;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSE_TYPE_ARCHIMEDES
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSE_TYPE_ARCHIMEDES
+\end_layout
+
+\end_inset
+
+
+\family default
+ — Archimedes mouse;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSE_TYPE_ADB
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSE_TYPE_ADB
+\end_layout
+
+\end_inset
+
+
+\family default
+ — ADB;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSE_TYPE_HIL
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSE_TYPE_HIL
+\end_layout
+
+\end_inset
+
+
+\family default
+ — HP HIL;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSE_TYPE_LUNA
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSE_TYPE_LUNA
+\end_layout
+
+\end_inset
+
+
+\family default
+ — OMRON Luna;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSE_TYPE_DOMAIN
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSE_TYPE_DOMAIN
+\end_layout
+
+\end_inset
+
+
+\family default
+ — Apollo Domain;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSE_TYPE_BLUETOOTH
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSE_TYPE_BLUETOOTH
+\end_layout
+
+\end_inset
+
+
+\family default
+ — Bluetooth mouse;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSE_TYPE_SUN
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSE_TYPE_SUN
+\end_layout
+
+\end_inset
+
+
+\family default
+ — SUN serial mouse;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSE_TYPE_SYNAPTICS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSE_TYPE_SYNAPTICS
+\end_layout
+
+\end_inset
+
+
+\family default
+ — Synaptics touchpad;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSE_TYPE_ALPS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSE_TYPE_ALPS
+\end_layout
+
+\end_inset
+
+
+\family default
+ — ALPS touchpad;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSE_TYPE_SGI
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSE_TYPE_SGI
+\end_layout
+
+\end_inset
+
+
+\family default
+ — SGI serial mouse;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSE_TYPE_ELANTECH
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSE_TYPE_ELANTECH
+\end_layout
+
+\end_inset
+
+
+\family default
+ — Elantech touchpad;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSE_TYPE_SYNAP_SBTN
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSE_TYPE_SYNAP_SBTN
+\end_layout
+
+\end_inset
+
+
+\family default
+ — Synaptics soft buttons;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSE_TYPE_TOUCHPAD
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSE_TYPE_TOUCHPAD
+\end_layout
+
+\end_inset
+
+
+\family default
+ — Generic touchpad.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSEIO_SRES
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSEIO_SRES
+\end_layout
+
+\end_inset
+
+ u_int
+\family default
+ — set the resolution for the mouse;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSEIO_SCALIBCOORDS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSEIO_SCALIBCOORDS
+\end_layout
+
+\end_inset
+
+ struct wsmouse_calibcoords
+\family default
+ — 
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSEIO_GCALIBCOORDS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSEIO_GCALIBCOORDS
+\end_layout
+
+\end_inset
+
+ struct wsmouse_calibcoords
+\family default
+ — 
+\begin_inset Newline linebreak
+\end_inset
+
+get calibration coordinates constants from mouse device.
+ The 
+\family typewriter
+
+\begin_inset Newline linebreak
+\end_inset
+
+struct wsmouse_calibcoords
+\family default
+ is defined in 
+\family typewriter
+
+\begin_inset Newline linebreak
+\end_inset
+
+<dev/wscons/wsconsio.h>
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+<dev/wscons/wsconsio.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:wsmouse_calibcoords-struct"
+
+\end_inset
+
+The wsmouse_calibcoords structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#define WSMOUSE_CALIBCOORDS_MAX 16
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct wsmouse_calibcoords {
+\end_layout
+
+\begin_layout Plain Layout
+
+	int minx;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int miny;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int maxx;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int maxy;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int swapxy;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int resx;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int resy;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int samplelen;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct wsmouse_calibcoord {
+\end_layout
+
+\begin_layout Plain Layout
+
+		int rawx;
+\end_layout
+
+\begin_layout Plain Layout
+
+		int rawy;
+\end_layout
+
+\begin_layout Plain Layout
+
+		int x;
+\end_layout
+
+\begin_layout Plain Layout
+
+		int y;
+\end_layout
+
+\begin_layout Plain Layout
+
+	} samples[ WSMOUSE_CALIBCOORDS_MAX ];
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\noindent
+The 
+\family typewriter
+minx
+\family default
+ and 
+\family typewriter
+miny
+\family default
+ members are the minimum values for x and y axes respectively.
+ 
+\family typewriter
+maxx
+\family default
+ and 
+\family typewriter
+maxy
+\family default
+ members are the maximum values for x and y axes respectively.
+ 
+\family typewriter
+swapxy
+\family default
+ member is a flag which indicates the swap of x axis with the y one.
+ 
+\family typewriter
+resx
+\family default
+ and 
+\family typewriter
+resy
+\family default
+ members are the x and y axes resolution respectively.
+ 
+\family typewriter
+samplelen
+\family default
+ member is the number of samples available or 
+\family typewriter
+WSMOUSE_CALIBCOORDS_RESET
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSE_CALIBCOORDS_RESET
+\end_layout
+
+\end_inset
+
+
+\family default
+ for raw mode.
+ The 
+\family typewriter
+samples
+\family default
+ member is an array of 
+\family typewriter
+WSMOUSE_CALIBCOORDS_MAX
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSE_CALIBCOORDS_MAX
+\end_layout
+
+\end_inset
+
+
+\family default
+ elements for the 
+\family typewriter
+rawx
+\family default
+ and 
+\family typewriter
+rawy
+\family default
+ members raw coordinates, instead, 
+\family typewriter
+x
+\family default
+ and 
+\family typewriter
+y
+\family default
+ members are the translated coordinates;
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSEIO_SETMODE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSEIO_SETMODE
+\end_layout
+
+\end_inset
+
+ int
+\family default
+ — set mode for the mouse, allowed values are:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSE_COMPAT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSE_COMPAT
+\end_layout
+
+\end_inset
+
+
+\family default
+ — compatibility mode;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSE_NATIVE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSE_NATIVE
+\end_layout
+
+\end_inset
+
+
+\family default
+ — native mode.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSEIO_GETPARAMS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSEIO_GETPARAMS
+\end_layout
+
+\end_inset
+
+ struct wsmouse_parameters
+\family default
+ — get mouse parameters.
+ The 
+\family typewriter
+struct wsmouse_parameters
+\family default
+ is defined in 
+\family typewriter
+
+\begin_inset Newline linebreak
+\end_inset
+
+<dev/wscons/wsconsio.h>
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+<dev/wscons/wsconsio.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:wsmouse_parameters-struct"
+
+\end_inset
+
+The wsmouse_parameters structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct wsmouse_parameters {
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct wsmouse_param *params;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int nparams;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\noindent
+The params member is a pointer to the array of type struct wsmouse_param:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:wsmouse_param-struct"
+
+\end_inset
+
+The wsmouse_param structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct wsmouse_param {
+\end_layout
+
+\begin_layout Plain Layout
+
+	enum wsmousecfg key;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int value;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+In this structure, the key member is a constant which can assume the following
+ values:
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_DX_SCALE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_DX_SCALE
+\end_layout
+
+\end_inset
+
+
+\family default
+ — x-scale factor in [*.12] fixed-point format;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_DY_SCALE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_DY_SCALE
+\end_layout
+
+\end_inset
+
+
+\family default
+ — y-scale factor in [*.12] fixed-point format;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_PRESSURE_LO
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_PRESSURE_LO
+\end_layout
+
+\end_inset
+
+
+\family default
+ — pressure limits defining start of touch;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_PRESSURE_HI
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_PRESSURE_HI
+\end_layout
+
+\end_inset
+
+
+\family default
+ — pressure limits defining end of touch;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_TRKMAXDIST
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_TRKMAXDIST
+\end_layout
+
+\end_inset
+
+
+\family default
+ — max distance to pair points for MT contact;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_SWAPXY
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_SWAPXY
+\end_layout
+
+\end_inset
+
+
+\family default
+ — swap x- and y-axis;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_X_INV
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_X_INV
+\end_layout
+
+\end_inset
+
+
+\family default
+ — map absolute coordinate x to (inv - x);
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_Y_INV
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_Y_INV
+\end_layout
+
+\end_inset
+
+
+\family default
+ — map absolute coordinate y to (inv - y);
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_REVERSE_SCROLLING
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_REVERSE_SCROLLING
+\end_layout
+
+\end_inset
+
+
+\family default
+ — reverse scroll directions;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG__FILTERS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG__FILTERS
+\end_layout
+
+\end_inset
+
+
+\family default
+ — coordinate handling, applying only in 
+\family typewriter
+WSMOUSE_COMPAT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSE_COMPAT
+\end_layout
+
+\end_inset
+
+
+\family default
+ mode;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_DX_MAX
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_DX_MAX
+\end_layout
+
+\end_inset
+
+
+\family default
+ — ignore x deltas greater than this limit
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_DY_MAX
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_DY_MAX
+\end_layout
+
+\end_inset
+
+
+\family default
+ — ignore y deltas greater than this limit;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_X_HYSTERESIS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_X_HYSTERESIS
+\end_layout
+
+\end_inset
+
+
+\family default
+ — retard value for x coordinates;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_Y_HYSTERESIS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_Y_HYSTERESIS
+\end_layout
+
+\end_inset
+
+
+\family default
+ — retard value for y coordinates;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_DECELERATION
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_DECELERATION
+\end_layout
+
+\end_inset
+
+
+\family default
+ — threshold, distance, for deceleration;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_STRONG_HYSTERESIS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_STRONG_HYSTERESIS
+\end_layout
+
+\end_inset
+
+
+\family default
+ — false and read-only, the feature is not supported anymore;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_SMOOTHING
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_SMOOTHING
+\end_layout
+
+\end_inset
+
+
+\family default
+ — smoothing factor (0-7);
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG__TPFILTERS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG__TPFILTERS
+\end_layout
+
+\end_inset
+
+
+\family default
+ — touchpad features;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_SOFTBUTTONS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_SOFTBUTTONS
+\end_layout
+
+\end_inset
+
+
+\family default
+ — 2 soft-buttons at the bottom edge;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_SOFTMBTN
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_SOFTMBTN
+\end_layout
+
+\end_inset
+
+
+\family default
+ — add a middle-button area;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_TOPBUTTONS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_TOPBUTTONS
+\end_layout
+
+\end_inset
+
+
+\family default
+ — 3 soft-buttons at the top edge;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_TWOFINGERSCROLL
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_TWOFINGERSCROLL
+\end_layout
+
+\end_inset
+
+
+\family default
+ — enable two-finger scrolling;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_EDGESCROLL
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_EDGESCROLL
+\end_layout
+
+\end_inset
+
+
+\family default
+ — enable edge scrolling;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_HORIZSCROLL
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_HORIZSCROLL
+\end_layout
+
+\end_inset
+
+
+\family default
+ — enable horizontal edge scrolling;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_SWAPSIDES
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_SWAPSIDES
+\end_layout
+
+\end_inset
+
+
+\family default
+ — invert soft-button/scroll areas;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_DISABLE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_DISABLE
+\end_layout
+
+\end_inset
+
+
+\family default
+ — disable all output except for clicks in the top-button area;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_MTBUTTONS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_MTBUTTONS
+\end_layout
+
+\end_inset
+
+
+\family default
+ — multi-touch buttons;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG__TPFEATURES
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG__TPFEATURES
+\end_layout
+
+\end_inset
+
+
+\family default
+ — 
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_LEFT_EDGE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_LEFT_EDGE
+\end_layout
+
+\end_inset
+
+
+\family default
+ — ratio: left edge / total width;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_RIGHT_EDGE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_RIGHT_EDGE
+\end_layout
+
+\end_inset
+
+
+\family default
+ — ratio: right edge / total width;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_TOP_EDGE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_TOP_EDGE
+\end_layout
+
+\end_inset
+
+
+\family default
+ — ratio: top edge / total height;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_BOTTOM_EDGE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_BOTTOM_EDGE
+\end_layout
+
+\end_inset
+
+
+\family default
+ — ratio: bottom edge / total height;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_CENTERWIDTH
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_CENTERWIDTH
+\end_layout
+
+\end_inset
+
+
+\family default
+ — ratio: center width / total width;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_HORIZSCROLLDIST
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_HORIZSCROLLDIST
+\end_layout
+
+\end_inset
+
+
+\family default
+ — distance mapped to a scroll event;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_VERTSCROLLDIST
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_VERTSCROLLDIST
+\end_layout
+
+\end_inset
+
+
+\family default
+ — distance mapped to a scroll event;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_F2WIDTH
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_F2WIDTH
+\end_layout
+
+\end_inset
+
+
+\family default
+ — width limit for single touches;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_F2PRESSURE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_F2PRESSURE
+\end_layout
+
+\end_inset
+
+
+\family default
+ — pressure limit for single touches;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_TAP_MAXTIME
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_TAP_MAXTIME
+\end_layout
+
+\end_inset
+
+
+\family default
+ — max.
+ duration of tap contacts in milliseconds;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_TAP_CLICKTIME
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_TAP_CLICKTIME
+\end_layout
+
+\end_inset
+
+
+\family default
+ — time between the end of a tap and the button-up-event in milliseconds;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_TAP_LOCKTIME
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_TAP_LOCKTIME
+\end_layout
+
+\end_inset
+
+
+\family default
+ — time between a tap-and-drag action and the button-up-event in milliseconds;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_TAP_ONE_BTNMAP
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_TAP_ONE_BTNMAP
+\end_layout
+
+\end_inset
+
+
+\family default
+ — one-finger tap button mapping;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_TAP_TWO_BTNMAP
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_TAP_TWO_BTNMAP
+\end_layout
+
+\end_inset
+
+
+\family default
+ — two-finger tap button mapping;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_TAP_THREE_BTNMAP
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_TAP_THREE_BTNMAP
+\end_layout
+
+\end_inset
+
+
+\family default
+ — three-finger tap button mapping;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_MTBTN_MAXDIST
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_MTBTN_MAXDIST
+\end_layout
+
+\end_inset
+
+
+\family default
+ — MTBUTTONS: distance limit for two-finger clicks;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG__TPSETUP
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG__TPSETUP
+\end_layout
+
+\end_inset
+
+
+\family default
+ — enable/disable debug output;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_LOG_INPUT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_LOG_INPUT
+\end_layout
+
+\end_inset
+
+
+\family default
+ — 
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG_LOG_EVENTS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_LOG_EVENTS
+\end_layout
+
+\end_inset
+
+
+\family default
+ —
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSECFG__DEBUG
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG__DEBUG
+\end_layout
+
+\end_inset
+
+
+\family default
+ — 
+\end_layout
+
+\begin_layout Standard
+\noindent
+The second member, 
+\family typewriter
+value
+\family default
+, is the value for the corresponding parameter.
+\end_layout
+
+\begin_layout Standard
+\noindent
+For the 
+\family typewriter
+wsmouse_parameters
+\family default
+ structure, the 
+\family typewriter
+nparams
+\family default
+ member is the count of the elements in the array pointed by 
+\family typewriter
+params
+\family default
+;
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\family typewriter
+WSMOUSEIO_SETPARAMS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSEIO_SETPARAMS
+\end_layout
+
+\end_inset
+
+ struct wsmouse_parameters
+\family default
+ — obtains and sets various mouse parameters as a key/value set.
+ Currently these primarily relate to touchpads.
+ The structure struct wsmouse_parameters is defined as in
+\begin_inset Newline linebreak
+\end_inset
+
+ 
+\family typewriter
+WSMOUSEIO_GETPARAMS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSEIO_GETPARAMS
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ The number of parameters to read or write must be specified in nparams.
+ For each parameter, when 
+\family typewriter
+
+\begin_inset Newline linebreak
+\end_inset
+
+WSMOUSEIO_GETPARAMS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSEIO_GETPARAMS
+\end_layout
+
+\end_inset
+
+
+\family default
+ is used, a key must be specified.
+ When 
+\family typewriter
+
+\begin_inset Newline linebreak
+\end_inset
+
+WSMOUSEIO_SETPARAMS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSEIO_SETPARAMS
+\end_layout
+
+\end_inset
+
+
+\family default
+ is used, a key and a value must be specified.
+ A single 
+\family typewriter
+ioctl
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ioctl
+\end_layout
+
+\end_inset
+
+
+\family default
+ may retrieve up to 
+\family typewriter
+WSMOUSECFG_MAX
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMOUSECFG_MAX
+\end_layout
+
+\end_inset
+
+
+\family default
+ nparams.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:the-console-keyboard-mouse-multiplexor"
+
+\end_inset
+
+The Console Keyboard/Mouse Multiplexor.
+\end_layout
+
+\begin_layout Standard
+The wsmux is a pseudo-device driver that allows several 
+\shape italic
+wscons
+\shape default
+(4) input devices to have their events multiplexed into one stream.
+ The typical usage for this device is to have two multiplexors, one for
+ mouse events and one for keyboard and bell events.
+ All 
+\shape italic
+wsmouse
+\shape default
+(4) devices should direct their events to the mouse mux, normally 0 and
+ all keyboard devices, except the console, should direct their events to
+ the keyboard mux, normally 1.
+ A device will send its events to the mux indicated by the mux locator.
+ If none is given the device will not use a multiplexor.
+ The keyboard multiplexor should be connected to the display, using the
+ 
+\shape italic
+wsconscfg
+\shape default
+(8) command.
+ It will then receive all keystrokes from all keyboards and, furthermore,
+ keyboards can be dynamically attached and detached without further user
+ interaction.
+ In a similar way, the window system will open the mouse multiplexor and
+ receive all mouse events; mice can also be dynamically attached and detached.
+ If a wskbd(4) or wsmouse(4) device is opened despite having a mux it will
+ be detached from the mux.
+ It is also possible to inject events into a multiplexor from a user program.
+\end_layout
+
+\begin_layout Subsection
+The 
+\family typewriter
+ioctl
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ioctl
+\end_layout
+
+\end_inset
+
+
+\family default
+ interface.
+\end_layout
+
+\begin_layout Standard
+The following ioctl(2) calls are available for th wsmux device defined in
+ 
+\family typewriter
+<dev/wscons/wsconsio.h>
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+<dev/wscons/wsconsio.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+:
+\end_layout
+
+\begin_layout Itemize
+WSMUXIO_INJECTEVENT struct wscons_event — injects a 
+\family typewriter
+
+\begin_inset Newline linebreak
+\end_inset
+
+wscons_event
+\family default
+ in the queue.
+ The structure is defined in 
+\family typewriter
+
+\begin_inset Newline linebreak
+\end_inset
+
+<dev/wscons/wsconsio.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<dev/wscons/wsconsio.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:wscons_event-struct"
+
+\end_inset
+
+The wscons_event structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct wscons_event {
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int type;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int value;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct timespec time;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+The type member could be one of:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\family typewriter
+WSCONS_EVENT_KEY_UP
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSCONS_EVENT_KEY_UP
+\end_layout
+
+\end_inset
+
+
+\family default
+ — key code;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSCONS_EVENT_KEY_DOWN
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSCONS_EVENT_KEY_DOWN
+\end_layout
+
+\end_inset
+
+
+\family default
+ — key code;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSCONS_EVENT_ALL_KEYS_UP
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSCONS_EVENT_ALL_KEYS_UP
+\end_layout
+
+\end_inset
+
+
+\family default
+ — void;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSCONS_EVENT_MOUSE_UP
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSCONS_EVENT_MOUSE_UP
+\end_layout
+
+\end_inset
+
+
+\family default
+ — button # leftmost = 0;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSCONS_EVENT_MOUSE_DOWN
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSCONS_EVENT_MOUSE_DOWN
+\end_layout
+
+\end_inset
+
+
+\family default
+ — button # leftmost = 0;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSCONS_EVENT_MOUSE_DELTA_X
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSCONS_EVENT_MOUSE_DELTA_X
+\end_layout
+
+\end_inset
+
+
+\family default
+ — x delta amount;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSCONS_EVENT_MOUSE_DELTA_Y
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSCONS_EVENT_MOUSE_DELTA_Y
+\end_layout
+
+\end_inset
+
+
+\family default
+ — y delta amount;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSCONS_EVENT_MOUSE_ABSOLUTE_X
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSCONS_EVENT_MOUSE_ABSOLUTE_X
+\end_layout
+
+\end_inset
+
+
+\family default
+ — x location;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSCONS_EVENT_MOUSE_ABSOLUTE_Y
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSCONS_EVENT_MOUSE_ABSOLUTE_Y
+\end_layout
+
+\end_inset
+
+
+\family default
+ — y location;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSCONS_EVENT_MOUSE_DELTA_Z
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSCONS_EVENT_MOUSE_DELTA_Z
+\end_layout
+
+\end_inset
+
+
+\family default
+ — z delta amount;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSCONS_EVENT_MOUSE_ABSOLUTE_Z
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSCONS_EVENT_MOUSE_ABSOLUTE_Z
+\end_layout
+
+\end_inset
+
+
+\family default
+ — legacy;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSCONS_EVENT_MOUSE_DELTA_W
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSCONS_EVENT_MOUSE_DELTA_W
+\end_layout
+
+\end_inset
+
+
+\family default
+ — w delta amount;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSCONS_EVENT_MOUSE_ABSOLUTE_W
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSCONS_EVENT_MOUSE_ABSOLUTE_W
+\end_layout
+
+\end_inset
+
+
+\family default
+ — legacy;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSCONS_EVENT_SYNC
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSCONS_EVENT_SYNC
+\end_layout
+
+\end_inset
+
+
+\family default
+ — synchronization signal generated;
+\end_layout
+
+\begin_layout Standard
+\noindent
+Following events are not real wscons_event but are used as parameters of
+ the 
+\family typewriter
+WSDISPLAYIO_WSMOUSED
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSDISPLAYIO_WSMOUSED
+\end_layout
+
+\end_inset
+
+
+\family default
+ ioctl:
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSCONS_EVENT_WSMOUSED_ON
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSCONS_EVENT_WSMOUSED_ON
+\end_layout
+
+\end_inset
+
+
+\family default
+ — 
+\shape italic
+wsmoused
+\shape default
+(8) active;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSCONS_EVENT_WSMOUSED_OFF
+\family default
+ — 
+\shape italic
+wsmoused
+\shape default
+(8) inactive.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\family typewriter
+WSMUXIO_ADD_DEVICE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMUXIO_ADD_DEVICE
+\end_layout
+
+\end_inset
+
+ struct wsmux_device
+\family default
+ — adds a new multiplexor to the devices list.
+ The 
+\family typewriter
+wsmux_device
+\family default
+ structure is:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:wsmux_device-struct"
+
+\end_inset
+
+The wsmux_device structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct wsmux_device {
+\end_layout
+
+\begin_layout Plain Layout
+
+	int type;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int idx;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+The 
+\family typewriter
+type
+\family default
+ member is one of:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+WSMUX_MOUSE;
+\end_layout
+
+\begin_layout Itemize
+WSMUX_KBD;
+\end_layout
+
+\begin_layout Itemize
+WSMUX_MUX;
+\end_layout
+
+\begin_layout Standard
+\noindent
+The 
+\family typewriter
+idx
+\family default
+ member is the index inside the wmux multiplexors list.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\family typewriter
+WSMUXIO_REMOVE_DEVICE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMUXIO_REMOVE_DEVICE
+\end_layout
+
+\end_inset
+
+ struct wsmux_device
+\family default
+ — removes the corresponding multiplexor from wmux list.
+ See 
+\family typewriter
+WSMUXIO_ADD_DEVICE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMUXIO_ADD_DEVICE
+\end_layout
+
+\end_inset
+
+
+\family default
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+WSMUXIO_LIST_DEVICES
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMUXIO_LIST_DEVICES
+\end_layout
+
+\end_inset
+
+ struct wsmux_device_list
+\family default
+ — retrieves the multiplexors list of the devices in wmux.
+ The wsmux_device_list is:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:wsmux_device_list-struct"
+
+\end_inset
+
+The wsmux_device_list structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#define WSMUX_MAXDEV 32
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct wsmux_device_list {
+\end_layout
+
+\begin_layout Plain Layout
+
+	int ndevices;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct wsmux_device devices[ WSMUX_MAXDEV ];
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+The 
+\family typewriter
+ndevices
+\family default
+ member could span from 0 to 
+\family typewriter
+WSMUX_MAXDEV
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMUX_MAXDEV
+\end_layout
+
+\end_inset
+
+
+\family default
+ values.
+ The 
+\family typewriter
+devices
+\family default
+ member is an array of 
+\family typewriter
+WSMUX_MAXDEV
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSMUX_MAXDEV
+\end_layout
+
+\end_inset
+
+
+\family default
+ 
+\family typewriter
+wsmux_device
+\family default
+ elements present in the wmux.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:wsmux"
+
+\end_inset
+
+wsmux - program to shows devices in wsmux.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* wsmux.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdint.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <unistd.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <fcntl.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <errno.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <time.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <inttypes.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/types.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/ioctl.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <dev/wscons/wsconsio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#define FOREVER for(;;)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* program wsmux.c */
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int fd;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int i;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct wsmux_device_list mdevices;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Check arguments count.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(argc == 2) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		fd = open(argv[ 1 ], O_RDWR | O_EXCL);
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(fd >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(ioctl(fd, WSMUXIO_LIST_DEVICES, &mdevices) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("opened %s.
+\backslash
+n", argv[ 1 ]);
+\end_layout
+
+\begin_layout Plain Layout
+
+				for(i = 0; i < mdevices.ndevices; i++) {
+\end_layout
+
+\begin_layout Plain Layout
+
+					printf("LIST_DEVICES: %d %d
+\backslash
+n",		
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+						mdevices.devices[ i ].type,		
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+						mdevices.devices[ i ].idx);
+\end_layout
+
+\begin_layout Plain Layout
+
+				}
+\end_layout
+
+\begin_layout Plain Layout
+
+			} else
+\end_layout
+
+\begin_layout Plain Layout
+
+				perror("error retrieving devices list");
+\end_layout
+
+\begin_layout Plain Layout
+
+			close(fd);
+\end_layout
+
+\begin_layout Plain Layout
+
+		} else
+\end_layout
+
+\begin_layout Plain Layout
+
+			fprintf(stderr, "error open device %s.
+\backslash
+n", argv[ 1 ]);
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else
+\end_layout
+
+\begin_layout Plain Layout
+
+		fprintf(stderr, "usage: wsmux <device>
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of wsmux.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

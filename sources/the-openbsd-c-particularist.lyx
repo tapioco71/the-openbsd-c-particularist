@@ -1,0 +1,1214 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass memoir
+\use_default_options true
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+fixltx2e
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family sfdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command bibtex
+\index_command default
+\float_placement H
+\paperfontsize 10
+\spacing single
+\use_hyperref false
+\papersize b5paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\paperwidth 17cm
+\paperheight 24cm
+\leftmargin 1.7cm
+\topmargin 1cm
+\rightmargin 1.5cm
+\bottommargin 2cm
+\headheight 1cm
+\headsep 1cm
+\footskip 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "front-matter.lyx"
+
+\end_inset
+
+
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter*
+Preface.
+\end_layout
+
+\begin_layout Standard
+\align right
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "50col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:documentation-conventions"
+plural "false"
+caps "true"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:notes-on-man-on-openbsd"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:acknowledgements"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+This book is intended for the person who wants to become a system programmer
+ for the UNIX-like operative system OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\noindent
+\begin_inset CommandInset href
+LatexCommand href
+name "OpenBSD"
+target "http://www.openbsd.org"
+literal "true"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+.
+ The most important system calls and library routines provided by this operating
+ system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+operating system
+\end_layout
+
+\end_inset
+
+ are discussed and numerous examples of 
+\shape italic
+real world
+\shape default
+ applications have been provided.
+ The main focus of the discussion is on the 7.5 release of OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ which is a 4.4BSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+4.4BSD
+\end_layout
+
+\end_inset
+
+ UNIX
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+UNIX
+\end_layout
+
+\end_inset
+
+ derivative.
+ The chapters have been organized in a 
+\shape italic
+bottom up
+\shape default
+ fashion, presenting first the methods and routines for performing simple
+ tasks with basic informations fetched from the specific man page and then
+ moving on to complex operations that build on the earlier information.
+ At the end of the chapter or an important section code examples are presented.
+\end_layout
+
+\begin_layout Itemize
+Chapter 1, 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "chap:introduction"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, presents some introductory concept and terminology.
+ It also briefly describes the error handling mechanism used by routines
+ in the Standard I/O Library
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Standard I/O Library
+\end_layout
+
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Itemize
+Chapter 2, 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "chap:the-standard-io"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, and Chapter 3, 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "chap:low-level-io"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, present the high- and low-level input and output mechanism provided for
+ the programmer.
+ Methods of manipulating ordinary files and directories are described in
+ Chapter 4, 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "chap:files-directories"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and operations on special device files are presented in Chapter 5, 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "chap:device-io-control"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Itemize
+Chapter 6, 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "chap:information-about-users"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, describes how to obtain information about the users of the system.
+\end_layout
+
+\begin_layout Itemize
+Chapter 7, 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "chap:time-timing"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, describes the method for obtaining the time of the day, as well as how
+ to time various events;
+\end_layout
+
+\begin_layout Itemize
+Chapter 8, 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "chap:processing-signals"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, describes both the Berkeley and System V signal and interrupt mechanism;
+\end_layout
+
+\begin_layout Itemize
+Chapter 9, 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "chap:executing-programs"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, describes methods for executing other programs, including setting up pipes,
+ and Chapter 10, 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "chap:job-control"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, describes job control mechanism for controlling those programs;
+\end_layout
+
+\begin_layout Itemize
+Chapter 11, 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "chap:interprocess-communication"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, describes sockets, shared memory, message queues and semaphore mechanisms;
+\end_layout
+
+\begin_layout Itemize
+Chapter 12, 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "chap:networking"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, describes the mechanisms for intermachine communication using TCP/IP;
+\end_layout
+
+\begin_layout Itemize
+Chapter 13, 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "chap:file-system"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, provides information on the internal organization of the OpenBSD Fast
+ File System;
+\end_layout
+
+\begin_layout Itemize
+Chapter 14, 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "chap:miscellaneous-routines"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, covers a variety of miscellaneous shorter topics, including reading and
+ setting resource limits, access to environment variables, and use of 
+\family typewriter
+perror
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+perror
+\end_layout
+
+\end_inset
+
+
+\family default
+ for error handling.
+\end_layout
+
+\begin_layout Standard
+\noindent
+The appendices provide information on some specialized topics that are not
+ often used by the systems programmer, but are nevertheless good to know.
+ Appendix A presents information on how to call FORTRAN 90 subroutines from
+ a C program, and vice-versa.
+ Appendix B describes the use of Workstation Console Access
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Workstation Console Access
+\end_layout
+
+\end_inset
+
+ aka wscons
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+wscons
+\end_layout
+
+\end_inset
+
+.
+ A modest background is required to understand the material in this book.
+ The reader is expected to be fluent in C programming language
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+C programming language
+\end_layout
+
+\end_inset
+
+ (
+\begin_inset CommandInset citation
+LatexCommand cite
+key "KernighanRitchie:1988"
+literal "false"
+
+\end_inset
+
+) including the more advanced concepts such as structures and pointers.
+ Good familiarity with the organization and use of the UNIX
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+UNIX
+\end_layout
+
+\end_inset
+
+ operating system is also a must.
+ Although not necessary, familiarity with data structures and algorithms
+ such as those used for sorting and searching will be useful.
+ The examples in the book are really all complete, working programs that
+ should be entered and experimented with to gain a complete understanding
+ of the material
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+If you have an internet access, you need not type in the examples.
+ As you can use git program in your system to download the material, using
+ the command:
+\end_layout
+
+\end_inset
+
+The reader should know how to use gcc or clang compiler suites as well as
+ to use the ld linker and the lldb
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+lldb
+\end_layout
+
+\end_inset
+
+ debugger.
+ For the FORTRAN 90
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+FORTRAN 90
+\end_layout
+
+\end_inset
+
+ part in Appendix A we recomend g95 fortran compiler.
+\end_layout
+
+\begin_layout Section*
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:documentation-conventions"
+
+\end_inset
+
+Documentation Conventions.
+\end_layout
+
+\begin_layout Standard
+For the most part the conventions followed in this book should be obvious,
+ but for the sake of clarity, we'll review them here.
+ This handbook use 
+\shape italic
+Italics
+\shape default
+, 
+\family typewriter
+Constant-Width
+\family default
+ and 
+\family typewriter
+\shape italic
+Constant-Italic
+\family default
+\shape default
+ text to emphasize special words:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="2">
+<features booktabs="true" islongtable="true" longtabularalignment="center">
+<column alignment="left" valignment="top" width="4cm">
+<column alignment="left" valignment="top" width="9cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\shape italic
+Italics
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+are used for the names of all UNIX
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+UNIX
+\end_layout
+
+\end_inset
+
+ utilities, directories and filenames, and to emphasize new terms and concepts
+ when they are first introduced.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+Constant Width
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+is used for system calls, library routines, sample code fragments and examples.
+ A referenze in explanatory text to a word or item used in an example or
+ code fragment is also shown in constant width font.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\shape italic
+Constant Italics
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+are used in code fragments to represent general terms that requires context-depe
+ndent substitution.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\shape italic
+function
+\shape default
+(n)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+is a reference to a man page
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+The man command can show 
+\end_layout
+
+\end_inset
+
+ in section n of the 
+\shape italic
+OpenBSD Manual Page
+\shape default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+OpenBSD Manual Page
+\end_layout
+
+\end_inset
+
+.
+ The command is 
+\family typewriter
+man -s function
+\family default
+.
+ For example, 
+\shape italic
+tty
+\shape default
+(4) refers to a page called 
+\shape italic
+tty
+\shape default
+ in Section 4: man -s 4 tty.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:notes-on-man-on-openbsd"
+
+\end_inset
+
+Notes on man on OpenBSD.
+\end_layout
+
+\begin_layout Standard
+The man utility displays the 
+\shape italic
+manual page
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+manual page
+\end_layout
+
+\end_inset
+
+
+\shape default
+ entitled name.
+ Pages may be selected according to a specific category or section
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+man section
+\end_layout
+
+\end_inset
+
+ or machine architecture or subsection
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+man subsection
+\end_layout
+
+\end_inset
+
+.
+ Only select manuals from the specified section.
+ The currently available sections are:
+\end_layout
+
+\begin_layout Enumerate
+\noindent
+\align block
+general commands such as tools and utilities;
+\end_layout
+
+\begin_layout Enumerate
+system calls and error numbers;
+\end_layout
+
+\begin_layout Enumerate
+library functions
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+3p 
+\shape italic
+perl
+\shape default
+(1) programmer's reference guide;
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\noindent
+device drivers;
+\end_layout
+
+\begin_layout Enumerate
+file formats;
+\end_layout
+
+\begin_layout Enumerate
+games;
+\end_layout
+
+\begin_layout Enumerate
+miscellaneous information;
+\end_layout
+
+\begin_layout Enumerate
+system maintenance and operation commands;
+\end_layout
+
+\begin_layout Enumerate
+kernel internals.
+\end_layout
+
+\begin_layout Section*
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:acknowledgements"
+
+\end_inset
+
+Acknowledgements.
+\end_layout
+
+\begin_layout Standard
+As reference we used material from the books on the bibliography.
+ We would like to thank the following people:
+\end_layout
+
+\begin_layout Itemize
+Dennis M.
+ Ritchie;
+\end_layout
+
+\begin_layout Itemize
+Brian W.
+ Kernighan;
+\end_layout
+
+\begin_layout Itemize
+Ken Thompson;
+\end_layout
+
+\begin_layout Itemize
+Theo De Raadt;
+\end_layout
+
+\begin_layout Standard
+without them the adventure would never start.
+ Last but not least we would like to thank the reader, whose patience we
+ hope will be rewarded by learning the material exposed in this work.
+\end_layout
+
+\begin_layout Section*
+Licensing.
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+Copyright 2024 Angelo Rossi <
+\begin_inset CommandInset href
+LatexCommand href
+name "angelo.rossi.homelab@gmail.com"
+target "angelo.rossi.homelab@gmail.com"
+type "mailto:"
+literal "false"
+
+\end_inset
+
+>
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+\SpecialChar allowbreak
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+
+\size footnotesize
+Redistribution and use in source and binary forms, with or without
+\begin_inset Newline linebreak
+\end_inset
+
+modification, are permitted provided that the following conditions are met:
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\noindent
+
+\size footnotesize
+Redistributions of source code must retain the above copyright notice,
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\noindent
+
+\size footnotesize
+this list of conditions and the following disclaimer.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\noindent
+
+\size footnotesize
+Redistributions in binary form must reproduce the above copyright
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\noindent
+
+\size footnotesize
+notice, this list of conditions and the following disclaimer in the
+\end_layout
+
+\begin_layout Standard
+\noindent
+
+\size footnotesize
+documentation and/or other materials provided with the distribution.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\size footnotesize
+Neither the name of the copyright holder nor the names of its
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\size footnotesize
+contributors may be used to endorse or promote products derived from
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+this software without specific prior written permission.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+
+\size footnotesize
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
+ IS" AND
+\begin_inset Newline linebreak
+\end_inset
+
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+\begin_inset Newline linebreak
+\end_inset
+
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+\begin_inset Newline linebreak
+\end_inset
+
+DISCLAIMED.
+ IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+\begin_inset Newline linebreak
+\end_inset
+
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+\begin_inset Newline linebreak
+\end_inset
+
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ OR
+\begin_inset Newline linebreak
+\end_inset
+
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+\begin_inset Newline linebreak
+\end_inset
+
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+\begin_inset Newline linebreak
+\end_inset
+
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
+ USE
+\begin_inset Newline linebreak
+\end_inset
+
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+\size default
+
+\begin_inset Newline linebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "c-introduction.lyx"
+
+\end_inset
+
+
+\begin_inset CommandInset include
+LatexCommand include
+filename "c-the-standard-io-library.lyx"
+
+\end_inset
+
+
+\begin_inset CommandInset include
+LatexCommand include
+filename "c-lowlevel-io.lyx"
+
+\end_inset
+
+
+\begin_inset CommandInset include
+LatexCommand include
+filename "c-files-and-directories.lyx"
+
+\end_inset
+
+
+\begin_inset CommandInset include
+LatexCommand include
+filename "c-device-io-control.lyx"
+
+\end_inset
+
+
+\begin_inset CommandInset include
+LatexCommand include
+filename "c-information-about-users.lyx"
+
+\end_inset
+
+
+\begin_inset CommandInset include
+LatexCommand include
+filename "c-time-and-timing.lyx"
+
+\end_inset
+
+
+\begin_inset CommandInset include
+LatexCommand include
+filename "c-processing-signals.lyx"
+
+\end_inset
+
+
+\begin_inset CommandInset include
+LatexCommand include
+filename "c-executing-programs.lyx"
+
+\end_inset
+
+
+\begin_inset CommandInset include
+LatexCommand include
+filename "c-job-control.lyx"
+
+\end_inset
+
+
+\begin_inset CommandInset include
+LatexCommand include
+filename "c-interprocess-communication.lyx"
+
+\end_inset
+
+
+\begin_inset CommandInset include
+LatexCommand include
+filename "c-networking.lyx"
+
+\end_inset
+
+
+\begin_inset CommandInset include
+LatexCommand include
+filename "c-the-file-system.lyx"
+
+\end_inset
+
+
+\begin_inset CommandInset include
+LatexCommand include
+filename "c-miscellaneous-routines.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\start_of_appendix
+\begin_inset CommandInset include
+LatexCommand include
+filename "a-fortran-vs-c-interoperability.lyx"
+
+\end_inset
+
+
+\begin_inset CommandInset include
+LatexCommand include
+filename "a-the-workstation-console-access.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "index.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "bibliography.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

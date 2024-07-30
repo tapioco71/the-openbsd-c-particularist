@@ -1,0 +1,8600 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass memoir
+\use_default_options true
+\master the-openbsd-c-particularist.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family sfdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command bibtex
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1.7cm
+\topmargin 1cm
+\rightmargin 1.5cm
+\bottommargin 1.2cm
+\headheight 1cm
+\headsep 1cm
+\footskip 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:the-standard-io"
+
+\end_inset
+
+The Standard I/O Library.
+\end_layout
+
+\begin_layout Standard
+\align right
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "50col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:file-pointers"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:opening-and-creating-files"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:flushing-files"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:closing-files"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:reading-and-writing-files"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:moving-around-in-files"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+A programmer learning C is forced to use the routines in the Standard I/O
+ Library
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Standard I/O Library
+\end_layout
+
+\end_inset
+
+, called stdio
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+stdio
+\end_layout
+
+\end_inset
+
+, to perform simple input and output from console, in order to write programs
+ that can interact with a user.
+ In fact these are the first routines that we would learn reading the book
+ from Brian W.
+ Kernighan
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Brian W.
+ Kernighan
+\end_layout
+
+\end_inset
+
+ and Dennis M.
+ Ritchie
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Dennis M.
+ Ritchie
+\end_layout
+
+\end_inset
+
+ on C programming language (
+\begin_inset CommandInset citation
+LatexCommand cite
+key "KernighanRitchie:1988"
+literal "false"
+
+\end_inset
+
+).
+ These routines perform three important functions:
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+buffering
+\shape default
+ is performed automatically.
+ Rather than reading or writing data a few bytes at a time, the routines
+ perform the actual input or output in large 
+\shape italic
+chunks
+\shape default
+ of several thousand bytes at time.
+ The size of the buffer is generally specified by the constant 
+\family typewriter
+BUFSIZ
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+BUFSIZ
+\end_layout
+
+\end_inset
+
+
+\family default
+, defined in the include file 
+\family typewriter
+<stdio.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<stdio.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ The routines seem to read or write in a small units, but the data is actually
+ saved in a buffer.
+ This buffering is internal to the routines, and is invisible to the programmer;
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+input and output conversions
+\shape default
+ are perfomed.
+ For example, when using the 
+\family typewriter
+printf
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+printf
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+printf
+\shape default
+(3).
+\end_layout
+
+\end_inset
+
+
+\family default
+ routine to print an integer, with 
+\family typewriter
+%d
+\family default
+, the character representation of that integer is actually printed.
+ Similarly, when using 
+\family typewriter
+scanf
+\family default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+scanf
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+scanf
+\shape default
+(3).
+\end_layout
+
+\end_inset
+
+, the character representation of an integer is converted into its numeric
+ value;
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+input and output are automatically formatted
+\shape default
+.
+ That is, it is possible to use field widths and the like to print numbers
+ and strings in any desired format.
+\end_layout
+
+\begin_layout Standard
+\noindent
+This chapter provides a review of the more commonly used routines contained
+ in the Standard I/O Library
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Standard I/O Library
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:file-pointers"
+
+\end_inset
+
+File Pointers.
+\end_layout
+
+\begin_layout Standard
+In the Standard I/O Library
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Standard I/O Library
+\end_layout
+
+\end_inset
+
+, a file is called a 
+\shape italic
+stream
+\shape default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+stream
+\end_layout
+
+\end_inset
+
+, it is described by a pointer to an object of type 
+\family typewriter
+FILE
+\family default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+FILE
+\end_layout
+
+\end_inset
+
+, called a 
+\shape italic
+file pointer
+\shape default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+file pointer
+\end_layout
+
+\end_inset
+
+.
+ The 
+\family typewriter
+FILE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+FILE
+\end_layout
+
+\end_inset
+
+
+\family default
+ data type is defined in the the file 
+\family typewriter
+<stdio.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<stdio.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+, which has to be included
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+using the directive 
+\family typewriter
+#include <stdio.h>
+\family default
+ at the top of the C program.
+\end_layout
+
+\end_inset
+
+ before using any of the stdio
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+stdio
+\end_layout
+
+\end_inset
+
+ routines.
+ There are three predefined file pointers: 
+\family typewriter
+stdin
+\family default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+stdin
+\end_layout
+
+\end_inset
+
+, 
+\family typewriter
+stdout
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+stdout
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+stderr
+\family default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+stderr
+\end_layout
+
+\end_inset
+
+.
+ These refer to the 
+\shape italic
+standard input
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+standard input
+\end_layout
+
+\end_inset
+
+
+\shape default
+, the console, the 
+\shape italic
+standard output
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+standard output
+\end_layout
+
+\end_inset
+
+
+\shape default
+ which is the terminal screen and the 
+\shape italic
+standard error
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+standard error
+\end_layout
+
+\end_inset
+
+
+\shape default
+ stream respectively their documentation could be found in 
+\shape italic
+stdin
+\shape default
+(3).
+ Most of the stdio
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+stdio
+\end_layout
+
+\end_inset
+
+ routines require that a file pointer referring to an open stream be passed
+ to them.
+ However, when reading from the standard input or writing to the standard
+ output, stdio provides 
+\shape italic
+shorthand
+\shape default
+ routines that assume one of these streams rather than requiring them to
+ be specified.
+ Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:stdio-shorthands"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows these routines.
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features booktabs="true" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top" width="0pt">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Shorthand
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Equivalent
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+getchar
+\family default
+()
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+fgetc
+\family default
+(
+\family typewriter
+stdin
+\family default
+),
+\family typewriter
+getc
+\family default
+(
+\family typewriter
+stdin
+\family default
+)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+gets
+\family default
+(
+\shape italic
+buf
+\shape default
+)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+fgets
+\family default
+(
+\shape italic
+buf
+\shape default
+,
+\family typewriter
+BUFSIZ
+\family default
+,
+\family typewriter
+stdin
+\family default
+)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+printf
+\family default
+(
+\shape italic
+args
+\shape default
+)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+fprintf
+\family default
+(
+\family typewriter
+stdout
+\family default
+,
+\shape italic
+args
+\shape default
+)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+putchar
+\family default
+(
+\shape italic
+c
+\shape default
+)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+fputc
+\family default
+(
+\shape italic
+c
+\shape default
+,
+\family typewriter
+stdout
+\family default
+),
+\family typewriter
+putc
+\family default
+(
+\shape italic
+c
+\shape default
+,
+\family typewriter
+stdout
+\family default
+)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+puts
+\family default
+(
+\shape italic
+buf
+\shape default
+)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+fputs
+\family default
+(
+\shape italic
+buf
+\shape default
+, 
+\family typewriter
+stdout
+\family default
+)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+scanf
+\family default
+(
+\shape italic
+args
+\shape default
+)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+fscanf
+\family default
+(
+\family typewriter
+stdin
+\family default
+,
+\shape italic
+args
+\shape default
+)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:stdio-shorthands"
+
+\end_inset
+
+Shorthand routines for standard input and output.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:opening-and-creating-files"
+
+\end_inset
+
+Opening and Creating Files.
+\end_layout
+
+\begin_layout Standard
+In order to read from or write to a stream, this must first be opened for
+ the desired operation.
+ The 
+\family typewriter
+fopen
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fopen
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+fopen
+\shape default
+(3).
+\end_layout
+
+\end_inset
+
+
+\family default
+ routine is used for this purpose.
+ 
+\family typewriter
+It
+\family default
+ takes two arguments: a character string containing the complete path name
+ of the file to open and a character string describing how that file should
+ be opened.
+ It returns a pointer to and open stream of type 
+\family typewriter
+FILE
+\family default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+FILE
+\end_layout
+
+\end_inset
+
+ or the constant 
+\family typewriter
+NULL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+NULL
+\end_layout
+
+\end_inset
+
+
+\family default
+ if the stream could not be opened.
+ The second argument to 
+\family typewriter
+fopen
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fopen
+\end_layout
+
+\end_inset
+
+
+\family default
+ may take on one of the following string values:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family typewriter
+"r"
+\family default
+ or 
+\family typewriter
+"rb"
+\family default
+ open file for reading;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family typewriter
+"r+"
+\family default
+ or 
+\family typewriter
+"rb+"
+\family default
+, 
+\family typewriter
+"r+b"
+\family default
+ open for reading and writing;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family typewriter
+"w"
+\family default
+ or 
+\family typewriter
+"wb"
+\family default
+ open for writing.
+ The file is created if it does not exist, otherwise it is truncated;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family typewriter
+"w+"
+\family default
+ or 
+\family typewriter
+"wb+"
+\family default
+, 
+\family typewriter
+"w+b"
+\family default
+ open for reading and writing.
+ The file is created if it does not exist, otherwise it is truncated;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family typewriter
+"a"
+\family default
+ or 
+\family typewriter
+"ab"
+\family default
+ open for writing.
+ The file is created if it does not exist;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family typewriter
+"a+"
+\family default
+ or 
+\family typewriter
+"ab+"
+\family default
+, 
+\family typewriter
+"a+b"
+\family default
+ open for reading and writing.
+ The file is created if it does not exist.
+\end_layout
+
+\begin_layout Standard
+The letter 
+\family typewriter
+"b"
+\family default
+ in the mode strings above is strictly for compatibility with ANSI X3.159-1989
+ ("ANSI C89") and has no effect; the 
+\family typewriter
+"b"
+\family default
+ is ignored.
+ After any of the above prefixes, the mode string can also include zero
+ or more of the following:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family typewriter
+"e"
+\family default
+ the 
+\shape italic
+close-on-exec
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+close-on-exec
+\end_layout
+
+\end_inset
+
+
+\shape default
+ flag is set on the underlying file descriptor of the new file;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family typewriter
+"x"
+\family default
+ if the mode string starts with 
+\family typewriter
+"w"
+\family default
+ or 
+\family typewriter
+"a"
+\family default
+ then the function shall fail if the file specified by path already exists,
+ as if the 
+\family typewriter
+O_EXCL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+O_EXCL
+\end_layout
+
+\end_inset
+
+
+\family default
+ flag was passed to the 
+\shape italic
+open
+\shape default
+(2) function.
+ It has no effect if used with 
+\shape italic
+fdopen
+\shape default
+() or the mode string begins with 
+\family typewriter
+"r"
+\family default
+.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:flushing-files"
+
+\end_inset
+
+Flushing files.
+\end_layout
+
+\begin_layout Standard
+Sometimes it is important to 
+\shape italic
+flush
+\shape default
+ data from the buffer especially during critical code execution or errors.
+ To force a flush of data present in the stdio buffer two routines could
+ be used: 
+\family typewriter
+fflush
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fflush
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+fpurge
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fpurge
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ The function 
+\family typewriter
+fflush
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fflush
+\end_layout
+
+\end_inset
+
+
+\family default
+ forces a write of all buffered data for the given output or update stream
+ via the stream's underlying write function.
+ The open status of the stream is unaffected.
+ If the stream argument is NULL, 
+\family typewriter
+fflush
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fflush
+\end_layout
+
+\end_inset
+
+
+\family default
+ flushes all open output streams.
+ The function 
+\family typewriter
+fpurge
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fpurge
+\end_layout
+
+\end_inset
+
+
+\family default
+ erases any input or output buffered in the given stream.
+ For output streams this discards any unwritten output.
+ For input streams this discards any input read from the underlying object
+ but not yet obtained via 
+\shape italic
+getc
+\shape default
+(3); this includes any text pushed back via 
+\shape italic
+ungetc
+\shape default
+(3).
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:closing-files"
+
+\end_inset
+
+Closing files.
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+fclose
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fclose
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+fclose
+\shape default
+(3).
+\end_layout
+
+\end_inset
+
+
+\family default
+ routine is used to close an open stream.
+ 
+\family typewriter
+fclose
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fclose
+\end_layout
+
+\end_inset
+
+
+\family default
+ takes a single argument, the file pointer
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file pointer
+\end_layout
+
+\end_inset
+
+ referring to the stream to be closed.
+ When called, this routine flushes the buffers for the stream and performs
+ some other internal cleanup functions.
+ 0 is returned on success; the constant 
+\family typewriter
+EOF
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+EOF
+\end_layout
+
+\end_inset
+
+
+\family default
+ is returned if an error occurs.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:reading-and-writing-files"
+
+\end_inset
+
+Reading and Writing Files.
+\end_layout
+
+\begin_layout Standard
+The Standard I/O Library
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Standard I/O Library
+\end_layout
+
+\end_inset
+
+ provides several ways to read and write data to and from a file.
+\end_layout
+
+\begin_layout Subsection
+The 
+\family typewriter
+getc
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getc
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+putc
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+putc
+\end_layout
+
+\end_inset
+
+
+\family default
+ Routines.
+\end_layout
+
+\begin_layout Standard
+The simplest way to read and write data is one character or byte at a time.
+ This is done by using the 
+\family typewriter
+getc
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getc
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+getc
+\shape default
+(3).
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+putc
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+putc
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+putc
+\shape default
+(3).
+\end_layout
+
+\end_inset
+
+
+\family default
+ routines.
+ 
+\family typewriter
+getc
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getc
+\end_layout
+
+\end_inset
+
+
+\family default
+ accepts a single argument, a file pointer referring to a stream open for
+ reading.
+ It returns the next character read from the stream, or the constant 
+\family typewriter
+EOF
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+EOF
+\end_layout
+
+\end_inset
+
+
+\family default
+ when the end of file has been reached.
+ 
+\family typewriter
+putc
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+putc
+\end_layout
+
+\end_inset
+
+
+\family default
+ accepts two arguments, a character to be written and a file pointer referring
+ a stream open for writing.
+ It places that character onto the stream and returns 0 if it succeeds or
+ 
+\family typewriter
+EOF
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+EOF
+\end_layout
+
+\end_inset
+
+
+\family default
+ if an error occurs.
+ Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:append-char"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows a small program that appends one file onto another.
+ The first argument specifies the name of the file to be copied, and the
+ second file specifies the name of a file to be appended to.
+ If the file to be appended to does not exist, it will be created.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:append-char"
+
+\end_inset
+
+append-char - append one file to another character by character.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* append-char.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* append-char program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int c;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	FILE *from, *to;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Check our arguments.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(argc == 3) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		/* Open the from-file for reading.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+		if((from = fopen(argv[ 1 ], "r")) != NULL) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			/*
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * Open the to-file for appending.
+  If to-file does
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * not exist, fopen will create it.
+\end_layout
+
+\begin_layout Plain Layout
+
+			 */
+\end_layout
+
+\begin_layout Plain Layout
+
+			if((to = fopen(argv[ 2 ], "a")) != NULL) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+				/*
+\end_layout
+
+\begin_layout Plain Layout
+
+				 * Now read characters from from-file until we
+\end_layout
+
+\begin_layout Plain Layout
+
+				 * hit end-of-file, and put  them onto to-file.
+\end_layout
+
+\begin_layout Plain Layout
+
+				 */
+\end_layout
+
+\begin_layout Plain Layout
+
+				while((c = getc(from)) != EOF)
+\end_layout
+
+\begin_layout Plain Layout
+
+				  putc(c, to);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+				/* Now close the output file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+				if(fclose(to) == 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+					ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+				else
+\end_layout
+
+\begin_layout Plain Layout
+
+					perror(
+\begin_inset Quotes eld
+\end_inset
+
+Error closing output file
+\begin_inset Quotes erd
+\end_inset
+
+);
+\end_layout
+
+\begin_layout Plain Layout
+
+			} else
+\end_layout
+
+\begin_layout Plain Layout
+
+				perror(argv[ 2 ]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			/* Now close the input file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+			fclose(from);
+\end_layout
+
+\begin_layout Plain Layout
+
+		} else
+\end_layout
+
+\begin_layout Plain Layout
+
+	      perror(argv[ 1 ]);
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else
+\end_layout
+
+\begin_layout Plain Layout
+
+		fprintf(stderr, "usage: %s from-file to-file
+\backslash
+n", *argv);
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of append-char.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+For brevity and to emphasize the information being discussed in this chapter,
+ Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:append-char"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and the following examples, violates one of the more important UNIX conventions.
+ This convention dictates that 
+\series bold
+in any program where it makes sense, the program should operate on both
+ named files or on its standard input and output
+\series default
+.
+ The text formatting programs 
+\shape italic
+cat
+\shape default
+,
+\shape italic
+ egrep
+\shape default
+,
+\shape italic
+ tbl
+\shape default
+ and 
+\shape italic
+eqn
+\shape default
+, to name a few, are good examples of programs that do this.
+ Given a list of file names, these programs will open the files and process
+ the data in them.
+ However, if no file names are given, these programs will read data from
+ their standard input.
+ This allows the programs to operate as filters, so they can be invoked
+ individually or as a part pipeline, see Chapter 9, 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "chap:executing-programs"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+The 
+\family typewriter
+fgets
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+fgets
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+fputs
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+fputs
+\end_layout
+
+\end_inset
+
+
+\family default
+ Routines.
+\end_layout
+
+\begin_layout Standard
+Another way to read and write files provided by the Standard I/O Library
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Standard I/O Library
+\end_layout
+
+\end_inset
+
+ allows the programmer to process data a 
+\shape italic
+line
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+line
+\end_layout
+
+\end_inset
+
+
+\shape default
+ at the time.
+ A line
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+line
+\end_layout
+
+\end_inset
+
+ is defined by a string of zero or more characters terminated by a new-line
+ character
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+new-line character
+\end_layout
+
+\end_inset
+
+ 
+\family typewriter
+'
+\backslash
+n'
+\family default
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+A typical example of such a file is 
+\shape italic
+/usr/share/dict/words
+\shape default
+ which holds an english words dictionary.
+ See the example code in listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:find-word-c"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+.
+ The 
+\family typewriter
+fgets
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fgets
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+fgets
+\shape default
+(3).
+\end_layout
+
+\end_inset
+
+
+\family default
+ function accept three arguments: a pointer to a character buffer to be
+ filled, an integer specifying the size of the buffer and a file pointer
+ referring to a stream open for reading.
+ A pointer to the filled buffer is returned on success or the constant 
+\family typewriter
+NULL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+NULL
+\end_layout
+
+\end_inset
+
+
+\family default
+ is returned when end-of-file
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+end-of-file
+\end_layout
+
+\end_inset
+
+, 
+\family typewriter
+EOF
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+EOF
+\end_layout
+
+\end_inset
+
+
+\family default
+, is reached.
+ The buffer will be filled with one line of characters, including the new-line
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+new-line
+\end_layout
+
+\end_inset
+
+, 
+\family typewriter
+'
+\backslash
+n'
+\family default
+, character and will be terminated with a null character, 
+\family typewriter
+'
+\backslash
+0'
+\family default
+.
+ 
+\family typewriter
+fputs
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fputs
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+fputs
+\shape default
+(3).
+\end_layout
+
+\end_inset
+
+
+\family default
+ accepts two arguments, a pointer to a null-terminated
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+null-terminated
+\end_layout
+
+\end_inset
+
+ string of characters and a file pointer referring to a stream open for
+ writing.
+ It returns 0 on success, or the constant 
+\family typewriter
+EOF
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+EOF
+\end_layout
+
+\end_inset
+
+
+\family default
+ if an error occurs.
+ Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:append-line"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows another version of our program to append one file to another; this
+ version does it a line at a time.
+ The constant 
+\family typewriter
+BUFSIZ
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+BUFSIZ
+\end_layout
+
+\end_inset
+
+
+\family default
+ is defined in the include file 
+\family typewriter
+<stdio.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<stdio.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+ and is configured to be an optimum size for the system.
+ Unless you need a particular size, this is a good value to use whenever
+ you are working with stdio
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+stdio
+\end_layout
+
+\end_inset
+
+.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:append-line"
+
+\end_inset
+
+append-line - append one file to another line by line.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* append-line.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* append-line program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototype.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	FILE *from, *to;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char line[ BUFSIZ ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Check our arguments.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(argc == 3) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		/* Open the from-file for reading.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+		if((from = fopen(argv[ 1 ], "r")) != NULL) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			/*
+\end_layout
+
+\begin_layout Plain Layout
+
+		 	* Open the to-file for appending.
+  If to-file does
+\end_layout
+
+\begin_layout Plain Layout
+
+		 	* not exist, fopen will create it.
+\end_layout
+
+\begin_layout Plain Layout
+
+		 	*/
+\end_layout
+
+\begin_layout Plain Layout
+
+			if((to = fopen(argv[ 2 ], "a")) != NULL) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+				/*
+\end_layout
+
+\begin_layout Plain Layout
+
+				 * Now read a line at a time from from-file
+\end_layout
+
+\begin_layout Plain Layout
+
+				 * and write it to the to-file.
+\end_layout
+
+\begin_layout Plain Layout
+
+				 */
+\end_layout
+
+\begin_layout Plain Layout
+
+				while(fgets(line, BUFSIZ, from) != NULL)
+\end_layout
+
+\begin_layout Plain Layout
+
+					fputs(line, to);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+				/* Now close output file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+				fclose(to);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+				/* Signal no errors to the shell.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+				ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+			} else
+\end_layout
+
+\begin_layout Plain Layout
+
+				perror(argv[ 2 ]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			/* Now close input file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+			fclose(from);
+\end_layout
+
+\begin_layout Plain Layout
+
+		} else
+\end_layout
+
+\begin_layout Plain Layout
+
+			perror(argv[ 1 ]);
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else
+\end_layout
+
+\begin_layout Plain Layout
+
+		fprintf(stderr, "usage: %s from-file to-file
+\backslash
+n", *argv);
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of append-line.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+The 
+\family typewriter
+fread
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+fread
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+fwrite
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+fwrite
+\end_layout
+
+\end_inset
+
+
+\family default
+ Routines.
+ 
+\end_layout
+
+\begin_layout Standard
+The Standard I/O Library
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Standard I/O Library
+\end_layout
+
+\end_inset
+
+ also provides a method to read and write data without dividing it up into
+ characters or lines.
+ This is usually desirable when working with files that do not consist only
+ of text, but also include arbitrary binary data.
+ The 
+\family typewriter
+fread
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fread
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+fread
+\shape default
+(3).
+\end_layout
+
+\end_inset
+
+
+\family default
+ function accepts four arguments: a pointer to an array of some data type
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Could be an array of characters, integers, structures and so on.
+\end_layout
+
+\end_inset
+
+, an integer indicating the size of one array element in bytes, an integer
+ indicating the number of array elements to read and a file pointer referring
+ to a stream open for reading.
+ It returns the number of array elements actually read in, or 0 on end-of-file
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+end-of-file
+\end_layout
+
+\end_inset
+
+.
+ The 
+\family typewriter
+fwrite
+\family default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fwrite
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+fwrite
+\shape default
+(3).
+\end_layout
+
+\end_inset
+
+ function also accepts four arguments, as described above for 
+\family typewriter
+fread
+\family default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fread
+\end_layout
+
+\end_inset
+
+.
+ It returns the number of array elements actually written, or 0 on error.
+ The advantage to using a routine like 
+\family typewriter
+fread
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fread
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+fwrite
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fwrite
+\end_layout
+
+\end_inset
+
+
+\family default
+ lies primarily in the ability to impose a structure on the input or output
+ stream not provided by the stdio
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+stdio
+\end_layout
+
+\end_inset
+
+ routines themselvers.
+ For example, if a file contains 100 binary floating-point numbers, the
+ easiest way to read these in would be to use something like the code segment
+ shown below:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+FILE *fp;
+\end_layout
+
+\begin_layout Plain Layout
+
+float numbers[ 100 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+......
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+fread(numbers, sizeof(float), 100, fp);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+......
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:append-buf"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows still another version of our file appending program; this version
+ copies the data a buffer-full of characters at a time.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:append-buf"
+
+\end_inset
+
+append-buf - append one file to another buffer-full at a time.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* append-buf.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* append-buf program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* The main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  int n;
+\end_layout
+
+\begin_layout Plain Layout
+
+  FILE *from, *to;
+\end_layout
+
+\begin_layout Plain Layout
+
+  char buf[ BUFSIZ ];
+\end_layout
+
+\begin_layout Plain Layout
+
+  long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  /* Check our arguments.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+  if(argc == 3) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    /* Open the from-file for reading.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+    if((from = fopen(argv[ 1 ], "r")) != NULL) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+      /*
+\end_layout
+
+\begin_layout Plain Layout
+
+       * Open the to-file for appending.
+  If to-file does
+\end_layout
+
+\begin_layout Plain Layout
+
+       * not exist, fopen will create it.
+\end_layout
+
+\begin_layout Plain Layout
+
+       */
+\end_layout
+
+\begin_layout Plain Layout
+
+      if((to = fopen(argv[ 2 ], "a")) != NULL) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/*
+\end_layout
+
+\begin_layout Plain Layout
+
+	 * Now read a buffer-full at a time from from-file
+\end_layout
+
+\begin_layout Plain Layout
+
+	 * and write it to the to-file.
+\end_layout
+
+\begin_layout Plain Layout
+
+	 */
+\end_layout
+
+\begin_layout Plain Layout
+
+	while((n = fread(buf, sizeof(char), BUFSIZ, from)) > 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+	  fwrite(buf, sizeof(char), n, to);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Now close the output file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	fclose(to);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Signal no errors to the shell.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+      } else
+\end_layout
+
+\begin_layout Plain Layout
+
+	perror(argv[ 2 ]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+      /* Now close the input file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+      fclose(from);
+\end_layout
+
+\begin_layout Plain Layout
+
+    } else
+\end_layout
+
+\begin_layout Plain Layout
+
+      perror(argv[ 1 ]);
+\end_layout
+
+\begin_layout Plain Layout
+
+  } else
+\end_layout
+
+\begin_layout Plain Layout
+
+    fprintf(stderr, "usage: %s from-file to-file
+\backslash
+n", *argv);
+\end_layout
+
+\begin_layout Plain Layout
+
+  exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of append-buf.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+The 
+\family typewriter
+fscanf
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fscanf
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+fprintf
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fprintf
+\end_layout
+
+\end_inset
+
+
+\family default
+ Routines.
+\end_layout
+
+\begin_layout Standard
+Other than dividing data into units of characters or lines, the routines
+ described in the previous sections do not interpret the data they manipulate.
+ Sometimes however, more interpretation of the data is necessary.
+ As the reader probably knows, the internal representation of data in the
+ computer is not generally human-readable.
+ For example, the number 10 is represented internally as binary value:
+\begin_inset Formula 
+\[
+n_{10}=10_{10}=00001010_{2}=0b00001010
+\]
+
+\end_inset
+
+However, when this number is to be printed on a line printer or terminal
+ screen, it must be converted to the two ASCII
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+ASCII
+\end_layout
+
+\end_inset
+
+ characters 
+\family typewriter
+'1'
+\family default
+ and 
+\family typewriter
+'0'
+\family default
+, which have the following bit patterns:
+\begin_inset Formula 
+\[
+'1':\qquad0b00110001
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+'0':\qquad0b00110000
+\]
+
+\end_inset
+
+Likewise, in order to read in a number from the console, the characters
+ that represent that number to a human must be converted into the internal
+ representation of that number in order for the computer to deal with it.
+ The 
+\family typewriter
+fscanf
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fscanf
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+fscanf
+\shape default
+(3).
+\end_layout
+
+\end_inset
+
+
+\family default
+ routine accepts a variable number of arguments.
+ The first argument is a file pointer referring to a stream open for reading,
+ in the case of the console the programmer have to use the 
+\shape italic
+standard input stream
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+standard input stream
+\end_layout
+
+\end_inset
+
+
+\shape default
+, called 
+\family typewriter
+stdin
+\family default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+stdin
+\end_layout
+
+\end_inset
+
+.
+ The second argument is a character string that specifies the format of
+ the input data.
+ The rest of arguments are pointers to the data objects that are to be filled.
+ 
+\family typewriter
+fscanf
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fscanf
+\end_layout
+
+\end_inset
+
+
+\family default
+ reads character from the stream, converts them into various internal representa
+tion as specified by the format string and stores them in the data objects.
+ The format string may contain:
+\end_layout
+
+\begin_layout Itemize
+blanks, tabs and new-line characters, which match optional white space in
+ the input;
+\end_layout
+
+\begin_layout Itemize
+an ordinary character, other than 
+\family typewriter
+'%'
+\family default
+, which must match the next input character;
+\end_layout
+
+\begin_layout Itemize
+a conversion specification, consisting of a 
+\family typewriter
+'%'
+\family default
+ character followed by a conversion character.
+\end_layout
+
+\begin_layout Standard
+A conversion specification
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+conversion specification
+\end_layout
+
+\end_inset
+
+ indicates how the next input field is to be interpreted; the result is
+ placed in the corresponding argument.
+ Some of the more common conversion characters are:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family typewriter
+d
+\family default
+ decimal integer is expected; the corresponding argument should be a pointer
+ to an integer;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family typewriter
+f
+\family default
+ floating-point number is expected; the corresponding argument should be
+ a pointer to an object of type 
+\family typewriter
+float
+\family default
+;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family typewriter
+l
+\family default
+ indicates either that the conversion will be one of dioux or n and the
+ next pointer is a pointer to a 
+\family typewriter
+long int
+\family default
+, rather than 
+\family typewriter
+int
+\family default
+, or that the conversion will be one of efg and the next pointer is a pointer
+ to 
+\family typewriter
+double
+\family default
+, rather than 
+\family typewriter
+float
+\family default
+, or that the conversion will be one of sc[.
+ If the conversion is one of sc[, the expected conversion input is a multibyte
+ character sequence.
+ Each multibyte character in the sequence is converted with a call to the
+ 
+\family typewriter
+mbrtowc
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+mbrtowc
+\end_layout
+
+\end_inset
+
+
+\family default
+ function.
+ The field width specifies the maximum amount of bytes read from the multibyte
+ character sequence and passed to 
+\family typewriter
+mbrtowc
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+mbrtowc
+\end_layout
+
+\end_inset
+
+
+\family default
+ for conversion.
+ The next pointer is a pointer to a 
+\family typewriter
+wchar_t
+\family default
+ wide-character buffer large enough to accept the converted input sequence
+ including the terminating NUL wide character which will be added automatically;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family typewriter
+ll
+\family default
+ Indicates that the conversion will be one of dioux or n and the next pointer
+ is a pointer to a 
+\family typewriter
+long long int
+\family default
+, rather than 
+\family typewriter
+int
+\family default
+;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family typewriter
+p
+\family default
+ matches a pointer value (as printed by `%p' in printf(3)); the next pointer
+ must be a pointer to void;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family typewriter
+s
+\family default
+ character string is expected; the corresponding argument should point to
+ a character array or a character buffer large enough to hold the string
+ plus a terminating null character.
+ The input field is terminated by a space or a new-line character.
+\end_layout
+
+\begin_layout Standard
+For example to read in the string:
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+123 Hello 45.678
+\end_layout
+
+\end_inset
+
+the call:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+fscanf(stdin, 
+\begin_inset Quotes eld
+\end_inset
+
+%d %s %f
+\begin_inset Quotes erd
+\end_inset
+
+, &intvar, stringvar, &floatvar);
+\end_layout
+
+\end_inset
+
+could be used.
+ 
+\family typewriter
+fscanf
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fscanf
+\end_layout
+
+\end_inset
+
+
+\family default
+ returns the number of input items matched or the constant 
+\family typewriter
+EOF
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+EOF
+\end_layout
+
+\end_inset
+
+
+\family default
+ when end-of-file
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+end-of-file
+\end_layout
+
+\end_inset
+
+ has been reached.
+ The 
+\family typewriter
+fprintf
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fprintf
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+fprintf
+\shape default
+(3).
+\end_layout
+
+\end_inset
+
+
+\family default
+ routine also accepts a variable number of arguments.
+ The first argument is a file pointer to a stream open for writing, the
+ second is again a format string and the following arguments are the objects
+ to be printed.
+ Ordinary , non-
+\family typewriter
+'%'
+\family default
+, characters in the format string are copied to the output stream.
+ A 
+\family typewriter
+'%'
+\family default
+ character specifies that the corresponding argument is to be converted;
+ the conversion characters are the same as those described for 
+\family typewriter
+fscanf
+\family default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fscanf
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:factorial"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows a small program that asks the reader to enter an integer number and
+ then computes the factorial
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+The factorial of a positive integer number 
+\begin_inset Formula $n$
+\end_inset
+
+ is:
+\begin_inset Formula 
+\[
+n!=1\cdot2\cdot\ldots\cdot n
+\]
+
+\end_inset
+
+where:
+\begin_inset Formula 
+\[
+0!=1
+\]
+
+\end_inset
+
+by definition.
+ The problem with such computation is that an unsigned long int can hold
+ a value:
+\begin_inset Formula 
+\[
+0\leq n\leq2^{64}-1=18446744073709551615UL
+\]
+
+\end_inset
+
+let's compare this number with the nearest factorials:
+\begin_inset Formula 
+\[
+20!<18446744073709551615<21!
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+2432902008176640000<18446744073709551615<51090942171709440000
+\]
+
+\end_inset
+
+we can see that the number on the right is far beyond the unsigned long
+ int capacity but the number on the left is not.
+ The program practically can compute a factorial of a positive integer number
+ that span from 0 to 20.
+\end_layout
+
+\end_inset
+
+ of that positive integer number and prints it out.
+ This example uses the 
+\family typewriter
+printf
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+printf
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+scanf
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+scanf
+\end_layout
+
+\end_inset
+
+
+\family default
+ routines, which assume the use of streams stdout
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+stdout
+\end_layout
+
+\end_inset
+
+ and stdin
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+stdin
+\end_layout
+
+\end_inset
+
+, rather than requiring the streams to be passed as arguments.
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+\size small
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:factorial"
+
+\end_inset
+
+factorial - compute the factorial of an integer number.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* factorial.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* factorial program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Function prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+unsigned long int factorial(unsigned long int);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+  unsigned long int n, m;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  /*
+\end_layout
+
+\begin_layout Plain Layout
+
+   * Messaging the user to enter the integer
+\end_layout
+
+\begin_layout Plain Layout
+
+   * number.
+\end_layout
+
+\begin_layout Plain Layout
+
+   */
+\end_layout
+
+\begin_layout Plain Layout
+
+  printf("Enter an integer number: ");
+\end_layout
+
+\begin_layout Plain Layout
+
+  scanf("%lu", &n);
+\end_layout
+
+\begin_layout Plain Layout
+
+  if(n <= 20ul) {
+\end_layout
+
+\begin_layout Plain Layout
+
+    m = factorial(n);
+\end_layout
+
+\begin_layout Plain Layout
+
+    printf("The factorial of %lu is %lu.
+\backslash
+n", n, m);
+\end_layout
+
+\begin_layout Plain Layout
+
+    ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+  } else
+\end_layout
+
+\begin_layout Plain Layout
+
+    perror("n must be a positive integer between 0 and 20");
+\end_layout
+
+\begin_layout Plain Layout
+
+  exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/*
+\end_layout
+
+\begin_layout Plain Layout
+
+ * The factorial function which computes
+\end_layout
+
+\begin_layout Plain Layout
+
+ * n! = 1 * 2 * 3 * ...
+ * n
+\end_layout
+
+\begin_layout Plain Layout
+
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+unsigned long int factorial(unsigned long int n)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  /* computes n! */
+\end_layout
+
+\begin_layout Plain Layout
+
+  if((n == 0ul) || (n == 1ul))
+\end_layout
+
+\begin_layout Plain Layout
+
+    return 1ul;
+\end_layout
+
+\begin_layout Plain Layout
+
+  else
+\end_layout
+
+\begin_layout Plain Layout
+
+    return (n * factorial(n - 1));
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of factorial.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Note the use of the two constants 
+\family typewriter
+EXIT_SUCCESS
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+EXIT_SUCCESS
+\end_layout
+
+\end_inset
+
+
+\family default
+ which is set to 0 and 
+\family typewriter
+EXIT_FAILURE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+EXIT_FAILURE
+\end_layout
+
+\end_inset
+
+
+\family default
+ which is set to non zero value.
+ They are specifically defined in 
+\family typewriter
+<stdlib.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<stdlib.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+ to be used in the 
+\family typewriter
+exit
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+exit
+\end_layout
+
+\end_inset
+
+
+\family default
+ function.
+\end_layout
+
+\begin_layout Subsection
+The 
+\family typewriter
+sscanf
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+sscanf
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+sprintf
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+sprintf
+\end_layout
+
+\end_inset
+
+
+\family default
+ Routines.
+\end_layout
+
+\begin_layout Standard
+stdio
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+stdio
+\end_layout
+
+\end_inset
+
+ also provides the ability to 
+\shape italic
+print
+\shape default
+ formatted data into a character string and to 
+\shape italic
+read
+\shape default
+ formatted data from a character string.
+ The 
+\family typewriter
+sscanf
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+sscanf
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+sscanf
+\shape default
+(3).
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+sprintf
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+sprintf
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+sprintf
+\shape default
+(3).
+\end_layout
+
+\end_inset
+
+
+\family default
+ routines are identical to 
+\family typewriter
+fscanf
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fscanf
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+fprintf
+\family default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fprintf
+\end_layout
+
+\end_inset
+
+, except that instead of taking a file pointer to a stream as their first
+ argument, they take a character string or a character buffer.
+ 
+\family typewriter
+sscanf
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+sscanf
+\end_layout
+
+\end_inset
+
+
+\family default
+ will copy characters from the character string or buffer, converting them
+ according to its second argument.
+ 
+\family typewriter
+sprintf
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+sprintf
+\end_layout
+
+\end_inset
+
+
+\family default
+ will place a formatted copy of its argument into the character string or
+ buffer.
+ However 
+\family typewriter
+sprintf
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+sprintf
+\end_layout
+
+\end_inset
+
+
+\family default
+ function should be used carefully: let's consider the following example:
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+char buf[ 2 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+unsigned int longvar = 65535;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+......
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+sprintf(buf, 
+\begin_inset Quotes eld
+\end_inset
+
+%d
+\begin_inset Quotes erd
+\end_inset
+
+, longvar);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+......
+\end_layout
+
+\end_inset
+
+the string array is not big enough to hold the characters needed to print
+ 
+\begin_inset Quotes eld
+\end_inset
+
+65535
+\begin_inset Quotes erd
+\end_inset
+
+.
+ In this case executing the routine could lead to a catastrophic data corruption
+ as memory is overlapped by 
+\family typewriter
+sprintf
+\family default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+sprintf
+\end_layout
+
+\end_inset
+
+.
+ This behaviour is understandable since those routines have no idea of the
+ length of the buffer to write in.
+ To avoid this problem, stdio
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+stdio
+\end_layout
+
+\end_inset
+
+, provides a safe variant to 
+\family typewriter
+sprintf
+\family default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+sprintf
+\end_layout
+
+\end_inset
+
+: 
+\family typewriter
+snprintf
+\family default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+snprintf
+\end_layout
+
+\end_inset
+
+.
+ It takes a variable number of arguments just as 
+\family typewriter
+sprintf
+\family default
+, but the first argument is the character string or the buffer, the second
+ is the character string or buffer size, the rest are the same as the 
+\family typewriter
+sprintf
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+sprintf
+\end_layout
+
+\end_inset
+
+
+\family default
+ routine.
+ 
+\family typewriter
+snprintf
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+snprintf
+\end_layout
+
+\end_inset
+
+
+\family default
+ composes a string with the same text that would be printed if the format
+ string was used on 
+\family typewriter
+printf
+\family default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+printf
+\end_layout
+
+\end_inset
+
+, but instead of being printed, the content is stored as a character string
+ in the buffer pointed by the first argument, taking the second argument
+ as the maximum buffer capacity to fill.
+ If the resulting string would be longer than the second argument value,
+ the remaining characters are discarded and not stored, but counted for
+ the value returned by the function.
+ A terminating null character is automatically appended after the content
+ written.
+ After the format string argument, the function expects at least as many
+ additional arguments as needed for format string.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:snprintf"
+
+\end_inset
+
+snprintf - snprintf test program.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* snprintf.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* snprintf test program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#define MAXLENGTH 16
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	char divina[ MAXLENGTH + 1 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	char commedia[] = "Nel mezzo del cammin di nostra vita mi ritrovai per
+ una selva oscura...";
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	snprintf(divina, MAXLENGTH, "%s", commedia);
+\end_layout
+
+\begin_layout Plain Layout
+
+	printf("Source string: %s
+\backslash
+n", commedia);
+\end_layout
+
+\begin_layout Plain Layout
+
+	printf("Destination string: %s
+\backslash
+n", divina);
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(EXIT_SUCCESS);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of snprintf.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:moving-around-in-files"
+
+\end_inset
+
+Moving Around in Files.
+\end_layout
+
+\begin_layout Standard
+It is often necessary to move to a specific location in a file before reading
+ or writing data.
+ For example, if a file contains several fixed-size items indexed by number,
+ it may be easier to skip over unwanted records to read or write the desired
+ record, rather than reading and processing all the records preceding the
+ desired one.
+ The Standard I/O Library
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Standard I/O Library
+\end_layout
+
+\end_inset
+
+ routine for moving around in a file is called 
+\family typewriter
+fseek
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fseek
+\end_layout
+
+\end_inset
+
+
+\family default
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+fseek
+\shape default
+(3).
+\end_layout
+
+\end_inset
+
+.
+ It accepts three arguments: a file pointer to an open stream, a long integer
+ specifying the number of bytes to move, called an 
+\shape italic
+offset
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+offset
+\end_layout
+
+\end_inset
+
+
+\shape default
+, and an integer indicating from where in the file the offset is to be taken.
+ If the third argument is 
+\family typewriter
+SEEK_SET
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SEEK_SET
+\end_layout
+
+\end_inset
+
+
+\family default
+, the offset is taken to the beginning of the file.
+ If it is 
+\family typewriter
+SEEK_CUR
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SEEK_CUR
+\end_layout
+
+\end_inset
+
+
+\family default
+, the offset is taken from the current location in the file.
+ If the third argument is 
+\family typewriter
+SEEK_END
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SEEK_END
+\end_layout
+
+\end_inset
+
+
+\family default
+, the offset is taken from the end of the file.
+ To move at the end of a file, the call:
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+FILE *fp;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+......
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+fseek(fp, 0L, SEEK_END);
+\end_layout
+
+\end_inset
+
+should be used.
+ To move at the beginning of the file, the call:
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+......
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+fseek(fp, 0L, SEEK_SET);
+\end_layout
+
+\end_inset
+
+may be used or equivalently, the 
+\family typewriter
+rewind
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+rewind
+\end_layout
+
+\end_inset
+
+
+\family default
+ routine may be used.
+ 
+\family typewriter
+rewind
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+rewind
+\end_layout
+
+\end_inset
+
+
+\family default
+ takes a single argument, a file pointer to an open stream.
+ To find out the current location in a file, the 
+\family typewriter
+ftell
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ftell
+\end_layout
+
+\end_inset
+
+
+\family default
+ routine should be used.
+ 
+\family typewriter
+ftell
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ftell
+\end_layout
+
+\end_inset
+
+
+\family default
+ accepts a single argument, a file pointer to an open stream and returns
+ a long integer indicating the offset
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+offset
+\end_layout
+
+\end_inset
+
+ from the beginning of the file.
+\end_layout
+
+\begin_layout Standard
+\noindent
+Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:fseekdemo"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows a small program that creates a data file with one record for each
+ of five users.
+ In order to demonstrate the use of 
+\family typewriter
+fseek
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fseek
+\end_layout
+
+\end_inset
+
+
+\family default
+, the program writes the file backwards; that is, the last record is written
+ first and the first record is written last.
+ This is somewhat pointless in practice, but serves to demonstrate the appropria
+te concepts.
+ The reader should enter this program and execute it.
+ Then try to write a program that will read the records from the file in
+ the order 3, 0, 2, 1, 4 and print them out:
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:fseekdemo"
+
+\end_inset
+
+fseekdemo - demontrate the use of the fseek routine.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* fseekdemo.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* fseekdemo program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+/* structure and type definition.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+struct tagRecord {
+\end_layout
+
+\begin_layout Plain Layout
+
+	int uid;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char login[ 9 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+typedef struct tagRecord record_t;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Global variables.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+record_t records[ 5 ] = {
+\end_layout
+
+\begin_layout Plain Layout
+
+	{ 1, "user1" },
+\end_layout
+
+\begin_layout Plain Layout
+
+	{ 2, "user2" },
+\end_layout
+
+\begin_layout Plain Layout
+
+	{ 3, "user3" },
+\end_layout
+
+\begin_layout Plain Layout
+
+	{ 4, "user4" },
+\end_layout
+
+\begin_layout Plain Layout
+
+	{ 5, "user5" }
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Function prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int putRecord(FILE *, int, record_t *);
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int i;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	FILE *fp;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Open the data file for writing.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if((fp = fopen("datafile.dat", "w")) != NULL) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		/* For each user, going backwards...
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+		for(i = 4; i >= 0; i--) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("writing record #%d
+\backslash
+n", i);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			/*
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * Output the record.
+  Notice we pass the address
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * of the structure.
+\end_layout
+
+\begin_layout Plain Layout
+
+			 */
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(putRecord(fp, i, &records[ i ]) == EXIT_FAILURE) {
+\end_layout
+
+\begin_layout Plain Layout
+
+				perror("Could not write record.
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+				break;
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(i == 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+			ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+		fclose(fp);
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else
+\end_layout
+
+\begin_layout Plain Layout
+
+		perror("Could not open datafile.dat for writing.
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+int putRecord(FILE *fp, int i, record_t *r)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/*
+\end_layout
+
+\begin_layout Plain Layout
+
+	 * Seek to the i-th position from the beginning
+\end_layout
+
+\begin_layout Plain Layout
+
+	 * of the file.
+\end_layout
+
+\begin_layout Plain Layout
+
+	 */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(fp) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(r) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(fseek(fp, (long) (i * sizeof(record_t)), SEEK_SET) == 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+				/*
+\end_layout
+
+\begin_layout Plain Layout
+
+				 * Write the record.
+  We want to write  one
+\end_layout
+
+\begin_layout Plain Layout
+
+				 * object the size of a record structure.
+\end_layout
+
+\begin_layout Plain Layout
+
+				 */
+\end_layout
+
+\begin_layout Plain Layout
+
+				if(fwrite((char *) r, sizeof(record_t), 1, fp) == 1)
+\end_layout
+
+\begin_layout Plain Layout
+
+					ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	return ret;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of fseekdemo.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+To read back records from file just add to the previous program some code.
+ In particular we have the following.
+ Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:fseekreadback"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ reads back records in specified order.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:fseekreadback"
+
+\end_inset
+
+fseekreadback - demontrate the use of the fseek routine to read back records.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* fseekreadback.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* fseekreadback program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+/* structure and type definitions.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+struct tagRecord {
+\end_layout
+
+\begin_layout Plain Layout
+
+	int uid;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char login[ 9 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+typedef struct tagRecord record_t;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Global variables.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int positions[ 5 ] = { 3, 0, 2, 1, 4 };
+\end_layout
+
+\begin_layout Plain Layout
+
+record_t records[ 5 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Function prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int getRecord(FILE *, int, record_t *);
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int i;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	FILE *fp;
+\end_layout
+
+\begin_layout Plain Layout
+
+	record_t rec;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Open the data file for reading.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if((fp = fopen("datafile.dat", "r")) != NULL) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		/* For each position read back the corresponding user.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		for(i = 0; i < 5; i++) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			/*
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * Output the record.
+  Notice we pass the address
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * of the structure.
+\end_layout
+
+\begin_layout Plain Layout
+
+			 */
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(getRecord(fp, positions[ i ], &rec) != EXIT_FAILURE)
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("position: %d, uid: %d, login: %s
+\backslash
+n", positions[ i ], rec.uid, rec.login);
+\end_layout
+
+\begin_layout Plain Layout
+
+			else {
+\end_layout
+
+\begin_layout Plain Layout
+
+				perror("Could not read record.
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+				break;
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(i == 5)
+\end_layout
+
+\begin_layout Plain Layout
+
+				ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		/* Now close the output file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+		fclose(fp);
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else
+\end_layout
+
+\begin_layout Plain Layout
+
+		perror("Could not open datafile.dat for reading.
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* 
+\end_layout
+
+\begin_layout Plain Layout
+
+ * getRecord -- get a record from a file.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int getRecord(FILE *fp, int i, record_t *r)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/*
+\end_layout
+
+\begin_layout Plain Layout
+
+	 * Seek to the i-th position from the beginning
+\end_layout
+
+\begin_layout Plain Layout
+
+	 * of the file.
+\end_layout
+
+\begin_layout Plain Layout
+
+	 */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(fp) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(r) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(fseek(fp, (long) (i * sizeof(record_t)), SEEK_SET) == 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+				/*
+\end_layout
+
+\begin_layout Plain Layout
+
+				 * Write the record.
+  We want to write  one
+\end_layout
+
+\begin_layout Plain Layout
+
+				 * object the size of a record structure.
+\end_layout
+
+\begin_layout Plain Layout
+
+				 */
+\end_layout
+
+\begin_layout Plain Layout
+
+				if(fread((void *) r, sizeof(record_t), 1, fp) == 1) {
+\end_layout
+
+\begin_layout Plain Layout
+
+					ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+				}
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	return ret;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of fseekreadback.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+As the reader may check, both 
+\family typewriter
+putRecord
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+putRecord
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+getRecord
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getRecord
+\end_layout
+
+\end_inset
+
+
+\family default
+ routines return a value.
+ This is necessary to tell the program the outcome of the operation that
+ should be performed.
+ In fact this is a good way to tell to the calling program if something
+ went wrong.
+ The possible return values for both routines are 
+\family typewriter
+EXIT_SUCCESS
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+EXIT_SUCCESS
+\end_layout
+
+\end_inset
+
+
+\family default
+ on succesful operation and 
+\family typewriter
+EXIT_FAILURE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+EXIT_FAILURE
+\end_layout
+
+\end_inset
+
+
+\family default
+ on error.
+ The following listings 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:find-word-h"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:find-word-c"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ belongs to the same program.
+ The .h file contains the definitions and prototypes for the .c source code.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\scriptsize\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:find-word-h"
+
+\end_inset
+
+find-word - program to show the usage of fgets and /usr/share/dict/words
+ file (include file).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* find-word.h file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#ifndef __FIND_WORD_H
+\end_layout
+
+\begin_layout Plain Layout
+
+#define __FIND_WORD_H
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdarg.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdbool.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <ctype.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <math.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#include "list.h"
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#define FOREVER for(;;)
+\end_layout
+
+\begin_layout Plain Layout
+
+#define MAXINT 20
+\end_layout
+
+\begin_layout Plain Layout
+
+#define DEFAULT_DICTIONARY_PATH "/usr/share/dict/words"
+\end_layout
+
+\begin_layout Plain Layout
+
+#define min(a, b) ((a) < (b) ? (a) : (b))
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Types.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototype.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+void lowerize(char *, size_t);
+\end_layout
+
+\begin_layout Plain Layout
+
+void printArray(char *, void *, size_t);
+\end_layout
+
+\begin_layout Plain Layout
+
+size_t factorial(size_t);
+\end_layout
+
+\begin_layout Plain Layout
+
+size_t binomial(size_t, size_t);
+\end_layout
+
+\begin_layout Plain Layout
+
+void combinations(size_t *, size_t, size_t, size_t **);
+\end_layout
+
+\begin_layout Plain Layout
+
+long int getCombString(char *, char *, size_t *, size_t);
+\end_layout
+
+\begin_layout Plain Layout
+
+size_t **allocateCombs(size_t, size_t);
+\end_layout
+
+\begin_layout Plain Layout
+
+long int deallocateCombs(size_t **);
+\end_layout
+
+\begin_layout Plain Layout
+
+char *intersect(char *, char *, size_t);
+\end_layout
+
+\begin_layout Plain Layout
+
+bool cmp(void *, ...);
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#endif /* __FIND_WORD_H */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End if find-word.h file.
+ */
+\end_layout
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\scriptsize\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:find-word-c"
+
+\end_inset
+
+find-word - program to show the usage of fgets and /usr/share/dict/words
+ (source code file).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* find-word.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include "find-word.h"
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* find-word program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	char ch, dictionary_path[ BUFSIZ ], combstr[ BUFSIZ ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	char line[ BUFSIZ ], *letters, *word;
+\end_layout
+
+\begin_layout Plain Layout
+
+	bool found, *combstbl;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	FILE *dict_file;
+\end_layout
+
+\begin_layout Plain Layout
+
+	size_t i, j, k, l, m, n;
+\end_layout
+
+\begin_layout Plain Layout
+
+	size_t combs_count, count, letters_count, chars_count;
+\end_layout
+
+\begin_layout Plain Layout
+
+	size_t *indices, **combs;
+\end_layout
+
+\begin_layout Plain Layout
+
+	list_t *words_list = NULL;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Check our arguments.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	switch(argc) {
+\end_layout
+
+\begin_layout Plain Layout
+
+	case 2:
+\end_layout
+
+\begin_layout Plain Layout
+
+		strncpy(dictionary_path, DEFAULT_DICTIONARY_PATH, BUFSIZ);
+\end_layout
+
+\begin_layout Plain Layout
+
+		letters = argv[ 1 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+		break;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	case 3:
+\end_layout
+
+\begin_layout Plain Layout
+
+		strncpy(dictionary_path, argv[ 1 ], BUFSIZ);
+\end_layout
+
+\begin_layout Plain Layout
+
+		letters = argv[ 2 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+		break;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	default:
+\end_layout
+
+\begin_layout Plain Layout
+
+		letters = NULL;
+\end_layout
+
+\begin_layout Plain Layout
+
+		fprintf(stderr, "usage: find-word <dictionary-file> <letters>, find-word
+ <letters>
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+		break;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(letters) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\end_layout
+
+\begin_layout Plain Layout
+
+		/* force all characters in the string to be lower case.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+		lowerize(letters, MAXINT);
+\end_layout
+
+\begin_layout Plain Layout
+
+		letters_count = strnlen(letters, MAXINT);
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(letters_count < 21) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			/* Open system dictionary file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+			if((dict_file = fopen(dictionary_path, "r")) != NULL) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+				/*
+\end_layout
+
+\begin_layout Plain Layout
+
+				 * loop starting from same length for words as
+\end_layout
+
+\begin_layout Plain Layout
+
+				 * the entered sets of characters.
+\end_layout
+
+\begin_layout Plain Layout
+
+				 */
+\end_layout
+
+\begin_layout Plain Layout
+
+				for(count = letters_count; count >= 3; count--) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+					/* computes the number of the character combinations.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+					combs_count = binomial(letters_count, count);
+\end_layout
+
+\begin_layout Plain Layout
+
+					printf("combinations count: %ld
+\backslash
+n", combs_count);
+\end_layout
+
+\begin_layout Plain Layout
+
+					combs = allocateCombs(combs_count, count);
+\end_layout
+
+\begin_layout Plain Layout
+
+					if(combs) {
+\end_layout
+
+\begin_layout Plain Layout
+
+						indices = (size_t *) calloc(count, sizeof(size_t));
+\end_layout
+
+\begin_layout Plain Layout
+
+						if(indices) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+							/* generate all character combinations without repetition.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+							combinations(indices, letters_count, count, combs);
+\end_layout
+
+\begin_layout Plain Layout
+
+							for(i = 0; combs[ i ] != NULL; i++) {
+\end_layout
+
+\begin_layout Plain Layout
+
+								if(getCombString(combstr, letters, combs[ i ], count) == EXIT_SUCCESS)
+ {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+									/* reset the file pointer to the start of the file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+									fseek(dict_file, 0, SEEK_SET);
+\end_layout
+
+\begin_layout Plain Layout
+
+				
+\end_layout
+
+\begin_layout Plain Layout
+
+									/* loop the dictionary words database.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+									while(fgets(line, BUFSIZ, dict_file) != NULL) {
+\end_layout
+
+\begin_layout Plain Layout
+
+										line[ strcspn(line, "
+\backslash
+n") ] = '
+\backslash
+0';
+\end_layout
+
+\begin_layout Plain Layout
+
+										lowerize(line, BUFSIZ);
+\end_layout
+
+\begin_layout Plain Layout
+
+										m = strnlen(line, BUFSIZ);
+\end_layout
+
+\begin_layout Plain Layout
+
+										if(m == count) {
+\end_layout
+
+\begin_layout Plain Layout
+
+											word = intersect(line, combstr, count);
+\end_layout
+
+\begin_layout Plain Layout
+
+											if(strnlen(word, count) == m) {
+\end_layout
+
+\begin_layout Plain Layout
+
+												if(unique((void *) word, words_list, cmp) == true)
+\end_layout
+
+\begin_layout Plain Layout
+
+													words_list = push(word, &words_list);
+\end_layout
+
+\begin_layout Plain Layout
+
+											}
+\end_layout
+
+\begin_layout Plain Layout
+
+										}
+\end_layout
+
+\begin_layout Plain Layout
+
+									}
+\end_layout
+
+\begin_layout Plain Layout
+
+								}
+\end_layout
+
+\begin_layout Plain Layout
+
+							}
+\end_layout
+
+\begin_layout Plain Layout
+
+							free(indices);
+\end_layout
+
+\begin_layout Plain Layout
+
+						}
+\end_layout
+
+\begin_layout Plain Layout
+
+						deallocateCombs(combs);
+\end_layout
+
+\begin_layout Plain Layout
+
+					}
+\end_layout
+
+\begin_layout Plain Layout
+
+				}
+\end_layout
+
+\begin_layout Plain Layout
+
+				fclose(dict_file);
+\end_layout
+
+\begin_layout Plain Layout
+
+				FOREVER {
+\end_layout
+
+\begin_layout Plain Layout
+
+					word = pop(&words_list);
+\end_layout
+
+\begin_layout Plain Layout
+
+					if(word) {
+\end_layout
+
+\begin_layout Plain Layout
+
+						printf("word: %s
+\backslash
+n", word);
+\end_layout
+
+\begin_layout Plain Layout
+
+						free(word);
+\end_layout
+
+\begin_layout Plain Layout
+
+					} else
+\end_layout
+
+\begin_layout Plain Layout
+
+						break;
+\end_layout
+
+\begin_layout Plain Layout
+
+				}
+\end_layout
+
+\begin_layout Plain Layout
+
+			} else
+\end_layout
+
+\begin_layout Plain Layout
+
+				fprintf(stderr, "could not open dictionary file: %s
+\backslash
+n", dictionary_path);
+\end_layout
+
+\begin_layout Plain Layout
+
+		} else
+\end_layout
+
+\begin_layout Plain Layout
+
+			perror("too much letters given: > 20!");
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/*
+\end_layout
+
+\begin_layout Plain Layout
+
+ * allocateCombs -- allocate combinations arrays.
+\end_layout
+
+\begin_layout Plain Layout
+
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+size_t **allocateCombs(size_t n, size_t k)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	size_t **ret;
+\end_layout
+
+\begin_layout Plain Layout
+
+	size_t i;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* check parameters.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(n > 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(k > 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			ret = calloc(n + 1, sizeof(size_t *));
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(ret) {
+\end_layout
+
+\begin_layout Plain Layout
+
+				for(i = 0; i < n; i++) {
+\end_layout
+
+\begin_layout Plain Layout
+
+					ret[ i ] = (size_t *) calloc(k, sizeof(size_t));
+\end_layout
+
+\begin_layout Plain Layout
+
+					if(!ret[ i ])
+\end_layout
+
+\begin_layout Plain Layout
+
+						break;
+\end_layout
+
+\begin_layout Plain Layout
+
+				}
+\end_layout
+
+\begin_layout Plain Layout
+
+				ret[ i ] = NULL;
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	return ret;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/*
+\end_layout
+
+\begin_layout Plain Layout
+
+ * deallocateCombs -- deallocate combinations arrays.
+\end_layout
+
+\begin_layout Plain Layout
+
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+long int deallocateCombs(size_t **c)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	size_t i;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* check parameters.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(c) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		for(i = 0; c[ i ] != NULL; i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+			free(c[ i ]);
+\end_layout
+
+\begin_layout Plain Layout
+
+		free(c);
+\end_layout
+
+\begin_layout Plain Layout
+
+		ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	return ret;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/*
+\end_layout
+
+\begin_layout Plain Layout
+
+ * lowerize -- tolower every characters in a string.
+\end_layout
+
+\begin_layout Plain Layout
+
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+void lowerize(char *s, size_t l)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	char *p = NULL;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* check parameters.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(s) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		p = s;
+\end_layout
+
+\begin_layout Plain Layout
+
+		while((*p != '
+\backslash
+0') && ((p - s) <= l)) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			*p = tolower(*p);
+\end_layout
+
+\begin_layout Plain Layout
+
+			++p;
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/*
+\end_layout
+
+\begin_layout Plain Layout
+
+ * getCombString -- return the string from characters
+\end_layout
+
+\begin_layout Plain Layout
+
+ *                  and indices sets.
+\end_layout
+
+\begin_layout Plain Layout
+
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+long int getCombString(char *comb, char *charset, size_t *indices, size_t
+ count)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	size_t i;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* chack parameters.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(comb) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(charset) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(indices) {
+\end_layout
+
+\begin_layout Plain Layout
+
+				if(count > 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+					for(i = 0; i < count; i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+						comb[ i ] = charset[ indices[ i ] - 1 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+					comb[ i ] = '
+\backslash
+0';
+\end_layout
+
+\begin_layout Plain Layout
+
+					ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+				}
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	return ret;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/*
+\end_layout
+
+\begin_layout Plain Layout
+
+ * printArray -- print array
+\end_layout
+
+\begin_layout Plain Layout
+
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+void printArray(char *s, void *a, size_t c)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	char arg[ BUFSIZ ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	size_t i;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* check arguments.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(s) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(a) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			snprintf(arg, BUFSIZ, "%s", s);
+\end_layout
+
+\begin_layout Plain Layout
+
+			for(i = 0; i < c; i++) {
+\end_layout
+
+\begin_layout Plain Layout
+
+				if(i == 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+					printf("[ ");
+\end_layout
+
+\begin_layout Plain Layout
+
+				if(strncmp(s, "%c", BUFSIZ) == 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+					printf(arg, ((char *) a)[i ]);
+\end_layout
+
+\begin_layout Plain Layout
+
+				if(strncmp(s, "%d", BUFSIZ) == 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+					printf(arg, ((unsigned char *) a)[ i ]);
+\end_layout
+
+\begin_layout Plain Layout
+
+				else if(strncmp(s, "%ld", BUFSIZ) == 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+					printf(arg, ((long *) a)[ i ]);
+\end_layout
+
+\begin_layout Plain Layout
+
+				if(i < (c - 1))
+\end_layout
+
+\begin_layout Plain Layout
+
+					printf(" ");
+\end_layout
+
+\begin_layout Plain Layout
+
+				else
+\end_layout
+
+\begin_layout Plain Layout
+
+					printf(" ]");
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/*
+\end_layout
+
+\begin_layout Plain Layout
+
+ * factorial -- compute n!
+\end_layout
+
+\begin_layout Plain Layout
+
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+size_t factorial(size_t n)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	if((n == 0) || (n == 1))
+\end_layout
+
+\begin_layout Plain Layout
+
+		return 1;
+\end_layout
+
+\begin_layout Plain Layout
+
+	else
+\end_layout
+
+\begin_layout Plain Layout
+
+		return (n * factorial(n - 1));
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/*
+\end_layout
+
+\begin_layout Plain Layout
+
+ * binomial -- return the number of combinations
+\end_layout
+
+\begin_layout Plain Layout
+
+ *             without repetitions:
+\end_layout
+
+\begin_layout Plain Layout
+
+ *             c = n! / (k! (n - k)!)
+\end_layout
+
+\begin_layout Plain Layout
+
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+size_t binomial(size_t n, size_t k)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	return (factorial(n) / (factorial(k) * factorial(n - k)));
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/*
+\end_layout
+
+\begin_layout Plain Layout
+
+ * combinations -- generates the combinations without
+\end_layout
+
+\begin_layout Plain Layout
+
+ *                 repetitions and with no order.
+\end_layout
+
+\begin_layout Plain Layout
+
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+void combinations(size_t *s, size_t m, size_t n, size_t **c)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	size_t i, j;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Set the base combination: 1, 2, 3, ..., n */
+\end_layout
+
+\begin_layout Plain Layout
+
+	for (i = 0; i < n; i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+		s[ i ] = n - i;
+\end_layout
+
+\begin_layout Plain Layout
+
+	j = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+	FOREVER  {
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(c[ j ])
+\end_layout
+
+\begin_layout Plain Layout
+
+			memcpy(c[ j++ ], s, sizeof(size_t) * n);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		/*
+\end_layout
+
+\begin_layout Plain Layout
+
+		 * this check is not strictly necessary,
+\end_layout
+
+\begin_layout Plain Layout
+
+		 * but if m is not close to n,
+\end_layout
+
+\begin_layout Plain Layout
+
+		 * it makes the whole thing quite a bit faster
+\end_layout
+
+\begin_layout Plain Layout
+
+		 */
+\end_layout
+
+\begin_layout Plain Layout
+
+		i = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(s[ i ]++ < m)
+\end_layout
+
+\begin_layout Plain Layout
+
+			continue;
+\end_layout
+
+\begin_layout Plain Layout
+
+		for(; s[ i ] >= m - i;)
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(++i >= n)
+\end_layout
+
+\begin_layout Plain Layout
+
+				return;
+\end_layout
+
+\begin_layout Plain Layout
+
+		for(s[ i ]++; i; i--)
+\end_layout
+
+\begin_layout Plain Layout
+
+			s[ i - 1 ] = s[ i ] + 1;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/*
+\end_layout
+
+\begin_layout Plain Layout
+
+ * intersect -- compute the intersection set from two strings.
+\end_layout
+
+\begin_layout Plain Layout
+
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+char *intersect(char *a, char *b, size_t l)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	char *tempa, *tempb, *ret;
+\end_layout
+
+\begin_layout Plain Layout
+
+	size_t i, j, k, la, lb;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* check parameters.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(a) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(b) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(l > 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+				la = strnlen(a, l);
+\end_layout
+
+\begin_layout Plain Layout
+
+				tempa = calloc(la, sizeof(char));
+\end_layout
+
+\begin_layout Plain Layout
+
+				if(tempa) {
+\end_layout
+
+\begin_layout Plain Layout
+
+					strncpy(tempa, a, la);
+\end_layout
+
+\begin_layout Plain Layout
+
+					lb = strnlen(b, l);
+\end_layout
+
+\begin_layout Plain Layout
+
+					tempb = calloc(lb, sizeof(char));
+\end_layout
+
+\begin_layout Plain Layout
+
+					if(tempb) {
+\end_layout
+
+\begin_layout Plain Layout
+
+						strncpy(tempb, b, lb);
+\end_layout
+
+\begin_layout Plain Layout
+
+						ret = (char *) calloc(min(la, lb) + 1, sizeof(char));
+\end_layout
+
+\begin_layout Plain Layout
+
+						if(ret) {
+\end_layout
+
+\begin_layout Plain Layout
+
+							k = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+							for(i = 0; i < la; i++) {
+\end_layout
+
+\begin_layout Plain Layout
+
+								for(j = 0; j < lb; j++) {
+\end_layout
+
+\begin_layout Plain Layout
+
+									if((tempa[ i ] == tempb[ j ]) &&
+\end_layout
+
+\begin_layout Plain Layout
+
+										(tempa[ i ] != 0) &&
+\end_layout
+
+\begin_layout Plain Layout
+
+										(tempb[ j ] != 0)) {
+\end_layout
+
+\begin_layout Plain Layout
+
+										ret[ k++ ] = tempa[ i ];
+\end_layout
+
+\begin_layout Plain Layout
+
+										tempa[ i ] = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+										tempb[ j ] = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+										break;
+\end_layout
+
+\begin_layout Plain Layout
+
+									}
+\end_layout
+
+\begin_layout Plain Layout
+
+								}
+\end_layout
+
+\begin_layout Plain Layout
+
+							}
+\end_layout
+
+\begin_layout Plain Layout
+
+							ret[ k ] = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+						}
+\end_layout
+
+\begin_layout Plain Layout
+
+						free(tempb);
+\end_layout
+
+\begin_layout Plain Layout
+
+					}
+\end_layout
+
+\begin_layout Plain Layout
+
+					free(tempa);
+\end_layout
+
+\begin_layout Plain Layout
+
+				}
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	return ret;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/*
+\end_layout
+
+\begin_layout Plain Layout
+
+ * cmp -- comparing callback handler.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+bool cmp(void *a, ...)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	bool ret = false;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char *b;   va_list aplist;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* chack parameters.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(a) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(b) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			va_start(aplist, a);
+\end_layout
+
+\begin_layout Plain Layout
+
+			b = va_arg(aplist, char *);
+\end_layout
+
+\begin_layout Plain Layout
+
+			ret = strncmp((char *) a, (char *) b, BUFSIZ) == 0 ? true : false;
+\end_layout
+
+\begin_layout Plain Layout
+
+			va_end(aplist);
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	return ret;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of find-word.c file.
+ */ 
+\end_layout
+
+\end_inset
+
+Other source files are relative to the small list handling code:
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\footnotesize\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* list.h file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#ifndef __LIST_H
+\end_layout
+
+\begin_layout Plain Layout
+
+#define __LIST_H
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdarg.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdbool.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <ctype.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Types.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+struct tagList {
+\end_layout
+
+\begin_layout Plain Layout
+
+	void *l_data;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct tagList *l_next;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+typedef struct tagList list_t;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Types.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototype.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+list_t *push(void *, list_t **);
+\end_layout
+
+\begin_layout Plain Layout
+
+void *pop(list_t **);
+\end_layout
+
+\begin_layout Plain Layout
+
+bool unique(void *, list_t *, bool (*cmp)(void *, ...));
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#endif /* __LIST_H */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End if list.h file.
+ */
+\end_layout
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\footnotesize\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* File list.c */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include "list.h"
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/*
+\end_layout
+
+\begin_layout Plain Layout
+
+ * push -- push data on the head of the list.
+\end_layout
+
+\begin_layout Plain Layout
+
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+list_t *push(void *d, list_t **l)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	list_t *ret = *l, *temp;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(d) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		temp = (list_t *) calloc(1, sizeof(list_t));
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(temp) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			temp -> l_next = *l;
+\end_layout
+
+\begin_layout Plain Layout
+
+			temp -> l_data = d;
+\end_layout
+
+\begin_layout Plain Layout
+
+			ret = temp;
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	return ret;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/*
+\end_layout
+
+\begin_layout Plain Layout
+
+ * pop -- remove data from the tail of the list.
+\end_layout
+
+\begin_layout Plain Layout
+
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+void *pop(list_t **l)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	void *ret = NULL;
+\end_layout
+
+\begin_layout Plain Layout
+
+	list_t *temp = *l;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(temp) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(temp -> l_next) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			while(temp -> l_next -> l_next)
+\end_layout
+
+\begin_layout Plain Layout
+
+				temp = temp -> l_next;
+\end_layout
+
+\begin_layout Plain Layout
+
+			ret = temp -> l_next -> l_data;
+\end_layout
+
+\begin_layout Plain Layout
+
+			free(temp -> l_next);
+\end_layout
+
+\begin_layout Plain Layout
+
+			temp -> l_next = NULL;
+\end_layout
+
+\begin_layout Plain Layout
+
+		} else {
+\end_layout
+
+\begin_layout Plain Layout
+
+			ret = temp -> l_data;
+\end_layout
+
+\begin_layout Plain Layout
+
+			free(temp);
+\end_layout
+
+\begin_layout Plain Layout
+
+			*l = NULL;
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	return ret;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/*
+\end_layout
+
+\begin_layout Plain Layout
+
+ * unique -- check for other element in the list.
+\end_layout
+
+\begin_layout Plain Layout
+
+ *           The element to test is provided to
+\end_layout
+
+\begin_layout Plain Layout
+
+ *           the function itself.
+\end_layout
+
+\begin_layout Plain Layout
+
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+bool unique(void *d, list_t *l, bool (*cmp)(void *, ...))
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	bool ret = true;
+\end_layout
+
+\begin_layout Plain Layout
+
+	list_t *p;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(d) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(cmp) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			p = l;
+\end_layout
+
+\begin_layout Plain Layout
+
+			while(p) {
+\end_layout
+
+\begin_layout Plain Layout
+
+				if(cmp(d, p -> l_data) == true) {
+\end_layout
+
+\begin_layout Plain Layout
+
+					ret = false;
+\end_layout
+
+\begin_layout Plain Layout
+
+					break;
+\end_layout
+
+\begin_layout Plain Layout
+
+				} else
+\end_layout
+
+\begin_layout Plain Layout
+
+					p = p -> l_next;
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	return ret;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of list.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

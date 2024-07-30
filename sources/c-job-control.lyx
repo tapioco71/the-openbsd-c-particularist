@@ -1,0 +1,6384 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass memoir
+\use_default_options true
+\master the-openbsd-c-particularist.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family sfdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1.7cm
+\topmargin 1cm
+\rightmargin 1.5cm
+\bottommargin 1.2cm
+\headheight 1cm
+\headsep 1cm
+\footskip 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:job-control"
+
+\end_inset
+
+Job Control
+\end_layout
+
+\begin_layout Standard
+\align right
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "50col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:preliminary-concepts"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:job-control-in-the-shell"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:job-control-outside-the-shell"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:important-points"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+Each 
+\shape italic
+job
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+job
+\end_layout
+
+\end_inset
+
+
+\shape default
+ is a 
+\shape italic
+process group
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+process group
+\end_layout
+
+\end_inset
+
+
+\shape default
+ and a 
+\shape italic
+process
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+process
+\end_layout
+
+\end_inset
+
+
+\shape default
+ is a program in execution
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "McKusickBosticKarelsQuarterman:1999"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+.
+ The 
+\shape italic
+job control mechanism
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+job control mechanism
+\end_layout
+
+\end_inset
+
+
+\shape default
+ provided in OpenBSD system enables a user to control many processes at
+ once.
+ Coupled with the commands provided by the 
+\shape italic
+Korn shell
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+Korn shell
+\end_layout
+
+\end_inset
+
+
+\shape default
+, called 
+\shape italic
+ksh
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+ksh
+\end_layout
+
+\end_inset
+
+
+\shape default
+ and the tty driver, the job control mechanism enables the user to:
+\end_layout
+
+\begin_layout Itemize
+suspend an executing job;
+\end_layout
+
+\begin_layout Itemize
+place that job in the background;
+\end_layout
+
+\begin_layout Itemize
+continue the job's execution;
+\end_layout
+
+\begin_layout Itemize
+return the job to the foreground;
+\end_layout
+
+\begin_layout Itemize
+cause a background job to be stopped when it attempts output to the terminal;
+\end_layout
+
+\begin_layout Itemize
+cause a background job to stop when it tries to read from the terminal.
+\end_layout
+
+\begin_layout Standard
+\noindent
+The chapter describes how the various tasks mentioned above can be performed
+ by user programs.
+ In order to provide a familiar framework on which to base our discussion,
+ we will describe things in terms of ksh commands.
+ The Korn shell, or ksh, was invented by David Korn of AT&T Bell Laboratories
+ in the mid-1980s.
+ It is almost entirely upwardly compatible with the Bourne shell, which
+ means that Bourne shell users can use it right away, and all system utilities
+ that use the Bourne shell can use the Korn shell instead.
+ It began its public life in 1986 as part of AT&T’s “Experimental Toolchest”,
+ meaning that its source code was available at very low cost to anyone who
+ was willing to use it without technical support and with the knowledge
+ that it might still have a few bugs.
+ Eventually, AT&T’s UNIX System Laboratories (USL) decided to give it full
+ support as a UNIX utility.
+ As of USL’s version of UNIX called System V Release 4, SVR4 for short (1989),
+ it was distributed with all USL UNIX systems, all third-party versions
+ of UNIX derived from SVR4, and many other versions.
+ The OpenBSD ksh is based on the public domain 7th edition Bourne shell
+ clone by Charles Forsyth and parts of the BRL shell by Doug A.
+ Gwyn, Doug Kingston, Ron Natalie, Arnold Robbins, Lou Salkind and others.
+ The first release of pdksh was created by Eric Gisin, and it was subsequently
+ maintained by John R.
+ MacMillan, Simon J.
+ Gerraty and Michael Rendell.
+ 
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:preliminary-concepts"
+
+\end_inset
+
+Preliminary Concepts.
+\end_layout
+
+\begin_layout Subsection
+The Controlling Terminal.
+\end_layout
+
+\begin_layout Standard
+When a terminal file, e.g.
+ 
+\shape italic
+/dev/tty12
+\shape default
+, is opened, it causes the opening process to wait until a connection is
+ established.
+ In practice, user programs rarely open these file directly; they are opened
+ by the 
+\shape italic
+init process
+\shape default
+ and become a user's standard input and output files.
+ The first terminal file open in a process becomes the 
+\shape italic
+controlling terminal
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+controlling terminal
+\end_layout
+
+\end_inset
+
+
+\shape default
+ for that process.
+ The controlling terminal
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+controlling terminal
+\end_layout
+
+\end_inset
+
+ is inherited by a child process during a 
+\family typewriter
+fork
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fork
+\end_layout
+
+\end_inset
+
+
+\family default
+, even if the controlling terminal
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+controlling terminal
+\end_layout
+
+\end_inset
+
+ is closed.
+ The file /dev/tty is, in each process, a synonym fo the controlling terminal
+ associated with that process.
+ It is useful for programs that wish to be sure of writing messages on the
+ terminal no matter how output has been redirected.
+ Certain processes in the system, usually the daemons started at system
+ boot time, clear their controlling terminal
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+controlling terminal
+\end_layout
+
+\end_inset
+
+ using the 
+\family typewriter
+ioctl
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ioctl
+\end_layout
+
+\end_inset
+
+
+\family default
+ system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+, with 
+\family typewriter
+TIOCNOTTY
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCNOTTY
+\end_layout
+
+\end_inset
+
+
+\family default
+ as the operation constant.
+ The reason for this will become clear later.
+\end_layout
+
+\begin_layout Subsection
+Process Groups.
+\end_layout
+
+\begin_layout Standard
+On OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ systems, it is possible to place processes into any arbitrary process group
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+process group
+\end_layout
+
+\end_inset
+
+ using the 
+\family typewriter
+setpgid
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+setpgid
+\end_layout
+
+\end_inset
+
+
+\family default
+ system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+.
+ The Korn shell
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Korn shell
+\end_layout
+
+\end_inset
+
+ uses this call in a straight-forward way; each shell job constitutes a
+ single process group.
+ Each time it starts a process, ksh
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+ksh
+\end_layout
+
+\end_inset
+
+ sets that process's group to the same number as its process id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+process id
+\end_layout
+
+\end_inset
+
+.
+ The process group id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+process group id
+\end_layout
+
+\end_inset
+
+ is set in both parent and child to deal with race condition.
+ The process group of the current process is returned by 
+\family typewriter
+getpgrp
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getpgrp
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ The process group of the pid process is returned by 
+\family typewriter
+getpgid
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getpgid
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ If the first argument of 
+\family typewriter
+getpid
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getpid
+\end_layout
+
+\end_inset
+
+
+\family default
+ is zero, the function returns the process group of the current process.
+ Process groups are used for distribution of signals and by terminals to
+ arbitrate requests for their input: processes that have the same process
+ group as the terminal are foreground and may read, while others will block
+ with a signal if they attempt to read.
+ These calls are thus used by programs such as 
+\shape italic
+csh
+\shape default
+(1) to create process groups in implementing job control.
+ The 
+\family typewriter
+tcgetpgrp
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+tcgetpgrp
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+tcsetpgrp
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+tcsetpgrp
+\end_layout
+
+\end_inset
+
+
+\family default
+ calls are used to get/set the process group of the controlling terminal
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+controlling terminal
+\end_layout
+
+\end_inset
+
+.
+ The process group associated with a terminal may be obtained using the
+ call:
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+ioctl(fd, TIOCGPGRP, &pgrp)
+\end_layout
+
+\end_inset
+
+where 
+\family typewriter
+pgrp
+\family default
+ is an integer and 
+\family typewriter
+fd
+\family default
+ refers to the terminal in question.
+ The terminal's process group may be changed using the 
+\family typewriter
+ioctl
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ioctl
+\end_layout
+
+\end_inset
+
+
+\family default
+ system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+ with 
+\family typewriter
+TIOCGPGRP
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCGPGRP
+\end_layout
+
+\end_inset
+
+
+\family default
+ as the operation constant.
+\end_layout
+
+\begin_layout Subsection
+System Calls.
+\end_layout
+
+\begin_layout Standard
+In order to write subroutines that mimic those of ksh
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+ksh
+\end_layout
+
+\end_inset
+
+, it is necessary to first describe a few of the system calls we will be
+ using.
+ Several of them have been described in detail in previous chapters and
+ we will only mention them briefly here to describe what we plan to use
+ them for.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00000.00000.00000
+\noindent
+
+\family typewriter
+ioctl
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+ioctl
+\end_layout
+
+\end_inset
+
+
+\family default
+ will be used to initially set the process group of the controlling terminal
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+controlling terminal
+\end_layout
+
+\end_inset
+
+ to the process group of the shell
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+shell
+\end_layout
+
+\end_inset
+
+.
+ This is necessary to allow the shell
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+shell
+\end_layout
+
+\end_inset
+
+ to print prompts, read from the terminal and accept signals.
+ We will also use 
+\family typewriter
+ioctl
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ioctl
+\end_layout
+
+\end_inset
+
+
+\family default
+ to change the process group of the terminal to permit a job in another
+ process group to access it, thus putting the job in the foreground.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00000.00000.00000
+
+\family typewriter
+setpgid
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+setpgid
+\end_layout
+
+\end_inset
+
+
+\family default
+ sets the process group of the specified process pid to the specified value
+ in the second argument.
+ If the first argument is zero, then the call applies to the current process.
+ If the second argument is zero, the process id of the specified process
+ is used.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00000.00000.00000
+
+\family typewriter
+killpg
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+killpg
+\end_layout
+
+\end_inset
+
+
+\family default
+ sends the signal in the second argument to the process group specified
+ by the first argument
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+sigaction
+\shape default
+(2) for a list of signals.
+\end_layout
+
+\end_inset
+
+.
+ If the first argument is 0, 
+\family typewriter
+killpg
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+killpg
+\end_layout
+
+\end_inset
+
+
+\family default
+ sends the signal to the sending process's group.
+ The sending process and members of the process group must have the same
+ effective user id or the sender must be the super-user
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+super-user
+\end_layout
+
+\end_inset
+
+.
+ As a single special case the continue signal 
+\family typewriter
+SIGCONT
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGCONT
+\end_layout
+
+\end_inset
+
+
+\family default
+ may be sent to any process with the same session id as the caller.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00000.00000.00000
+
+\family typewriter
+wait4
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+wait4
+\end_layout
+
+\end_inset
+
+
+\family default
+ This call is a much more sophisticated version of the 
+\family typewriter
+wait
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wait
+\end_layout
+
+\end_inset
+
+
+\family default
+ system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+.
+ it is called as:pid_t wait4(pid_t wpid, int *status, int options,  struct
+ rusage *rusage);where 
+\family typewriter
+wpid
+\family default
+ parameter specifies the set of child processes for which to wait.
+ The following symbolic constants are currently defined in 
+\family typewriter
+<sys/wait.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<sys/wait.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#define WAIT_ANY (-1)	/* any process */
+\end_layout
+
+\begin_layout Plain Layout
+
+#define WAIT_MYPGRP 0	/* any process in my process group */
+\end_layout
+
+\end_inset
+
+If 
+\family typewriter
+wpid
+\family default
+ is set to 
+\family typewriter
+WAIT_ANY
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+WAIT_ANY
+\end_layout
+
+\end_inset
+
+
+\family default
+, the call waits for any child process.
+ If 
+\family typewriter
+wpid
+\family default
+ is set to 
+\family typewriter
+WAIT_MYPGRP
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+WAIT_MYPGRP
+\end_layout
+
+\end_inset
+
+
+\family default
+, the call waits for any child process in the process group of the caller.
+ If 
+\family typewriter
+wpid
+\family default
+ is greater than zero, the call waits for the process with process id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+process id
+\end_layout
+
+\end_inset
+
+ 
+\family typewriter
+wpid
+\family default
+.
+ If 
+\family typewriter
+wpid
+\family default
+ is less than -1, the call waits for any process whose process group id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+process group id
+\end_layout
+
+\end_inset
+
+ equals the absolute value of 
+\family typewriter
+wpid
+\family default
+.
+ 
+\family typewriter
+status
+\family default
+ is a pointer to type 
+\family typewriter
+union wait
+\family default
+; 
+\family typewriter
+options
+\family default
+ is an integer containing a bit mask described below and 
+\family typewriter
+rusage
+\family default
+ is an optional pointer of type 
+\family typewriter
+struct rusage
+\family default
+.
+ If non-zero, it will be filled in with resource usage statistics about
+ the child process.
+ The union and the options flags are defined in the include file 
+\family typewriter
+<sys/wait.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<sys/wait.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+; the other structure is defined in the include file 
+\family typewriter
+<sys/resource.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<sys/resource.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ As with wait, the process id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+process id
+\end_layout
+
+\end_inset
+
+ of the process whose status is being given is returned and -1 is returned
+ when there are no processes that wish to report their status.
+ The flags can be ORed into options:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+WCONTINUED
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WCONTINUED
+\end_layout
+
+\end_inset
+
+
+\family default
+ Causes status to be reported for stopped child processes that have been
+ continued by receipt of a SIGCONT signal.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+\align block
+
+\family typewriter
+WHOHANG
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WHOHANG
+\end_layout
+
+\end_inset
+
+
+\family default
+ this flag specifies that the call should not block if there are no processes
+ which wish to report their status.
+ This enables a process to check for any processes whose status has changed
+ and then go on to something else if there are none;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+WUNTRACED
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WUNTRACED
+\end_layout
+
+\end_inset
+
+
+\family default
+ if set, children of the current process that are stopped due to a 
+\family typewriter
+SIGTTIN
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGTTIN
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+SIGTTOU
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGTTOU
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+SIGTSTP
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGTSTP
+\end_layout
+
+\end_inset
+
+
+\family default
+ or 
+\family typewriter
+SIGSTOP
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGSTOP
+\end_layout
+
+\end_inset
+
+
+\family default
+ signal also have their status reported.
+\end_layout
+
+\begin_layout Standard
+There are also four macros defined; each takes a single argument:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000.0000000.0000000
+
+\family typewriter
+WIFCONTINUED
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WIFCONTINUED
+\end_layout
+
+\end_inset
+
+(status)
+\family default
+ True if the process has not terminated, and has continued after a job control
+ stop.
+ This macro can be true only if the wait call specified the 
+\family typewriter
+WCONTINUED
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+WCONTINUED
+\end_layout
+
+\end_inset
+
+
+\family default
+ option.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000.0000000.0000000
+
+\family typewriter
+WIFEXITED
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WIFEXITED
+\end_layout
+
+\end_inset
+
+(status)
+\family default
+ True if the process terminated normally by a call to 
+\shape italic
+_exit
+\shape default
+(2) or 
+\shape italic
+exit
+\shape default
+(3).
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000.0000000.0000000
+
+\family typewriter
+WIFSIGNALED
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WIFSIGNALED
+\end_layout
+
+\end_inset
+
+(status)
+\family default
+ True if the process terminated due to receipt of a signal.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000.0000000.0000000
+
+\family typewriter
+WIFSTOPPED
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WIFSTOPPED
+\end_layout
+
+\end_inset
+
+(status)
+\family default
+ True if the process has not terminated, but has stopped and can be restarted.
+ This macro can be true only if the wait call specified the 
+\family typewriter
+WUNTRACED
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+WUNTRACED
+\end_layout
+
+\end_inset
+
+
+\family default
+ option or if the child process is being traced
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+ptrace
+\shape default
+(2).
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Depending on the values of those macros, the following macros produce the
+ remaining status information about the child process:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000.0000000.0000000
+\noindent
+\align block
+
+\family typewriter
+WEXITSTATUS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WEXITSTATUS
+\end_layout
+
+\end_inset
+
+(status)
+\family default
+ if 
+\family typewriter
+WIFEXITED
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+WIFEXITED
+\end_layout
+
+\end_inset
+
+(status)
+\family default
+ is true, evaluates to the low-order 8 bits of the argument passed to 
+\shape italic
+_exit
+\shape default
+(2) or 
+\shape italic
+exit
+\shape default
+(3) by the child.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000.0000000.0000000
+\noindent
+
+\family typewriter
+WTERMSIG
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WTERMSIG
+\end_layout
+
+\end_inset
+
+(status)
+\family default
+ If 
+\family typewriter
+WIFSIGNALED
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+WIFSIGNALED
+\end_layout
+
+\end_inset
+
+(status)
+\family default
+ is true, evaluates to the number of the signal that caused the termination
+ of the process.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000.0000000.0000000
+
+\family typewriter
+WCOREDUMP
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WCOREDUMP
+\end_layout
+
+\end_inset
+
+(status)
+\family default
+ If 
+\family typewriter
+WIFSIGNALED
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+WIFSIGNALED
+\end_layout
+
+\end_inset
+
+(status)
+\family default
+ is true, evaluates as true if the termination of the process was accompanied
+ by the creation of a core file containing an image of the process when
+ the signal was received.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000.0000000.0000000
+
+\family typewriter
+WSTOPSIG
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+WSTOPSIG
+\end_layout
+
+\end_inset
+
+(status)
+\family default
+ If 
+\family typewriter
+WIFSTOPPED
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+WIFSTOPPED
+\end_layout
+
+\end_inset
+
+(status)
+\family default
+ is true, evaluates to the number of the signal that caused the process
+ to stop.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+The job and process Data Types.
+\end_layout
+
+\begin_layout Standard
+In the include file 
+\family typewriter
+<sys/proc.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<sys/proc.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+ the 
+\family typewriter
+struct pgrp
+\family default
+ is defined:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:pgrp-struct"
+
+\end_inset
+
+The pgrp structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct pgrp {
+\end_layout
+
+\begin_layout Plain Layout
+
+	LIST_ENTRY(pgrp) pg_hash;
+\end_layout
+
+\begin_layout Plain Layout
+
+	LIST_HEAD(, process) pg_members;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct session *pg_session;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct sigiolst pg_sigiolst;
+\end_layout
+
+\begin_layout Plain Layout
+
+	pid_t pg_id;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int pg_jobc;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+The structure members are:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+
+\family typewriter
+pg_hash
+\family default
+ hash chain;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+pg_members
+\family default
+ pointer to pgrp members;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+pg_session
+\family default
+ pointer to session;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+pg_sigiolst
+\family default
+ list of sigio structures;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+pg_id
+\family default
+ pgrp id;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+pj_jobc
+\family default
+ procs qualifying pgrp for job control.
+\end_layout
+
+\begin_layout Standard
+\noindent
+and the 
+\family typewriter
+struct process
+\family default
+ is defined as follow:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:process-struct"
+
+\end_inset
+
+The process structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct process {
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct proc *ps_mainproc;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct ucred *ps_ucred;
+\end_layout
+
+\begin_layout Plain Layout
+
+	LIST_ENTRY(process) ps_list;
+\end_layout
+
+\begin_layout Plain Layout
+
+	TAILQ_HEAD(,proc) ps_threads;
+\end_layout
+
+\begin_layout Plain Layout
+
+	LIST_ENTRY(process) ps_pglist;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct process *ps_pptr;
+\end_layout
+
+\begin_layout Plain Layout
+
+	LIST_ENTRY(process) ps_sibling;
+\end_layout
+
+\begin_layout Plain Layout
+
+	LIST_HEAD(, process) ps_children;
+\end_layout
+
+\begin_layout Plain Layout
+
+	LIST_ENTRY(process) ps_hash;
+\end_layout
+
+\begin_layout Plain Layout
+
+	LIST_ENTRY(process) ps_orphan;
+\end_layout
+
+\begin_layout Plain Layout
+
+	LIST_HEAD(, process) ps_orphans;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct sigiolst ps_sigiolst;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct sigacts *ps_sigacts;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct vnode *ps_textvp;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct filedesc *ps_fd;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct vmspace *ps_vmspace;
+\end_layout
+
+\begin_layout Plain Layout
+
+	pid_t ps_pid;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct futex_list ps_ftlist;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct tslpqueue ps_tslpqueue;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct rwlock ps_lock;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct mutex ps_mtx;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct klist ps_klist;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int ps_flags;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int ps_siglist;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct proc *ps_single;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int ps_singlecount;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int ps_traceflag;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct vnode *ps_tracevp;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct ucred *ps_tracecred;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int ps_xexit;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int ps_xsig;
+\end_layout
+
+\begin_layout Plain Layout
+
+	pid_t ps_ppid;
+\end_layout
+
+\begin_layout Plain Layout
+
+	pid_t ps_oppid;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int ps_ptmask;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct ptrace_state *ps_ptstat;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct rusage *ps_ru;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct tusage ps_tu;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct rusage ps_cru;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct itimerspec ps_timer[ 3 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct timeout ps_rucheck_to;
+\end_layout
+
+\begin_layout Plain Layout
+
+	time_t ps_nextxcpu;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int64_t ps_wxcounter;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct unveil *ps_uvpaths;
+\end_layout
+
+\begin_layout Plain Layout
+
+	ssize_t ps_uvvcount;
+\end_layout
+
+\begin_layout Plain Layout
+
+	size_t  ps_uvncount;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int ps_uvdone;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct plimit *ps_limit;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct pgrp *ps_pgrp;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char ps_comm[ _MAXCOMLEN ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	vaddr_t ps_strings;
+\end_layout
+
+\begin_layout Plain Layout
+
+	vaddr_t ps_auxinfo;
+\end_layout
+
+\begin_layout Plain Layout
+
+	vaddr_t ps_timekeep;
+\end_layout
+
+\begin_layout Plain Layout
+
+	vaddr_t ps_sigcode;
+\end_layout
+
+\begin_layout Plain Layout
+
+	vaddr_t ps_sigcoderet;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_long  ps_sigcookie;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int ps_rtableid;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char ps_nice;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct uprof {
+\end_layout
+
+\begin_layout Plain Layout
+
+		caddr_t pr_base;
+\end_layout
+
+\begin_layout Plain Layout
+
+		size_t pr_size;
+\end_layout
+
+\begin_layout Plain Layout
+
+		u_long pr_off;
+\end_layout
+
+\begin_layout Plain Layout
+
+		u_int pr_scale;
+\end_layout
+
+\begin_layout Plain Layout
+
+	} ps_prof;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int32_t ps_acflag;
+\end_layout
+
+\begin_layout Plain Layout
+
+	uint64_t ps_pledge;
+\end_layout
+
+\begin_layout Plain Layout
+
+	uint64_t ps_execpledge;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int64_t ps_kbind_cookie;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_long ps_kbind_addr;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct pinsyscall ps_pin;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct pinsyscall ps_libcpin;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int ps_threadcnt;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct timespec ps_start;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct timeout ps_realit_to;
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+
+};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#define ps_startzero ps_klist
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+
+#define ps_endzero ps_startcopy
+\end_layout
+
+\begin_layout Plain Layout
+
+#define ps_startcopy ps_limit
+\end_layout
+
+\begin_layout Plain Layout
+
+#define BOGO_PC (u_long) -1
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+
+#define ps_endcopy ps_threadcnt
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+ps_mainproc
+\family default
+ is the original thread in the process.
+ It's only still special for the handling of some signal and ptrace behaviors
+ that need to be fixed;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+ps_ucred
+\family default
+ process owner's identity;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_list
+\family default
+ list of all processes;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_threads
+\family default
+ [ K | S ] threads in this process;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_pglist
+\family default
+ list of processes in pgrp;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_pptr
+\family default
+ pointer to parent process;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_sibling
+\family default
+ list of sibling processes;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_children
+\family default
+ pointer to list of children;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_hash
+\family default
+ hash chain;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+ps_orphan
+\family default
+ list of orphan processes.
+ An orphan is the child that has been re-parented to the debugger as a result
+ of attaching to it.
+  Need to keep track of them for parent to be able to collect the exit status
+ of what used to be children;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_orphans
+\family default
+ pointer to list of orphans;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_sigiolst
+\family default
+ list of sigio structures;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_sigacts
+\family default
+ [ I ] signal actions, state;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_textvp
+\family default
+ vnode of executable;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_fd
+\family default
+ pointer to open files structure;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_vmspace
+\family default
+ address space;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_pid
+\family default
+ process identifier;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_ftlist
+\family default
+ futexes attached to this process;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_tslpqueue
+\family default
+ [ p ] queue of threads in thrsleep;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_lock
+\family default
+ per-process rwlock;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_mtx
+\family default
+ per-process mutex;
+\end_layout
+
+\begin_layout Standard
+The following fields are all zeroed upon creation in process_new:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_klist
+\family default
+ knotes attached to this process;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+ps_flags
+\family default
+ [ a ] PS_* flags;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+ps_siglist
+\family default
+ signals pending for the process;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+ps_single
+\family default
+ [ S ] thread for single-threading;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+ps_singlecount
+\family default
+ [ a ] not yet suspended threads;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+ps_traceflag
+\family default
+ kernel trace points;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+ps_tracevp
+\family default
+ trace to vnode;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+ps_tracecred
+\family default
+ creds for writing trace;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+ps_xexit
+\family default
+ exit status for wait;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+ps_xsig
+\family default
+ stopping or killing signal;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+ps_ppid
+\family default
+ [ a ] cached parent pid;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+ps_oppid
+\family default
+ [ a ] save parent pid during ptrace;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+ps_ptmask
+\family default
+ ptrace event mask;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+ps_ptstat
+\family default
+ ptrace state;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+ps_ru
+\family default
+ sum of stats for dead threads;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+ps_tu
+\family default
+ accumulated times;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+ps_cru
+\family default
+ sum of stats for reaped children;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+ps_timers
+\family default
+ [ m ] 
+\family typewriter
+ITIMER_REAL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ITIMER_REAL
+\end_layout
+
+\end_inset
+
+
+\family default
+ timer;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+ps_rucheck_to
+\family default
+ [ ] resource limit check timer;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+ps_nextxcpu
+\family default
+ when to send next 
+\family typewriter
+SIGXCPU
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGXCPU
+\end_layout
+
+\end_inset
+
+ 
+\family default
+in seconds of process runtime;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_wxcounter
+\family default
+ —;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_uvpaths
+\family default
+ unveil vnodes and names;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_uvvcount
+\family default
+ count of unveil vnodes held;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_uvncount
+\family default
+ count of unveil names allocated;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_uvdone
+\family default
+ no more unveil is permitted;
+\end_layout
+
+\begin_layout Standard
+\noindent
+The following fields are all copied upon creation in process_new:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_limit
+\family default
+ [ m, R ] process limits;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_pgrp
+\family default
+ pointer to process group;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_comm
+\family default
+ command name, incl NUL;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_strings
+\family default
+ user pointers to argv/env;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_auxinfo
+\family default
+ user pointer to auxinfo;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_timekeep
+\family default
+ user pointer to timekeep;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_sigcode
+\family default
+ [ I ] user pointer to signal code;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_sigcoderet
+\family default
+ [ I ] user ptr to sigreturn retPC;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_sigcookie
+\family default
+ [ I ]
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_rtableid
+\family default
+ [ a ] process routing table/domain;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_nice
+\family default
+ process 
+\shape italic
+nice
+\shape default
+ value;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_prof
+\family default
+ are the profile argument organized in a struct:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\family typewriter
+pr_base
+\family default
+ — buffer base;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+pr_size
+\family default
+ — buffer size;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+pr_off
+\family default
+ — pc offset;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+pr_scale
+\family default
+ — pc scaling.
+\end_layout
+
+\end_deeper
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+ps_acflag
+\family default
+ accounting flags;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_pledge
+\family default
+ [ m ] pledge promises;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_execpledge
+\family default
+ [ m ] execpledge promises;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_kbind_cookie
+\family default
+ [ m ];
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_kbind_addr
+\family default
+ [ m ];
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_pin
+\family default
+ static or ld.so;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_libcpin
+\family default
+ libc.so, from 
+\shape italic
+pinsyscalls
+\shape default
+(2);
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_threadcnt
+\family default
+ number of threads;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_start
+\family default
+ starting uptime;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+ps_realit_to
+\family default
+ [ m ] 
+\family typewriter
+ITIMER_REAL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ITIMER_REAL
+\end_layout
+
+\end_inset
+
+
+\family default
+ timeout;
+\end_layout
+
+\begin_layout Standard
+In the same file we also have the 
+\family typewriter
+struct proc
+\family default
+:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:proc-struct"
+
+\end_inset
+
+The proc structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct proc {
+\end_layout
+
+\begin_layout Plain Layout
+
+	TAILQ_ENTRY(proc) p_runq;
+\end_layout
+
+\begin_layout Plain Layout
+
+	LIST_ENTRY(proc) p_list;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct  process *p_p;
+\end_layout
+
+\begin_layout Plain Layout
+
+	TAILQ_ENTRY(proc) p_thr_link;
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+
+	TAILQ_ENTRY(proc) p_fut_link;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct futex *p_futex;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct filedesc *p_fd;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct vmspace *p_vmspace;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct p_inentry p_spinentry;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct p_inentry p_pcinentry;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int p_flag;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_char p_spare;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char p_stat;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_char p_runpri;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_char p_descfd;
+\end_layout
+
+\begin_layout Plain Layout
+
+	pid_t p_tid;
+\end_layout
+
+\begin_layout Plain Layout
+
+	LIST_ENTRY(proc) p_hash;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int p_dupfd;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int p_cpticks;
+\end_layout
+
+\begin_layout Plain Layout
+
+	const volatile void *p_wchan;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct timeout p_sleep_to;
+\end_layout
+
+\begin_layout Plain Layout
+
+	const char *p_wmesg;
+\end_layout
+
+\begin_layout Plain Layout
+
+	fixpt_t p_pctcpu;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int p_slptime;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int p_uticks;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int p_sticks;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int p_iticks;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct cpu_info *volatile p_cpu;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct rusage p_ru;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct tusage p_tu;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct plimit *p_limit;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct kcov_dev *p_kd;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct lock_list_entry *p_sleeplocks;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct kqueue *p_kq;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int p_siglist;
+\end_layout
+
+\begin_layout Plain Layout
+
+	sigset_t p_sigmask;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char p_name[ _MAXCOMLEN ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_char p_slppri;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_char p_usrpri;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int p_estcpu;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int p_pledge_syscall;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct ucred *p_ucred;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct sigaltstack p_sigstk;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_long p_prof_addr;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_long p_prof_ticks;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct user *p_addr;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct mdproc p_md;
+\end_layout
+
+\begin_layout Plain Layout
+
+	sigset_t p_oldmask;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int p_sisig;
+\end_layout
+
+\begin_layout Plain Layout
+
+	union sigval p_sigval;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long p_sitrapno;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int p_sicode;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+The meanings of the members of this structure are:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+p_runq
+\family default
+ [ S ] current run/sleep queue;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+p_list
+\family default
+ list of all threads;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+p_p
+\family default
+ [ I ] the process of this thread;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+p_thr_link
+\family default
+ threads in a process linkage;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+p_fut_link
+\family default
+ threads in a futex linkage;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+p_futex
+\family default
+ current sleeping futex; 
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+p_fd
+\family default
+ copy of p_p -> ps_fd;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+p_vmspace
+\family default
+ [ I ] copy of p_p -> ps_vmspace;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+p_spinentry
+\family default
+ [ o ] cache for SP check;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+p_pcinentry
+\family default
+ [ o ] cache for PC check;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+p_flag
+\family default
+ P_* flags;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+p_spare
+\family default
+ unused;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+p_stat
+\family default
+ [ S ] S* process status;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+p_runpri
+\family default
+ [ S ] runqueue priority;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+p_descfd
+\family default
+ if not 255, fdesc permits this fd;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+p_tid
+\family default
+ thread identifier;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+p_hash
+\family default
+ hash chain;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+p_dupfd
+\family default
+ sideways return value from filedescopen.
+ XXX;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+p_cpticks
+\family default
+ ticks of cpu time;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+p_wchan
+\family default
+ [ S ] sleep address;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+p_sleep_to
+\family default
+ timeout for 
+\family typewriter
+tsleep
+\family default
+;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+p_wmesg
+\family default
+ [ S ] reason for sleep;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+p_pctcpu
+\family default
+ [ S ] %cpu for this thread;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+p_slptime
+\family default
+ [ S ] time since last blocked;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+p_uticks
+\family default
+ statclock hits in user mode;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+p_sticks
+\family default
+ statclock hits in system mode;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+p_iticks
+\family default
+ statclock hits processing intr;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+p_cpu
+\family default
+ [ S ] CPU we're running on;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+p_ru
+\family default
+ statistics;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+p_tu
+\family default
+ accumulated times;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+p_limit
+\family default
+ [ l ] read ref.
+ of p_p -> ps_limit;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+p_kd
+\family default
+ kcov device handle;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+p_sleeplocks
+\family default
+ WITNESS lock tracking;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+p_kq
+\family default
+ [ o ] select/poll queue of evts;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+p_siglist
+\family default
+ [ a ] signals arrived and not delivered;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+p_sigmask
+\family default
+ [ a ] current signal mask;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+p_name
+\family default
+ thread name, incl NUL;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+p_slppri
+\family default
+ [ S ] sleeping priority;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+p_usrpri
+\family default
+ [ S ] priority based on p_estcpu and ps_nice;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+p_estcpu
+\family default
+ [ S ] time averaged val of p_cpticks;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+p_pledge_syscall
+\family default
+ cache of current syscall;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+p_ucred
+\family default
+ [ o ] cached credentials;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+p_sigstk
+\family default
+ sp and on stack state variable;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+p_prof_addr
+\family default
+ temporary storage for profiling address until AST;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+p_prof_ticks
+\family default
+ temporary storage for profiling ticks until AST;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+p_addr
+\family default
+ kernel virtual addr of u-area;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+p_md
+\family default
+ any machine-dependent fields;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+p_oldmask
+\family default
+ saved mask from before sigpause;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+p_sisig
+\family default
+ for core dump/debugger;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+p_sigval
+\family default
+ for core dump/debugger;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+p_sitrapno
+\family default
+ for core dump/debugger;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+p_sicode
+\family default
+ for core dump/debugger.
+\end_layout
+
+\begin_layout Subsection
+Using kernel to retrieve processes informations.
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+sysctl
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+sysctl
+\end_layout
+
+\end_inset
+
+
+\family default
+ system call is used to retrieve kernel informations about various topics.
+ We can use it to find the processes running on the system.
+ In the listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:getprocs"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ is showed a program to get the list of processes:
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:getprocs"
+
+\end_inset
+
+getprocs - retrieve informations on processes.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* getprocs.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <errno.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/sysctl.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* getprocs program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#define TRUE  1
+\end_layout
+
+\begin_layout Plain Layout
+
+#define FALSE 0
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+struct kinfo_proc *getprocs(int *, int);
+\end_layout
+
+\begin_layout Plain Layout
+
+long int showinfo(int);
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char * argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Check arguments.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(argc == 1) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		exit(showinfo(FALSE));
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else if((argc == 2) && 
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+				(!strncmp(argv[1], "-t", 3) || !strncmp(argv[1], "--threads", 10)))
+ {
+\end_layout
+
+\begin_layout Plain Layout
+
+				exit(showinfo(TRUE));
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else {
+\end_layout
+
+\begin_layout Plain Layout
+
+		printf( "Usage:
+\backslash
+n" ) ;
+\end_layout
+
+\begin_layout Plain Layout
+
+		printf( "      list [-h] [-t]
+\backslash
+n
+\backslash
+n" ) ;
+\end_layout
+
+\begin_layout Plain Layout
+
+		printf( "Options:
+\backslash
+n" ) ;
+\end_layout
+
+\begin_layout Plain Layout
+
+		printf( "      -h, --help            Print this information
+\backslash
+n" ) ;
+\end_layout
+
+\begin_layout Plain Layout
+
+		printf( "      -t, --threads         Show threads
+\backslash
+n
+\backslash
+n" ) ;
+\end_layout
+
+\begin_layout Plain Layout
+
+		ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/*
+\end_layout
+
+\begin_layout Plain Layout
+
+ * getprocs -- retrieve the list of processes.
+\end_layout
+
+\begin_layout Plain Layout
+
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+struct kinfo_proc *getprocs(int *count, int threads)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct kinfo_proc *procbase = NULL ;
+\end_layout
+
+\begin_layout Plain Layout
+
+	unsigned int maxslp ;
+\end_layout
+
+\begin_layout Plain Layout
+
+	size_t size = sizeof(maxslp) ;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int maxslp_mib[] = {
+\end_layout
+
+\begin_layout Plain Layout
+
+		CTL_VM,
+\end_layout
+
+\begin_layout Plain Layout
+
+		VM_MAXSLP
+\end_layout
+
+\begin_layout Plain Layout
+
+	};
+\end_layout
+
+\begin_layout Plain Layout
+
+	int mib[ 6 ] = {
+\end_layout
+
+\begin_layout Plain Layout
+
+		CTL_KERN,
+\end_layout
+
+\begin_layout Plain Layout
+
+		KERN_PROC,
+\end_layout
+
+\begin_layout Plain Layout
+
+		threads ? KERN_PROC_KTHREAD | KERN_PROC_SHOW_THREADS : KERN_PROC_KTHREAD,
+\end_layout
+
+\begin_layout Plain Layout
+
+		0,
+\end_layout
+
+\begin_layout Plain Layout
+
+		sizeof(struct kinfo_proc),
+\end_layout
+
+\begin_layout Plain Layout
+
+		0
+\end_layout
+
+\begin_layout Plain Layout
+
+	};
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(sysctl(maxslp_mib, 2, &maxslp, &size, NULL, 0) == -1) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		perror("list");
+\end_layout
+
+\begin_layout Plain Layout
+
+		return NULL;
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	retry:
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(sysctl(mib, 6, NULL, &size, NULL, 0 ) == -1) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		perror("list") ;
+\end_layout
+
+\begin_layout Plain Layout
+
+		return NULL;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	size = 5 * size / 4;           /* extra slop */
+\end_layout
+
+\begin_layout Plain Layout
+
+	procbase = (struct kinfo_proc *) malloc(size);
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(procbase == NULL) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		perror("list") ;
+\end_layout
+
+\begin_layout Plain Layout
+
+		return NULL;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	mib[ 5 ] = (int) (size / sizeof(struct kinfo_proc));
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(sysctl(mib, 6, procbase, &size, NULL, 0)) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(errno == ENOMEM) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			free(procbase);
+\end_layout
+
+\begin_layout Plain Layout
+
+			goto retry;
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+		perror("list") ;
+\end_layout
+
+\begin_layout Plain Layout
+
+		return NULL;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	*count = (int) (size / sizeof(struct kinfo_proc));
+\end_layout
+
+\begin_layout Plain Layout
+
+	return procbase;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/*
+\end_layout
+
+\begin_layout Plain Layout
+
+ * showinfo -- show informations about threads.
+\end_layout
+
+\begin_layout Plain Layout
+
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+long int showinfo(int threads)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct kinfo_proc *list, *proc;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int count, i ;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if((list = getprocs(&count, threads)) == NULL) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		return EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	proc = list ;
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(threads) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		for(i = 0; i < count; ++i, ++proc) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(proc -> p_tid != -1) {
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("%s: pid: %d (tid: %d)
+\backslash
+n", proc -> p_comm, proc -> p_pid, proc -> p_tid);
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else {
+\end_layout
+
+\begin_layout Plain Layout
+
+		for(i = 0; i < count; ++i, ++proc) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("%s: pid: %d
+\backslash
+n", proc -> p_comm, proc->p_pid ) ;
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	return EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of getprocs.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:job-control-in-the-shell"
+
+\end_inset
+
+Job Control in the Shell.
+\end_layout
+
+\begin_layout Standard
+This section describes the various parts of job control that are handled
+ primarily by the shell
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+shell
+\end_layout
+
+\end_inset
+
+.
+ This includes moving processes from foreground to background and back,
+ suspending process in mid-execution and so on.
+\end_layout
+
+\begin_layout Subsection
+Setting Up for Job Control.
+\end_layout
+
+\begin_layout Standard
+In order to perform job control, it is necessary to set up the environment.
+ This set-up is done by the shell
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+shell
+\end_layout
+
+\end_inset
+
+ when it is first invoked and includes setting the shell's process group
+ and then setting the terminal's process group.
+ Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:setupjc"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows how this might be done.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:setupjc"
+
+\end_inset
+
+setupjc - setup for job control.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* setupjc.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <unistd.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/wait.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Some general usage macros.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#define FOREVER for(;;)
+\end_layout
+
+\begin_layout Plain Layout
+
+#define BUFFER_SIZE 1024
+\end_layout
+
+\begin_layout Plain Layout
+
+#define ARGS_SIZE 64
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Global variables.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int npid;
+\end_layout
+
+\begin_layout Plain Layout
+
+int npgrp;
+\end_layout
+
+\begin_layout Plain Layout
+
+int ntermpgrp;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+void setup(void);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* setup function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+void setup(void)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Obtain shell's process id.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	npid = getpid();
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/*
+\end_layout
+
+\begin_layout Plain Layout
+
+	 * Just use pid for process group.
+  This is
+\end_layout
+
+\begin_layout Plain Layout
+
+	 * not a requirement, just convenient.
+  Other
+\end_layout
+
+\begin_layout Plain Layout
+
+	 * ways of picking a process group can be used.
+\end_layout
+
+\begin_layout Plain Layout
+
+	 */
+\end_layout
+
+\begin_layout Plain Layout
+
+	npgrp = npid;
+\end_layout
+
+\begin_layout Plain Layout
+
+	ntermpgrp = npid;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Set the shell's process group.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(setpgid(npid, npgrp) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(ioctl(1, TIOCSPGRP, &npgrp) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			;
+\end_layout
+
+\begin_layout Plain Layout
+
+		} else {
+\end_layout
+
+\begin_layout Plain Layout
+
+			perror("ioctl");
+\end_layout
+
+\begin_layout Plain Layout
+
+			exit(EXIT_FAILURE);
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else {
+\end_layout
+
+\begin_layout Plain Layout
+
+		perror("getpgid");
+\end_layout
+
+\begin_layout Plain Layout
+
+		exit(EXIT_FAILURE);
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of setupjc.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Executing a Program.
+\end_layout
+
+\begin_layout Standard
+When executing a program, the shell performs something similar to what is
+ done in Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:execute-function"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The actual routine handles more complex things than the example; in particular,
+ the routine is recursive after a fashion in order to handle building pipelines.
+ The important thing about executing programs, though, is that after the
+ first child has been spawned, the child whose process id will become the
+ process group for this job, the terminal must be placed in this process
+ group.
+ If this is not done, the program will not be executing in the foreground,
+ of course this is what is wanted if the command line contained an ampersand
+ on the end.
+ It is not terribly important wheter the parent or the child sets the process
+ group, as long as it gets done.
+ In ksh, the parent shell handles this.
+\end_layout
+
+\begin_layout Subsection
+Stopping a Job.
+\end_layout
+
+\begin_layout Standard
+Job control refers to the shell
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+shell
+\end_layout
+
+\end_inset
+
+'s ability to monitor and control jobs, which are processes or groups of
+ processes created for commands or pipelines.
+ At a minimum, the shell
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+shell
+\end_layout
+
+\end_inset
+
+ keeps track of the status of the background
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+I.e.
+ asynchronous.
+\end_layout
+
+\end_inset
+
+ jobs that currently exist; this information can be displayed using the
+ 
+\shape italic
+jobs
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+jobs
+\end_layout
+
+\end_inset
+
+
+\shape default
+ commands.
+ If job control is fully enabled, using 
+\shape italic
+set -m
+\shape default
+ or 
+\shape italic
+set -o monitor
+\shape default
+, as it is for interactive shells, the processes of a job are placed in
+ their own process group.
+ Foreground jobs can be stopped by typing the suspend character from the
+ terminal, normally 
+\family typewriter
+^Z
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+^Z
+\end_layout
+
+\end_inset
+
+
+\family default
+, jobs can be restarted in either the foreground or background using the
+ 
+\shape italic
+fg
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+fg
+\end_layout
+
+\end_inset
+
+
+\shape default
+ and 
+\shape italic
+bg
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+bg
+\end_layout
+
+\end_inset
+
+
+\shape default
+ commands, and the state of the terminal is saved or restored when a foreground
+ job is stopped or restarted, respectively.
+ When an attempt is made to exit the shell
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+shell
+\end_layout
+
+\end_inset
+
+ while there are jobs in the stopped state, the shell
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+shell
+\end_layout
+
+\end_inset
+
+ warns the user that there are stopped jobs and does not exit.
+ If another attempt is immediately made to exit the shell
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+shell
+\end_layout
+
+\end_inset
+
+, the stopped jobs are sent a 
+\family typewriter
+SIGHUP
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGHUP
+\end_layout
+
+\end_inset
+
+
+\family default
+ signal and the shell exits.
+ Similarly, if the nohup
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+nohup
+\end_layout
+
+\end_inset
+
+ option is not set and there are running jobs when an attempt is made to
+ exit a login shell
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+login shell
+\end_layout
+
+\end_inset
+
+, the shell
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+shell
+\end_layout
+
+\end_inset
+
+ warns the user and does not exit.
+ If another attempt is immediately made to exit the shell
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+shell
+\end_layout
+
+\end_inset
+
+, the running jobs are sent a 
+\family typewriter
+SIGHUP
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGHUP
+\end_layout
+
+\end_inset
+
+
+\family default
+ signal and the shell exits.
+ Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:stopproc"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows how to make a child quit:
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:stopproc"
+
+\end_inset
+
+stopproc - make a child process quit.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* stopproc.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <errno.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <unistd.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <signal.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/types.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/signal.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/proc.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/wait.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* stopproc program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#define FOREVER for(;;)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char * argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int pgrp;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int status;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	pid_t pid;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct sigaction signal = {
+\end_layout
+
+\begin_layout Plain Layout
+
+		SIG_IGN,
+\end_layout
+
+\begin_layout Plain Layout
+
+		SIGQUIT,
+\end_layout
+
+\begin_layout Plain Layout
+
+	};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* fork */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if((pid = fork()) == 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		/* Child execute code if pid == 0.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+		printf("Child executed!
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+		FOREVER {
+\end_layout
+
+\begin_layout Plain Layout
+
+			;
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+		_exit(EXIT_SUCCESS);
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		/* Parent executes otherwise.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(sigaction(SIGQUIT, &signal, NULL) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			pgrp = getpgrp();
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("Parent waiting 5 seconds before make its child quit.
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+			sleep(5);
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(killpg(pgrp, SIGQUIT) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("Parent make its child quit.
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+				while(wait(&status) != pid)
+\end_layout
+
+\begin_layout Plain Layout
+
+					;
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("Child quitted!
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+				ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+			} else
+\end_layout
+
+\begin_layout Plain Layout
+
+				perror("killpg");
+\end_layout
+
+\begin_layout Plain Layout
+
+		} else
+\end_layout
+
+\begin_layout Plain Layout
+
+			perror("sigaction");
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of stopproc.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+In fact using 
+\family typewriter
+killpg
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+killpg
+\end_layout
+
+\end_inset
+
+
+\family default
+ would kill parent and child which are in the same process group
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+process group
+\end_layout
+
+\end_inset
+
+.
+ The mechanism is to make the parent ignore the 
+\family typewriter
+SIGQUIT
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGQUIT
+\end_layout
+
+\end_inset
+
+
+\family default
+ and then let it propagate to all child processes to kill them.
+ In this case we have only one child.
+ Do not use 
+\family typewriter
+SIGKILL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGKILL
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+SIGSTOP
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGSTOP
+\end_layout
+
+\end_inset
+
+
+\family default
+ for this, since they cannot be ignored
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+sigaction
+\shape default
+(2).
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Backgrounding and Foregrounding a Job.
+\end_layout
+
+\begin_layout Standard
+There are two ways to place a job in the background.
+ The first is by placing an ampersand 
+\begin_inset Quotes eld
+\end_inset
+
+&
+\begin_inset Quotes erd
+\end_inset
+
+ at the end of the command string when the command is first entered.
+ Since this case is handled when the processes are started and has little
+ if anything to do with job control, it is not described further here.
+ The second method, using the bg command, involves sending a 
+\begin_inset Quotes eld
+\end_inset
+
+continue
+\begin_inset Quotes erd
+\end_inset
+
+ signal to the job.
+ Because the job is not in the foreground, otherwise the bg command could
+ not have been read by the shell, no process group manipulation is necessary.
+ Bringing a job in the foreground is more complex that putting it in the
+ background.
+ Because the job is not in the process group of the terminal, the terminal's
+ process group must be changed.
+ If the job is in the stop state it must be started first.
+ The code fragment 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:j_resume"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ is taken by the system sources at 
+\shape italic
+/usr/src/bin/ksh/jobs.c
+\shape default
+.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:j_resume"
+
+\end_inset
+
+j_resume - the ksh bg/fg commands default function.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* fg and bg built-ins: called only if Flag(FMONITOR) set */
+\end_layout
+
+\begin_layout Plain Layout
+
+int j_resume(const char *cp, int bg)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  Job     *j;
+\end_layout
+
+\begin_layout Plain Layout
+
+  Proc    *p;
+\end_layout
+
+\begin_layout Plain Layout
+
+  int     ecode;
+\end_layout
+
+\begin_layout Plain Layout
+
+  int     running;
+\end_layout
+
+\begin_layout Plain Layout
+
+  int     rv = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+  sigset_t omask;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  sigprocmask(SIG_BLOCK, &sm_sigchld, &omask);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  if ((j = j_lookup(cp, &ecode)) == NULL) {
+\end_layout
+
+\begin_layout Plain Layout
+
+    sigprocmask(SIG_SETMASK, &omask, NULL);
+\end_layout
+
+\begin_layout Plain Layout
+
+    bi_errorf("%s: %s", cp, lookup_msgs[ecode]);
+\end_layout
+
+\begin_layout Plain Layout
+
+    return 1;
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  if (j->pgrp == 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+    sigprocmask(SIG_SETMASK, &omask, NULL);
+\end_layout
+
+\begin_layout Plain Layout
+
+    bi_errorf("job not job-controlled");
+\end_layout
+
+\begin_layout Plain Layout
+
+    return 1;
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  if (bg)
+\end_layout
+
+\begin_layout Plain Layout
+
+    shprintf("[%d] ", j->job);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  running = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+  for (p = j->proc_list; p != NULL; p = p->next) {
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (p->state == PSTOPPED) {
+\end_layout
+
+\begin_layout Plain Layout
+
+      p->state = PRUNNING;
+\end_layout
+
+\begin_layout Plain Layout
+
+      p->status = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+      running = 1;
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+    shprintf("%s%s", p->command, p->next ? "| " : "");
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+  shprintf("
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+  shf_flush(shl_stdout);
+\end_layout
+
+\begin_layout Plain Layout
+
+  if (running)
+\end_layout
+
+\begin_layout Plain Layout
+
+    j->state = PRUNNING;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  put_job(j, PJ_PAST_STOPPED);
+\end_layout
+
+\begin_layout Plain Layout
+
+  if (bg)
+\end_layout
+
+\begin_layout Plain Layout
+
+    j_set_async(j);
+\end_layout
+
+\begin_layout Plain Layout
+
+  else {
+\end_layout
+
+\begin_layout Plain Layout
+
+    /* attach tty to job */
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (j->state == PRUNNING) {
+\end_layout
+
+\begin_layout Plain Layout
+
+      if (ttypgrp_ok && (j->flags & JF_SAVEDTTY))
+\end_layout
+
+\begin_layout Plain Layout
+
+	tcsetattr(tty_fd, TCSADRAIN, &j->ttystate);
+\end_layout
+
+\begin_layout Plain Layout
+
+      /* See comment in j_waitj regarding saved_ttypgrp.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+      if (ttypgrp_ok &&
+\end_layout
+
+\begin_layout Plain Layout
+
+	  tcsetpgrp(tty_fd, (j->flags & JF_SAVEDTTYPGRP) ?
+\end_layout
+
+\begin_layout Plain Layout
+
+		    j->saved_ttypgrp : j->pgrp) == -1) {
+\end_layout
+
+\begin_layout Plain Layout
+
+	if (j->flags & JF_SAVEDTTY)
+\end_layout
+
+\begin_layout Plain Layout
+
+	  tcsetattr(tty_fd, TCSADRAIN, &tty_state);
+\end_layout
+
+\begin_layout Plain Layout
+
+	sigprocmask(SIG_SETMASK, &omask, NULL);
+\end_layout
+
+\begin_layout Plain Layout
+
+	bi_errorf("1st tcsetpgrp(%d, %d) failed: %s",
+\end_layout
+
+\begin_layout Plain Layout
+
+		  tty_fd,
+\end_layout
+
+\begin_layout Plain Layout
+
+		  (int) ((j->flags & JF_SAVEDTTYPGRP) ?
+\end_layout
+
+\begin_layout Plain Layout
+
+			 j->saved_ttypgrp : j->pgrp),
+\end_layout
+
+\begin_layout Plain Layout
+
+		  strerror(errno));
+\end_layout
+
+\begin_layout Plain Layout
+
+	return 1;
+\end_layout
+
+\begin_layout Plain Layout
+
+      }
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+    j->flags |= JF_FG;
+\end_layout
+
+\begin_layout Plain Layout
+
+    j->flags &= ~JF_KNOWN;
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (j == async_job)
+\end_layout
+
+\begin_layout Plain Layout
+
+      async_job = NULL;
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  if (j->state == PRUNNING && killpg(j->pgrp, SIGCONT) == -1) {
+\end_layout
+
+\begin_layout Plain Layout
+
+    int     err = errno;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (!bg) {
+\end_layout
+
+\begin_layout Plain Layout
+
+      j->flags &= ~JF_FG;
+\end_layout
+
+\begin_layout Plain Layout
+
+      if (ttypgrp_ok && (j->flags & JF_SAVEDTTY))
+\end_layout
+
+\begin_layout Plain Layout
+
+	tcsetattr(tty_fd, TCSADRAIN, &tty_state);
+\end_layout
+
+\begin_layout Plain Layout
+
+      if (ttypgrp_ok && tcsetpgrp(tty_fd, our_pgrp) == -1) {
+\end_layout
+
+\begin_layout Plain Layout
+
+	warningf(true,
+\end_layout
+
+\begin_layout Plain Layout
+
+		 "fg: 2nd tcsetpgrp(%d, %d) failed: %s",
+\end_layout
+
+\begin_layout Plain Layout
+
+		 tty_fd, (int) our_pgrp,
+\end_layout
+
+\begin_layout Plain Layout
+
+		 strerror(errno));
+\end_layout
+
+\begin_layout Plain Layout
+
+      }
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+    sigprocmask(SIG_SETMASK, &omask, NULL);
+\end_layout
+
+\begin_layout Plain Layout
+
+    bi_errorf("cannot continue job %s: %s",
+\end_layout
+
+\begin_layout Plain Layout
+
+	      cp, strerror(err));
+\end_layout
+
+\begin_layout Plain Layout
+
+    return 1;
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+  if (!bg) {
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (ttypgrp_ok) {
+\end_layout
+
+\begin_layout Plain Layout
+
+      j->flags &= ~(JF_SAVEDTTY | JF_SAVEDTTYPGRP);
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+    rv = j_waitj(j, JW_NONE, "jw:resume");
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+  sigprocmask(SIG_SETMASK, &omask, NULL);
+\end_layout
+
+\begin_layout Plain Layout
+
+  return rv;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+The 
+\shape italic
+jobs
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+jobs
+\end_layout
+
+\end_inset
+
+
+\shape default
+ Command.
+\end_layout
+
+\begin_layout Standard
+In the Korn shell
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Korn shell
+\end_layout
+
+\end_inset
+
+ the 
+\shape italic
+jobs
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+jobs
+\end_layout
+
+\end_inset
+
+
+\shape default
+ command is used to print the status of all running jobs.
+ If no jobs are specified, all jobs are displayed.
+ The -n option causes information to be displayed only for jobs that have
+ changed state since the last notification.
+ If the -l option is used, the process ID of each process in a job is also
+ listed.
+ The -p option causes only the process group of each job to be printed.
+ See Job control below for the format of job and the displayed job.
+\end_layout
+
+\begin_layout Subsection
+Waiting for Jobs.
+\end_layout
+
+\begin_layout Standard
+The task of waiting for jobs to complete is give to the 
+\family typewriter
+wait4
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wait4
+\end_layout
+
+\end_inset
+
+
+\family default
+ system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+.
+ Not only do we find out about jobs that have exited, but we also find out
+ about those that have changed their status.
+\end_layout
+
+\begin_layout Subsection
+Asynchronous Process Notification.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:job-control-outside-the-shell"
+
+\end_inset
+
+Job Control Outside the Shell.
+\end_layout
+
+\begin_layout Standard
+As mentioned previously, processes that are not in the distinguished process
+ group are not permitted to read from terminal.
+ In OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ the process receives a 
+\family typewriter
+SIGTTIN
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGTTIN
+\end_layout
+
+\end_inset
+
+
+\family default
+ signal which causes it to stop.
+ The shell can then be used to place the job in the foreground and the read
+ can be satisfied.
+ Processes are normally allowed to write to the terminal regardless of whether
+ or not they are in the foreground.
+ 
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:important-points"
+
+\end_inset
+
+Important Points.
+\end_layout
+
+\begin_layout Standard
+There are several important points to notice from this chapter and its examples:
+\end_layout
+
+\begin_layout Itemize
+the examples in this chapter are for demonstration purposed only.
+ They will work well enough as a demonstration, but they would not be suitable
+ for incorporation into real shell program.
+ In order to do this, it would be necessary to protect several areas of
+ the code from interruption by signals, in particular, since the 
+\family typewriter
+SIGCHLD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGCHLD
+\end_layout
+
+\end_inset
+
+
+\family default
+ handler works on the same data structures as the other routines, 
+\family typewriter
+SIGCHLD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGCHLD
+\end_layout
+
+\end_inset
+
+
+\family default
+ must be ignored when modifying these structures, built-in commands would
+ have to be handled specially, such as interruption of shell procedures,
+ stopping a process which was executed from inside a shell construct such
+ as foreach loop causes the rest of the loop to to be aborted and so on;
+\end_layout
+
+\begin_layout Itemize
+throughout the examples, whenever a process needed to be placed in the same
+ process group as the terminal, it was always the terminal process group
+ that was changed.
+ An alternative method would have been to use setpgrp to change the process
+ group of the process.
+ There is, however, a reason for changing the terminal's process group and
+ not the process's: if the process uses its own process group for something
+ and obtains that information via getpgrp, the if the shell changes the
+ process's process group that information will no longer be accurate.
+ For this reason, it is always the terminal's process group that is changed;
+\end_layout
+
+\begin_layout Itemize
+in Chapter 9, 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "chap:executing-programs"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, we mentioned that the shell will ignore 
+\family typewriter
+SIGINT
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGINT
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+SIGQUIT
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGQUIT
+\end_layout
+
+\end_inset
+
+
+\family default
+ in processes that it places in the background.
+ This is not desirable when in a job control environment, since there is
+ no way, when bringing the job into the foreground, to cause these signals
+ not to be ignored anymore.
+ Fortunately, it is not necessary to ignore these signals in background
+ processes when working with the tty driver.
+ Recall that signals generated from the keyboard are sent only to the process
+ in the process group of the terminal.
+ Since background processes are not in this process group, they will not
+ receive the signal anyway.
+ However, when they are placed into the foreground, the interrupt keys will
+ work correctly, since the background processes are not ignoring the signals
+ themselves.
+\end_layout
+
+\begin_layout Standard
+\noindent
+Job control is a very useful feature to have in OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ system; unfortunately the implementation is rather complex.
+ Generally speaking, there is no way to implement 
+\shape italic
+part
+\shape default
+ of the job control, it's an all-or-nothing prospect.
+ 
+\end_layout
+
+\end_body
+\end_document

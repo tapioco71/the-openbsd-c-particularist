@@ -1,0 +1,8342 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass memoir
+\use_default_options true
+\master the-openbsd-c-particularist.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family sfdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1.7cm
+\topmargin 1cm
+\rightmargin 1.5cm
+\bottommargin 1.2cm
+\headheight 1cm
+\headsep 1cm
+\footskip 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 2
+\paperpagestyle plain
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:device-io-control"
+
+\end_inset
+
+Device I/O Control.
+\end_layout
+
+\begin_layout Standard
+\align right
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "50col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:the-ioctl-system-call"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:line-disciplines"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:the-fcntl-system-call"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:non-blocking-i/o"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:the-select-system-call"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Controlling input and output devices is an important task for several reasom.
+ Some examples include:
+\end_layout
+
+\begin_layout Itemize
+when prompting fo a password, it is normally desirable to prevent the computer
+ from echoing by printing the characters typed and thus giving the password
+ away;
+\end_layout
+
+\begin_layout Itemize
+many people like to adjust various input control characters on their terminal,
+ such as the 
+\shape italic
+erase
+\shape default
+, 
+\shape italic
+kill
+\shape default
+ and 
+\shape italic
+interrupt
+\shape default
+ characters;
+\end_layout
+
+\begin_layout Itemize
+programs accesing the magnetic tape device often need to rewind the tape,
+ skip over files on the tape device off-line, etc.;
+\end_layout
+
+\begin_layout Itemize
+the volume level for the audio board output;
+\end_layout
+
+\begin_layout Itemize
+the motor state, on or off, for a disk or optical drive;
+\end_layout
+
+\begin_layout Itemize
+the tray motor for an blueray optical drive;
+\end_layout
+
+\begin_layout Itemize
+a serial port configuration: speed, number of bits, parity, stop bit, etc..
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:the-ioctl-system-call"
+
+\end_inset
+
+The 
+\family typewriter
+ioctl
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ioctl
+\end_layout
+
+\end_inset
+
+
+\family default
+ System Call.
+\end_layout
+
+\begin_layout Standard
+OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ operating system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+operating system
+\end_layout
+
+\end_inset
+
+ provide one 
+\shape italic
+catch-all
+\shape default
+ system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+ for controlling input and output at the device level.
+ This call is 
+\family typewriter
+ioctl
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ioctl
+\end_layout
+
+\end_inset
+
+
+\family default
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+ioctl
+\shape default
+(2).
+\end_layout
+
+\end_inset
+
+.
+ It takes a variable number of arguments.
+ The first argument is a file descriptor
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file descriptor
+\end_layout
+
+\end_inset
+
+ to an open file
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file
+\end_layout
+
+\end_inset
+
+, the second argument is an unsigned long integer representing the request.
+ This has encoded in it whether the argument is an 
+\shape italic
+in
+\shape default
+ parameter or 
+\shape italic
+out
+\shape default
+ parameter and the size of the third optional argument in bytes.
+ Macros and defines used in specifying an 
+\family typewriter
+ioctl
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ioctl
+\end_layout
+
+\end_inset
+
+
+\family default
+ request are located in the file 
+\family typewriter
+<sys/ioctl.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<sys/ioctl.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ The third optional argument is either an integer of type 
+\family typewriter
+int
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+int
+\end_layout
+
+\end_inset
+
+
+\family default
+ or a pointer to a device-specific data structure, depending upon the given
+ request.
+ The following Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:speaker"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the usage of ioctl to plays some notes on the internal PC speaker.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:speaker"
+
+\end_inset
+
+speaker - plays some notes on the internal PC speaker.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* speaker.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <unistd.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <fcntl.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <errno.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/ioctl.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <dev/isa/spkrio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* speaker program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int fd, i;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	tone_t tones[ 5 ] = {
+\end_layout
+
+\begin_layout Plain Layout
+
+		{ 440, 200 },
+\end_layout
+
+\begin_layout Plain Layout
+
+		{ 880, 200 },
+\end_layout
+
+\begin_layout Plain Layout
+
+		{ 1660, 200 },
+\end_layout
+
+\begin_layout Plain Layout
+
+		{ 3320, 200 },
+\end_layout
+
+\begin_layout Plain Layout
+
+		{ 6640, 200 }
+\end_layout
+
+\begin_layout Plain Layout
+
+	};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Call ioctl.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if((fd = open("/dev/speaker", O_WRONLY, 0)) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		for(i = 0; i < 5; i++) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(ioctl(fd, SPKRTONE, &tones[ i ]) < 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+				perror("speaker");
+\end_layout
+
+\begin_layout Plain Layout
+
+				break;
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+		close(fd);
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(i >= 5)
+\end_layout
+
+\begin_layout Plain Layout
+
+			ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else {
+\end_layout
+
+\begin_layout Plain Layout
+
+		perror("speaker");
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of speaker.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+A typical peripheral that the user often encounters is a serial type device:
+ it could be a serial port or a terminal.
+ The serial device is mapped to the file 
+\shape italic
+/dev/tty*
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+/dev/tty*
+\end_layout
+
+\end_inset
+
+
+\shape default
+ and 
+\shape italic
+/dev/cua*
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+/dev/cua*
+\end_layout
+
+\end_inset
+
+
+\shape default
+, they as regarded as 
+\shape italic
+hardware terminal
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+hardware terminal
+\end_layout
+
+\end_inset
+
+
+\shape default
+.
+ When a user logs into the OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ system on one of these hardware terminal
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+hardware terminal
+\end_layout
+
+\end_inset
+
+ ports, the system has already opened the associated device and prepared
+ the line for normal interactive use
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\family typewriter
+getty
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getty
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+\end_layout
+
+\end_inset
+
+.
+ There is also a special case of a terminal file that connects not to a
+ hardware terminal port, but to another program on the other side.
+ These special terminal devices are called 
+\shape italic
+ptys
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+ptys
+\end_layout
+
+\end_inset
+
+
+\shape default
+ and provide the mechanism necessary to give users the same interface to
+ the system when logging in over a network
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Using 
+\family typewriter
+ssh
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ssh
+\end_layout
+
+\end_inset
+
+
+\family default
+ or 
+\family typewriter
+telnet
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+telnet
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+\end_layout
+
+\end_inset
+
+ for example.
+ Even in these cases the details of how the terminal file was opened and
+ set up is already handled by special software in the system.
+ Thus, users do not normally need to worry about the details of how these
+ lines are opened or used.
+ For hardware terminal ports, dial-out is supported through matching device
+ nodes called 
+\shape italic
+calling units
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+calling units
+\end_layout
+
+\end_inset
+
+
+\shape default
+.
+ For instance, the terminal called 
+\shape italic
+/dev/tty03
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+/dev/tty03
+\end_layout
+
+\end_inset
+
+
+\shape default
+ would have a matching calling unit
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+calling unit
+\end_layout
+
+\end_inset
+
+ called 
+\shape italic
+/dev/cua03
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+/dev/cua03
+\end_layout
+
+\end_inset
+
+
+\shape default
+.
+ These two devices are normally differentiated by creating the calling unit
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+calling unit
+\end_layout
+
+\end_inset
+
+ device node with a minor number
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+minor number
+\end_layout
+
+\end_inset
+
+ 128 greater than the dial-in device node.
+ Whereas the dial-in device, the tty, normally requires a hardware signal
+ to indicate to the system that it is active, the dial-out device, the cua,
+ does not, and hence can communicate unimpeded with a device such as a modem,
+ or with another system over a 
+\shape italic
+serial link
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+serial link
+\end_layout
+
+\end_inset
+
+
+\shape default
+.
+ This means that a process like 
+\family typewriter
+getty
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getty
+\end_layout
+
+\end_inset
+
+
+\family default
+ will wait on a dial-in device until a connection is established.
+ Meanwhile, a dial-out connection can be established on the dial-out device
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+For the very same hardware terminal port.
+\end_layout
+
+\end_inset
+
+ without disturbing anything else on the system.
+ The 
+\family typewriter
+getty
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getty
+\end_layout
+
+\end_inset
+
+
+\family default
+ process does not even notice that anything is happening on the 
+\family typewriter
+terminal port
+\family default
+.
+ If a connecting call comes in after the dial-out connection has finished,
+ the 
+\family typewriter
+getty
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getty
+\end_layout
+
+\end_inset
+
+
+\family default
+ process will deal with it properly, without having noticed the intervening
+ dial-out action.
+ When an interactive user logs in, the system prepares the line to behave
+ in a certain way
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+called a line discipline.
+\end_layout
+
+\end_inset
+
+, described in 
+\family typewriter
+stty
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+stty
+\end_layout
+
+\end_inset
+
+
+\family default
+ at the command level, and in 
+\family typewriter
+termios
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+termios
+\end_layout
+
+\end_inset
+
+
+\family default
+ at the programming level.
+ To change settings associated with a 
+\shape italic
+login terminal
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+login terminal
+\end_layout
+
+\end_inset
+
+
+\shape default
+, refer to the preceding 
+\family typewriter
+stty
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+stty
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+termios
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+termios
+\end_layout
+
+\end_inset
+
+
+\family default
+ system documentation
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+man pages.
+\end_layout
+
+\end_inset
+
+ for the common cases.
+ 
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:line-disciplines"
+
+\end_inset
+
+Line Disciplines.
+\end_layout
+
+\begin_layout Standard
+A terminal file is used like any other file in the system in that it can
+ be opened, read, and written to using standard system calls.
+ For each existing terminal file, there is a software processing module
+ called a 
+\shape italic
+line discipline
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+line discipline
+\end_layout
+
+\end_inset
+
+
+\shape default
+ associated with it.
+ The line discipline
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+line discipline
+\end_layout
+
+\end_inset
+
+ essentially glues the low level device driver code with the high level
+ generic interface routines
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Such as 
+\family typewriter
+read
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+read
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+write
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+write
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+\end_layout
+
+\end_inset
+
+ and is responsible for implementing the semantics associated with the device.
+ When a terminal file is first opened by a program, the default line discipline
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+line discipline
+\end_layout
+
+\end_inset
+
+ called the termios line discipline
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+termios line discipline
+\end_layout
+
+\end_inset
+
+ is associated with the file.
+ This is the primary line discipline
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+primary line discipline
+\end_layout
+
+\end_inset
+
+ that is used in most cases and provides the semantics that users normally
+ associate with a terminal.
+ When the termios line discipline
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+termios line discipline
+\end_layout
+
+\end_inset
+
+ is in effect, the terminal file behaves and is operated according to the
+ rules described in 
+\family typewriter
+termios
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+termios
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ The operations described here generally represent features common across
+ all line disciplines, although some of these calls may not make sense in
+ conjunction with a line discipline
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+line discipline
+\end_layout
+
+\end_inset
+
+ other than 
+\family typewriter
+termios
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+termios
+\end_layout
+
+\end_inset
+
+
+\family default
+ and some may not be supported by the underlying hardware
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Or lack thereof, as in the case of ptys.
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Terminal File Operations.
+\end_layout
+
+\begin_layout Standard
+All of the following operations are invoked using the 
+\family typewriter
+ioctl
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ioctl
+\end_layout
+
+\end_inset
+
+
+\family default
+ system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+.
+ In addition to the ioctl requests defined here, the specific line discipline
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+line discipline
+\end_layout
+
+\end_inset
+
+ in effect will define other requests specific to it
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Actually 
+\shape italic
+termios
+\shape default
+(4) defines them as function calls, not ioctl requests.
+\end_layout
+
+\end_inset
+
+.
+ The following section lists the available 
+\family typewriter
+ioctl
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ioctl
+\end_layout
+
+\end_inset
+
+
+\family default
+ requests.
+ The name of the request, a description of its purpose, and the typed argument
+ parameter, if any, are listed.
+ For example, the first entry says:
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+TIOCSETD int *ldisc
+\end_layout
+
+\end_inset
+
+and would be called on the terminal associated with file descriptor zero
+ by the following code fragment:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+int ldisc;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+......
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ldisc = TTYDISC;
+\end_layout
+
+\begin_layout Plain Layout
+
+ioctl(0, TIOCSETD, &ldisc);
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Terminal File Request Descriptions.
+\end_layout
+
+\begin_layout Standard
+These are:
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TIOCSETD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCSETD
+\end_layout
+
+\end_inset
+
+ int *ldisc 
+\family default
+— change to the new line discipline pointed to by 
+\family typewriter
+ldisc
+\family default
+.
+ The available line disciplines currently available are:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+TTYDISC
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TTYDISC
+\end_layout
+
+\end_inset
+
+
+\family default
+ — termios interactive line discipline;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+PPPDISC
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+PPPDISC
+\end_layout
+
+\end_inset
+
+
+\family default
+ — point-to-point protocol line discipline;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+NMEADISC
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+NMEADISC
+\end_layout
+
+\end_inset
+
+
+\family default
+ — NMEA 0183 line discipline;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+MSTSDISC
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+MSTSDISC
+\end_layout
+
+\end_inset
+
+
+\family default
+ — Meinberg Standard Time String line discipline;
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\family typewriter
+TIOCGETD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCGETD
+\end_layout
+
+\end_inset
+
+ int *ldisc 
+\family default
+— return the current line discipline in the integer pointed to by 
+\family typewriter
+ldisc
+\family default
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TIOCSBRK
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCSBRK
+\end_layout
+
+\end_inset
+
+ void 
+\family default
+—
+\family typewriter
+ 
+\family default
+set the terminal hardware into BREAK condition;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TIOCCBRK
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCCBRK
+\end_layout
+
+\end_inset
+
+ void 
+\family default
+— clear the terminal hardware BREAK condition;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TIOCSDTR
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCSDTR
+\end_layout
+
+\end_inset
+
+ void
+\family default
+ — sssert data terminal ready (DTR);
+\end_layout
+
+\begin_layout Itemize
+TIOCCDTR
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+TIOCCDTR
+\end_layout
+
+\end_inset
+
+ void — clear data terminal ready (DTR);
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TIOCGPGRP
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCGPGRP
+\end_layout
+
+\end_inset
+
+ int *tpgrp 
+\family default
+— return the current process group the terminal is associated with in the
+ integer pointed to by 
+\family typewriter
+tpgrp
+\family default
+.
+ This is the underlying call that implements the 
+\shape italic
+tcgetpgrp
+\shape default
+(3) call; 
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TIOCSPGRP
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCSPGRP
+\end_layout
+
+\end_inset
+
+ int *tpgrp 
+\family default
+— associate the terminal with the process group, as an integer, pointed
+ to by 
+\family typewriter
+tpgrp
+\family default
+.
+ This is the underlying call that implements the 
+\shape italic
+tcsetpgrp
+\shape default
+(3) call;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TIOCGETA
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCGETA
+\end_layout
+
+\end_inset
+
+ struct termios *term 
+\family default
+— place the current value of the termios
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+termios
+\end_layout
+
+\end_inset
+
+ state associated with the device in the termios structure
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+termios structure
+\end_layout
+
+\end_inset
+
+ pointed to by 
+\family typewriter
+term
+\family default
+.
+ This is the underlying call that implements the 
+\shape italic
+tcgetattr
+\shape default
+(3) call; 
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TIOCSETA
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCSETA
+\end_layout
+
+\end_inset
+
+ struct termios *term 
+\family default
+— set the termios
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+termios
+\end_layout
+
+\end_inset
+
+ state associated with the device immediately.
+ This is the underlying call that implements the 
+\shape italic
+tcsetattr
+\shape default
+(3) call with the 
+\family typewriter
+TCSANOW
+\family default
+ option; 
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TIOCSETAF
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCSETAF
+\end_layout
+
+\end_inset
+
+ struct termios *term 
+\family default
+— first wait for any output to complete, clear any pending input, then set
+ the termios
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+termios
+\end_layout
+
+\end_inset
+
+ state associated with the device.
+ This is the underlying call that implements the 
+\shape italic
+tcsetattr
+\shape default
+(3) call with the 
+\family typewriter
+TCSAFLUSH
+\family default
+ option;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TIOCOUTQ
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCOUTQ
+\end_layout
+
+\end_inset
+
+ int *num 
+\family default
+— place the current number of characters in the output queue in the integer
+ pointed to by 
+\family typewriter
+num
+\family default
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TIOCNOTTY
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCNOTTY
+\end_layout
+
+\end_inset
+
+ void 
+\family default
+— This call is obsolete but left for compatibility.
+ In the past, when a process that didn't have a controlling terminal
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See The Controlling Terminal in 
+\shape italic
+termios
+\shape default
+(4).
+\end_layout
+
+\end_inset
+
+ first opened a terminal device, it acquired that terminal as its controlling
+ terminal.
+ For some programs this was a hazard as they didn't want a controlling terminal
+ in the first place, and this provided a mechanism to disassociate the controlli
+ng terminal from the calling process.
+ It must be called by opening the file 
+\shape italic
+/dev/tty
+\shape default
+ and calling 
+\family typewriter
+TIOCNOTTY
+\family default
+ on that file descriptor.
+ The current system does not allocate a controlling terminal to a process
+ on an 
+\shape italic
+open
+\shape default
+(2) call: there is a specific ioctl
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+ioctl
+\end_layout
+
+\end_inset
+
+ called 
+\family typewriter
+TIOCSCTTY
+\family default
+ to make a terminal the controlling terminal.
+ In addition, a program can 
+\shape italic
+fork
+\shape default
+(2) and call the 
+\shape italic
+setsid
+\shape default
+(2) system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+ which will place the process into its own session - which has the effect
+ of disassociating it from the controlling terminal.
+ This is the new and preferred method for programs to lose their controlling
+ terminal;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TIOCSETVERAUTH
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCSETVERAUTH
+\end_layout
+
+\end_inset
+
+ int *secs 
+\family default
+— indicate that the current user has successfully authenticated to this
+ session.
+ Future authentication checks may then be bypassed by performing a 
+\family typewriter
+TIOCCHKVERAUTH
+\family default
+ check.
+ The verified authentication status will expire after 
+\family typewriter
+secs
+\family default
+ seconds.
+ Only root may perform this operation;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TIOCCLRVERAUTH
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCCLRVERAUTH
+\end_layout
+
+\end_inset
+
+ void 
+\family default
+— clear any verified auth status associated with this session;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TIOCCHKVERAUTH
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCCHKVERAUTH
+\end_layout
+
+\end_inset
+
+ void 
+\family default
+— check the verified auth status of this session.
+ The calling process must have the same real user ID and parent process
+ as the process which called 
+\family typewriter
+TIOCSETVERAUTH
+\family default
+.
+ A zero return indicates success;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TIOCSTOP
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCSTOP
+\end_layout
+
+\end_inset
+
+ void 
+\family default
+— stop output on the terminal, like typing ^S at the keyboard;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TIOCSTART
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCSTART
+\end_layout
+
+\end_inset
+
+ void 
+\family default
+— start output on the terminal, like typing ^Q at the keyboard;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TIOCSCTTY
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCSCTTY
+\end_layout
+
+\end_inset
+
+ void 
+\family default
+— make the terminal the controlling terminal for the process, the process
+ must not currently have a controlling terminal;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TIOCDRAIN
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCDRAIN
+\end_layout
+
+\end_inset
+
+ void 
+\family default
+— wait until all output is drained;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TIOCEXCL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCEXCL
+\end_layout
+
+\end_inset
+
+ void 
+\family default
+— set exclusive use on the terminal.
+ No further opens are permitted except by root.
+ Of course, this means that programs that are run by root, or setuid, will
+ not obey the exclusive setting - which limits the usefulness of this feature;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TIOCNXCL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCNXCL
+\end_layout
+
+\end_inset
+
+ void 
+\family default
+— clear exclusive use of the terminal.
+ Further opens are permitted.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TIOCFLUSH
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCFLUSH
+\end_layout
+
+\end_inset
+
+ int *what 
+\family default
+— if the value of the int pointed to by 
+\family typewriter
+what
+\family default
+ contains the 
+\family typewriter
+FREAD
+\family default
+ bit as defined in 
+\family typewriter
+<sys/fcntl.h>
+\family default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<sys/fcntl.h>
+\end_layout
+
+\end_inset
+
+, then all characters in the input queue are cleared.
+ If it contains the 
+\family typewriter
+FWRITE
+\family default
+ bit, then all characters in the output queue are cleared.
+ If the value of the integer is zero, then it behaves as if both the 
+\family typewriter
+FREAD
+\family default
+ and 
+\family typewriter
+FWRITE
+\family default
+ bits were set, i.e., clears both queues;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TIOCGWINSZ
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCGWINSZ
+\end_layout
+
+\end_inset
+
+ struct winsize *ws 
+\family default
+— put the window size
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+window size
+\end_layout
+
+\end_inset
+
+ information associated with the terminal in the winsize structure
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+winsize structure
+\end_layout
+
+\end_inset
+
+ pointed to by 
+\family typewriter
+ws
+\family default
+.
+ The window size structure
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+window size structure
+\end_layout
+
+\end_inset
+
+ contains the number of rows and columns and pixels if appropriate, of the
+ devices attached to the terminal.
+ It is set by user software and is the means by which most full-screen oriented
+ programs determine the screen size;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TIOCSWINSZ
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCSWINSZ
+\end_layout
+
+\end_inset
+
+ struct winsize *ws 
+\family default
+— set the window size
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+window size
+\end_layout
+
+\end_inset
+
+ associated with the terminal to be the value in the winsize structure
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+winsize structure
+\end_layout
+
+\end_inset
+
+ pointed to by 
+\family typewriter
+ws
+\family default
+, see above; 
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TIOCCONS
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCCONS
+\end_layout
+
+\end_inset
+
+ int *on 
+\family default
+— if 
+\family typewriter
+on
+\family default
+ points to a non-zero integer, redirect kernel
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+kernel
+\end_layout
+
+\end_inset
+
+ console output
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+printf
+\shape default
+(9).
+\end_layout
+
+\end_inset
+
+ to this terminal.
+ If on points to a zero integer, redirect kernel
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+kernel
+\end_layout
+
+\end_inset
+
+ console output back to the normal console.
+ This is usually used on workstations to redirect kernel
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+kernel
+\end_layout
+
+\end_inset
+
+ messages to a particular window;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TIOCMSET
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCMSET
+\end_layout
+
+\end_inset
+
+ int *state 
+\family default
+— the integer pointed to by 
+\family typewriter
+state
+\family default
+ contains bits that correspond to modem state.
+ Following is a list of defined variables and the modem state they represent:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+TIOCM_LE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCM_LE
+\end_layout
+
+\end_inset
+
+
+\family default
+ — Line Enable;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+TIOCM_DTR
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCM_DTR
+\end_layout
+
+\end_inset
+
+
+\family default
+ — Data Terminal Ready;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+TIOCM_RTS
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCM_RTS
+\end_layout
+
+\end_inset
+
+
+\family default
+ — Request To Send;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+TIOCM_ST
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCM_ST
+\end_layout
+
+\end_inset
+
+
+\family default
+ — Secondary Transmit;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+TIOCM_SR
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCM_SR
+\end_layout
+
+\end_inset
+
+
+\family default
+ — Secondary Receive;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+TIOCM_CTS
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCM_CTS
+\end_layout
+
+\end_inset
+
+
+\family default
+ — Clear To Send;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+TIOCM_CAR
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCM_CAR
+\end_layout
+
+\end_inset
+
+
+\family default
+ — Carrier Detect;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+TIOCM_CD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCM_CD
+\end_layout
+
+\end_inset
+
+
+\family default
+ — Carrier Detect (synonym);
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+TIOCM_RNG
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCM_RNG
+\end_layout
+
+\end_inset
+
+
+\family default
+ — Ring Indication;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+TIOCM_RI
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCM_RI
+\end_layout
+
+\end_inset
+
+
+\family default
+ — Ring Indication (synonym);
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+TIOCM_DSR
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCM_DSR
+\end_layout
+
+\end_inset
+
+
+\family default
+ — Data Set Ready.
+\end_layout
+
+\begin_layout Standard
+This call sets the terminal modem state to that represented by 
+\family typewriter
+state
+\family default
+.
+ Not all terminals may support this;
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\family typewriter
+TIOCMGET
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCMGET
+\end_layout
+
+\end_inset
+
+ int *state 
+\family default
+— return the current state of the terminal modem lines as represented above
+ in the integer pointed to by 
+\family typewriter
+state
+\family default
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TIOCMBIS
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCMBIS
+\end_layout
+
+\end_inset
+
+ int *state 
+\family default
+— the bits in the integer pointed to by 
+\family typewriter
+state
+\family default
+ represent modem state as described above; however, the state is OR-ed in
+ with the current state;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TIOCMBIC
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCMBIC
+\end_layout
+
+\end_inset
+
+ int *state 
+\family default
+— the bits in the integer pointed to by 
+\family typewriter
+state
+\family default
+ represent modem state as described above; however, each bit which is on
+ in state is cleared in the terminal;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TIOCGTSTAMP
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCGTSTAMP
+\end_layout
+
+\end_inset
+
+ struct timeval *timeval 
+\family default
+— return the, single, timestamp;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TIOCSTSTAMP
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCSTSTAMP
+\end_layout
+
+\end_inset
+
+ struct tstamps *tstamps 
+\family default
+— chooses the conditions which will cause the current system time to be
+ immediately copied to the terminal timestamp
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+timestamp
+\end_layout
+
+\end_inset
+
+ storage.
+ This is often used to determine exactly the moment at which one or more
+ of these events occurred, though only one can be monitored.
+ Only 
+\family typewriter
+TIOCM_CTS
+\family default
+ and 
+\family typewriter
+TIOCM_CAR
+\family default
+ are honoured in 
+\family typewriter
+tstamps.ts_set
+\family default
+ and 
+\family typewriter
+tstamps.ts_clr
+\family default
+; these indicate which raising and lowering events on the respective lines
+ should cause a timestamp capture;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TIOCSFLAGS
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCSFLAGS
+\end_layout
+
+\end_inset
+
+ int *state 
+\family default
+— the bits in the integer pointed to by 
+\family typewriter
+state
+\family default
+ contain bits that correspond to serial port state.
+ Following is a list of defined variables and the serial port state they
+ represent:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+TIOCFLAG_SOFTCAR
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCFLAG_SOFTCAR
+\end_layout
+
+\end_inset
+
+
+\family default
+ — ignore hardware carrier;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+TIOCFLAG_CLOCAL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCFLAG_CLOCAL
+\end_layout
+
+\end_inset
+
+
+\family default
+ — set clocal on open;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+TIOCFLAG_CRTSCTS
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCFLAG_CRTSCTS
+\end_layout
+
+\end_inset
+
+
+\family default
+ — set crtscts on open;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+TIOCFLAG_MDMBUF
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCFLAG_MDMBUF
+\end_layout
+
+\end_inset
+
+
+\family default
+ — set mdmbuf on open.
+\end_layout
+
+\begin_layout Standard
+This call sets the serial port state to that represented by state.
+ Not all serial ports may support this;
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+TIOCGFLAGS
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCGFLAGS
+\end_layout
+
+\end_inset
+
+ int *state 
+\family default
+— return the current state of the serial port as represented above in the
+ integer pointed to by 
+\family typewriter
+state
+\family default
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TIOCSTAT
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCSTAT
+\end_layout
+
+\end_inset
+
+ void 
+\family default
+— causes the kernel
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+kernel
+\end_layout
+
+\end_inset
+
+ to write a status message to the terminal that displays the current load
+ average, the name of the command in the foreground, its process ID, the
+ symbolic wait channel, the number of user and system seconds used, the
+ percentage of CPU the process is getting, and the resident set size of
+ the process.
+\end_layout
+
+\begin_layout Subsection
+The winsize Structure.
+\end_layout
+
+\begin_layout Standard
+OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ supports a windowing system such as the X Window System
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+X Window System
+\end_layout
+
+\end_inset
+
+ by Xorg
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Xorg
+\end_layout
+
+\end_inset
+
+.
+ This includes structure which defines the size of a window.
+ Programs such 
+\shape italic
+vim
+\shape default
+ and 
+\shape italic
+less
+\shape default
+ use the information about 
+\shape italic
+window size
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+window size
+\end_layout
+
+\end_inset
+
+
+\shape default
+ to determine the number of rows and columns on the 
+\shape italic
+screen
+\shape default
+.
+ These informations are stored in the kernel
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+kernel
+\end_layout
+
+\end_inset
+
+ in order to provide a consistent interface, but is not used by the kernel
+ itself:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:winsize-struct"
+
+\end_inset
+
+The winsize structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct winsize {
+\end_layout
+
+\begin_layout Plain Layout
+
+	unsigned short ws_row;
+\end_layout
+
+\begin_layout Plain Layout
+
+	unsigned short ws_col;
+\end_layout
+
+\begin_layout Plain Layout
+
+	unsigned short ws_xpixel;
+\end_layout
+
+\begin_layout Plain Layout
+
+	unsigned short ws_ypixel;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+ws_row
+\family default
+ member is the number of window rows in characters;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+
+\family typewriter
+ws_col
+\family default
+ member is the number of window columns in characters;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+
+\family typewriter
+ws_xpixel
+\family default
+ member is the window horizontal size in pixels;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+
+\family typewriter
+ws_ypixel
+\family default
+ member is the window vertical size in pixels.
+\end_layout
+
+\begin_layout Standard
+\noindent
+The associated request is 
+\family typewriter
+TIOCGWINSZ
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCGWINSZ
+\end_layout
+
+\end_inset
+
+
+\family default
+ to read the current window size
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+window size
+\end_layout
+
+\end_inset
+
+ and 
+\family typewriter
+TIOCSWINSZ
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TIOCSWINSZ
+\end_layout
+
+\end_inset
+
+
+\family default
+ to set the window size
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+window size
+\end_layout
+
+\end_inset
+
+.
+ When 
+\family typewriter
+ws_row
+\family default
+ and 
+\family typewriter
+ws_col
+\family default
+ are zero, the entire structure has to be ignored, as no window size
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+window size
+\end_layout
+
+\end_inset
+
+ has been set.
+ When a window size
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+window size
+\end_layout
+
+\end_inset
+
+ is changed, either by the user, using a mouse or other device, or by a
+ program, all programs in the terminal's process group are sent the 
+\family typewriter
+SIGWINCH
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGWINCH
+\end_layout
+
+\end_inset
+
+
+\family default
+ signal indicating a size change.
+ This enables editors and the like to re-format the screen according to
+ new size.
+ Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:winsize"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the usage for the winsize structure.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:winsize"
+
+\end_inset
+
+winsize - returns the size of the terminal window.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* winsize.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <unistd.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <fcntl.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <errno.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/ioctl.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/tty.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/ttycom.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* winsize program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int fd, i;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct winsize ws;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Call ioctl.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if((fd = open("/dev/tty", O_RDWR | O_NOCTTY)) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(ioctl(fd, TIOCGWINSZ, &ws) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			if((ws.ws_row == 0) && (ws.ws_col == 0))
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("Ignoring the winsize structure.
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+			else {
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("terminal number of rows: %d
+\backslash
+n", ws.ws_row);
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("terminal number of columns: %d
+\backslash
+n", ws.ws_col);
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("terminal x pixels size: %d
+\backslash
+n", ws.ws_xpixel);
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("terminal y pixels size: %d
+\backslash
+n", ws.ws_ypixel);
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+			ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+		} else
+\end_layout
+
+\begin_layout Plain Layout
+
+			perror("winsize");
+\end_layout
+
+\begin_layout Plain Layout
+
+		close(fd);
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of winsize.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+The termios Structure.
+\end_layout
+
+\begin_layout Standard
+It is the general terminal line discipline.
+ Informations about that are stored in the termios structure defined in
+ 
+\family typewriter
+<termios.h>
+\family default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<termios.h>
+\end_layout
+
+\end_inset
+
+:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:termios-struct"
+
+\end_inset
+
+The termios structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#define NCCS 20
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct termios {
+\end_layout
+
+\begin_layout Plain Layout
+
+	tcflag_t c_iflag;
+\end_layout
+
+\begin_layout Plain Layout
+
+	tcflag_t c_oflag;
+\end_layout
+
+\begin_layout Plain Layout
+
+	tcflag_t c_cflag;
+\end_layout
+
+\begin_layout Plain Layout
+
+	tcflag_t c_lflag;
+\end_layout
+
+\begin_layout Plain Layout
+
+	cc_t c_cc[ NCCS ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	int c_ispeed;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int c_ospeed;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000000.0000000.0000000
+\noindent
+
+\family typewriter
+c_iflag
+\family default
+ is a bit mask for the input control flags which can be composed ORing the
+ following constants:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+IGNBRK
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+IGNBRK
+\end_layout
+
+\end_inset
+
+
+\family default
+ — ignore BREAK condition;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+BRKINT
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+BRKINT
+\end_layout
+
+\end_inset
+
+
+\family default
+ — map BREAK to SIGINT;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+IGNPAR
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+IGNPAR
+\end_layout
+
+\end_inset
+
+
+\family default
+ — ignore (discard) parity errors;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+PARMRK
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+PARMRK
+\end_layout
+
+\end_inset
+
+
+\family default
+ — mark parity and framing errors;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+INPCK
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+INPCK
+\end_layout
+
+\end_inset
+
+
+\family default
+ — enable checking of parity errors;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+ISTRIP
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ISTRIP
+\end_layout
+
+\end_inset
+
+
+\family default
+ — strip 8th bit off chars;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+INLCR
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+INLCR
+\end_layout
+
+\end_inset
+
+
+\family default
+ — map NL into CR;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+IGNCR
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+IGNCR
+\end_layout
+
+\end_inset
+
+
+\family default
+ — ignore CR;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+ICRNL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ICRNL
+\end_layout
+
+\end_inset
+
+
+\family default
+ — map CR to NL (ala CRMOD);
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+IXON
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+IXON
+\end_layout
+
+\end_inset
+
+
+\family default
+ — enable output flow control;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+IXOFF
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+IXOFF
+\end_layout
+
+\end_inset
+
+
+\family default
+ — enable input flow control;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+IXANY
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+IXANY
+\end_layout
+
+\end_inset
+
+
+\family default
+ — any char will restart after stop;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+IUCLC
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+IUCLC
+\end_layout
+
+\end_inset
+
+
+\family default
+ — translate upper to lower case;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+IMAXBEL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+IMAXBEL
+\end_layout
+
+\end_inset
+
+
+\family default
+ — ring bell on input queue full.
+\end_layout
+
+\end_deeper
+\begin_layout Labeling
+\labelwidthstring 0000000.0000000.0000000
+\noindent
+
+\family typewriter
+c_oflag
+\family default
+ is a bit mask for the output control flags which can be composed ORing
+ the following constants:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+OPOST
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+OPOST
+\end_layout
+
+\end_inset
+
+
+\family default
+ — enable following output processing;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+ONLCR
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ONLCR
+\end_layout
+
+\end_inset
+
+
+\family default
+ — map NL to CR-NL (ala CRMOD);
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TABDLY
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TABDLY
+\end_layout
+
+\end_inset
+
+
+\family default
+ — horizontal tab delay mask;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TAB0
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TAB0
+\end_layout
+
+\end_inset
+
+
+\family default
+ — no tab delay or expansion;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TAB3
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TAB3
+\end_layout
+
+\end_inset
+
+
+\family default
+ — expand tabs to spaces;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+OXTABS
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+OXTABS
+\end_layout
+
+\end_inset
+
+
+\family default
+ — BSD name for TAB3;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+ONOEOT
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ONOEOT
+\end_layout
+
+\end_inset
+
+
+\family default
+ — discard EOT's (^D) on output;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+OCRNL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+OCRNL
+\end_layout
+
+\end_inset
+
+
+\family default
+ — map CR to NL;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+OLCUC
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+OLCUC
+\end_layout
+
+\end_inset
+
+
+\family default
+ — translate lower case to upper case;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+ONOCR
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ONOCR
+\end_layout
+
+\end_inset
+
+
+\family default
+ — no CR output at column 0;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+ONLRET
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ONLRET
+\end_layout
+
+\end_inset
+
+
+\family default
+ — NL performs the CR function.
+\end_layout
+
+\end_deeper
+\begin_layout Labeling
+\labelwidthstring 0000000.0000000.0000000
+\noindent
+
+\family typewriter
+c_cflags
+\family default
+ are the hardware control flags.
+ This bit mask could be composed ORing the following constants:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+CIGNORE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+CIGNORE
+\end_layout
+
+\end_inset
+
+
+\family default
+ — ignore control flags;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+CSIZE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+CSIZE
+\end_layout
+
+\end_inset
+
+
+\family default
+ — character size mask;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+CS5
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+CS5
+\end_layout
+
+\end_inset
+
+
+\family default
+ — 5 bits (pseudo);
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+CS6
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+CS6
+\end_layout
+
+\end_inset
+
+
+\family default
+ — 6 bits;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+CS7
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+CS7
+\end_layout
+
+\end_inset
+
+
+\family default
+ — 7 bits;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+CS8
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+CS8
+\end_layout
+
+\end_inset
+
+
+\family default
+ — 8 bits;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+CSTOPB
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+CSTOPB
+\end_layout
+
+\end_inset
+
+
+\family default
+ — send 2 stop bits;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+CREAD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+CREAD
+\end_layout
+
+\end_inset
+
+
+\family default
+ — enable receiver;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+PARENB
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+PARENB
+\end_layout
+
+\end_inset
+
+
+\family default
+ — parity enable;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+PARODD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+PARODD
+\end_layout
+
+\end_inset
+
+
+\family default
+ — odd parity, else even;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+HUPCL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+HUPCL
+\end_layout
+
+\end_inset
+
+
+\family default
+ — hang up on last close;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+CLOCAL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+CLOCAL
+\end_layout
+
+\end_inset
+
+
+\family default
+ — ignore modem status lines;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+CRTSCTS
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+CRTSCTS
+\end_layout
+
+\end_inset
+
+
+\family default
+ — RTS/CTS full-duplex flow control;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+CRTS_IFLOW
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+CRTS_IFLOW
+\end_layout
+
+\end_inset
+
+
+\family default
+ — XXX compat;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+CCTS_OFLOW
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+CCTS_OFLOW
+\end_layout
+
+\end_inset
+
+
+\family default
+ — XXX compat;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+MDMBUF
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+MDMBUF
+\end_layout
+
+\end_inset
+
+
+\family default
+ — DTR/DCD hardware flow control;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+CHWFLOW
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+CHWFLOW
+\end_layout
+
+\end_inset
+
+
+\family default
+ — all types of hw flow control.
+\end_layout
+
+\end_deeper
+\begin_layout Labeling
+\labelwidthstring 0000000.0000000.0000000
+\noindent
+
+\family typewriter
+c_lflag
+\family default
+ is a bit mask for the local flags.
+ It is composed by ORing the following constants:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+ECHOKE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ECHOKE
+\end_layout
+
+\end_inset
+
+
+\family default
+ — visual erase for line kill;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+ECHOE
+\family default
+ — visually erase chars;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+ECHOK
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ECHOK
+\end_layout
+
+\end_inset
+
+
+\family default
+ — echo NL after line kill;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+ECHO
+\family default
+ — enable echoing;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+ECHONL
+\family default
+ — echo NL even if ECHO is off;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+ECHOPRT
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ECHOPRT
+\end_layout
+
+\end_inset
+
+
+\family default
+ — visual erase mode for hardcopy;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+ECHOCTL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ECHOCTL
+\end_layout
+
+\end_inset
+
+
+\family default
+ — echo control chars as ^(Char);
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+ISIG
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ISIG
+\end_layout
+
+\end_inset
+
+
+\family default
+ — enable signals INTR, QUIT, [D]SUSP;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+ICANON
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ICANON
+\end_layout
+
+\end_inset
+
+
+\family default
+ — canonicalize input lines;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+ALTWERASE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ALTWERASE
+\end_layout
+
+\end_inset
+
+
+\family default
+ — use alternate WERASE algorithm;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+IEXTEN
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+IEXTEN
+\end_layout
+
+\end_inset
+
+
+\family default
+ — enable DISCARD and LNEXT;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+EXTPROC
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+EXTPROC
+\end_layout
+
+\end_inset
+
+
+\family default
+ — external processing;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TOSTOP
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TOSTOP
+\end_layout
+
+\end_inset
+
+
+\family default
+ — stop background jobs from output;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+FLUSHO
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+FLUSHO
+\end_layout
+
+\end_inset
+
+
+\family default
+ — output being flushed (state);
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+XCASE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+XCASE
+\end_layout
+
+\end_inset
+
+
+\family default
+ — canonical upper/lower case;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+NOKERNINFO
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+NOKERNINFO
+\end_layout
+
+\end_inset
+
+
+\family default
+ — no kernel output from VSTATUS;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+PENDIN
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+PENDIN
+\end_layout
+
+\end_inset
+
+
+\family default
+ — XXX retype pending input (state);
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+NOFLSH
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+NOFLSH
+\end_layout
+
+\end_inset
+
+
+\family default
+ — don't flush after interrupt.
+\end_layout
+
+\end_deeper
+\begin_layout Labeling
+\labelwidthstring 0000000.0000000.0000000
+\noindent
+
+\family typewriter
+c_cc
+\family default
+ array contains the control character defined for the terminal.
+ Every member in this array has got a label:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+VEOF
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+VEOF
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 0;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+VEOL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+VEOL
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 1;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+VEOL2
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+VEOL2
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 2;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+VERASE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+VERASE
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 3;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+VWERASE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+VWERASE
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 4;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+VKILL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+VKILL
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 5;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+VREPRINT
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+VREPRINT
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 6;
+\end_layout
+
+\begin_layout Itemize
+first spare = 7;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+VINTR
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+VINTR
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 8;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+VQUIT
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+VQUIT
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 9;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+VSUSP
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+VSUSP
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 10;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+VDSUSP
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+VDSUSP
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 11;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+VSTART
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+VSTART
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 12;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+VSTOP
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+VSTOP
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 13;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+VLNEXT
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+VLNEXT
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 14;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+VDISCARD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+VDISCARD
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 15;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+VMIN
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+VMIN
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 16;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+VTIME
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+VTIME
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 17;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+VSTATUS
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+VSTATUS
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 18;
+\end_layout
+
+\begin_layout Itemize
+second spare = 19.
+\end_layout
+
+\end_deeper
+\begin_layout Labeling
+\labelwidthstring 0000000.0000000.0000000
+\noindent
+
+\family typewriter
+c_ispeed
+\family default
+,
+\family typewriter
+c_ospeed
+\family default
+ are the input and output spped in baud.
+ Standard values are:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+B0
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+B0
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 0 Bd;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+B50
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+B50
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 50 Bd;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+B75
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+B75
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 75 Bd;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+B110
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+B110
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 110 Bd;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+B134
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+B134
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 134 Bd;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+B150
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+B150
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 150 Bd;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+B200
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+B200
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 200 Bd;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+B300
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+B300
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 300 Bd;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+B600
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+B600
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 600 Bd;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+B1200
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+B1200
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 1200 Bd;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+B1800
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+B1800
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 1800 Bd;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+B2400
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+B2400
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 2400 Bd;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+B4800
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+B4800
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 4800 Bd;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+B9600
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+B9600
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 9600 Bd;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+B19200
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+B19200
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 19200 Bd;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+B38400
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+B38400
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 38400 Bd;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+B7200
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+B7200
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 7200 Bd;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+B14400
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+B14400
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 14400 Bd;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+B28800
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+B28800
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 28800 Bd;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+B57600
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+B57600
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 57600 Bd;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+B76800
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+B76800
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 76800 Bd;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+B115200
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+B115200
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 115200 Bd;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+B230400
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+B230400
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 230400 Bd;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+EXTA
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+EXTA
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 19200 Bd;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+EXTB
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+EXTB
+\end_layout
+
+\end_inset
+
+
+\family default
+ = 38400 Bd.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\noindent
+Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:pager"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows a small program that turns off on ECHO and turn on BREAK then prints
+ screenfuls of the files named on its command line.
+ The program pauses after each screenful and waits for the reader to type
+ any character to continue.
+ Because the terminal is in BREAK mode, the read will return immediately.
+ When all files have been displayed, the program resets the terminal modes
+ and exits.
+ This is a primitive version of the OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ 
+\shape italic
+less
+\shape default
+ command.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:pager"
+
+\end_inset
+
+pager - simple file paginator.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* pager.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <unistd.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <fcntl.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <errno.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <termios.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/ioctl.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/tty.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/ttycom.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* pager program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#define FOREVER for(;;)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+void prompt(void);
+\end_layout
+
+\begin_layout Plain Layout
+
+long int more(char *);
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int fd, i;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct termios old_tos, new_tos;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Check arguments count.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(argc >= 2) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		if((fd = open("/dev/tty", O_RDWR | O_NOCTTY)) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			/* Retrieve terminal informations.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(ioctl(fd, TIOCGETA, &old_tos) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+				memcpy((void *) &new_tos, (void *) &old_tos, sizeof(struct termios));
+\end_layout
+
+\begin_layout Plain Layout
+
+				new_tos.c_iflag &= ~IGNBRK;     /* not ignore BREAK.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+				new_tos.c_lflag &= ~ECHO;       /* disable ECHO.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+				new_tos.c_lflag &= ~ISIG;       /* disable signals: INTR, QUIT, DSUSP,
+ SUSP.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+				if(ioctl(fd, TIOCSETA, &new_tos) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+					/* Printout files.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+					while(--argc)
+\end_layout
+
+\begin_layout Plain Layout
+
+						if(more(*++argv) == EXIT_FAILURE)
+\end_layout
+
+\begin_layout Plain Layout
+
+							break;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+					/* Reset the terminal configuration.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+					if(ioctl(fd, TIOCSETA, &old_tos) >= 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+						ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+					else
+\end_layout
+
+\begin_layout Plain Layout
+
+						perror("pager: failed to set old termios");
+\end_layout
+
+\begin_layout Plain Layout
+
+				} else
+\end_layout
+
+\begin_layout Plain Layout
+
+					perror("pager: failed to set new termios");
+\end_layout
+
+\begin_layout Plain Layout
+
+			} else
+\end_layout
+
+\begin_layout Plain Layout
+
+				perror("pager: failed to get termios");
+\end_layout
+
+\begin_layout Plain Layout
+
+			close(fd);
+\end_layout
+
+\begin_layout Plain Layout
+
+		} else
+\end_layout
+
+\begin_layout Plain Layout
+
+			perror("pager: could not open tty");
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else
+\end_layout
+
+\begin_layout Plain Layout
+
+		fprintf(stderr, "Usage: %s file [ file1 ...
+ ]
+\backslash
+n", *argv);
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/*
+\end_layout
+
+\begin_layout Plain Layout
+
+ * more -- print out characters.
+\end_layout
+
+\begin_layout Plain Layout
+
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+long int more(char *name)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	FILE *fp;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int line;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char line_buf[ BUFSIZ ];
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Check arguments.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(name) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		/* Open the file to print.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+		if((fp = fopen(name, "r")) != NULL) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			FOREVER {
+\end_layout
+
+\begin_layout Plain Layout
+
+				line = 1;
+\end_layout
+
+\begin_layout Plain Layout
+
+				while(line < 24) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+					/*
+\end_layout
+
+\begin_layout Plain Layout
+
+					 * If end-of-file, let them hit a key one
+\end_layout
+
+\begin_layout Plain Layout
+
+					 * more time and then go back.
+\end_layout
+
+\begin_layout Plain Layout
+
+					 */
+\end_layout
+
+\begin_layout Plain Layout
+
+					if(fgets(line_buf, BUFSIZ, fp) != NULL) {
+\end_layout
+
+\begin_layout Plain Layout
+
+						fwrite(line_buf, 1, strlen(line_buf), stdout);
+\end_layout
+
+\begin_layout Plain Layout
+
+						line++;
+\end_layout
+
+\begin_layout Plain Layout
+
+					} else {
+\end_layout
+
+\begin_layout Plain Layout
+
+						fclose(fp);
+\end_layout
+
+\begin_layout Plain Layout
+
+						ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+						prompt();
+\end_layout
+
+\begin_layout Plain Layout
+
+						return ret;
+\end_layout
+
+\begin_layout Plain Layout
+
+					}
+\end_layout
+
+\begin_layout Plain Layout
+
+				}
+\end_layout
+
+\begin_layout Plain Layout
+
+				prompt();
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+		} else
+\end_layout
+
+\begin_layout Plain Layout
+
+			fprintf(stderr, "Could not open %s
+\backslash
+n", name);
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	return ret;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/*
+\end_layout
+
+\begin_layout Plain Layout
+
+ * prompt -- handle interaction with user.
+\end_layout
+
+\begin_layout Plain Layout
+
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+void prompt(void)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int answer;
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\end_layout
+
+\begin_layout Plain Layout
+
+	printf("Type any character for next page: ");
+\end_layout
+
+\begin_layout Plain Layout
+
+	answer = getchar();
+\end_layout
+
+\begin_layout Plain Layout
+
+	putchar('
+\backslash
+n');
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of pager.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+There are many, many more things which may be done with the 
+\family typewriter
+ioctl
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ioctl
+\end_layout
+
+\end_inset
+
+
+\family default
+ system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+, including magnetic tape, network routing changes, harddisk and cdrom drives,
+ etc..
+ All of the operations are described in the various manual pages contained
+ in Section 4 of the OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ Manual Page.
+ The operations described here and used in the examples above are in 
+\shape italic
+tty
+\shape default
+(4).
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:the-fcntl-system-call"
+
+\end_inset
+
+The 
+\family typewriter
+fcntl
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fcntl
+\end_layout
+
+\end_inset
+
+
+\family default
+ System Call.
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+fcntl
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fcntl
+\end_layout
+
+\end_inset
+
+
+\family default
+ system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+ provides control over the properties of a file that is already open.
+ It takes a variable number of arguments.
+ The first argument is a file descriptor
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file descriptor
+\end_layout
+
+\end_inset
+
+ to an open file, the second argument is a command, described below and
+ the third optional argument depends to the second argument: is technically
+ a pointer to 
+\family typewriter
+void
+\family default
+, but is interpreted as an 
+\family typewriter
+int
+\family default
+ by some commands, a pointer to a structure of type 
+\family typewriter
+flock
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+flock
+\end_layout
+
+\end_inset
+
+
+\family default
+ by others and ignored by the rest.
+ The commands are:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+F_DUPFD
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+F_DUPFD
+\end_layout
+
+\end_inset
+
+
+\family default
+ return a new descriptor as follows:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\noindent
+lowest numbered available descriptor greater than or equal to arg, interpreted
+ as an 
+\family typewriter
+int
+\family default
+; 
+\end_layout
+
+\begin_layout Itemize
+Same object references as the original descriptor;
+\end_layout
+
+\begin_layout Itemize
+New descriptor shares the same file offset if the object was a file;
+\end_layout
+
+\begin_layout Itemize
+Same access mode: read, write or read/write;
+\end_layout
+
+\begin_layout Itemize
+Same file status flags, i.e., both file descriptors share the same file status
+ flags;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+The close-on-exec flag associated with the new file descriptor is set to
+ remain open across 
+\shape italic
+execve
+\shape default
+(2) calls.
+\end_layout
+
+\end_deeper
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+F_DUPFD_CLOEXEC
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+F_DUPFD_CLOEXEC
+\end_layout
+
+\end_inset
+
+
+\family default
+ like 
+\family typewriter
+F_DUPFD
+\family default
+, but the 
+\family typewriter
+FD_CLOEXEC
+\family default
+ flag associated with the new file descriptor is set, so the file descriptor
+ is closed when 
+\shape italic
+execve
+\shape default
+(2) is called;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+F_GETFD
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+F_GETFD
+\end_layout
+
+\end_inset
+
+
+\family default
+ get the close-on-exec
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+close-on-exec
+\end_layout
+
+\end_inset
+
+ flag associated with the file descriptor fd as 
+\family typewriter
+FD_CLOEXEC
+\family default
+.
+ If the returned value ANDed with 
+\family typewriter
+FD_CLOEXEC
+\family default
+ is 0, the file will remain open across 
+\family typewriter
+exec
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+exec
+\end_layout
+
+\end_inset
+
+
+\family default
+, otherwise the file will be closed upon execution of 
+\family typewriter
+exec
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+exec
+\end_layout
+
+\end_inset
+
+
+\family default
+ where the third optional argument is ignored;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+F_SETFD
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+F_SETFD
+\end_layout
+
+\end_inset
+
+
+\family default
+ set the close-on-exec
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+close-on-exec
+\end_layout
+
+\end_inset
+
+ flag associated with the file descriptor to the optional third argyment,
+ where this, interpreted an an 
+\family typewriter
+int
+\family default
+, is either 0 or 
+\family typewriter
+FD_CLOEXEC
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+FD_CLOEXEC
+\end_layout
+
+\end_inset
+
+
+\family default
+, as described above;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+F_GETFL
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+F_GETFL
+\end_layout
+
+\end_inset
+
+
+\family default
+ get file status flags associated with the file descriptor, as described
+ below where the third optional argument is ignored.
+ The flags for this commands are:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+O_NONBLOCK
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+O_NONBLOCK
+\end_layout
+
+\end_inset
+
+
+\family default
+ — non-blocking I/O; if no data is available to a 
+\shape italic
+read
+\shape default
+(2) call, or if a 
+\shape italic
+write
+\shape default
+(2) operation would block, the read or write call returns -1 with the error
+ 
+\family typewriter
+EAGAIN
+\family default
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+O_APPEND
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+O_APPEND
+\end_layout
+
+\end_inset
+
+
+\family default
+ — force each write to append at the end of file; corresponds to the 
+\family typewriter
+O_APPEND
+\family default
+ flag of 
+\shape italic
+open
+\shape default
+(2);
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+O_ASYNC
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+O_ASYNC
+\end_layout
+
+\end_inset
+
+
+\family default
+ — enable the 
+\family typewriter
+SIGIO
+\family default
+ signal to be sent to the process group when I/O is possible, e.g., upon availabil
+ity of data to be read;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+O_SYNC
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+O_SYNC
+\end_layout
+
+\end_inset
+
+
+\family default
+ — cause writes to be synchronous.
+ Data will be written to the physical device instead of just being stored
+ in the buffer cache; corresponds to the 
+\family typewriter
+O_SYNC
+\family default
+ flag of 
+\shape italic
+open
+\shape default
+(2).
+\end_layout
+
+\end_deeper
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+\noindent
+
+\family typewriter
+F_SETFL
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+F_SETFL
+\end_layout
+
+\end_inset
+
+
+\family default
+ Set file status flags associated with the file descriptor to third optional
+ argument which is interpreted an 
+\family typewriter
+int
+\family default
+.
+ For the flags in use with this command see 
+\family typewriter
+F_GETFL
+\family default
+ in the previous item;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+F_GETOWN
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+F_GETOWN
+\end_layout
+
+\end_inset
+
+
+\family default
+ get the process ID or process group currently receiving SIGIO and SIGURG
+ signals; process groups are returned as negative values, the third optional
+ argument is ignored;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 000000.000000.000000
+
+\family typewriter
+F_SETOWN
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+F_SETOWN
+\end_layout
+
+\end_inset
+
+
+\family default
+ set the process or process group to receive 
+\family typewriter
+SIGIO
+\family default
+ and 
+\family typewriter
+SIGURG
+\family default
+ signals; process groups are specified by supplying the third optional argument,
+ intrpreted as an 
+\family typewriter
+int
+\family default
+, as negative, otherwise it is taken as a process id.
+\end_layout
+
+\begin_layout Standard
+\noindent
+The 
+\family typewriter
+flock
+\family default
+ structure is described as follows:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:flock-struct"
+
+\end_inset
+
+The flock structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct flock {
+\end_layout
+
+\begin_layout Plain Layout
+
+	off_t l_start;
+\end_layout
+
+\begin_layout Plain Layout
+
+	off_t l_len;
+\end_layout
+
+\begin_layout Plain Layout
+
+	pid_t l_pid;
+\end_layout
+
+\begin_layout Plain Layout
+
+	short l_type;
+\end_layout
+
+\begin_layout Plain Layout
+
+	short l_whence;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\noindent
+
+\family typewriter
+l_start
+\family default
+ is the starting offset;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\noindent
+
+\family typewriter
+l_len
+\family default
+ is the length of the file, if is equal to 0 it means until the end of file;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\noindent
+
+\family typewriter
+l_pid
+\family default
+ lock the owner;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\noindent
+
+\family typewriter
+l_type
+\family default
+ lock the read and write, etc.;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\noindent
+
+\family typewriter
+l_whence
+\family default
+ member is the type of l_start.
+\end_layout
+
+\begin_layout Standard
+\noindent
+The 
+\family typewriter
+flock
+\family default
+ system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+ apply or remove and advisory lock on open file.
+ It takes two arguments.
+ The first argument is the file descriptor for the open file.
+ The second argument is one of:
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+LOCK_SH
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+LOCK_SH
+\end_layout
+
+\end_inset
+
+
+\family default
+ — apply a shared lock;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+LOCK_EX
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+LOCK_EX
+\end_layout
+
+\end_inset
+
+
+\family default
+ — apply an exclusive lock;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+LOCK_UN
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+LOCK_UN
+\end_layout
+
+\end_inset
+
+
+\family default
+ — remove an existing lock.
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+LOCK_SH
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+LOCK_SH
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+LOCK_EX
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+LOCK_EX
+\end_layout
+
+\end_inset
+
+
+\family default
+ may be combined with the optional 
+\family typewriter
+LOCK_NB
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+LOCK_NB
+\end_layout
+
+\end_inset
+
+
+\family default
+ for nonblocking mode.
+ Advisory locks allow cooperating processes to perform consistent operations
+ on files, but do not guarantee consistency, i.e., processes may still access
+ files without using advisory locks possibly resulting in inconsistencies.
+ The locking mechanism allows two types of locks: shared locks and exclusive
+ locks.
+ At any time multiple shared locks may be applied to a file, but at no time
+ are multiple exclusive, or both shared and exclusive, locks allowed simultaneou
+sly on a file.
+ A shared lock may be upgraded to an exclusive lock, and vice versa, simply
+ by specifying the appropriate lock type; this results in the previous lock
+ being released and the new lock applied, possibly after other processes
+ have gained and released the lock.
+ Requesting a lock on an object that is already locked normally causes the
+ caller to be blocked until the lock may be acquired.
+ If operation is the bitwise OR of 
+\family typewriter
+LOCK_NB
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+LOCK_NB
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+LOCK_SH
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+LOCK_SH
+\end_layout
+
+\end_inset
+
+
+\family default
+ or 
+\family typewriter
+LOCK_EX
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+LOCK_EX
+\end_layout
+
+\end_inset
+
+
+\family default
+, then this will not happen; instead the call will fail and the error 
+\family typewriter
+EWOULDBLOCK
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+EWOULDBLOCK
+\end_layout
+
+\end_inset
+
+
+\family default
+ will be returned.
+ Locks are on files, not file descriptors.
+ That is, file descriptors duplicated through 
+\shape italic
+dup
+\shape default
+(2) or 
+\shape italic
+fork
+\shape default
+(2) do not result in multiple instances of a lock, but rather multiple reference
+s to a single lock.
+ If a process holding a lock on a file forks and the child explicitly unlocks
+ the file, the parent will lose its lock.
+ Processes blocked awaiting a lock may be awakened by signals.
+ Upon successful completion, the value 0 is returned; otherwise the value
+ -1 is returned and the global variable 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to indicate the error.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:non-blocking-i/o"
+
+\end_inset
+
+Non-blocking I/O.
+\end_layout
+
+\begin_layout Standard
+Normally, when a process issued a read, that process is blocked until there
+ is something to read.
+ That is, the process essentially goes to sleep until the read returns either
+ the data read in, end-of-file
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+end-of-file
+\end_layout
+
+\end_inset
+
+, or an error.
+ This is not always desirable, however.
+ By using the 
+\family typewriter
+F_SETFL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+F_SETFL
+\end_layout
+
+\end_inset
+
+
+\family default
+ operation on 
+\family typewriter
+fcntl
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fcntl
+\end_layout
+
+\end_inset
+
+
+\family default
+, it is possible to make reads, and other operations on the file descriptor
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file descriptor
+\end_layout
+
+\end_inset
+
+, return an error immediately if the operation would block.
+ If this occurs, 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to 
+\family typewriter
+EWOULDBLOCK
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+EWOULDBLOCK
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ Examples of blocking and non-blocking I/O are present in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Stevens:2007_1"
+literal "false"
+
+\end_inset
+
+, in the networking case it is desirable to create and fork to a thread
+ for every connection in a server program.
+ Just think to the telnet or ssh server: they are stand alone server program,
+ but allows a number of connections to them.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:the-select-system-call"
+
+\end_inset
+
+The 
+\family typewriter
+select
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+select
+\end_layout
+
+\end_inset
+
+
+\family default
+ System Call.
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+select
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+select
+\end_layout
+
+\end_inset
+
+
+\family default
+ system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+ is used to perform 
+\shape italic
+synchronous I/O multiplexing
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+synchronous I/O multiplexing
+\end_layout
+
+\end_inset
+
+
+\shape default
+ — that is, it enables the programmer to manage reading and writing to several
+ file descriptors at once without 
+\begin_inset Quotes eld
+\end_inset
+
+blocking
+\begin_inset Quotes erd
+\end_inset
+
+ indefinitely on any of the operations.
+ 
+\family typewriter
+select
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+select
+\end_layout
+
+\end_inset
+
+
+\family default
+ is used by the programmer to check the status of his open file descriptors
+ before operating on them.
+ For example, if the program continuously prints information to the screen,
+ but should also process any input the user types, the program can use select
+ to 
+\shape italic
+poll
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+poll
+\end_layout
+
+\end_inset
+
+
+\shape default
+ the terminal and when characters are present to be read, it can read them
+ in and process them.
+ It takes five arguments: the first argument is the number of the last file
+ descriptors that should be processed: from 0 to this argument - 1 number.
+ The second and third arguments are pointers to the open file descriptors
+ to read and to write respectively.
+ The fourth argument is a pointer to exceptional condition pending.
+ The fifth argument is timeout, if it is a non-null pointer, it specifies
+ a maximum interval to wait for the selection to complete.
+ If this argument is a null pointer, the select blocks indefinitely.
+ To effect a poll
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+poll
+\end_layout
+
+\end_inset
+
+, the timeout argument should be non-null, pointing to a zero-valued timeval
+ structure.
+ Timeout is not changed by 
+\family typewriter
+select
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+select
+\end_layout
+
+\end_inset
+
+
+\family default
+ and may be reused on subsequent calls; however, it is good style to re-initiali
+ze it before each invocation of 
+\family typewriter
+select
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+select
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ Exceptional conditions include the presence of out-of-band
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+out-of-band
+\end_layout
+
+\end_inset
+
+ data on a socket
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+socket
+\end_layout
+
+\end_inset
+
+.
+ On return, 
+\family typewriter
+select
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+select
+\end_layout
+
+\end_inset
+
+
+\family default
+ replaces the given descriptor sets with subsets consisting of those descriptors
+ that are ready for the requested operation.
+ It returns the total number of ready descriptors in all the sets.
+ The descriptor sets are stored as bit fields in arrays of integers.
+ The following macros are provided for manipulating such descriptor sets:
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+FD_ZERO
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+FD_ZERO
+\end_layout
+
+\end_inset
+
+(&fdset)
+\family default
+ – initializes a descriptor set 
+\family typewriter
+fdset
+\family default
+ to the null set;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+FD_SET
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+FD_SET
+\end_layout
+
+\end_inset
+
+(fd, &fdset)
+\family default
+ – includes a particular descriptor 
+\family typewriter
+fd
+\family default
+ in 
+\family typewriter
+fdset
+\family default
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+FD_CLR
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+FD_CLR
+\end_layout
+
+\end_inset
+
+(fd, &fdset)
+\family default
+ – removes 
+\family typewriter
+fd
+\family default
+ from 
+\family typewriter
+fdset
+\family default
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+FD_ISSET
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+FD_ISSET
+\end_layout
+
+\end_inset
+
+(fd, &fdset)
+\family default
+ – is non-zero if 
+\family typewriter
+fd
+\family default
+ is a member of 
+\family typewriter
+fdset
+\family default
+, zero otherwise.
+ The behavior of these macros is undefined if a descriptor value is less
+ than zero or greater than or equal to 
+\family typewriter
+FD_SETSIZE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+FD_SETSIZE
+\end_layout
+
+\end_inset
+
+
+\family default
+, which is normally at least equal to the maximum number of descriptors
+ supported by the system.
+\end_layout
+
+\begin_layout Standard
+\noindent
+Any of the second, third and fourth arguments may be given as null pointers
+ if no descriptors are of interest.
+ If successful, 
+\family typewriter
+select
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+select
+\end_layout
+
+\end_inset
+
+
+\family default
+ return the number of ready descriptors that are contained in the descriptor
+ sets.
+ If a descriptor is included in multiple descriptor sets, each inclusion
+ is counted separately.
+ If the time limit expires before any descriptors become ready, they return
+ 0.
+ Otherwise, if 
+\family typewriter
+select
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+select
+\end_layout
+
+\end_inset
+
+
+\family default
+ return with an error, including one due to an interrupted call, they return
+ -1, and the descriptor sets will be unmodified.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:select"
+
+\end_inset
+
+select - program to demonstrate the select system call.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* select.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <unistd.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <fcntl.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <errno.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <termios.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/types.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/time.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/ioctl.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* select program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#define BUFFER_SIZE 32
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int n, nfds;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char buf[ BUFFER_SIZE ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	fd_set readfds;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct timeval tv;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/*
+\end_layout
+
+\begin_layout Plain Layout
+
+	 * We will be reading from standard input (file
+\end_layout
+
+\begin_layout Plain Layout
+
+	 * descriptor 0), so we want to know when the
+\end_layout
+
+\begin_layout Plain Layout
+
+	 * user has typed something.
+\end_layout
+
+\begin_layout Plain Layout
+
+	 */
+\end_layout
+
+\begin_layout Plain Layout
+
+	FD_ZERO(&readfds);
+\end_layout
+
+\begin_layout Plain Layout
+
+	FD_SET(0, &readfds);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Set the timeout for 10 seconds.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	bzero((void *) &tv, sizeof(struct timeval));
+\end_layout
+
+\begin_layout Plain Layout
+
+	tv.tv_sec = 15;
+\end_layout
+
+\begin_layout Plain Layout
+
+	tv.tv_usec = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Prompt for input.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	printf("Type a word; if you don't in 10 ");
+\end_layout
+
+\begin_layout Plain Layout
+
+	printf("seconds I'll use 
+\backslash
+"WORD
+\backslash
+": ");
+\end_layout
+
+\begin_layout Plain Layout
+
+	fflush(stdout);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/*
+\end_layout
+
+\begin_layout Plain Layout
+
+	 * Now call select.
+  We pass NULL for
+\end_layout
+
+\begin_layout Plain Layout
+
+	 * writefds and exceptfds, since we
+\end_layout
+
+\begin_layout Plain Layout
+
+	 * aren't interested in them.
+\end_layout
+
+\begin_layout Plain Layout
+
+	 */
+\end_layout
+
+\begin_layout Plain Layout
+
+	nfds = select(1, &readfds, NULL, NULL, &tv);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/*
+\end_layout
+
+\begin_layout Plain Layout
+
+	 * Now we check the results.
+  If nfds is zero,
+\end_layout
+
+\begin_layout Plain Layout
+
+	 * then we timed out and should assume the
+\end_layout
+
+\begin_layout Plain Layout
+
+	 * default.
+  Otherwise, if file descriptor 0
+\end_layout
+
+\begin_layout Plain Layout
+
+	 * is set in readfds, that means that it is
+\end_layout
+
+\begin_layout Plain Layout
+
+	 * ready to be read and we can read something
+\end_layout
+
+\begin_layout Plain Layout
+
+	 * from it.
+\end_layout
+
+\begin_layout Plain Layout
+
+	 */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(nfds == 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+		strncpy(buf, "WORD", 5);
+\end_layout
+
+\begin_layout Plain Layout
+
+	else
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(FD_ISSET(0, &readfds)) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			n = read(0, buf, BUFFER_SIZE);
+\end_layout
+
+\begin_layout Plain Layout
+
+			buf[ n > 0 ? n - 1 : 0 ] = '
+\backslash
+0';
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+	printf("
+\backslash
+nThe word is: %s
+\backslash
+n", buf);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/*
+\end_layout
+
+\begin_layout Plain Layout
+
+	 * This is not useful, but since we use this
+\end_layout
+
+\begin_layout Plain Layout
+
+	 * method to return success or failure, just
+\end_layout
+
+\begin_layout Plain Layout
+
+	 * go on.
+\end_layout
+
+\begin_layout Plain Layout
+
+	 */
+\end_layout
+
+\begin_layout Plain Layout
+
+	ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of select.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

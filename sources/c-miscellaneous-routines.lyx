@@ -1,0 +1,5763 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass memoir
+\use_default_options true
+\master the-openbsd-c-particularist.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family sfdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1.7cm
+\topmargin 1cm
+\rightmargin 1.5cm
+\bottommargin 1.2cm
+\headheight 1cm
+\headsep 1cm
+\footskip 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:miscellaneous-routines"
+
+\end_inset
+
+Miscellaneous Routines.
+\end_layout
+
+\begin_layout Standard
+\align right
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "50col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:resource-limits"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:obtaining-resource-usage-information"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:manipulating-byte-strings"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:environment-variables"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:the-current-working-directory"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:searching-for-characters-in-strings"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:determining-whether-a-file-is-a-terminal"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:printing-error-messages"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:sorting-arrays-in-memory"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+This chapter describes some useful system calls and library routines whose
+ description don't fit well into the previous chapters.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:resource-limits"
+
+\end_inset
+
+Resource Limits.
+\end_layout
+
+\begin_layout Standard
+On OpenBSD each process operates with certain limits on the resources it
+ may use.
+ These limits prevent processes from creating files that are considered
+ 
+\shape italic
+too large
+\shape default
+, using too much CPU time and so on.
+\end_layout
+
+\begin_layout Subsection
+The 
+\family typewriter
+getrlimit
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getrlimit
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+setrlimit
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+setrlimit
+\end_layout
+
+\end_inset
+
+
+\family default
+ System Call.
+\end_layout
+
+\begin_layout Standard
+Limits on the consumption of system resources by the current process and
+ each process it creates may be obtained with the 
+\family typewriter
+getrlimit
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getrlimit
+\end_layout
+
+\end_inset
+
+
+\family default
+ call and set with the 
+\family typewriter
+setrlimit
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+setrlimit
+\end_layout
+
+\end_inset
+
+
+\family default
+ call.
+ The first parameter of both system calls is one of the following:
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+RLIMIT_CORE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+RLIMIT_CORE
+\end_layout
+
+\end_inset
+
+
+\family default
+ — the largest size (in bytes) core file that may be created;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+RLIMIT_CPU
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+RLIMIT_CPU
+\end_layout
+
+\end_inset
+
+
+\family default
+ — the maximum amount of CPU time (in seconds) to be used by each process;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+RLIMIT_DATA
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+RLIMIT_DATA
+\end_layout
+
+\end_inset
+
+
+\family default
+ — the maximum size, in bytes, of the data segment for a process; this includes
+ memory allocated via 
+\shape italic
+malloc
+\shape default
+(3) and all other anonymous memory mapped via 
+\shape italic
+mmap
+\shape default
+(2);
+\end_layout
+
+\begin_layout Itemize
+RLIMIT_FSIZE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+RLIMIT_FSIZE
+\end_layout
+
+\end_inset
+
+ — the largest size (in bytes) file that may be created;
+\end_layout
+
+\begin_layout Itemize
+RLIMIT_MEMLOCK — the maximum size, in bytes, which a process may lock into
+ memory using the 
+\shape italic
+mlock
+\shape default
+(2) function;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+RLIMIT_NOFILE
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+RLIMIT_NOFILE
+\end_layout
+
+\end_inset
+
+
+\family default
+ — the maximum number of open files for this process;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+RLIMIT_NPROC
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+RLIMIT_NPROC
+\end_layout
+
+\end_inset
+
+
+\family default
+ — the maximum number of simultaneous processes for this user id;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+RLIMIT_RSS
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+RLIMIT_RSS
+\end_layout
+
+\end_inset
+
+
+\family default
+ — the maximum size, in bytes, to which a process's resident set size may
+ grow.
+ This setting is no longer enforced, but retained for compatibility;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+RLIMIT_STACK
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+RLIMIT_STACK
+\end_layout
+
+\end_inset
+
+
+\family default
+ — the maximum size (in bytes) of the stack segment for a process, which
+ defines how far a process's stack segment may be extended.
+ Stack extension is performed automatically by the system, and is only used
+ by the main thread of a process;
+\end_layout
+
+\begin_layout Standard
+\noindent
+A 
+\shape italic
+resource limit
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+resource limit
+\end_layout
+
+\end_inset
+
+
+\shape default
+ is specified as a 
+\shape italic
+soft limit
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+soft limit
+\end_layout
+
+\end_inset
+
+
+\shape default
+ and a 
+\shape italic
+hard limit
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+hard limit
+\end_layout
+
+\end_inset
+
+
+\shape default
+.
+ When a soft limit is exceeded a process may receive a signal
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\noindent
+For example, if the CPU time or file size is exceeded.
+\end_layout
+
+\end_inset
+
+, but it will be allowed to continue execution until it reaches the hard
+ limit or modifies its resource limit.
+ The 
+\family typewriter
+rlimit
+\family default
+ structure is used to specify the hard and soft limits on a resource:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:rlimit-struct"
+
+\end_inset
+
+The rlimit structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct rlimit {
+\end_layout
+
+\begin_layout Plain Layout
+
+	rlim_t rlim_cur;
+\end_layout
+
+\begin_layout Plain Layout
+
+	rlim_t rlim_max;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+The members are:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family typewriter
+rlim_cur
+\family default
+ current (soft) limit;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family typewriter
+rlim_max
+\family default
+ hard limit.
+\end_layout
+
+\begin_layout Standard
+Only the super-user
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+super-user
+\end_layout
+
+\end_inset
+
+ may raise the maximum limits.
+ Other users may only alter 
+\family typewriter
+rlim_cur
+\family default
+ within the range from 0 to 
+\family typewriter
+rlim_max
+\family default
+ or, irreversibly, lower 
+\family typewriter
+rlim_max
+\family default
+.
+ An 
+\shape italic
+infinite
+\shape default
+ value for a limit is defined as 
+\family typewriter
+RLIM_INFINITY
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+RLIM_INFINITY
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ A value of 
+\family typewriter
+RLIM_SAVED_CUR
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+RLIM_SAVED_CUR
+\end_layout
+
+\end_inset
+
+
+\family default
+ or 
+\family typewriter
+RLIM_SAVED_MAX
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+RLIM_SAVED_MAX
+\end_layout
+
+\end_inset
+
+
+\family default
+ will be stored in 
+\family typewriter
+rlim_cur
+\family default
+ or 
+\family typewriter
+rlim_max
+\family default
+ respectively by 
+\family typewriter
+getrlimit
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getrlimit
+\end_layout
+
+\end_inset
+
+
+\family default
+ if the value for the current or maximum resource limit cannot be stored
+ in an 
+\family typewriter
+rlim_t
+\family default
+.
+ The values 
+\family typewriter
+RLIM_SAVED_CUR
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+RLIM_SAVED_CUR
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+RLIM_SAVED_MAX
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+RLIM_SAVED_MAX
+\end_layout
+
+\end_inset
+
+
+\family default
+ should not be used in a call to 
+\family typewriter
+setrlimit
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+setrlimit
+\end_layout
+
+\end_inset
+
+
+\family default
+ unless they were returned by a previous call to 
+\family typewriter
+getrlimit
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getrlimit
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ Because this information is stored in the per-process information, this
+ system call must be executed directly by the shell if it is to affect all
+ future processes created by the shell; limit is thus a built-in command
+ to 
+\shape italic
+csh
+\shape default
+(1) and ulimit is the 
+\shape italic
+sh
+\shape default
+(1) equivalent.
+ The system refuses to extend the data or stack space when the limits would
+ be exceeded in the normal way: a 
+\shape italic
+brk
+\shape default
+(2) call fails if the data space limit is reached.
+ When the stack limit is reached, the process receives a segmentation fault
+ (
+\family typewriter
+SIGSEGV
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGSEGV
+\end_layout
+
+\end_inset
+
+
+\family default
+); if this signal is not caught by a handler using the signal stack, this
+ signal will kill the process.
+ A file I/O operation that would create a file larger than the process'
+ soft limit will cause the write to fail and a signal 
+\family typewriter
+SIGXFSZ
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGXFSZ
+\end_layout
+
+\end_inset
+
+
+\family default
+ to be generated; this normally terminates the process, but may be caught.
+ When the soft CPU time limit is exceeded, a signal 
+\family typewriter
+SIGXCPU
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SIGXCPU
+\end_layout
+
+\end_inset
+
+
+\family default
+ is sent to the offending process.
+ Upon successful completion, the value 0 is returned; otherwise the value
+ -1 is returned and the global variable 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to indicate the error.
+ The usual method to change resource limits is shown in listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:setlim"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:setlim"
+
+\end_inset
+
+setlim - change resource limits.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* File setlim.c.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdbool.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <errno.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/types.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/time.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/resource.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* setlim program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions protitypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+long int setlim(int, rlim_t);
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	bool ok = false;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char *bad;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int limit;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	rlim_t value;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Checks arguments.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(argc == 3) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		ok = true;
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(strncmp(argv[ 1 ], "cpu", 3) == 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+			limit = RLIMIT_CPU;
+\end_layout
+
+\begin_layout Plain Layout
+
+		else if(strncmp(argv[ 1 ], "filesize", 8) == 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+			limit = RLIMIT_FSIZE;
+\end_layout
+
+\begin_layout Plain Layout
+
+		else if(strncmp(argv[ 1 ], "data", 4) == 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+			limit = RLIMIT_DATA;
+\end_layout
+
+\begin_layout Plain Layout
+
+		else if(strncmp(argv[ 1 ], "stack", 5) == 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+			limit = RLIMIT_STACK;
+\end_layout
+
+\begin_layout Plain Layout
+
+		else if(strncmp(argv[ 1 ], "core", 4) == 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+			limit = RLIMIT_CORE;
+\end_layout
+
+\begin_layout Plain Layout
+
+		else if(strncmp(argv[ 1 ], "rss", 3) == 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+			limit = RLIMIT_RSS;
+\end_layout
+
+\begin_layout Plain Layout
+
+		else if(strncmp(argv[ 1 ], "memorylock", 10) == 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+			limit = RLIMIT_MEMLOCK;
+\end_layout
+
+\begin_layout Plain Layout
+
+		else if(strncmp(argv[ 1 ], "nproc", 5) == 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+			limit = RLIMIT_NPROC;
+\end_layout
+
+\begin_layout Plain Layout
+
+		else if(strncmp(argv[ 1 ], "openfiles", 9) == 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+			limit = RLIMIT_NOFILE;
+\end_layout
+
+\begin_layout Plain Layout
+
+		else {
+\end_layout
+
+\begin_layout Plain Layout
+
+			ok = false;
+\end_layout
+
+\begin_layout Plain Layout
+
+			perror("unknown limit");
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(ok == true) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(strncmp(argv[ 2 ], "infinity", 8) == 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+				value = RLIM_INFINITY;
+\end_layout
+
+\begin_layout Plain Layout
+
+			else {
+\end_layout
+
+\begin_layout Plain Layout
+
+				value = (rlim_t) strtoul(argv[ 2 ], &bad, 0);
+\end_layout
+
+\begin_layout Plain Layout
+
+				if(*bad != '
+\backslash
+0') {
+\end_layout
+
+\begin_layout Plain Layout
+
+					ok = false;
+\end_layout
+
+\begin_layout Plain Layout
+
+				}
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(ok == true) {
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("set limit: %s(%d)
+\backslash
+tto value: %lld
+\backslash
+n", argv[ 1 ], limit,   value);
+\end_layout
+
+\begin_layout Plain Layout
+
+				if(setlim(limit, value) == EXIT_SUCCESS)
+\end_layout
+
+\begin_layout Plain Layout
+
+					ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+				else
+\end_layout
+
+\begin_layout Plain Layout
+
+					perror("error setting limit");
+\end_layout
+
+\begin_layout Plain Layout
+
+			} else
+\end_layout
+
+\begin_layout Plain Layout
+
+				perror("bad numerical value for limit");
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else
+\end_layout
+
+\begin_layout Plain Layout
+
+		fprintf(stderr, "usage: setlim <limit> <value>
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/*
+\end_layout
+
+\begin_layout Plain Layout
+
+ * setlim -- set the limit for the process.
+\end_layout
+
+\begin_layout Plain Layout
+
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+long int setlim(int lim, rlim_t val)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct rlimit rlim;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/*
+\end_layout
+
+\begin_layout Plain Layout
+
+	 * Get the current limits so  we
+\end_layout
+
+\begin_layout Plain Layout
+
+	 * will know the maximum value.
+\end_layout
+
+\begin_layout Plain Layout
+
+	 */
+\end_layout
+
+\begin_layout Plain Layout
+
+	bzero(&rlim, sizeof(struct rlimit));
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(getrlimit(lim, &rlim) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		printf("current limit: %lld
+\backslash
+tmaximum limit: %lld
+\backslash
+n", rlim.rlim_cur, rlim.rlim_max);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		/* Now change the current limit.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+		rlim.rlim_cur = val;
+\end_layout
+
+\begin_layout Plain Layout
+
+		if(setrlimit(lim, &rlim) >= 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+			ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	return ret;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of setlim.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:obtaining-resource-usage-information"
+
+\end_inset
+
+Obtaining Resource Usage Information.
+\end_layout
+
+\begin_layout Standard
+\noindent
+OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ allows user to take tracks of resources usage on the system.
+ To achieve that a data structure and a system call were provided and defined
+ in 
+\family typewriter
+<sys/resource.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<sys/resource.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ 
+\family typewriter
+getrusage
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getrusage
+\end_layout
+
+\end_inset
+
+
+\family default
+ returns resource usage information and takes two arguments.
+ The first for argument, which can be one of the following:
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+RUSAGE_SELF
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+RUSAGE_SELF
+\end_layout
+
+\end_inset
+
+
+\family default
+ — resources used by the current process;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+RUSAGE_CHILDREN
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+RUSAGE_CHILDREN
+\end_layout
+
+\end_inset
+
+
+\family default
+ — resources used by all the terminated children of the current process;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+RUSAGE_THREAD
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+RUSAGE_THREAD
+\end_layout
+
+\end_inset
+
+
+\family default
+ — resources used by the current thread.
+\end_layout
+
+\begin_layout Standard
+The buffer to which the second argument points will be filled in with the
+ following structure:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:rusage-struct"
+
+\end_inset
+
+The rusage structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct rusage {
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct timeval ru_utime;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct timeval ru_stime;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long ru_maxrss;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long ru_ixrss;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long ru_idrss;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long ru_isrss;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long ru_minflt;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long ru_majflt;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long ru_nswap;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long ru_inblock;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long ru_oublock;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long ru_msgsnd;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long ru_msgrcv;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long ru_nsignals;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long ru_nvcsw;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long ru_nivcsw;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+The fields are interpreted as follows:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+
+\family typewriter
+ru_utime
+\family default
+ the total amount of time spent executing in user mode;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+ru_stime
+\family default
+ the total amount of time spent in the system executing on behalf of the
+ process(es);
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+ru_maxrss
+\family default
+ the maximum resident set size utilized, in kilobytes;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+ru_ixrss
+\family default
+ an "integral" value indicating the amount of memory used by the text segment
+ that was also shared among other processes.
+ This value is expressed in units of kilobytes * ticks-of- execution;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+ru_idrss
+\family default
+ an integral value of the amount of unshared memory residing in the data
+ segment of a process, expressed in units of kilobytes * ticks-of-execution;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+
+\family typewriter
+ru_isrss
+\family default
+ an integral value of the amount of unshared memory residing in the stack
+ segment of a process, expressed in units of kilobytes * ticks-of-execution;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+ru_minflt
+\family default
+ the number of page faults serviced without any I/O activity; here I/O activity
+ is avoided by 
+\shape italic
+reclaiming
+\shape default
+ a page frame from the list of pages awaiting reallocation;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+ru_majflt
+\family default
+ the number of page faults serviced that required I/O activity;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+ru_nswap
+\family default
+ the number of times a process was 
+\shape italic
+swapped
+\shape default
+ out of main memory;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+
+\family typewriter
+ru_inblock
+\family default
+ the number of times the file system had to perform input;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+ru_oublock
+\family default
+ the number of times the file system had to perform output;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+ru_msgsnd
+\family default
+ the number of ipc messages sent;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+ru_msgrcv
+\family default
+ the number of ipc messages received;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+ru_nsignals
+\family default
+ the number of signals delivered;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+
+\family typewriter
+ru_nvcsw
+\family default
+ the number of times a context switch resulted due to a process voluntarily
+ giving up the processor before its time slice was completed, usually to
+ await availability of a resource;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+
+\family typewriter
+ru_nivcsw
+\family default
+ the number of times a context switch resulted due to a higher priority
+ process becoming runnable or because the current process exceeded its time
+ slice.
+\end_layout
+
+\begin_layout Standard
+\noindent
+The numbers 
+\family typewriter
+ru_inblock
+\family default
+ and 
+\family typewriter
+ru_oublock
+\family default
+ account only for real I/O; data supplied by the caching mechanism is charged
+ only to the first process to read or write the data.
+ Upon successful completion, the value 0 is returned; otherwise the value
+ -1 is returned and the global variable 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to indicate the error.
+ Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:rusage"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the usage data for the rusage program itself.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:rusage"
+
+\end_inset
+
+rusage - get usage data for the process itself.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* File rusage.c.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdbool.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <errno.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/types.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/time.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/resource.h>
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* rusage program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions protitypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct rusage usage;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(getrusage(RUSAGE_SELF, &usage) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		printf("user time used: %ld s
+\backslash
+n", (time_t) usage.ru_utime.tv_sec);
+\end_layout
+
+\begin_layout Plain Layout
+
+		printf("system time used: %ld s
+\backslash
+n", (time_t) usage.ru_stime.tv_sec);
+\end_layout
+
+\begin_layout Plain Layout
+
+		printf("maximum resident set size: %ld kB
+\backslash
+n", usage.ru_maxrss);
+\end_layout
+
+\begin_layout Plain Layout
+
+		printf("integral shared text memory size: %ld kBt
+\backslash
+n", usage.ru_ixrss);
+\end_layout
+
+\begin_layout Plain Layout
+
+		printf("integral unshared data size: %ld kBt
+\backslash
+n", usage.ru_idrss);
+\end_layout
+
+\begin_layout Plain Layout
+
+		printf("integral unshared stack size: %ld kBt
+\backslash
+n", usage.ru_isrss);
+\end_layout
+
+\begin_layout Plain Layout
+
+		printf("page reclaims: %ld
+\backslash
+n", usage.ru_minflt);
+\end_layout
+
+\begin_layout Plain Layout
+
+		printf("page faults: %ld
+\backslash
+n", usage.ru_majflt);
+\end_layout
+
+\begin_layout Plain Layout
+
+		printf("swaps: %ld
+\backslash
+n", usage.ru_nswap);
+\end_layout
+
+\begin_layout Plain Layout
+
+		printf("block input operations: %ld
+\backslash
+n", usage.ru_inblock);
+\end_layout
+
+\begin_layout Plain Layout
+
+		printf("block output operations: %ld
+\backslash
+n", usage.ru_oublock);
+\end_layout
+
+\begin_layout Plain Layout
+
+		printf("messages sent: %ld
+\backslash
+n", usage.ru_msgsnd);
+\end_layout
+
+\begin_layout Plain Layout
+
+		printf("messages received: %ld
+\backslash
+n", usage.ru_msgrcv);
+\end_layout
+
+\begin_layout Plain Layout
+
+		printf("signals received: %ld
+\backslash
+n", usage.ru_nsignals);
+\end_layout
+
+\begin_layout Plain Layout
+
+		printf("voluntary context switches: %ld
+\backslash
+n", usage.ru_nvcsw);
+\end_layout
+
+\begin_layout Plain Layout
+
+		printf("involuntary context switches: %ld
+\backslash
+n", usage.ru_nivcsw);
+\end_layout
+
+\begin_layout Plain Layout
+
+		ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of rusage.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:manipulating-byte-strings"
+
+\end_inset
+
+Manipulating Byte Strings.
+\end_layout
+
+\begin_layout Standard
+Most users know the 
+\family typewriter
+strcmp
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+strcmp
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+strcpy
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+strcpy
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+strncmp
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+strncmp
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+strncpy
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+strncpy
+\end_layout
+
+\end_inset
+
+
+\family default
+ routines, they work fine for NUL terminated strings of characters.
+ They do not fit for generic usage, where we have to deal with arrays of
+ non-printing characters such as '
+\backslash
+0'.
+ In that case, we could use 
+\family typewriter
+bcmp
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+bcmp
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+bcopy
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+bcopy
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+bzero
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+bzero
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+memcmp
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+memcmp
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+memcpy
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+memcpy
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+memmove
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+memmove
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+memset
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+memset
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+\end_layout
+
+\begin_layout Subsection
+The 
+\family typewriter
+bcmp
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+bcmp
+\end_layout
+
+\end_inset
+
+
+\family default
+ routine.
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+bcmp
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+bcmp
+\end_layout
+
+\end_inset
+
+
+\family default
+ function takes three arguments.
+ It compares byte pointed by the first parameter against byte string pointed
+ by the second argument, returning zero if they are identical, non-zero
+ otherwise.
+ Both strings are assumed to be of length in bytes as specified in the third
+ argument.
+ Zero-length strings are always identical.
+ The strings may overlap.
+\end_layout
+
+\begin_layout Subsection
+The 
+\family typewriter
+bcopy
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+bcopy
+\end_layout
+
+\end_inset
+
+
+\family default
+ routine.
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+bcopy
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+bcopy
+\end_layout
+
+\end_inset
+
+
+\family default
+ routine takes three arguments.
+ It copies a number of bytes as specified in the third argument from the
+ buffer pointed by the first argument to the buffer pointed by the second
+ argument.
+ The two buffers may overlap.
+ If the length specified in the third argument is zero, no bytes are copied.
+\end_layout
+
+\begin_layout Subsection
+The 
+\family typewriter
+bzero
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+bzero
+\end_layout
+
+\end_inset
+
+
+\family default
+ routine.
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+bzero
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+bzero
+\end_layout
+
+\end_inset
+
+
+\family default
+ routine takes two arguments.
+ It writes a number, specified in the second argument, of zero bytes to
+ the string pointed by the first argument.
+ If the length in the second argument is zero, 
+\family typewriter
+bzero
+\family default
+ does nothing.
+ The 
+\family typewriter
+explicit_bzero
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+explicit_bzero
+\end_layout
+
+\end_inset
+
+
+\family default
+ variant behaves the same, but will not be removed by a compiler's dead
+ store optimization pass, making it useful for clearing sensitive memory
+ such as a password.
+\end_layout
+
+\begin_layout Subsection
+The 
+\family typewriter
+memcmp
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+memcmp
+\end_layout
+
+\end_inset
+
+
+\family default
+ routine.
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+memcmp
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+memcmp
+\end_layout
+
+\end_inset
+
+
+\family default
+ function takes three arguments.
+ It compares byte in the string, pointed by the first argument, against
+ byte string, pointed by the second argument.
+ Both strings are assumed to be of length specified in the third argument.
+ The 
+\family typewriter
+memcmp
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+memcmp
+\end_layout
+
+\end_inset
+
+
+\family default
+ function returns zero if the two strings are identical otherwise returns
+ the difference between the first two differing bytes, treated as 
+\family typewriter
+unsigned char
+\family default
+ values, so that '
+\backslash
+200' is greater than '
+\backslash
+0', for example.
+ Zero-length strings are always identical.
+\end_layout
+
+\begin_layout Subsection
+The 
+\family typewriter
+memcpy
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+memcpy
+\end_layout
+
+\end_inset
+
+
+\family default
+ routine.
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+memcpy
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+memcpy
+\end_layout
+
+\end_inset
+
+
+\family default
+ routine takes three arguments.
+ The memcpy function copies a number of bytes, specified by the third argument,
+ from buffer pointed by the second argument, to buffer pointed by the first
+ argument.
+ If the two buffers may overlap, 
+\shape italic
+memmove
+\shape default
+(3) must be used instead.
+ The memcpy function returns the original value of the first argument.
+\end_layout
+
+\begin_layout Subsection
+The 
+\family typewriter
+memmove
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+memmove
+\end_layout
+
+\end_inset
+
+
+\family default
+ routine.
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+memmove
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+memmove
+\end_layout
+
+\end_inset
+
+
+\family default
+ function takes three arguments.
+ It copies the number of bytes, specified in the third argument, bytes from
+ the buffer pointed by the second argument to the buffer pointed by the
+ first argument.
+ The two buffers may overlap; the copy is always done in a non-destructive
+ manner.
+ The 
+\family typewriter
+memmove
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+memmove
+\end_layout
+
+\end_inset
+
+
+\family default
+ function returns the original value of the first argument.
+\end_layout
+
+\begin_layout Subsection
+The 
+\family typewriter
+memset
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+memset
+\end_layout
+
+\end_inset
+
+
+\family default
+ routine.
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+memset
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+memset
+\end_layout
+
+\end_inset
+
+
+\family default
+ function takes three arguments.
+ It writes a count of bytes, as specified in the third argument, of the
+ same value of the second argument, converted to an 
+\family typewriter
+unsigned char
+\family default
+, to the string pointed by the first argument.
+ The 
+\family typewriter
+memset
+\family default
+ function returns the original value of the first argument.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:environment-variables"
+
+\end_inset
+
+Environment Variables.
+\end_layout
+
+\begin_layout Standard
+To handle environment variables, OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ provides a set of system routines: 
+\family typewriter
+getenv
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getenv
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+setenv
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+setenv
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+putenv
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+putenv
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+unsetenv
+\family default
+.
+ These functions set, unset, and fetch environment variables from the host
+ environment list.
+ The 
+\family typewriter
+getenv
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getenv
+\end_layout
+
+\end_inset
+
+
+\family default
+ function obtains the current value of the environment variable name.
+ If the variable name is not in the current environment, a null pointer
+ is returned.
+ The 
+\family typewriter
+setenv
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+setenv
+\end_layout
+
+\end_inset
+
+
+\family default
+ function inserts or resets the environment variable name in the current
+ environment list.
+ If the variable name does not exist in the list, it is inserted with the
+ given value.
+ If the variable does exist, the argument overwrite is tested; if overwrite
+ is zero, the variable is not reset, otherwise it is reset to the given
+ value.
+ The 
+\family typewriter
+putenv
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+putenv
+\end_layout
+
+\end_inset
+
+
+\family default
+ function takes an argument of the form name=value.
+ The memory pointed to by string becomes part of the environment and must
+ not be deallocated by the caller.
+ If the variable already exists, it will be overwritten.
+ A common source of bugs is to pass a string argument that is a locally
+ scoped string buffer.
+ This will result in corruption of the environment after leaving the scope
+ in which the variable is defined.
+ For this reason, the 
+\family typewriter
+setenv
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+setenv
+\end_layout
+
+\end_inset
+
+
+\family default
+ function is preferred over 
+\family typewriter
+putenv
+\family default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+putenv
+\end_layout
+
+\end_inset
+
+.
+ The 
+\family typewriter
+unsetenv
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+unsetenv
+\end_layout
+
+\end_inset
+
+
+\family default
+ function deletes all instances of the variable name pointed to by name
+ from the list.
+ The 
+\family typewriter
+putenv
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+putenv
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+setenv
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+setenv
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+unsetenv
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+unsetenv
+\end_layout
+
+\end_inset
+
+
+\family default
+ functions return the value 0 if successful; otherwise the value -1 is returned
+ and the global variable 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to indicate the error.
+ The 
+\family typewriter
+getenv
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getenv
+\end_layout
+
+\end_inset
+
+
+\family default
+ function returns a pointer to the requested value, or NULL if it could
+ not be found.
+ If 
+\family typewriter
+getenv
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getenv
+\end_layout
+
+\end_inset
+
+
+\family default
+ is successful, the string returned should be considered read-only.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:the-current-working-directory"
+
+\end_inset
+
+The Current Working Directory.
+\end_layout
+
+\begin_layout Standard
+OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ provides a function to return the current working directory to the user:
+ 
+\family typewriter
+getcwd
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getcwd
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ The 
+\family typewriter
+getcwd
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getcwd
+\end_layout
+
+\end_inset
+
+
+\family default
+ function copies the absolute pathname of the current working directory
+ into the memory referenced by the first argument and returns a pointer
+ to the buffer.
+ The second argument is the size, in bytes, of the array referenced by the
+ buffer pointed by the first argument.
+ If this pointer is not NULL and the length of the pathname plus the terminating
+ NUL character is greater than the second argument, a null pointer is returned
+ and 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to 
+\family typewriter
+ERANGE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ERANGE
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ As an extension to IEEE Std 1003.1-2001 ("POSIX.1"), if the first argument
+ is NULL, space is allocated as necessary to store the pathname.
+ In this case, it is the responsibility of the caller to 
+\shape italic
+free
+\shape default
+(3) the pointer that 
+\family typewriter
+getcwd
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getcwd
+\end_layout
+
+\end_inset
+
+
+\family default
+ returns.
+ Upon successful completion, a pointer to the pathname is returned.
+ Otherwise a null pointer is returned and 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to indicate the error.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:searching-for-characters-in-strings"
+
+\end_inset
+
+Searching for Characters in Strings.
+\end_layout
+
+\begin_layout Standard
+Two function are provided by OpenBSD to achieve character search in a NUL
+ terminated string: 
+\family typewriter
+strchr
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+strchr
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+strrchr
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+strrchr
+\end_layout
+
+\end_inset
+
+
+\family default
+ both defined in 
+\family typewriter
+<string.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<string.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+ They takes two arguments: strchr locates the first occurrence, strrchr
+ the last occurrence, of the character specified by the second argument,
+ converted to a 
+\family typewriter
+char
+\family default
+, in the string pointed by the first argument.
+ The terminating NUL character is considered part of the string itself.
+ If the second argument is '
+\backslash
+0', 
+\family typewriter
+strchr
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+strchr
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+strrchr
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+strrchr
+\end_layout
+
+\end_inset
+
+
+\family default
+ locate the terminating '
+\backslash
+0'.
+ They returns a pointer to the located character or NULL if the character
+ does not appear in the string.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:determining-whether-a-file-is-a-terminal"
+
+\end_inset
+
+Determining Whether a File is a Terminal.
+\end_layout
+
+\begin_layout Standard
+OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ provides four functions: 
+\family typewriter
+ttyname
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ttyname
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+ttyname_r
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ttyname_r
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+isatty
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+isatty
+\end_layout
+
+\end_inset
+
+
+\family default
+ defined in 
+\family typewriter
+<unistd.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<unistd.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+ttyslot
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ttyslot
+\end_layout
+
+\end_inset
+
+
+\family default
+ defined in 
+\family typewriter
+<stdlib.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<stdlib.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ These functions operate on the system file descriptors for terminal type
+ devices.
+ These descriptors are not related to the standard I/O FILE typedef, but
+ refer to the special device files found in 
+\shape italic
+/dev
+\shape default
+ and named 
+\shape italic
+/dev/ttyXX
+\shape default
+ and for which an entry exists in the initialization file 
+\shape italic
+/etc/ttys
+\shape default
+, see 
+\shape italic
+ttys
+\shape default
+(5).
+ The 
+\family typewriter
+isatty
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+isatty
+\end_layout
+
+\end_inset
+
+
+\family default
+ function determines if the file descriptor in the first argument refers
+ to a valid terminal type device.
+ The 
+\family typewriter
+ttyname
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ttyname
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+ttyname_r
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ttyname_r
+\end_layout
+
+\end_inset
+
+
+\family default
+ functions get the related device name of a file descriptor for which 
+\family typewriter
+isatty
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+isatty
+\end_layout
+
+\end_inset
+
+
+\family default
+ is true.
+ The 
+\family typewriter
+ttyname_r
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ttyname_r
+\end_layout
+
+\end_inset
+
+
+\family default
+ function stores the NUL-terminated pathname of the terminal associated
+ with the file descriptor of the first argument in the character array reference
+d by the second argument.
+ The array length in bytes is specified in the third argument and should
+ have space for the name and the terminating NUL character.
+ The maximum length of the terminal name is 
+\family typewriter
+TTY_NAME_MAX
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+TTY_NAME_MAX
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ The 
+\family typewriter
+ttyslot
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ttyslot
+\end_layout
+
+\end_inset
+
+
+\family default
+ function fetches the current process's controlling terminal number from
+ the 
+\shape italic
+ttys
+\shape default
+(5) file entry.
+ The 
+\family typewriter
+ttyname
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ttyname
+\end_layout
+
+\end_inset
+
+
+\family default
+ function returns the NUL-terminated name if the device is found and 
+\family typewriter
+isatty
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+isatty
+\end_layout
+
+\end_inset
+
+
+\family default
+ is true; otherwise a null pointer is returned and 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to indicate the error.
+ The 
+\family typewriter
+ttyname_r
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ttyname_r
+\end_layout
+
+\end_inset
+
+
+\family default
+ function returns zero if successful; otherwise an error number is returned.
+ The 
+\family typewriter
+isatty
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+isatty
+\end_layout
+
+\end_inset
+
+
+\family default
+ function returns 1 if the file descriptor in the first argument is associated
+ with a terminal device; otherwise it returns 0 and 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to indicate the error.
+ The 
+\family typewriter
+ttyslot
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ttyslot
+\end_layout
+
+\end_inset
+
+
+\family default
+ function returns the unit number of the device file if found; otherwise
+ the value zero is returned.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:printing-error-messages"
+
+\end_inset
+
+Printing Error Messages.
+\end_layout
+
+\begin_layout Standard
+OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ provides 
+\family typewriter
+perror
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+perror
+\end_layout
+
+\end_inset
+
+
+\family default
+ 
+\family typewriter
+psignal
+\family default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+psignal
+\end_layout
+
+\end_inset
+
+, 
+\family typewriter
+strerror
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+strerror
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+strsignal
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+strsignal
+\end_layout
+
+\end_inset
+
+
+\family default
+ functions to help the user to deal with error conditions.
+ 
+\family typewriter
+perror
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+perror
+\end_layout
+
+\end_inset
+
+
+\family default
+ function is defined in 
+\family typewriter
+<stdio.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<stdio.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+psignal
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+psignal
+\end_layout
+
+\end_inset
+
+
+\family default
+ function in 
+\family typewriter
+<signal.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<signal.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+strerror
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+strerror
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+strsignal
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+strsignal
+\end_layout
+
+\end_inset
+
+
+\family default
+ functions in 
+\family typewriter
+<string.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<string.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:perror-routine"
+
+\end_inset
+
+The 
+\family typewriter
+perror
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+perror
+\end_layout
+
+\end_inset
+
+
+\family default
+ routine.
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+perror
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+perror
+\end_layout
+
+\end_inset
+
+
+\family default
+ function looks up the error message string affiliated with an error number
+ and writes it, followed by a new-line, to the standard error stream.
+ If the argument string is not the NULL pointer and is not zero length,
+ it is prepended to the message string and separated from it by a colon
+ and a space, ': '.
+ Otherwise, only the error message string is printed.
+ The contents of the error message string are the same as those returned
+ by 
+\family typewriter
+strerror
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+strerror
+\end_layout
+
+\end_inset
+
+
+\family default
+ with argument 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+\end_layout
+
+\begin_layout Subsection
+The 
+\family typewriter
+psignal
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+psignal
+\end_layout
+
+\end_inset
+
+
+\family default
+ routine.
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+psignal
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+psignal
+\end_layout
+
+\end_inset
+
+
+\family default
+ routine takes two arguments.
+ It locates the descriptive message string for the given signal number in
+ the first argument and writes it to the standard error.
+ If the second argument is not NULL it is written to the standard error
+ file descriptor prior to the message string, immediately followed by a
+ colon and a space, ': '.
+ If the signal number is not recognized, see 
+\shape italic
+sigaction
+\shape default
+(2) for a list, the string "Unknown signal" is produced.
+ The message strings can be accessed directly using the external array 
+\family typewriter
+sys_siglist
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+sys_siglist
+\end_layout
+
+\end_inset
+
+
+\family default
+, indexed by recognized signal numbers.
+ The external array 
+\family typewriter
+sys_signame
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+sys_signame
+\end_layout
+
+\end_inset
+
+
+\family default
+ is used similarly and contains short, upper-case abbreviations for signals
+ which are useful for recognizing signal names in user input.
+ The defined value 
+\family typewriter
+NSIG
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+NSIG
+\end_layout
+
+\end_inset
+
+
+\family default
+ contains a count of the strings in 
+\family typewriter
+sys_siglist
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+sys_siglist
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+sys_signame
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+sys_signame
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:strerror"
+
+\end_inset
+
+The 
+\family typewriter
+strerror
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+strerror
+\end_layout
+
+\end_inset
+
+
+\family default
+ routine.
+\end_layout
+
+\begin_layout Standard
+There are three versions of this function: 
+\family typewriter
+strerror
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+strerror
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+strerror_l
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+strerror_l
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+strerror_r
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+strerror_r
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ These functions map the error number specified in the first argument to
+ an error message string.
+ 
+\family typewriter
+strerror
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+strerror
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+strerror_l
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+strerror_l
+\end_layout
+
+\end_inset
+
+
+\family default
+ return a string containing a maximum of 
+\family typewriter
+NL_TEXTMAX
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+NL_TEXTMAX
+\end_layout
+
+\end_inset
+
+
+\family default
+ characters, including the trailing NUL.
+ This string is not to be modified by the calling program.
+ The string returned by 
+\family typewriter
+strerror
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+strerror
+\end_layout
+
+\end_inset
+
+
+\family default
+ may be overwritten by subsequent calls to 
+\family typewriter
+strerror
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+strerror
+\end_layout
+
+\end_inset
+
+
+\family default
+ in any thread.
+ The string returned by 
+\family typewriter
+strerror_l
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+strerror_l
+\end_layout
+
+\end_inset
+
+
+\family default
+ may be overwritten by subsequent calls to 
+\family typewriter
+strerror_l
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+strerror_l
+\end_layout
+
+\end_inset
+
+
+\family default
+ in the same thread.
+ 
+\family typewriter
+strerror_r
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+strerror_r
+\end_layout
+
+\end_inset
+
+
+\family default
+ is a thread safe version of 
+\family typewriter
+strerror
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+strerror
+\end_layout
+
+\end_inset
+
+
+\family default
+ that places the error message in the specified buffer pointed by the second
+ argument.
+ On OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+, the global locale, the thread-specific locale, and the locale argument
+ are ignored.
+ 
+\family typewriter
+strerror
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+strerror
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+strerror_l
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+strerror_l
+\end_layout
+
+\end_inset
+
+
+\family default
+ return a pointer to the error message string.
+ If an error occurs, the error code is stored in 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ 
+\family typewriter
+strerror_r
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+strerror_r
+\end_layout
+
+\end_inset
+
+
+\family default
+ returns zero upon successful completion.
+ If an error occurs, the error code is stored in 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ and the error code is returned.
+ These functions are defined in 
+\family typewriter
+<string.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<string.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+\begin_inset listings
+lstparams "language=C,numbers=left,breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:strerror"
+
+\end_inset
+
+strerror.c - prints out errors names.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* File strerror.c.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <errno.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* strerror program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#define FOREVER for(;;)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int i;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* */
+\end_layout
+
+\begin_layout Plain Layout
+
+	ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	for(i = 0; i <= EPROTO; i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+		fprintf(stderr, "Error %d = %s
+\backslash
+n", i, strerror(i));
+\end_layout
+
+\begin_layout Plain Layout
+
+	ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of strerror.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:strsignal"
+
+\end_inset
+
+The 
+\family typewriter
+strsignal
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+strsignal
+\end_layout
+
+\end_inset
+
+
+\family default
+ routine.
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+strsignal
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+strsignal
+\end_layout
+
+\end_inset
+
+
+\family default
+ function returns a pointer to the string describing the signal specified
+ in the first argument.
+ The array pointed to is not to be modified by the program, but may be overwritt
+en by subsequent calls to 
+\family typewriter
+strsignal
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+strsignal
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:strsignal"
+
+\end_inset
+
+strsignal - program to list signals names.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* File strsignal.c.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <errno.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <signal.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* strsignal program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#define FOREVER for(;;)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int i;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* */
+\end_layout
+
+\begin_layout Plain Layout
+
+	ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	for(i = SIGHUP; i <= SIGTHR; i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+		printf("Signal %d = %s
+\backslash
+n", i, strsignal(i));
+\end_layout
+
+\begin_layout Plain Layout
+
+	ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of strsignal.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:sorting-arrays-in-memory"
+
+\end_inset
+
+Sorting Arrays in Memory.
+\end_layout
+
+\begin_layout Standard
+OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ provides three functions for sorting arrays: 
+\family typewriter
+qsort
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+qsort
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+heapsort
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+heapsort
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+mergesort
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+mergesort
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ They are defined in 
+\family typewriter
+<stdlib.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<stdlib.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+ file and take four parameters.
+ The 
+\family typewriter
+qsort
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+qsort
+\end_layout
+
+\end_inset
+
+
+\family default
+ function is a modified partition-exchange sort, or quicksort.
+ The 
+\family typewriter
+heapsort
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+heapsort
+\end_layout
+
+\end_inset
+
+
+\family default
+ function is a modified selection sort.
+ The 
+\family typewriter
+mergesort
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+mergesort
+\end_layout
+
+\end_inset
+
+
+\family default
+ function is a modified merge sort with exponential search intended for
+ sorting data with pre-existing order.
+ The 
+\family typewriter
+qsort
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+qsort
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+heapsort
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+heapsort
+\end_layout
+
+\end_inset
+
+
+\family default
+ functions sort an array of a number of objects specified in the second
+ argument, the initial member of which is pointed to by the first argument.
+ The size of each object is specified by the third argument.
+ 
+\family typewriter
+mergesort
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+mergesort
+\end_layout
+
+\end_inset
+
+
+\family default
+ behaves similarly, but requires that the third argument be greater than
+ 
+\family typewriter
+sizeof(void *) / 2
+\family default
+.
+ The contents of the array pointed by the first argument are sorted in ascending
+ order according to a comparison function pointed to by the fourth argument,
+ which requires two arguments pointing to the objects being compared.
+ The comparison function must return an 
+\family typewriter
+int
+\family default
+ less than, equal to, or greater than zero if the first argument is considered
+ to be respectively less than, equal to, or greater than the second.
+ The functions 
+\family typewriter
+qsort
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+qsort
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+heapsort
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+heapsort
+\end_layout
+
+\end_inset
+
+
+\family default
+ are not stable, that is, if two members compare as equal, their order in
+ the sorted array is undefined.
+ The function 
+\family typewriter
+mergesort
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+mergesort
+\end_layout
+
+\end_inset
+
+
+\family default
+ is stable.
+ The 
+\family typewriter
+qsort
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+qsort
+\end_layout
+
+\end_inset
+
+
+\family default
+ function is an implementation of C.
+ A.
+ R.
+ Hoare's 
+\shape italic
+quicksort
+\shape default
+ algorithm, a variant of partition-exchange sorting; in particular, see
+ D.
+ E.
+ Knuth's Algorithm Q.
+ 
+\family typewriter
+qsort
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+qsort
+\end_layout
+
+\end_inset
+
+
+\family default
+ takes 
+\begin_inset Formula $O\left(n\lg n\right)$
+\end_inset
+
+ average time.
+ This implementation uses median selection to avoid its 
+\begin_inset Formula $O\left(n^{2}\right)$
+\end_inset
+
+ worst-case behavior and will fall back to 
+\family typewriter
+heapsort
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+heapsort
+\end_layout
+
+\end_inset
+
+
+\family default
+ if the recursion depth exceeds 
+\begin_inset Formula $2\lg n$
+\end_inset
+
+.
+ The 
+\family typewriter
+heapsort
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+heapsort
+\end_layout
+
+\end_inset
+
+
+\family default
+ function is an implementation of J.
+ W.
+ J.
+ William's 
+\shape italic
+heapsort
+\shape default
+ algorithm, a variant of selection sorting; in particular, see D.
+ E.
+ Knuth's Algorithm H.
+ 
+\family typewriter
+heapsort
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+heapsort
+\end_layout
+
+\end_inset
+
+
+\family default
+ takes 
+\begin_inset Formula $O\left(n\lg n\right)$
+\end_inset
+
+ worst-case time.
+ This implementation of 
+\family typewriter
+heapsort
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+heapsort
+\end_layout
+
+\end_inset
+
+
+\family default
+ is implemented without recursive function calls.
+ The function 
+\family typewriter
+mergesort
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+mergesort
+\end_layout
+
+\end_inset
+
+
+\family default
+ requires additional memory of second argument value * third argument value
+ bytes; it should be used only when space is not at a premium.
+ 
+\family typewriter
+mergesort
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+mergesort
+\end_layout
+
+\end_inset
+
+
+\family default
+ is optimized for data with pre-existing order; its worst case time is 
+\begin_inset Formula $O\left(n\lg n\right)$
+\end_inset
+
+; its best case is 
+\begin_inset Formula $O\left(n\right)$
+\end_inset
+
+.
+ Normally, 
+\family typewriter
+qsort
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+qsort
+\end_layout
+
+\end_inset
+
+
+\family default
+ is faster than 
+\family typewriter
+mergesort
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+mergesort
+\end_layout
+
+\end_inset
+
+
+\family default
+, which is faster than 
+\family typewriter
+heapsort
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+heapsort
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ Memory availability and pre-existing order in the data can make this untrue.
+ The 
+\family typewriter
+heapsort
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+heapsort
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+mergesort
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+mergesort
+\end_layout
+
+\end_inset
+
+
+\family default
+ functions return the value 0 if successful; otherwise the value -1 is returned
+ and the global variable 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to indicate the error.
+ Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:sort"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ show an application of 
+\family typewriter
+qsort
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+qsort
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:sort"
+
+\end_inset
+
+sort - a program to show qsort capability.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* File sort.c.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+char *array[] = { "XX", "YYY", "Z" };
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#define N (sizeof(array) / sizeof(array[ 0 ]))
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int cmp(const void *, const void *);
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	size_t i;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* */
+\end_layout
+
+\begin_layout Plain Layout
+
+	qsort(array, N, sizeof(array[0]), cmp);
+\end_layout
+
+\begin_layout Plain Layout
+
+	for(i = 0; i < N; i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+		printf("%s
+\backslash
+n", array[i]);
+\end_layout
+
+\begin_layout Plain Layout
+
+	ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/*
+\end_layout
+
+\begin_layout Plain Layout
+
+ * cmp -- comparing elements function.
+\end_layout
+
+\begin_layout Plain Layout
+
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int cmp(const void *a, const void *b)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	/*
+\end_layout
+
+\begin_layout Plain Layout
+
+	 * a and b point to elements of the array.
+\end_layout
+
+\begin_layout Plain Layout
+
+	 * Cast and dereference to obtain the actual elements,
+\end_layout
+
+\begin_layout Plain Layout
+
+	 * which are also pointers in this case.
+\end_layout
+
+\begin_layout Plain Layout
+
+	 */
+\end_layout
+
+\begin_layout Plain Layout
+
+	size_t lena = strlen(*(const char **) a);
+\end_layout
+
+\begin_layout Plain Layout
+
+	size_t lenb = strlen(*(const char **) b);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/*
+\end_layout
+
+\begin_layout Plain Layout
+
+	 * Do not subtract the lengths.
+ The difference between values
+\end_layout
+
+\begin_layout Plain Layout
+
+	 * cannot be represented by an int.
+\end_layout
+
+\begin_layout Plain Layout
+
+	 */
+\end_layout
+
+\begin_layout Plain Layout
+
+	return lena < lenb ? -1 : lena > lenb;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of sort.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

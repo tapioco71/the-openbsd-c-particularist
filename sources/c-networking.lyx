@@ -1,0 +1,4028 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass memoir
+\use_default_options true
+\master the-openbsd-c-particularist.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family sfdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1.7cm
+\topmargin 1cm
+\rightmargin 1.5cm
+\bottommargin 1.2cm
+\headheight 1cm
+\headsep 1cm
+\footskip 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:networking"
+
+\end_inset
+
+Networking.
+\end_layout
+
+\begin_layout Standard
+\align right
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "50col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:addresses"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:translating-hostnames-into-network-numbers"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:obtaining-port-numbers"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:network-byte-order"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:networking-system-calls"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ provides an extensive facility for interprocess communication
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+interprocess communication
+\end_layout
+
+\end_inset
+
+ between processes running on different machines.
+ This is done using the 
+\shape italic
+Transmission Control Protocol and Internet Protocol
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+Transmission Control Protocol and Internet Protocol
+\end_layout
+
+\end_inset
+
+
+\shape default
+, 
+\shape italic
+TCP/IP
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+TCP/IP
+\end_layout
+
+\end_inset
+
+
+\shape default
+, as specified by the 
+\shape italic
+Defence Advanced Research Project Agency
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+Defence Advanced Research Project Agency
+\end_layout
+
+\end_inset
+
+
+\shape default
+, 
+\shape italic
+DARPA
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+DARPA
+\end_layout
+
+\end_inset
+
+
+\shape default
+, for use on their international network, the ARPANET
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+ARPANET
+\end_layout
+
+\end_inset
+
+.
+ The networking facilities is based on the socket mechanism and work in
+ much the same way as the interprocess communication facility discussed
+ in Chapter 11, 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "chap:interprocess-communication"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Rather than using the UNIX domain, however, the networking facilities operate
+ in the Internet domain.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:addresses"
+
+\end_inset
+
+Addresses.
+\end_layout
+
+\begin_layout Standard
+In the UNIX domain
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+UNIX domain
+\end_layout
+
+\end_inset
+
+, the address of a program is specified by using a standard UNIX path name
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+UNIX path name
+\end_layout
+
+\end_inset
+
+.
+ In the 
+\shape italic
+Internet domain
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+Internet domain
+\end_layout
+
+\end_inset
+
+
+\shape default
+, however, this is not viable for two reasons:
+\end_layout
+
+\begin_layout Itemize
+first, standard path names do not provide any method of specifying which
+ computer a program is located on;
+\end_layout
+
+\begin_layout Itemize
+second, not all the computers connected to a network will necessarily be
+ running OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ or another UNIX-like operating system.
+\end_layout
+
+\begin_layout Standard
+\noindent
+The addresses used in the Internet domain
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Internet domain
+\end_layout
+
+\end_inset
+
+ consist of two numbers.
+ The first number is a 32-bit 
+\shape italic
+internetwork number
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+internetwork number
+\end_layout
+
+\end_inset
+
+
+\shape default
+ of the computer which the program to be accessed reside on.
+ Each machine on a network, whether it be the global ARPANET
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+ARPANET
+\end_layout
+
+\end_inset
+
+ or simply a 
+\shape italic
+local-area network
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+local-area network
+\end_layout
+
+\end_inset
+
+
+\shape default
+, has a unique internetwork number
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+internetwork number
+\end_layout
+
+\end_inset
+
+.
+ It should be noted here that although a network number functions as the
+ name of a machine, it is not the same thing as the 
+\shape italic
+hostname
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+hostname
+\end_layout
+
+\end_inset
+
+
+\shape default
+ of a machine.
+ A hostname
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+hostname
+\end_layout
+
+\end_inset
+
+ is usually a text string, such as 
+\begin_inset Quotes eld
+\end_inset
+
+intrepid.ecn.purdue.edu
+\begin_inset Quotes erd
+\end_inset
+
+ or 
+\begin_inset Quotes eld
+\end_inset
+
+sri-nic.arpa
+\begin_inset Quotes erd
+\end_inset
+
+ and is not easily used as a network address because it does not give any
+ information about how to access the machine itself.
+ Because the same host can reside on more than one network, it is possible
+ for a single hostname
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+hostname
+\end_layout
+
+\end_inset
+
+ to be associated with several network numbers.
+ Each network number specifies to the operating system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+operating system
+\end_layout
+
+\end_inset
+
+ how to reach the machine by using a different network path.
+ The second number making up an Internet domain address
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Internet domain address
+\end_layout
+
+\end_inset
+
+ is a 16-bit 
+\shape italic
+port number
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+port number
+\end_layout
+
+\end_inset
+
+
+\shape default
+.
+ Each networking program on a machine uses a separate port number, the port
+ number
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+port number
+\end_layout
+
+\end_inset
+
+ is somewhat similar to the path name used in the UNIX domain.
+ For example, the ssh
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+ssh
+\end_layout
+
+\end_inset
+
+ program uses port number 22 and the ftp
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+ftp
+\end_layout
+
+\end_inset
+
+ file transfer server uses port number 21
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+/etc/services
+\shape default
+ for the list of ports and their associated service/program.
+\end_layout
+
+\end_inset
+
+.
+ Thus a program wishing to connect to the file transfer server residing
+ on the machine with network number 12345 would specify the Internet address
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Internet address
+\end_layout
+
+\end_inset
+
+ (12345, 21).
+ Without using port numbers, it would be difficult for any machine to run
+ more than one network at a time.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:translating-hostnames-into-network-numbers"
+
+\end_inset
+
+Translating Hostnames Into Network Numbers.
+\end_layout
+
+\begin_layout Standard
+As mentioned in the previous section, a hostname cannot function as a network
+ address; it must be converted to a network number.
+ The relationships between hostnames and network numbers are stored in the
+ text file /etc/hosts.
+ To translate hostnames into network numbers, the gethostbyname library
+ routine is used.
+ This routine takes a single argument, a character string containing the
+ name of the host to be looked up.
+ It returns a pointer to a structure of type hostent, as defined in the
+ include file 
+\family typewriter
+<netdb.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<netdb.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+:
+\begin_inset listings
+lstparams "language=C,breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:hostent-struct"
+
+\end_inset
+
+The hostent structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct  hostent {
+\end_layout
+
+\begin_layout Plain Layout
+
+	char *h_name;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char **h_aliases;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int h_addrtype;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int h_length;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char **h_addr_list;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#define h_addr h_addr_list[ 0 ]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+The members of this structure are:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+h_name
+\family default
+ official name of the host;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+h_aliases
+\family default
+ a NULL-terminated array of alternate names for the host;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+h_addrtype
+\family default
+ the type of address being returned;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+h_length
+\family default
+ the length, in bytes, of the address;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+h_addr_list
+\family default
+ a NULL-terminated array of network addresses for the host.
+ Host addresses are returned in network byte order;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+h_addr
+\family default
+ the first address in h_addr_list; this is for backward compatibility.
+\end_layout
+
+\begin_layout Standard
+\noindent
+The 
+\family typewriter
+h_addr_list
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+h_addr_list
+\end_layout
+
+\end_inset
+
+
+\family default
+ element of this structure contains all the network numbers associated with
+ the hostname.
+ The 
+\family typewriter
+h_addr
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+h_addr
+\end_layout
+
+\end_inset
+
+
+\family default
+ 
+\begin_inset Quotes eld
+\end_inset
+
+element
+\begin_inset Quotes erd
+\end_inset
+
+ is for backward compatibility, but is still often used in programs that
+ don't really care which network number they use to access a machine.
+ If the hostname
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+hostname
+\end_layout
+
+\end_inset
+
+ cannot be found in the database, the constant 
+\family typewriter
+NULL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+NULL
+\end_layout
+
+\end_inset
+
+
+\family default
+ is returned.
+ Another library routine 
+\family typewriter
+gethostbyaddr
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+gethostbyaddr
+\end_layout
+
+\end_inset
+
+
+\family default
+, exists to look up network numbers and obtain the hostname associated with
+ them.
+ It also returns a pointer to a structure of type 
+\family typewriter
+hostent
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+hostent
+\end_layout
+
+\end_inset
+
+
+\family default
+; the 
+\family typewriter
+h_name
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+h_name
+\end_layout
+
+\end_inset
+
+
+\family default
+ field of this structure will contain the hostname
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+hostname
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+The 
+\family typewriter
+gethostbyname
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+gethostbyname
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+gethostbyaddr
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+gethostbyaddr
+\end_layout
+
+\end_inset
+
+
+\family default
+ Library Routines.
+\end_layout
+
+\begin_layout Standard
+\noindent
+The 
+\family typewriter
+gethostbyname
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+gethostbyname
+\end_layout
+
+\end_inset
+
+
+\family default
+ function return a pointer to an object of type 
+\family typewriter
+struct hostent
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+struct hostent
+\end_layout
+
+\end_inset
+
+
+\family default
+ describing an Internet host referenced by the first argument.
+ 
+\family typewriter
+gethostbyaddr
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+gethostbyaddr
+\end_layout
+
+\end_inset
+
+
+\family default
+ takes three argument.
+ The first argument is a string containing the Internet address of the host,
+ with length in the second argument and address family in the third argument.
+ The 
+\family typewriter
+hostent
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+hostent
+\end_layout
+
+\end_inset
+
+
+\family default
+ structure contains either information obtained from a name server, broken-out
+ fields from a line in 
+\shape italic
+/etc/hosts
+\shape default
+ or database entries supplied by the 
+\shape italic
+yp
+\shape default
+(8) system.
+ 
+\shape italic
+resolv.conf
+\shape default
+(5) describes how the particular database is chosen.
+ The function 
+\family typewriter
+gethostbyname
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+gethostbyname
+\end_layout
+
+\end_inset
+
+
+\family default
+ will search for the named host in the current domain and its parents using
+ the search lookup semantics detailed in 
+\shape italic
+resolv.conf
+\shape default
+(5) and 
+\shape italic
+hostname
+\shape default
+(7).
+ The 
+\family typewriter
+gethostbyaddr
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+gethostbyaddr
+\end_layout
+
+\end_inset
+
+
+\family default
+ function will search for the specified address of length len in the address
+ family af.
+ The only address family supported is 
+\family typewriter
+AF_INET
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+AF_INET
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:hostent"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows a program retrieving host informations from the hostname databases.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:hostent"
+
+\end_inset
+
+hostent - program to demonstrate the usage of host database.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* File hostent.c.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <errno.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <unistd.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <netdb.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* hostent program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#define FOREVER for(;;)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Function prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int i;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char **alias;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct hostent *host;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Check the arguments.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(argc == 2) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		/* Get the specified host from the database.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+		if((host = gethostbyname(argv[ 1 ])) != NULL) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("official host name: %s
+\backslash
+n", host -> h_name);
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("alias list: ");
+\end_layout
+
+\begin_layout Plain Layout
+
+			alias = host -> h_aliases;
+\end_layout
+
+\begin_layout Plain Layout
+
+			while(*alias)
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("%s ", *alias++);
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("address type: %d
+\backslash
+n", host -> h_addrtype);
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("addresses: ");
+\end_layout
+
+\begin_layout Plain Layout
+
+			for(i = 0; i < host -> h_length; i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("0x%0.8x ", host -> h_addr_list[ i ]);
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+			ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+		} else
+\end_layout
+
+\begin_layout Plain Layout
+
+			fprintf(stderr, "Host %s not found in hosts database.
+\backslash
+n", argv[ 1 ]);
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else
+\end_layout
+
+\begin_layout Plain Layout
+
+		fprintf(stderr, "Usage hostent <hostname>
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of hostent.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:obtaining-port-numbers"
+
+\end_inset
+
+Obtaining Port Numbers.
+\end_layout
+
+\begin_layout Standard
+Most network services, file transfer, secure login, etc., programs usually
+ use standard 
+\begin_inset Quotes eld
+\end_inset
+
+well-known
+\begin_inset Quotes erd
+\end_inset
+
+ port numbers – that is, port numbers which are the same everywhere and
+ are set forth in the specifications of the protocols which use them.
+ This enables a client program on one machines to contact a server program
+ on any other machine without having to guess at what port the server resides
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Sometimes ports are choosen randomly between client and server for security
+ purpose.
+\end_layout
+
+\end_inset
+
+.
+ Port numbers for 
+\shape italic
+well-known
+\shape default
+ services are listed, along with their service names, in the text file 
+\shape italic
+/etc/services
+\shape default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+/etc/services
+\end_layout
+
+\end_inset
+
+.
+ The fields of one line of this file are contained in the servent structure
+ defined in 
+\family typewriter
+<netdb.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<netdb.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:servent-struct"
+
+\end_inset
+
+The servent structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct  servent {
+\end_layout
+
+\begin_layout Plain Layout
+
+	char *s_name;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char **s_aliases;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int s_port;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char *s_proto;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+The members of this structure are:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+s_name
+\family default
+ the official name of the service;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+s_aliases
+\family default
+ a null-terminated list of alternate names for the service;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+s_port
+\family default
+ the port number at which the service resides.
+ Port numbers are returned in network byte order;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\family typewriter
+s_proto
+\family default
+ the name of the protocol to use when contacting the service.
+\end_layout
+
+\begin_layout Standard
+\noindent
+To get the port and service informations we use two library routine: 
+\family typewriter
+getservbyname
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getservbyname
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+getservbyport
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getservbyport
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+\end_layout
+
+\begin_layout Subsection
+The 
+\family typewriter
+getservbyname
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getservbyname
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+getservbyport
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getservbyport
+\end_layout
+
+\end_inset
+
+
+\family default
+ Library Calls.
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+getservbyname
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getservbyname
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+getservbyport
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getservbyport
+\end_layout
+
+\end_inset
+
+
+\family default
+ functions each return a pointer to an object with the servent structure,
+ described in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:servent-struct"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, containing the broken-out fields of a line in the network services database,
+ 
+\shape italic
+/etc/services
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+/etc/services
+\end_layout
+
+\end_inset
+
+
+\shape default
+.
+ The 
+\family typewriter
+getservbyname
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getservbyname
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+getservbyport
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getservbyport
+\end_layout
+
+\end_inset
+
+
+\family default
+ functions sequentially search from the beginning of the file until a matching
+ protocol name or port number, specified in network byte order, is found,
+ or until 
+\family typewriter
+EOF
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+EOF
+\end_layout
+
+\end_inset
+
+
+\family default
+ is encountered.
+ If a non-null protocol name is also supplied, searches must also match
+ the protocol.
+ The structure must be zero-filled before it is used and should be considered
+ opaque for the sake of portability.
+ The 
+\family typewriter
+getservbyport
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getservbyport
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+getservbyname
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getservbyname
+\end_layout
+
+\end_inset
+
+
+\family default
+ functions return a pointer to a servent structure on success or a 
+\family typewriter
+NULL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+NULL
+\end_layout
+
+\end_inset
+
+
+\family default
+ pointer if end-of-file is reached or an error occurs.
+ 
+\family typewriter
+getservbyname
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getservbyname
+\end_layout
+
+\end_inset
+
+
+\family default
+ takes two argument: first argument is a string containing the service name,
+ the second argument the protocol name.
+ 
+\family typewriter
+getservbyport
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getservbyport
+\end_layout
+
+\end_inset
+
+
+\family default
+ takes two arguments too: the first argument is the port number, the second
+ argument is the protocol name.
+ Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:servent"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the usage for service database querying.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:servent"
+
+\end_inset
+
+servent - program to demonstrate the usage of serfvices database.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* File servent.c.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <errno.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <unistd.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <netdb.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* servent program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#define FOREVER for(;;)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Function prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int i;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char **alias, *servicename, *protocolname;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct servent *service;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Check the arguments.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(argc < 2)
+\end_layout
+
+\begin_layout Plain Layout
+
+		fprintf(stderr, "Usage servent <service name> <protocol name>
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+	else {
+\end_layout
+
+\begin_layout Plain Layout
+
+		if (argc == 3) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			servicename = argv[ 1 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+			protocolname = argv[ 2 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+		} else if(argc == 2) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			servicename = argv[ 1 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+			protocolname = argv[ 2 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+		if((service = getservbyname(servicename, protocolname)) != NULL) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("official service name: %s
+\backslash
+n", service -> s_name);
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("alias list: ");
+\end_layout
+
+\begin_layout Plain Layout
+
+			alias = service -> s_aliases;
+\end_layout
+
+\begin_layout Plain Layout
+
+			while(*alias)
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("%s ", *alias++);
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("port: 0x%0.4x
+\backslash
+n", htons(service -> s_port));
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("protocol: %s
+\backslash
+n", service -> s_proto);
+\end_layout
+
+\begin_layout Plain Layout
+
+			ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+		} else
+\end_layout
+
+\begin_layout Plain Layout
+
+			fprintf(stderr, "Service %s with protocol %s not found in services database.
+\backslash
+n", argv[ 1 ], argv[ 2 ]);
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of hostent.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:network-byte-order"
+
+\end_inset
+
+Network Byte Order.
+\end_layout
+
+\begin_layout Standard
+Before discussing the system calls used for networking, it is necessary
+ to discuss the 
+\shape italic
+byte order
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+byte order
+\end_layout
+
+\end_inset
+
+
+\shape default
+ of numbers used by the networking software.
+ The method in which integers are stored in computers is called 
+\shape italic
+endiannes
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+endiannes
+\end_layout
+
+\end_inset
+
+
+\shape default
+ and varies from vendor to vendor.
+ Some computers store integers with the most significant bit in the lowest
+ address – and are called 
+\shape italic
+big endian
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+big endian
+\end_layout
+
+\end_inset
+
+
+\shape default
+, while others store them with the most significant bit in the highest address
+ – and they are called 
+\shape italic
+little endian
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+little endian
+\end_layout
+
+\end_inset
+
+
+\shape default
+.
+ Because great chaos would result if two machines using different byte orders
+ were try to communicate directly, the network software requires that all
+ data be exchanged in 
+\shape italic
+network byte order
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+network byte order
+\end_layout
+
+\end_inset
+
+
+\shape default
+.
+ In order to convert integers to network byte order
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+network byte order
+\end_layout
+
+\end_inset
+
+, two library routines, 
+\family typewriter
+htons
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+htons
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+htonl
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+htonl
+\end_layout
+
+\end_inset
+
+
+\family default
+, are provided.
+ These convert short and long integers, respectively, from 
+\shape italic
+host type order
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+host type order
+\end_layout
+
+\end_inset
+
+
+\shape default
+ to network byte order
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+network byte order
+\end_layout
+
+\end_inset
+
+.
+ Likewise, two other routines 
+\family typewriter
+htohs
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+htohs
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+ntohl
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ntohl
+\end_layout
+
+\end_inset
+
+
+\family default
+, exist to convert short and long integers from network byte order
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+network byte order
+\end_layout
+
+\end_inset
+
+ to host byte order
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+host byte order
+\end_layout
+
+\end_inset
+
+.
+ The 
+\family typewriter
+gethostbyname
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+gethostbyname
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+getservbyname
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+getservbyname
+\end_layout
+
+\end_inset
+
+
+\family default
+ routines return all data in their structures in network byte order
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+network byte order
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:networking-system-calls"
+
+\end_inset
+
+Networking System Calls.
+\end_layout
+
+\begin_layout Standard
+The system calls used to perform networking tasks are the same system calls
+ used for interprocess communication
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+interprocess communication
+\end_layout
+
+\end_inset
+
+, described in Chapter 11, 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "chap:interprocess-communication"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ There are a few differences in the parameters passed to these system calls,
+ however:
+\end_layout
+
+\begin_layout Itemize
+the first parameter to 
+\family typewriter
+socket
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+socket
+\end_layout
+
+\end_inset
+
+
+\family default
+ is now given as 
+\family typewriter
+AF_INET
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+AF_INET
+\end_layout
+
+\end_inset
+
+
+\family default
+, which specifies the Internet domain
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Internet domain
+\end_layout
+
+\end_inset
+
+.
+ The second parameter may still be either 
+\family typewriter
+SOCK_STREAM
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SOCK_STREAM
+\end_layout
+
+\end_inset
+
+
+\family default
+ or 
+\family typewriter
+SOCK_DGRAM
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+SOCK_DGRAM
+\end_layout
+
+\end_inset
+
+
+\family default
+;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+the type of 
+\family typewriter
+sackaddr
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+sackaddr
+\end_layout
+
+\end_inset
+
+
+\family default
+ structure used with 
+\family typewriter
+accept
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+accept
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+bind
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+bind
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+connect
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+connect
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+sendto
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+sendto
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+recvfrom
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+recvfrom
+\end_layout
+
+\end_inset
+
+
+\family default
+ is now of type 
+\family typewriter
+sockaddr_in
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+sockaddr_in
+\end_layout
+
+\end_inset
+
+
+\family default
+ and is declared in the include file 
+\family typewriter
+<netinet/in.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<netinet/in.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:sockaddr-struct"
+
+\end_inset
+
+The sockaddr structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct sockaddr {
+\end_layout
+
+\begin_layout Plain Layout
+
+	__uint8_t sa_len;
+\end_layout
+
+\begin_layout Plain Layout
+
+	sa_family_t sa_family;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char sa_data[ 14 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Where:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family typewriter
+sa_len
+\family default
+ total length;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family typewriter
+sa_family
+\family default
+ address family;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\noindent
+
+\family typewriter
+sa_data
+\family default
+ actually longer; address value.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+the 
+\family typewriter
+sin_port
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+sin_port
+\end_layout
+
+\end_inset
+
+
+\family default
+ element of the structure 
+\family typewriter
+sockaddr_in
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+sockaddr_in
+\end_layout
+
+\end_inset
+
+
+\family default
+ should contain the port number, in network byte order
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+network byte order
+\end_layout
+
+\end_inset
+
+, to be connect to.
+ The 
+\family typewriter
+sin_addr
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+sin_addr
+\end_layout
+
+\end_inset
+
+
+\family default
+ element should contain the network number
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+network number
+\end_layout
+
+\end_inset
+
+, in network byte order
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+network byte order
+\end_layout
+
+\end_inset
+
+, of the machine the port resides on;
+\end_layout
+
+\begin_layout Itemize
+two new system calls, 
+\family typewriter
+gethostname
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+gethostname
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+sethostname
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+sethostname
+\end_layout
+
+\end_inset
+
+
+\family default
+, can be used to obtain and set the name of the host the program is running
+ on respectively.
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+The 
+\family typewriter
+gethostname
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+gethostname
+\end_layout
+
+\end_inset
+
+
+\family default
+ function returns the standard hostname
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+hostname
+\end_layout
+
+\end_inset
+
+ for the current machine, as previously set by 
+\family typewriter
+sethostname
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+sethostname
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ The second argument specifies the size of the array pointed by the first
+ argument.
+ If insufficient space is provided, the returned name is truncated.
+ The returned name is always null-terminated.
+ If no space is provided, an error is returned.
+ 
+\family typewriter
+sethostname
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+sethostname
+\end_layout
+
+\end_inset
+
+
+\family default
+ sets the name of the host machine to be the first argument, which has length
+ specified in the second argument.
+ This call is restricted to the super-user
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+super-user
+\end_layout
+
+\end_inset
+
+ and is normally used only when the system is bootstrapped.
+ If the call succeeds, a value of 0 is returned.
+ If the call fails, a value of -1 is returned and an error code is placed
+ in the global variable 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:inet-client"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:inet-server"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ show a small server and client program, respectively.
+ These example programs are from the Chapter 11, 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "chap:interprocess-communication"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ in listings 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:client"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:server"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ 
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:inet-client"
+
+\end_inset
+
+inet-client - a client to demonstrate internet domain sockets.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* File inet-client.c */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdint.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stddef.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <inttypes.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <unistd.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/types.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/socket.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <netinet/in.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <arpa/inet.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* inet-client program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#define SERVER_PORT 10240
+\end_layout
+
+\begin_layout Plain Layout
+
+#define FOREVER for(;;)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+long int client(struct sockaddr_in *);
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int res;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct sockaddr_in servaddr;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* */
+\end_layout
+
+\begin_layout Plain Layout
+
+	servaddr.sin_family = AF_INET;
+\end_layout
+
+\begin_layout Plain Layout
+
+	servaddr.sin_port = htons(SERVER_PORT);
+\end_layout
+
+\begin_layout Plain Layout
+
+	res = inet_pton(AF_INET, "127.0.0.1", &servaddr.sin_addr);
+\end_layout
+
+\begin_layout Plain Layout
+
+	ret = client(&servaddr);
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/*
+\end_layout
+
+\begin_layout Plain Layout
+
+ * client -- the client function.
+\end_layout
+
+\begin_layout Plain Layout
+
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+long int client(struct sockaddr_in *sa)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int sockfd;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char *buff[ BUFSIZ ];
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(sa) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		if((sockfd = socket(AF_INET, SOCK_STREAM, 0)) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("Created socket: %d
+\backslash
+n", sockfd);
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(connect(sockfd, (struct sockaddr *) sa, sizeof(struct sockaddr_in))
+ >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("Connected to 0x%0.8x, port 0x%0.4x
+\backslash
+n", sa -> sin_addr,        ntohs(sa -> sin_port));
+\end_layout
+
+\begin_layout Plain Layout
+
+				if(recv(sockfd, (void *) buff, BUFSIZ, MSG_WAITALL) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+					printf("Received data from server: %s
+\backslash
+n", buff);
+\end_layout
+
+\begin_layout Plain Layout
+
+					ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+				} else
+\end_layout
+
+\begin_layout Plain Layout
+
+					perror("recv");
+\end_layout
+
+\begin_layout Plain Layout
+
+			} else
+\end_layout
+
+\begin_layout Plain Layout
+
+				perror("connect");
+\end_layout
+
+\begin_layout Plain Layout
+
+			close(sockfd);
+\end_layout
+
+\begin_layout Plain Layout
+
+		} else
+\end_layout
+
+\begin_layout Plain Layout
+
+			perror("socket");
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else
+\end_layout
+
+\begin_layout Plain Layout
+
+		fprintf(stderr, "NULL address passed.
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+	return ret;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of inet-client.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:inet-server"
+
+\end_inset
+
+inet-server - a server to demonstrate internet domain sockets.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* File inet-server.c */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdint.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stddef.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <inttypes.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <unistd.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <time.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <errno.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/time.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/types.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/socket.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <netinet/in.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <arpa/inet.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* inet-server program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#define SERVER_PORT 10240
+\end_layout
+
+\begin_layout Plain Layout
+
+#define FOREVER for(;;)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+long int server(struct sockaddr_in *);
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct sockaddr_in servaddr;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* clear the address structures in memory.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	bzero(&servaddr, sizeof(struct sockaddr_in));
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* setup structures.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	servaddr.sin_family = AF_INET;
+\end_layout
+
+\begin_layout Plain Layout
+
+	servaddr.sin_addr.s_addr = htonl(INADDR_ANY);
+\end_layout
+
+\begin_layout Plain Layout
+
+	servaddr.sin_port = htons(SERVER_PORT);
+\end_layout
+
+\begin_layout Plain Layout
+
+	ret = server(&servaddr);
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/*
+\end_layout
+
+\begin_layout Plain Layout
+
+ * client -- the client function.
+\end_layout
+
+\begin_layout Plain Layout
+
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+long int server(struct sockaddr_in *sa)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	char *buff;
+\end_layout
+
+\begin_layout Plain Layout
+
+	int listenfd, connfd;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct timeval now;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct sockaddr_in cliaddr;
+\end_layout
+
+\begin_layout Plain Layout
+
+	socklen_t cliaddrlen = sizeof(struct sockaddr_in);
+\end_layout
+
+\begin_layout Plain Layout
+
+	pid_t pid;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(sa) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		bzero(&cliaddr, sizeof(struct sockaddr_in));
+\end_layout
+
+\begin_layout Plain Layout
+
+		if((listenfd = socket(AF_INET, SOCK_STREAM, 0)) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(bind(listenfd,					
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+				(struct sockaddr *) sa,			
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+				sizeof(struct sockaddr_in)) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("Waiting to accept a connection...
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+				if(listen(listenfd, 0) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+					FOREVER {
+\end_layout
+
+\begin_layout Plain Layout
+
+						cliaddrlen = sizeof(cliaddr);
+\end_layout
+
+\begin_layout Plain Layout
+
+						if((connfd = accept(listenfd,		      
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+							(struct sockaddr *) &cliaddr, 
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+							&cliaddrlen)) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+							printf("Accepted connection from 0x%0.8x, port 0x%0.4x
+\backslash
+n", 
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+								cliaddr.sin_addr,					
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+								ntohs(cliaddr.sin_port));
+\end_layout
+
+\begin_layout Plain Layout
+
+							if((pid = fork()) == 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+								close(listenfd);
+\end_layout
+
+\begin_layout Plain Layout
+
+								if(gettimeofday(&now, NULL) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+									buff = ctime(&now.tv_sec);
+\end_layout
+
+\begin_layout Plain Layout
+
+									if(buff) {
+\end_layout
+
+\begin_layout Plain Layout
+
+										if(send(connfd,				
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+											(void *) buff,			
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+											strnlen(buff, BUFSIZ), 0) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+											ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+											break;
+\end_layout
+
+\begin_layout Plain Layout
+
+										} else {
+\end_layout
+
+\begin_layout Plain Layout
+
+											perror("send");
+\end_layout
+
+\begin_layout Plain Layout
+
+											break;
+\end_layout
+
+\begin_layout Plain Layout
+
+										}
+\end_layout
+
+\begin_layout Plain Layout
+
+									} else {
+\end_layout
+
+\begin_layout Plain Layout
+
+										fprintf(stderr, "empty time string");
+\end_layout
+
+\begin_layout Plain Layout
+
+										break;
+\end_layout
+
+\begin_layout Plain Layout
+
+									}
+\end_layout
+
+\begin_layout Plain Layout
+
+								} else {
+\end_layout
+
+\begin_layout Plain Layout
+
+									perror("gettimeofday");
+\end_layout
+
+\begin_layout Plain Layout
+
+									break;
+\end_layout
+
+\begin_layout Plain Layout
+
+								}
+\end_layout
+
+\begin_layout Plain Layout
+
+							}
+\end_layout
+
+\begin_layout Plain Layout
+
+							close(connfd);
+\end_layout
+
+\begin_layout Plain Layout
+
+						} else {
+\end_layout
+
+\begin_layout Plain Layout
+
+							perror("accept");
+\end_layout
+
+\begin_layout Plain Layout
+
+							break;
+\end_layout
+
+\begin_layout Plain Layout
+
+						}
+\end_layout
+
+\begin_layout Plain Layout
+
+					}
+\end_layout
+
+\begin_layout Plain Layout
+
+				} else
+\end_layout
+
+\begin_layout Plain Layout
+
+					perror("listen");
+\end_layout
+
+\begin_layout Plain Layout
+
+			} else
+\end_layout
+
+\begin_layout Plain Layout
+
+				perror("bind");
+\end_layout
+
+\begin_layout Plain Layout
+
+		} else
+\end_layout
+
+\begin_layout Plain Layout
+
+			perror("socket");
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else
+\end_layout
+
+\begin_layout Plain Layout
+
+		fprintf(stderr, "NULL address passed.
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+	return ret;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of inet-server.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

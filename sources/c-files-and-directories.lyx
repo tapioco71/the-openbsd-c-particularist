@@ -1,0 +1,7627 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass memoir
+\use_default_options true
+\master the-openbsd-c-particularist.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family sfdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1.7cm
+\topmargin 1cm
+\rightmargin 1.5cm
+\bottommargin 1.2cm
+\headheight 1cm
+\headsep 1cm
+\footskip 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 2
+\paperpagestyle plain
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:files-directories"
+
+\end_inset
+
+Files and Directories.
+\end_layout
+
+\begin_layout Standard
+\align right
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "50col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:file-system-concepts"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:determining-the-accessibility-of-a-file"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:getting-information-from-an-i-node"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:reading-directories"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:modifying-file-attributes"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:miscellaneous-file-system-routines"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+
+\shape italic
+Files
+\shape default
+ and 
+\shape italic
+directories
+\shape default
+ forms the interface the system presents to help the user to organize, retrieve
+ and store informations.
+ These are part of an entity called 
+\shape italic
+file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+file system
+\end_layout
+
+\end_inset
+
+
+\shape default
+.
+ Other parts of this interface are the system calls to perform particular
+ operations to properly handle these informations.
+ For example: delete, rename, move, truncate a file, reaname a directory,
+ etc..
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:file-system-concepts"
+
+\end_inset
+
+File System Concepts.
+\end_layout
+
+\begin_layout Standard
+Before describing the many system calls and library routines available for
+ manipulating files and directories, it is necessary to provide a brief
+ overview of the OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ 
+\shape italic
+file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+file system
+\end_layout
+
+\end_inset
+
+
+\shape default
+: FFS
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+FFS
+\end_layout
+
+\end_inset
+
+ the Fast File System
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Fast File System
+\end_layout
+
+\end_inset
+
+.
+ This is an improved version of the 4.4BSD File System
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+4.4BSD File System
+\end_layout
+
+\end_inset
+
+ sometimes referred as UFS, UNIX File System.
+ FFS
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+FFS
+\end_layout
+
+\end_inset
+
+ is designed to be fast, reliable and able to handle the most common situations
+ effectively.
+ By default, during installation, OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ tunes FFS
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+FFS
+\end_layout
+
+\end_inset
+
+ for general use, but the system administator can optimize it to fit the
+ needs - whether one needs to store a very huge amount of tiny files or
+ a some 30 GB files.
+ The administrator doesn't need to know much about FFS
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+FFS
+\end_layout
+
+\end_inset
+
+ internals, but as a programmer, the reader should understand 
+\shape italic
+blocks
+\shape default
+, 
+\shape italic
+fragments
+\shape default
+ and 
+\shape italic
+i-nodes
+\shape default
+.
+ OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ can also use these file systems too:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+cd9660
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+cd9660
+\end_layout
+
+\end_inset
+
+ for iso 9660 formated cdrom;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+ext2fs
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+ext2fs
+\end_layout
+
+\end_inset
+
+ ext2 linux file systems;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+mfs
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+mfs
+\end_layout
+
+\end_inset
+
+ memory file system;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+msdos
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+msdos
+\end_layout
+
+\end_inset
+
+ Microsoft msdos filesystem;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+nfs
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+nfs
+\end_layout
+
+\end_inset
+
+ UNIX network filesystem;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+ntfs
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+ntfs
+\end_layout
+
+\end_inset
+
+ Microsoft Windows NT file system;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+tmpfs
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+tmpfs
+\end_layout
+
+\end_inset
+
+ Temporary file system.
+\end_layout
+
+\begin_layout Standard
+A file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ is described by its 
+\shape italic
+super-block
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+super-block
+\end_layout
+
+\end_inset
+
+
+\shape default
+, which in turn describes the cylinder groups.
+ The super-block
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+super-block
+\end_layout
+
+\end_inset
+
+ is critical data and is replicated in each cylinder group to protect against
+ catastrophic loss.
+ This is done at file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ creation time and the critical super-block
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+super-block
+\end_layout
+
+\end_inset
+
+ data does not change, so the copies need not be referenced further unless
+ disaster strikes.
+ Addresses stored in i-nodes are capable of addressing fragments of 
+\shape italic
+blocks
+\shape default
+.
+ File system blocks of at most size 
+\family typewriter
+MAXBSIZE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+MAXBSIZE
+\end_layout
+
+\end_inset
+
+
+\family default
+ can be optionally broken into 2, 4, or 8 pieces, each of which is addressable;
+ these pieces may be 
+\family typewriter
+DEV_BSIZE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DEV_BSIZE
+\end_layout
+
+\end_inset
+
+
+\family default
+, or some multiple of a 
+\family typewriter
+DEV_BSIZE
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DEV_BSIZE
+\end_layout
+
+\end_inset
+
+
+\family default
+ unit.
+ Large files consist of exclusively large data blocks.
+ To avoid undue wasted disk space, the last data block of a small file is
+ allocated only as many fragments of a large block as are necessary.
+ The file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ format retains only a single pointer to such a fragment, which is a piece
+ of a single large block that has been divided.
+ The size of such a fragment is determinable from information in the i-node
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+i-node
+\end_layout
+
+\end_inset
+
+, using the 
+\family typewriter
+blksize
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+blksize
+\end_layout
+
+\end_inset
+
+(fs, ip, lbn)
+\family default
+ macro.
+ The file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ records space availability at the fragment level; to determine block availabili
+ty, aligned fragments are examined.
+ The 
+\shape italic
+root i-node
+\shape default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+root i-node
+\end_layout
+
+\end_inset
+
+ is the root of the file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+.
+ i-node 0 can't be used for normal purposes and historically bad blocks
+ were linked to i-node 1
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+i-node 1 is no longer used for this purpose; however, numerous dump tapes
+ make this assumption, so we are stuck with it.
+\end_layout
+
+\end_inset
+
+.
+ Thus the root i-node is 2.
+ The 
+\family typewriter
+fs_minfree
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fs_minfree
+\end_layout
+
+\end_inset
+
+
+\family default
+ element gives the minimum acceptable percentage of file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ blocks that may be free.
+ If the freelist drops below this level, only the super-user
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+super-user
+\end_layout
+
+\end_inset
+
+ may continue to allocate blocks.
+ The 
+\family typewriter
+fs_minfree
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fs_minfree
+\end_layout
+
+\end_inset
+
+
+\family default
+ element may be set to 0 if no reserve of free blocks is deemed necessary,
+ although severe performance degradations will be observed if the file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ is run at greater than 95% full; thus the default value of 
+\family typewriter
+fs_minfree
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fs_minfree
+\end_layout
+
+\end_inset
+
+
+\family default
+ is 5%.
+ Empirically the best trade-off between block fragmentation and overall
+ disk utilization at a loading of 95% comes with a fragmentation of 8; thus
+ the default fragment size is an eighth of the block size.
+ The element 
+\family typewriter
+fs_optim
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fs_optim
+\end_layout
+
+\end_inset
+
+
+\family default
+ specifies whether the file system should try to minimize the time spent
+ allocating blocks (
+\family typewriter
+FS_OPTTIME
+\family default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+FS_OPTTIME
+\end_layout
+
+\end_inset
+
+), or if it should attempt to minimize the space fragmentation on the disk
+ (
+\family typewriter
+FS_OPTSPACE
+\family default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+FS_OPTSPACE
+\end_layout
+
+\end_inset
+
+).
+ If the value of 
+\family typewriter
+fs_minfree
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fs_minfree
+\end_layout
+
+\end_inset
+
+
+\family default
+ is less than 5%, then the file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ defaults to optimizing for space to avoid running out of full sized blocks.
+ If the value of 
+\family typewriter
+fs_minfree
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fs_minfree
+\end_layout
+
+\end_inset
+
+
+\family default
+ is greater than or equal to 5%, fragmentation is unlikely to be problematical,
+ and the file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ defaults to optimizing for time.
+\end_layout
+
+\begin_layout Subsection
+FFS Versions.
+\end_layout
+
+\begin_layout Standard
+The original FFS
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+FFS
+\end_layout
+
+\end_inset
+
+ was written in 1980 and included hard-coded limits that were ample for
+ the day.
+ File systems could have up to 
+\begin_inset Formula $2^{30}$
+\end_inset
+
+ blocks or just under a terabyte (TB).
+ In 1983 a 1 TB file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ was unthinkable.
+ In 2024, 1 TB drives are the smaller and cheaper disk on the market.
+ For larger file systems, we have FFS version 2.
+ FFS2
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+FFS2
+\end_layout
+
+\end_inset
+
+ can support file systems up to 8 zettabytes (ZB) and OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ supports FFS and FFS2.
+ The i386 and amd64 boot floppies support only FFS, not FFS2.
+ The installation CD, however, supports both.
+ Most machines that need to boot from floppy don't need FFS2
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+FFS2
+\end_layout
+
+\end_inset
+
+ and probably don't have a BIOS
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+BIOS
+\end_layout
+
+\end_inset
+
+ that can support 2 TB dives anyway.
+ The file system creation program 
+\shape italic
+newfs
+\shape default
+ is smart enough to use FFS2
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+FFS2
+\end_layout
+
+\end_inset
+
+ on file systems quite large to need it, so for most installations, the
+ administrator doesn't nee to worry about difference between FFS
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+FFS
+\end_layout
+
+\end_inset
+
+ and FFS2
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+FFS2
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Blocks, Fragments and i-nodes.
+\end_layout
+
+\begin_layout Standard
+Both FFS
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+FFS
+\end_layout
+
+\end_inset
+
+ and FFS2
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+FFS2
+\end_layout
+
+\end_inset
+
+ are managed through 
+\shape italic
+blocks
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+blocks
+\end_layout
+
+\end_inset
+
+
+\shape default
+, 
+\shape italic
+fragments
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+fragments
+\end_layout
+
+\end_inset
+
+
+\shape default
+ and 
+\shape italic
+i-nodes
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+i-nodes
+\end_layout
+
+\end_inset
+
+
+\shape default
+.
+ This arrangement isn't unique to FFS
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+FFS
+\end_layout
+
+\end_inset
+
+ and FFS2
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+FFS2
+\end_layout
+
+\end_inset
+
+; file systems such as NTFS
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+NTFS
+\end_layout
+
+\end_inset
+
+ use data blocks and index nodes too.
+ The indexing system used by each file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ is largely unique.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+blocks are sections of disk that contain data, Files are placed in one or
+ more blocks.
+ OpenBSD's FFS uses a default block size of 16 KB or eight times the fragment
+ size, whichever is smaller.
+ Not all files are even multiples of 16 KB, so leftover bits go in fragments;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+fragments is one-eighth of the block size or 2 KB by default.
+ A 20 KB file fills one block and two fragments;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+i-nodes index nodes, contain basic data about files, such as file's size,
+ permissions and the list of blocks that contain the file.
+ Collectively, the data in an i-node is known as metadata or data about
+ data.
+\end_layout
+
+\begin_layout Standard
+Additionally there are other data structures:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+super-blocks which are blocks that contain vital information about the file
+ system's size and specifications.
+ Super-blocks are so important that FFS makes many backup copies of them.
+ If one needs to meddle with superblocks there's an high chance to lost
+ the entire file system.
+\end_layout
+
+\begin_layout Subsection
+Ordinary Files.
+\end_layout
+
+\begin_layout Standard
+A 
+\shape italic
+file
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+file
+\end_layout
+
+\end_inset
+
+
+\shape default
+ contains whatever information a user, or the system itself, places in it.
+ Unlike other operating systems, no format is imposed on a regular file,
+ e.g.
+ sequential, random access, etc.
+ Instead a regular file is considered simply as a sequence of bytes and
+ these bytes could be read and write in any way the programmer wants.
+ Certain programs expect a file to be in a special format, so the C compiler
+ gcc
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+gcc
+\end_layout
+
+\end_inset
+
+ wants a source file to be in a specific format, in this case a C source
+ file, to produce an object file or an executable.
+ So the file format is not determined by the operating system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+operating system
+\end_layout
+
+\end_inset
+
+ but from the application programs that access the specific file
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file
+\end_layout
+
+\end_inset
+
+.
+ Directories provide the mapping between the names of files and the files
+ themselves, thus inducing a structure on the file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ as a whole.
+ A 
+\shape italic
+directory
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+directory
+\end_layout
+
+\end_inset
+
+
+\shape default
+ contains a number of files; it may also contain subdirectories which in
+ turn contain more files and more subdirectories.
+ A directory
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+directory
+\end_layout
+
+\end_inset
+
+ behaves exactly like an ordinary file
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file
+\end_layout
+
+\end_inset
+
+ when read, though it may not be written by unprivileged, non super-user,
+ programs.
+ The operating system maintains several directories for its own use; one
+ of these is the 
+\shape italic
+root
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+root
+\end_layout
+
+\end_inset
+
+
+\shape default
+ directory named with 
+\shape italic
+/
+\shape default
+.
+ All files in the file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ can be found by tracing a path through a chain of directories starting
+ at the root 
+\shape italic
+/
+\shape default
+ until the desired file is reached.
+ When the name of a file
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file
+\end_layout
+
+\end_inset
+
+ is specified to the system, it may be in the form of a 
+\shape italic
+path name
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+path name
+\end_layout
+
+\end_inset
+
+
+\shape default
+, which is a sequence of file names separated by slashes.
+ Any file name but the one following the last slash must be the name of
+ a directory
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+directory
+\end_layout
+
+\end_inset
+
+.
+ If the sequence begins with a slash, the search begins in the 
+\shape italic
+root directory
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+root directory
+\end_layout
+
+\end_inset
+
+
+\shape default
+; otherwise the search begins in the program's current directory.
+ As limiting cases we have:
+\end_layout
+
+\begin_layout Itemize
+the name 
+\begin_inset Quotes eld
+\end_inset
+
+/
+\begin_inset Quotes erd
+\end_inset
+
+ refers to the root directory
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+root directory
+\end_layout
+
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Itemize
+a null file name, e.g.
+ /a/b/, refers to the directory
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+directory
+\end_layout
+
+\end_inset
+
+ whose name precedes it;
+\end_layout
+
+\begin_layout Itemize
+two slashes together, 
+\begin_inset Quotes eld
+\end_inset
+
+//
+\begin_inset Quotes erd
+\end_inset
+
+, are interpreted as a single slash.
+\end_layout
+
+\begin_layout Standard
+\noindent
+Each directory
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+directory
+\end_layout
+
+\end_inset
+
+ always has at least two entries.
+ The name 
+\begin_inset Quotes eld
+\end_inset
+
+.
+\begin_inset Quotes erd
+\end_inset
+
+ in each directory
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+directory
+\end_layout
+
+\end_inset
+
+ refers to the directory
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+directory
+\end_layout
+
+\end_inset
+
+ itself.
+ Thus a program may read its current directory, without knowing its name,
+ by opening the file
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Quotes eld
+\end_inset
+
+.
+\begin_inset Quotes erd
+\end_inset
+
+.
+ By convention, the name 
+\begin_inset Quotes eld
+\end_inset
+
+..
+\begin_inset Quotes erd
+\end_inset
+
+ refers to the parent of the directory
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+directory
+\end_layout
+
+\end_inset
+
+ in which appears, that is, to the directory
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+directory
+\end_layout
+
+\end_inset
+
+ in which the current directory
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+current directory
+\end_layout
+
+\end_inset
+
+ was created.
+ A program may move from its current directory
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+current directory
+\end_layout
+
+\end_inset
+
+ to the root directory
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+root directory
+\end_layout
+
+\end_inset
+
+ by constantly changing its directory
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+directory
+\end_layout
+
+\end_inset
+
+ to 
+\begin_inset Quotes eld
+\end_inset
+
+..
+\begin_inset Quotes erd
+\end_inset
+
+.
+ As a limiting case, when in the root directory
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+root directory
+\end_layout
+
+\end_inset
+
+ the name 
+\begin_inset Quotes eld
+\end_inset
+
+..
+\begin_inset Quotes erd
+\end_inset
+
+ is a circular link
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+circular link
+\end_layout
+
+\end_inset
+
+ to the root
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+root
+\end_layout
+
+\end_inset
+
+.
+ As per 
+\shape italic
+man hier
+\shape default
+ the OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ file system contains more or less:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\shape italic
+/
+\shape default
+ root directory;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\shape italic
+/altroot/
+\shape default
+ alternate (backup) location for the root, 
+\begin_inset Quotes eld
+\end_inset
+
+/
+\begin_inset Quotes erd
+\end_inset
+
+, file system;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\shape italic
+/bin/
+\shape default
+ user utilities fundamental to both single and multi-user environments.
+ These programs are statically compiled and therefore do not depend on any
+ system libraries to run;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\shape italic
+/bsd
+\shape default
+ pure kernel executable, the operating system loaded into memory at boot-time;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\shape italic
+/bsd.mp
+\shape default
+ pure kernel executable for multiprocessor machines;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\shape italic
+/bsd.rd
+\shape default
+ installation kernel.
+ The built-in RAM disk contains utilities which can be run without an external
+ file system, so this kernel is useful for limited system maintenance too;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\shape italic
+/bsd.sp
+\shape default
+ pure kernel executable for single processor machines;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\shape italic
+/dev/
+\shape default
+ block and character device files;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+
+\shape italic
+/etc/
+\shape default
+ system configuration files and scripts;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\shape italic
+/home/
+\shape default
+ default location for user home directories;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+
+\shape italic
+_sysupgrade/
+\shape default
+ download location for 
+\shape italic
+sysupgrade
+\shape default
+;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\shape italic
+/mnt/
+\shape default
+ empty directory commonly used by system administrators as a temporary mount
+ point;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+
+\shape italic
+/root/
+\shape default
+ default home directory for the super-user;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\shape italic
+/sbin/
+\shape default
+ system programs and administration utilities fundamental to both single
+ and multi-user environments.
+ Most of these programs are statically compiled and therefore do not depend
+ on any system libraries to run;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\shape italic
+/tmp/
+\shape default
+ temporary files that are not preserved between system reboots.
+ Periodically cleaned by 
+\shape italic
+daily
+\shape default
+;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\shape italic
+/usr/
+\shape default
+ contains the majority of user utilities and applications;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+
+\shape italic
+/var/
+\shape default
+ multi-purpose log, temporary, transient, and spool files.
+\end_layout
+
+\begin_layout Subsection
+Special files.
+\end_layout
+
+\begin_layout Standard
+\noindent
+Special files are one of the most unusual aspects of the UNIX file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+UNIX file system
+\end_layout
+
+\end_inset
+
+, and thus of OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+.
+ Each I/O device, disk drive
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+disk drive
+\end_layout
+
+\end_inset
+
+, tape drive
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+tape drive
+\end_layout
+
+\end_inset
+
+, serial port
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+serial port
+\end_layout
+
+\end_inset
+
+, terminal
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+terminal
+\end_layout
+
+\end_inset
+
+, etc., is associated with at least one such file
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file
+\end_layout
+
+\end_inset
+
+.
+ To user programs, special files look like any other file
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file
+\end_layout
+
+\end_inset
+
+, but requests to read or write the file
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file
+\end_layout
+
+\end_inset
+
+ result in activation of the associated device.
+ For example, a program whishing to write on a magnetic tape
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+magnetic tape
+\end_layout
+
+\end_inset
+
+ might open the file 
+\shape italic
+/dev/rst*
+\shape default
+.
+ Requests to read and write this file
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file
+\end_layout
+
+\end_inset
+
+ will cause the tape to move and data to be read or written at the appropriate
+ density.
+ etc.
+ By a long-standing UNIX
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+UNIX
+\end_layout
+
+\end_inset
+
+ convention, entries for special files reside in the directory 
+\shape italic
+/dev
+\shape default
+, but there is nothing in the operating system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+operating system
+\end_layout
+
+\end_inset
+
+ that requires or enforces this.
+ The amd64 OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ installation supports the following devices:
+\end_layout
+
+\begin_layout Subsubsection*
+\noindent
+Special device names
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+all creates special files for all devices on amd64;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+ramdisk ramdisk kernel devices;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+std creates the 
+\shape italic
+standard
+\shape default
+ devices: console, klog, kmem, ksyms, mem, null, stderr, stdin, stdout,
+ tty, zero.
+ Which are absolutely necessary for the system to function properly;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+local creates configuration-specific devices, by invoking the shell file
+ MAKEDEV.local.
+\end_layout
+
+\begin_layout Subsubsection*
+Disks
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+cd* ATAPI and SCSI CD-ROM drives;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+fd* floppy disk drives (3 1/2", 5 1/4");
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+rd* 
+\shape italic
+rd
+\shape default
+ pseudo-disks;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+sd* SCSI disks, including flopticals;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+vnd* 
+\shape italic
+file
+\shape default
+ pseudo-disk devices;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+wd* 
+\shape italic
+winchester
+\shape default
+ disk drives (ST506, IDE, ESDI, RLL, ...).
+\end_layout
+
+\begin_layout Subsubsection*
+Tapes
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+ch* SCSI media changers;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+st* SCSI tape drives.
+\end_layout
+
+\begin_layout Subsubsection*
+Terminal ports
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+tty[0-7][0-9a-f] NS16x50 serial ports;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+ttyc* Cyclades serial ports;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+ttyVI* Virtio serial ports.
+\end_layout
+
+\begin_layout Subsubsection*
+Pseudo terminals
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+ptm pty master device;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+pty* set of 62 master pseudo terminals;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+tty* set of 62 slave pseudo terminals.
+\end_layout
+
+\begin_layout Subsubsection*
+\noindent
+Console ports
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+ttyC-J* wscons display devices;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+wscons minimal wscons devices;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+wskbd* wscons keyboards;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+wsmux wscons keyboard/mouse mux devices.
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Pointing devices
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+wsmouse* wscons mice;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+Printers lpa* Polled printer port;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+lpt* IEEE 1284 centronics printer.
+\end_layout
+
+\begin_layout Subsubsection*
+USB devices
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+ttyU* USB serial ports;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+uall all USB devices;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+ugen* generic USB devices;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+uhid* generic HID devices, see 
+\shape italic
+uhid
+\shape default
+(4);
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+fido fido/* nodes;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+ujoy ujoy/* nodes;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+ulpt* printer devices; 
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+usb* bus control devices used by usbd for attach/detach.
+\end_layout
+
+\begin_layout Subsubsection*
+Special purpose devices
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+apm power Management Interface;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+audio* audio devices;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+bio 
+\family typewriter
+ioctl
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ioctl
+\end_layout
+
+\end_inset
+
+
+\family default
+ tunnel pseudo-device;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+bktr* video frame grabbers;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+bpf Berkeley Packet Filter;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+dt Dynamic Tracer;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+diskmap disk mapper;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+dri Direct Rendering Infrastructure;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+efi EFI runtime services;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+fd fd/* nodes;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+fuse Userland File-system;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+gpio* General Purpose Input/Output;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+hotplug devices hot plugging;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+ipmi* IPMI BMC access;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+nvram NVRAM access;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+kcov Kernel code coverage tracing;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+pci* PCI bus devices;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+pctr* PC Performance Tuning Register access device;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+pf Packet Filter;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+pppx* PPP Multiplexer;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+pppac* PPP Access Concentrator;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+radio* FM tuner devices;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+*random in-kernel random data source;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+rmidi* Raw MIDI devices;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+speaker PC speaker;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+tun* network tunnel driver;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+tap* ethernet tunnel driver;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+tuner* tuner devices;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+uk* unknown SCSI devices;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+video* video V4L2 devices;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+vmm Virtual Machine Monitor;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+vscsi* Virtual SCSI controller;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+pvbus* paravirtual device tree root;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+kstat Kernel Statistics.
+\end_layout
+
+\begin_layout Subsection
+Removable File Systems.
+\end_layout
+
+\begin_layout Standard
+In modern computing, especially in the workstation and personal computer
+ world, it is important to use external extensions to the file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+.
+ This is useful to exchange data with other users or remote systems that
+ could not access the internet.
+ Everyone knows the usage of the USB sticks, which are static mass storage
+ devices.
+ OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ provides a mean to add external file systems to the root: the system command
+ 
+\shape italic
+mount
+\shape default
+.
+ The 
+\shape italic
+mount
+\shape default
+ command invokes a file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ specific program to prepare and graft the special device or remote node
+ (rhost:path) on to the file system tree at the point node.
+ If either special or node are not provided, the appropriate information
+ is taken from the 
+\shape italic
+/etc/fstab
+\shape default
+ file.
+ For disk partitions, the special device is either a disklabel
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+disklabel
+\end_layout
+
+\end_inset
+
+ UID (DUID) or an entry in 
+\shape italic
+/dev
+\shape default
+.
+ If it is a DUID, it will be automatically mapped to the appropriate entry
+ in 
+\shape italic
+/dev
+\shape default
+.
+ In either case the partition must be present in the disklabel
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+disklabel
+\end_layout
+
+\end_inset
+
+ loaded from the device.
+ The partition name is the last letter in the entry name.
+ For example, 
+\shape italic
+/dev/sd0a
+\shape default
+ and 3eb7f9da875cb9ee.a both refer to the ‘a’ partition.
+ A mount point node must be an existing directory for a mount to succeed,
+ except in the special case of /, of course.
+ Only the super-user
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+super-user
+\end_layout
+
+\end_inset
+
+ may mount file systems.
+\end_layout
+
+\begin_layout Subsection
+Device Numbers.
+\end_layout
+
+\begin_layout Standard
+To create special file associated to a particular device, the super-user
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+super-user
+\end_layout
+
+\end_inset
+
+ could use the script 
+\shape italic
+/etc/MAKEDEV
+\shape default
+ which automates this operation.
+ This script relies on the system utility 
+\shape italic
+mknod
+\shape default
+.
+ A special file is characterized by two numbers:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+major the major device number
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+major device number
+\end_layout
+
+\end_inset
+
+ is an integer number which tells the kernel which device driver entry point
+ to use.
+ To learn what major device number to use for a particular device, check
+ the file 
+\shape italic
+/dev/MAKEDEV
+\shape default
+ to see if the device is known;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+minor the minor device number
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+minor device number
+\end_layout
+
+\end_inset
+
+ tells the kernel which subunit the node corresponds to on the device; for
+ example, a subunit may be a file system partition or a tty line.
+\end_layout
+
+\begin_layout Standard
+These numbers are mapped inside 
+\shape italic
+/dev/MAKEDEV
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+/dev/MAKEDEV
+\end_layout
+
+\end_inset
+
+
+\shape default
+ script.
+\end_layout
+
+\begin_layout Subsection
+Hard Links and Symbolic Links.
+\end_layout
+
+\begin_layout Standard
+A 
+\shape italic
+hard link
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+hard link
+\end_layout
+
+\end_inset
+
+
+\shape default
+ to a file is indistinguishable from the original directory entry; any changes
+ to a file are effectively independent of the name used to reference the
+ file.
+ Hard links may not normally refer to directories and may not span file
+ systems.
+ A 
+\shape italic
+symbolic link
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+symbolic link
+\end_layout
+
+\end_inset
+
+
+\shape default
+ contains the name of the file to which it is linked.
+ The referenced file is used when an open operation is performed on the
+ link.
+ There are three system utilities which deal with links:
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+stat
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+stat
+\end_layout
+
+\end_inset
+
+
+\family default
+ - obtains information about the file;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+lstat
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+lstat
+\end_layout
+
+\end_inset
+
+
+\family default
+ - like 
+\family typewriter
+stat
+\family default
+ except when the named file is a symbolic link;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+readlink
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+readlink
+\end_layout
+
+\end_inset
+
+
+\family default
+ - when used on a symbolic link, places the target name in a string buffer.
+\end_layout
+
+\begin_layout Standard
+A 
+\family typewriter
+stat
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+stat
+\end_layout
+
+\end_inset
+
+
+\family default
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+stat
+\shape default
+(2).
+\end_layout
+
+\end_inset
+
+ on a symbolic link will return the linked-to file; an 
+\family typewriter
+lstat
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+lstat
+\end_layout
+
+\end_inset
+
+
+\family default
+ must be done to obtain information about the link.
+ The 
+\family typewriter
+readlink
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+readlink
+\end_layout
+
+\end_inset
+
+
+\family default
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+readlink
+\shape default
+(2).
+\end_layout
+
+\end_inset
+
+ call may be used to read the contents of a symbolic link.
+ Symbolic links may span file systems, refer to directories, and refer to
+ non-existent files.
+ 
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:determining-the-accessibility-of-a-file"
+
+\end_inset
+
+Determining the Accessibility of a File.
+\end_layout
+
+\begin_layout Standard
+To determine if a file is accessible to a program, the 
+\family typewriter
+access
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+access
+\end_layout
+
+\end_inset
+
+
+\family default
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+access
+\shape default
+(2).
+\end_layout
+
+\end_inset
+
+ system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+ may be used.
+ This call takes two arguments.
+ The first argument is the null terminated string relative to the path for
+ which we want to know the permissions and the second argument is the mode
+ argument which is either the bitwise OR of one or more of the access permission
+s to be checked:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\noindent
+
+\family typewriter
+R_OK
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+R_OK
+\end_layout
+
+\end_inset
+
+
+\family default
+ for read permission;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family typewriter
+W_OK
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+W_OK
+\end_layout
+
+\end_inset
+
+
+\family default
+ for write permission;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family typewriter
+X_OK
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+X_OK
+\end_layout
+
+\end_inset
+
+
+\family default
+ for execute/search permission;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family typewriter
+F_OK
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+F_OK
+\end_layout
+
+\end_inset
+
+
+\family default
+ for the existence test.
+\end_layout
+
+\begin_layout Standard
+These constants are defined in 
+\family typewriter
+<sys/unistd.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<sys/unistd.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ All components of the pathname path are checked for access permissions,
+ including 
+\family typewriter
+F_OK
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+F_OK
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ If the path cannot be found or if any of the desired access modes would
+ not be granted, then a -1 value is returned and 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to the reason of failure; otherwise a 0 value is returned.
+ This call is important because is answers to the question: 
+\shape italic
+what are the access permissions for that file?
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:getting-information-from-an-i-node"
+
+\end_inset
+
+Getting Information from an i-node.
+\end_layout
+
+\begin_layout Standard
+The system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+ used for obtaining the information stored in an i-node is called 
+\family typewriter
+stat
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+stat
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ It takes two arguments.
+ The first argument is the null terminated string holding the path of the
+ object we want to get informations.
+ The second argument is the pointer to an allocated struct of type stat
+ which will hold the requested informations.
+ This argument is defined in 
+\family typewriter
+<sys/stat.h>
+\family default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<sys/stat.h>
+\end_layout
+
+\end_inset
+
+:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:stat-struct"
+
+\end_inset
+
+The stat structure.
+\end_layout
+
+\end_inset
+
+struct stat {
+\end_layout
+
+\begin_layout Plain Layout
+
+	dev_t st_dev;
+\end_layout
+
+\begin_layout Plain Layout
+
+	ino_t st_ino;
+\end_layout
+
+\begin_layout Plain Layout
+
+	mode_t st_mode;
+\end_layout
+
+\begin_layout Plain Layout
+
+	nlink_t st_nlink;
+\end_layout
+
+\begin_layout Plain Layout
+
+	uid_t st_uid;
+\end_layout
+
+\begin_layout Plain Layout
+
+	gid_t st_gid;
+\end_layout
+
+\begin_layout Plain Layout
+
+	dev_t st_rdev;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct timespec st_atim;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct timespec st_mtim;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct timespec st_ctim;
+\end_layout
+
+\begin_layout Plain Layout
+
+	off_t st_size;
+\end_layout
+
+\begin_layout Plain Layout
+
+	blkcnt_t st_blocks;
+\end_layout
+
+\begin_layout Plain Layout
+
+	blksize_t st_blksize;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int32_t st_flags;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int32_t st_gen;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+single structure members are the following:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.00.0000
+
+\family typewriter
+st_dev
+\family default
+ a signed 32 bit integer which represent the i-node's device;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.00.0000
+
+\family typewriter
+st_ino
+\family default
+ an unsigned 64 bit integer which represent the i-node's number;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.00.0000
+
+\family typewriter
+st_mode
+\family default
+ an unsigned 32 bit integer which represent a mask of bits:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+S_ISUID
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+S_ISUID
+\end_layout
+
+\end_inset
+
+
+\family default
+ — set user id on execution;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+S_ISGID
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+S_ISGID
+\end_layout
+
+\end_inset
+
+
+\family default
+ — set group id on execution;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+S_ISTXT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+S_ISTXT
+\end_layout
+
+\end_inset
+
+
+\family default
+ — sticky bit;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+S_IRWXU
+\family default
+ RWX
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+S_IRWXU
+\family default
+ RWX
+\end_layout
+
+\end_inset
+
+ — mask for owner:
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+S_IREAD
+\family default
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+S_IREAD
+\end_layout
+
+\end_inset
+
+,
+\family typewriter
+ S_IRUSR
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+S_IRUSR
+\end_layout
+
+\end_inset
+
+
+\family default
+ — R for owner;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+S_IWRITE
+\family default
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+S_IWRITE
+\end_layout
+
+\end_inset
+
+,
+\family typewriter
+ S_IWUSR
+\family default
+W
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+S_IWUSRW
+\end_layout
+
+\end_inset
+
+ — W for owner;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+S_IEXEC
+\family default
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+S_IEXEC
+\end_layout
+
+\end_inset
+
+,
+\family typewriter
+ S_IXUSR
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+S_IXUSR
+\end_layout
+
+\end_inset
+
+
+\family default
+ — X for owner;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+S_IRWXG
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+S_IRWXG
+\end_layout
+
+\end_inset
+
+
+\family default
+ — RWX mask for group:
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+S_IRGRP
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+S_IRGRP
+\end_layout
+
+\end_inset
+
+
+\family default
+ — R for group;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+S_IWGRP
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+S_IWGRP
+\end_layout
+
+\end_inset
+
+
+\family default
+ — W for group;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+S_IXGRP
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+S_IXGRP
+\end_layout
+
+\end_inset
+
+
+\family default
+ — X for group;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+S_IRWXO
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+S_IRWXO
+\end_layout
+
+\end_inset
+
+
+\family default
+ — RWX mask for other:
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+S_IROTH
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+S_IROTH
+\end_layout
+
+\end_inset
+
+
+\family default
+ — R for other;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+S_IWOTH
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+S_IWOTH
+\end_layout
+
+\end_inset
+
+
+\family default
+ — W for other;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+S_IXOTH
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+S_IXOTH
+\end_layout
+
+\end_inset
+
+
+\family default
+ — X for other;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+S_IFMT
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+S_IFMT
+\end_layout
+
+\end_inset
+
+
+\family default
+ — mask for the file type:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\family typewriter
+S_IFIFO
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+S_IFIFO
+\end_layout
+
+\end_inset
+
+
+\family default
+ — name pipe (fifo);
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+S_IFCHR
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+S_IFCHR
+\end_layout
+
+\end_inset
+
+
+\family default
+ — character special;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+S_IFDIR
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+S_IFDIR
+\end_layout
+
+\end_inset
+
+
+\family default
+ — directory;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+S_IFBLK
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+S_IFBLK
+\end_layout
+
+\end_inset
+
+
+\family default
+ — block special;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+S_IFREG
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+S_IFREG
+\end_layout
+
+\end_inset
+
+
+\family default
+ — regular;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+S_IFLNK
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+S_IFLNK
+\end_layout
+
+\end_inset
+
+
+\family default
+ — symbolic link;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+S_IFSOCK
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+S_IFSOCK
+\end_layout
+
+\end_inset
+
+
+\family default
+ — socket;
+\end_layout
+
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+S_ISVTX
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+
+\family typewriter
+S_ISVTX
+\end_layout
+
+\end_inset
+
+
+\family default
+ — save swapped text even after use.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Labeling
+\labelwidthstring 0000.00.0000
+\noindent
+
+\family typewriter
+st_nlink
+\family default
+ an unsigned 32 bit integer which represent the number of hard links;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.00.0000
+\noindent
+
+\family typewriter
+st_uid
+\family default
+ an unsigned 32 bit integer which represent the user id of the file's owner;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.00.0000
+
+\family typewriter
+st_gid
+\family default
+ an unsigned 32 bit integer which represent the group id;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.00.0000
+
+\family typewriter
+st_rdev
+\family default
+ a signed 32 bit integer which represent the device type;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.00.0000
+
+\family typewriter
+st_atim
+\family default
+ a structured data type object, struct timespec, which holds the time of
+ the last access;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.00.0000
+\noindent
+
+\family typewriter
+st_mtim
+\family default
+ a structured data type object, struct timespec, which holds the time of
+ the last data modification;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.00.0000
+
+\family typewriter
+st_ctim
+\family default
+ a structured data type object, strcut timespec, which holds the time of
+ the last status change;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.00.0000
+\noindent
+
+\family typewriter
+st_size
+\family default
+ a 64 bit signed integer which represent the file size in bytes;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.00.0000
+
+\family typewriter
+st_blocks
+\family default
+ a 64 bit signed integer which is the number of blocks containing the file;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.00.0000
+
+\family typewriter
+st_blksize
+\family default
+ a 32 bit signed integer which represent the optimal block size for file;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.00.0000
+
+\family typewriter
+st_flags
+\family default
+ a 32 bit unsigned integer which holds user defined flags for the file;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.00.0000
+
+\family typewriter
+st_gen
+\family default
+ a 32 bit unsigned integer which represent the file generation number.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:reading-directories"
+
+\end_inset
+
+Reading Directories.
+\end_layout
+
+\begin_layout Standard
+\noindent
+A directory contains structures of type 
+\family typewriter
+dirent
+\family default
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+direct
+\family default
+ is a macro defined to substitute 
+\family typewriter
+dirent
+\family default
+.
+\end_layout
+
+\end_inset
+
+, defined in 
+\family typewriter
+<sys/dirent.h>
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+<sys/dirent.h>
+\end_layout
+
+\end_inset
+
+
+\family default
+:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:dirent-struct"
+
+\end_inset
+
+The dirent structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#define MAXNAMLEN 255
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct dirent {
+\end_layout
+
+\begin_layout Plain Layout
+
+	ino_t d_fileno;
+\end_layout
+
+\begin_layout Plain Layout
+
+	off_t d_off;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int16_t d_reclen;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int8_t d_type;
+\end_layout
+
+\begin_layout Plain Layout
+
+	u_int8_t d_namlen;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char d_name[ MAXNAMLEN + 1 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+
+\family typewriter
+d_fileno
+\family default
+ Files which have been deleted will have i-numbers, 
+\family typewriter
+d_fileno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+d_fileno
+\end_layout
+
+\end_inset
+
+
+\family default
+, equal to 0; these should in general be skipped over when reading the directory.
+ A directory is read by simply opening it and reading structures either
+ one at a time or all at once.;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+
+\family typewriter
+d_off
+\family default
+ is the offset of next entry.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+
+\family typewriter
+d_reclen
+\family default
+ is the length of this record;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+
+\family typewriter
+d_type
+\family default
+ The 
+\family typewriter
+d_type
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+d_type
+\end_layout
+
+\end_inset
+
+
+\family default
+ member could be:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\noindent
+
+\family typewriter
+DT_UNKNOWN
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DT_UNKNOWN
+\end_layout
+
+\end_inset
+
+
+\family default
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+DT_FIFO
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DT_FIFO
+\end_layout
+
+\end_inset
+
+
+\family default
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+DT_CHR
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DT_CHR
+\end_layout
+
+\end_inset
+
+
+\family default
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+DT_DIR
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DT_DIR
+\end_layout
+
+\end_inset
+
+
+\family default
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+DT_BLK
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DT_BLK
+\end_layout
+
+\end_inset
+
+
+\family default
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+DT_REG
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DT_REG
+\end_layout
+
+\end_inset
+
+
+\family default
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+DT_LNK
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DT_LNK
+\end_layout
+
+\end_inset
+
+
+\family default
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+DT_SOCK
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+DT_SOCK
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+\end_layout
+
+\end_deeper
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+
+\family typewriter
+d_namlen
+\family default
+ is the current length of the name stored in d_name for which the maximum
+ possible length is 
+\family typewriter
+MAXNAMELEN
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+MAXNAMELEN
+\end_layout
+
+\end_inset
+
+
+\family default
+ + 1;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 0000.0000.0000
+\noindent
+
+\family typewriter
+d_name
+\family default
+ it should be noted that the name of file, 
+\family typewriter
+d_name
+\family default
+, is not guaranteed to be null-terminated; programs should always be careful
+ of this.
+\end_layout
+
+\begin_layout Standard
+\noindent
+Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:listfiles"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows a small program that simply open the current directory and prints
+ the names of all of the files it contains.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:listfiles"
+
+\end_inset
+
+listfiles - list the names of the files in the current directory.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* listfiles.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/types.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/dir.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* listfiles program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Function prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	DIR *dp;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct dirent *dir;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Open the current directory.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if((dp = opendir(".")) != NULL) {
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\end_layout
+
+\begin_layout Plain Layout
+
+		/*
+\end_layout
+
+\begin_layout Plain Layout
+
+		 * Read directory entries.
+  Since we're reading
+\end_layout
+
+\begin_layout Plain Layout
+
+		 * entries one at a time, we use the readdir routine,
+\end_layout
+
+\begin_layout Plain Layout
+
+		 * which buffers them internally.
+  Don't use the
+\end_layout
+
+\begin_layout Plain Layout
+
+		 * low-level read to do things this way, since
+\end_layout
+
+\begin_layout Plain Layout
+
+		 * at a time is very inefficient.
+\end_layout
+
+\begin_layout Plain Layout
+
+		 */
+\end_layout
+
+\begin_layout Plain Layout
+
+		while((dir = readdir(dp)) != NULL) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			/* mark deleted file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(dir -> d_fileno == 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf(" DELETED ");
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			/*
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * Make sure we print no more that DIRSIZ
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * characters.
+\end_layout
+
+\begin_layout Plain Layout
+
+			 */
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("%.*s
+\backslash
+n", DIRSIZ(dir), dir -> d_name);
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+		closedir(dp);
+\end_layout
+
+\begin_layout Plain Layout
+
+		ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else {
+\end_layout
+
+\begin_layout Plain Layout
+
+		fprintf(stderr, "Could not read current directory
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of listfiles.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+The program uses the system routines: 
+\family typewriter
+opendir
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+opendir
+\end_layout
+
+\end_inset
+
+
+\family default
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+opendir
+\shape default
+(3).
+\end_layout
+
+\end_inset
+
+, 
+\family typewriter
+readdir
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+readdir
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+readdir
+\shape default
+(3).
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+closedir
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+closedir
+\end_layout
+
+\end_inset
+
+
+\family default
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+closedir
+\shape default
+(3).
+\end_layout
+
+\end_inset
+
+.
+ 
+\family typewriter
+opendir
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+opendir
+\end_layout
+
+\end_inset
+
+
+\family default
+ accepts one argument: the character string which holds the path of the
+ directory to read.
+ It returns a pointer to an object of type directory pointer 
+\family typewriter
+DIR
+\family default
+ or 
+\family typewriter
+NULL
+\family default
+ on error.
+ 
+\family typewriter
+readdir
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+readdir
+\end_layout
+
+\end_inset
+
+
+\family default
+ accepts one argument: the directory pointer and returns a pointer to an
+ object of type 
+\family typewriter
+struct dirent
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+struct dirent
+\end_layout
+
+\end_inset
+
+
+\family default
+ which holds one directory entry data or 
+\family typewriter
+NULL
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+NULL
+\end_layout
+
+\end_inset
+
+
+\family default
+ on error.
+ 
+\family typewriter
+closedir
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+closedir
+\end_layout
+
+\end_inset
+
+
+\family default
+ accepts an object of type directory pointer.
+ In order to consolidate the information provided in the preceding sections,
+ Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:ls"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows a program similar in function to the standard UNIX program ls.
+ This program will perform an ls -asl on each of its named arguments.
+ If the argument is a directory, the contents of that directory will be
+ listed.
+ For simplicity's sake the program prints the user id and group id of the
+ owner of each file rather than digging up the login and group names.
+ Also, the filenames are not sorted and the directory is simply printed
+ in order it is read.
+ The directory reading routines of Berkeley UNIX are used in the example;
+ the reader should be able to change this himself if necessary.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:ls"
+
+\end_inset
+
+ls - an "ls"-like program.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c-mode; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* ls.c file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdint.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <unistd.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <time.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/types.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/dir.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <sys/stat.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* ls program.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Global variables definitions.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+char *modes[] = {
+\end_layout
+
+\begin_layout Plain Layout
+
+	"---",
+\end_layout
+
+\begin_layout Plain Layout
+
+	"--x",
+\end_layout
+
+\begin_layout Plain Layout
+
+	"-w-",
+\end_layout
+
+\begin_layout Plain Layout
+
+	"-wx",
+\end_layout
+
+\begin_layout Plain Layout
+
+	"r--",
+\end_layout
+
+\begin_layout Plain Layout
+
+	"r-x",
+\end_layout
+
+\begin_layout Plain Layout
+
+	"rw-",
+\end_layout
+
+\begin_layout Plain Layout
+
+	"rwx"
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Function prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+void usage(void);
+\end_layout
+
+\begin_layout Plain Layout
+
+long int list(char *, uint8_t);
+\end_layout
+
+\begin_layout Plain Layout
+
+void printout(char *, char *, uint8_t);
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int ch;
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct stat st_buf;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct dirent *dir;
+\end_layout
+
+\begin_layout Plain Layout
+
+	DIR *dp;
+\end_layout
+
+\begin_layout Plain Layout
+
+	uint8_t flags;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Check arguments count.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	flags = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(argc < 2) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		ret = list(".", flags);
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    	/* Process arguments.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	    while((ch = getopt(argc, argv, "als")) != -1) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			switch(ch) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			case 'a':
+\end_layout
+
+\begin_layout Plain Layout
+
+				flags |= 0x01;
+\end_layout
+
+\begin_layout Plain Layout
+
+				break;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			case 's':
+\end_layout
+
+\begin_layout Plain Layout
+
+				flags |= 0x02;
+\end_layout
+
+\begin_layout Plain Layout
+
+				break;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			case 'l':
+\end_layout
+
+\begin_layout Plain Layout
+
+				flags |= 0x04;
+\end_layout
+
+\begin_layout Plain Layout
+
+				break;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			default:
+\end_layout
+
+\begin_layout Plain Layout
+
+				usage();
+\end_layout
+
+\begin_layout Plain Layout
+
+				flags |= 0x08;
+\end_layout
+
+\begin_layout Plain Layout
+
+				break;
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+	    if((flags & 0x08) == 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			argc -= optind;
+\end_layout
+
+\begin_layout Plain Layout
+
+			argv += optind;
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(stat(*argv, &st_buf) >= 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+				/*
+\end_layout
+
+\begin_layout Plain Layout
+
+				 * If it is a directory we list it,
+\end_layout
+
+\begin_layout Plain Layout
+
+				 * otherwise just print the info about
+\end_layout
+
+\begin_layout Plain Layout
+
+				 * the file.
+\end_layout
+
+\begin_layout Plain Layout
+
+				 */
+\end_layout
+
+\begin_layout Plain Layout
+
+				if((st_buf.st_mode & S_IFMT) == S_IFDIR)
+\end_layout
+
+\begin_layout Plain Layout
+
+					ret = list(*argv, flags);
+\end_layout
+
+\begin_layout Plain Layout
+
+				else {
+\end_layout
+
+\begin_layout Plain Layout
+
+					printout(".", *argv, flags);
+\end_layout
+
+\begin_layout Plain Layout
+
+					ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+				}
+\end_layout
+
+\begin_layout Plain Layout
+
+			} else {
+\end_layout
+
+\begin_layout Plain Layout
+
+				fprintf(stderr, "ls error.
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	exit(ret);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/*
+\end_layout
+
+\begin_layout Plain Layout
+
+ * list -- read a directory  and list the files it
+\end_layout
+
+\begin_layout Plain Layout
+
+ *         contains.
+\end_layout
+
+\begin_layout Plain Layout
+
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+long int list(char *name, uint8_t flags)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	long int ret = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+	DIR *dp;
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct dirent *dir;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/* Open the directory.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	if((dp = opendir(name)) != NULL) {
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\end_layout
+
+\begin_layout Plain Layout
+
+		/* For each entry...
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+	    while((dir = readdir(dp)) != NULL) {
+\end_layout
+
+\begin_layout Plain Layout
+
+     
+\end_layout
+
+\begin_layout Plain Layout
+
+			/* Skip removed file.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+			if(dir -> d_fileno == 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+				continue;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			/* Print it out.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+			printout(name, dir -> d_name, flags);
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+    	ret = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else
+\end_layout
+
+\begin_layout Plain Layout
+
+		fprintf(stderr, "%s: cannot open.
+\backslash
+n", name);
+\end_layout
+
+\begin_layout Plain Layout
+
+	return ret;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/*
+\end_layout
+
+\begin_layout Plain Layout
+
+ * printout -- print out the information about
+\end_layout
+
+\begin_layout Plain Layout
+
+ *             a file.
+\end_layout
+
+\begin_layout Plain Layout
+
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+void printout(char *dir, char *name, uint8_t flags)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int i, j;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char perms[ 10 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	struct stat st_buf;
+\end_layout
+
+\begin_layout Plain Layout
+
+	char newname[ S_BLKSIZE ];
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	/*
+\end_layout
+
+\begin_layout Plain Layout
+
+	 * Make full path name, so
+\end_layout
+
+\begin_layout Plain Layout
+
+	 * we have a legal path.
+\end_layout
+
+\begin_layout Plain Layout
+
+	 */
+\end_layout
+
+\begin_layout Plain Layout
+
+	snprintf(newname, S_BLKSIZE, "%s/%s", dir, name);
+\end_layout
+
+\begin_layout Plain Layout
+
+	if((name[ 0 ] != '.') || ((flags & 0x01) != 0)) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		/*
+\end_layout
+
+\begin_layout Plain Layout
+
+		 * At this point we know the file exists,
+\end_layout
+
+\begin_layout Plain Layout
+
+		 * so this won't fail.
+\end_layout
+
+\begin_layout Plain Layout
+
+		 */
+\end_layout
+
+\begin_layout Plain Layout
+
+		stat(newname, &st_buf);
+\end_layout
+
+\begin_layout Plain Layout
+
+		if((flags & 0x04) != 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			/* Print size in kbytes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+			if((flags & 02) != 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("%5d ", (st_buf.st_size + S_BLKSIZE - 1) / S_BLKSIZE);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			/*
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * Get the file type.
+  For convenience (and to
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * make this example universal), we ignore the
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * other types which are version-dependent.
+\end_layout
+
+\begin_layout Plain Layout
+
+			 */
+\end_layout
+
+\begin_layout Plain Layout
+
+			switch(st_buf.st_mode & S_IFMT) {
+\end_layout
+
+\begin_layout Plain Layout
+
+			case S_IFREG:
+\end_layout
+
+\begin_layout Plain Layout
+
+				putchar('-');
+\end_layout
+
+\begin_layout Plain Layout
+
+				break;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			case S_IFDIR:
+\end_layout
+
+\begin_layout Plain Layout
+
+				putchar('d');
+\end_layout
+
+\begin_layout Plain Layout
+
+				break;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			case S_IFCHR:
+\end_layout
+
+\begin_layout Plain Layout
+
+				putchar('c');
+\end_layout
+
+\begin_layout Plain Layout
+
+				break;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			case S_IFBLK:
+\end_layout
+
+\begin_layout Plain Layout
+
+				putchar('b');
+\end_layout
+
+\begin_layout Plain Layout
+
+				break;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			default:
+\end_layout
+
+\begin_layout Plain Layout
+
+				putchar('?');
+\end_layout
+
+\begin_layout Plain Layout
+
+				break;
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			/*
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * Get each of the three groups of permissions
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * (owner, group, other).
+  Since they're just
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * bits, we can count in binary and use this
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * as subscript (see the modes array, above).
+\end_layout
+
+\begin_layout Plain Layout
+
+			 */
+\end_layout
+
+\begin_layout Plain Layout
+
+			*perms = '
+\backslash
+0';
+\end_layout
+
+\begin_layout Plain Layout
+
+			for(i = 2; i >= 0; i--) {
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+				/*
+\end_layout
+
+\begin_layout Plain Layout
+
+				 * Since we're subscripting, we don't
+\end_layout
+
+\begin_layout Plain Layout
+
+				 * read the constants.
+  Just get a
+\end_layout
+
+\begin_layout Plain Layout
+
+				 * value between 0 and 7.
+\end_layout
+
+\begin_layout Plain Layout
+
+				 */
+\end_layout
+
+\begin_layout Plain Layout
+
+				j = (st_buf.st_mode >> (i * 3)) & 0x07;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+				/*
+\end_layout
+
+\begin_layout Plain Layout
+
+				 * Get the perm bits.
+\end_layout
+
+\begin_layout Plain Layout
+
+				 */
+\end_layout
+
+\begin_layout Plain Layout
+
+				strncat(perms, modes[ j ], 4);
+\end_layout
+
+\begin_layout Plain Layout
+
+			}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			/*
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * Handle special bits which replace the 'x'
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * in places.
+\end_layout
+
+\begin_layout Plain Layout
+
+			 */
+\end_layout
+
+\begin_layout Plain Layout
+
+			if((st_buf.st_mode & S_ISUID) != 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+				perms[ 2 ] = 's';
+\end_layout
+
+\begin_layout Plain Layout
+
+			if((st_buf.st_mode & S_ISGID) != 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+				perms[ 5 ] = 's';
+\end_layout
+
+\begin_layout Plain Layout
+
+			if((st_buf.st_mode & S_ISVTX) != 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+				perms[ 8 ] = 't';
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			/*
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * Print permissions, number of links,
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * user and group ids.
+\end_layout
+
+\begin_layout Plain Layout
+
+			 */
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("%s%3d %5d/%-5d ", perms, 
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+				st_buf.st_nlink, 
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+				st_buf.st_uid, 
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+				st_buf.st_gid);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			/*
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * Print the size of the file in bytes.
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * and the last modification time.
+  The
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * ctime routine converts a time to ASCII;
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * it is described in Chapter 7, Telling
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * Time and Timing Things.
+\end_layout
+
+\begin_layout Plain Layout
+
+			 */
+\end_layout
+
+\begin_layout Plain Layout
+
+			if((flags & 0x02) != 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+				printf("%7d ", st_buf.st_size);
+\end_layout
+
+\begin_layout Plain Layout
+
+			printf("%.12s ", ctime(&st_buf.st_mtime) + 4);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			/*
+\end_layout
+
+\begin_layout Plain Layout
+
+			 * Finally, print the file name.
+\end_layout
+
+\begin_layout Plain Layout
+
+			 */
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+		printf("%s", name);
+\end_layout
+
+\begin_layout Plain Layout
+
+		putchar('
+\backslash
+n');
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/*
+\end_layout
+
+\begin_layout Plain Layout
+
+ * usage -- show program usage on the shell.
+\end_layout
+
+\begin_layout Plain Layout
+
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+void usage(void)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	printf("Usage: ls [-asl] dir
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of ls.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:modifying-file-attributes"
+
+\end_inset
+
+Modifying File Attributes.
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+chmod
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+chmod
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+chmod
+\shape default
+(2).
+\end_layout
+
+\end_inset
+
+
+\family default
+ system call is used to change the modes of a file.
+ It takes two arguments: the first argument is a character string containing
+ the path of a file.
+ The second argument is a value of type 
+\family typewriter
+mode_t
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+mode_t
+\end_layout
+
+\end_inset
+
+
+\family default
+, the same in the 
+\family typewriter
+stat
+\family default
+ structure
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+stat
+\family default
+ structure
+\end_layout
+
+\end_inset
+
+ (see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "c:stat-struct"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ A similar call 
+\family typewriter
+fchmod
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fchmod
+\end_layout
+
+\end_inset
+
+
+\family default
+ takes as first argument the file descriptor
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file descriptor
+\end_layout
+
+\end_inset
+
+ of an open file and as second argument the same of 
+\family typewriter
+chmod
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+chmod
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ Both routines, upon successful completion, the value 0 is returned; otherwise
+ the value -1 is returned and the global variable 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to indicate the error.
+ The 
+\family typewriter
+chown
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+chown
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+chown
+\shape default
+(2).
+\end_layout
+
+\end_inset
+
+
+\family default
+ system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+ changes the owner
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+owner
+\end_layout
+
+\end_inset
+
+ and group
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+group
+\end_layout
+
+\end_inset
+
+ of a file
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file
+\end_layout
+
+\end_inset
+
+.
+ It takes three arguments: the first argument is the character string holding
+ the path for the file
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file
+\end_layout
+
+\end_inset
+
+, the second argument is an integer of type 
+\family typewriter
+uid_t
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+uid_t
+\end_layout
+
+\end_inset
+
+
+\family default
+ which represent the new owner user id and finally the third argument of
+ type 
+\family typewriter
+gid_t
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+gid_t
+\end_layout
+
+\end_inset
+
+
+\family default
+ that represent the new group id.
+ A similar routine is 
+\family typewriter
+fchown
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fchown
+\end_layout
+
+\end_inset
+
+
+\family default
+: its first argument is the file descriptor
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file descriptor
+\end_layout
+
+\end_inset
+
+ of an open file and the rest two arguments are the same of 
+\family typewriter
+chown
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+chown
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ Both routines, upon successful completion, the value 0 is returned; otherwise
+ the value -1 is returned and the global variable 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to indicate the error.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:miscellaneous-file-system-routines"
+
+\end_inset
+
+Miscellaneous File System Routines.
+\end_layout
+
+\begin_layout Standard
+The rest of this chapter is devoted to the routines that don't fit into
+ their own section but are nevertheless important.
+\end_layout
+
+\begin_layout Subsection
+Changing Directories.
+\end_layout
+
+\begin_layout Standard
+A program can change its current working directory with the 
+\family typewriter
+chdir
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+chdir
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+chdir
+\shape default
+(2).
+\end_layout
+
+\end_inset
+
+
+\family default
+ system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+.
+ It takes a single parameter as the character string containing the new
+ directory path.
+ A slightly different system call is 
+\family typewriter
+fchdir
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+fchdir
+\end_layout
+
+\end_inset
+
+
+\family default
+ which takes the file descriptor
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file descriptor
+\end_layout
+
+\end_inset
+
+ of the directory to change to.
+ Upon successful completion, the value 0 is returned; otherwise the value -1
+ is returned and the global variable 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to indicate the error.
+ All of these routines are described in Chapter 13, 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "chap:file-system"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Deleting and Truncating Files.
+\end_layout
+
+\begin_layout Standard
+Files can be deleted using the 
+\family typewriter
+unlink
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+unlink
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+unlink
+\shape default
+(2).
+\end_layout
+
+\end_inset
+
+
+\family default
+ system call.
+ It takes one argument: the character string which represents the file path.
+ Upon successful completion, the value 0 is returned; otherwise the value -1
+ is returned and the global variable 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to indicate the error.
+ To remove directory we have to use the rmdir system call.
+ It takes one argument: the character string which represents the path to
+ the directory that should be deleted.
+ Upon successful completion, the value 0 is returned; otherwise the value -1
+ is returned and the global variable 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to indicate the error.
+ 
+\family typewriter
+truncate
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+truncate
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+truncate
+\shape default
+(2).
+\end_layout
+
+\end_inset
+
+
+\family default
+ causes the file named by path, or referenced by file descriptor
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file descriptor
+\end_layout
+
+\end_inset
+
+ in 
+\family typewriter
+ftruncate
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ftruncate
+\end_layout
+
+\end_inset
+
+
+\family default
+, to be truncated or extended to length bytes in size.
+ If the file was larger than this size, the extra data is lost.
+ If the file was smaller than this size, it will be extended as if by writing
+ bytes with the value zero.
+ With 
+\family typewriter
+ftruncate
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+ftruncate
+\end_layout
+
+\end_inset
+
+
+\family default
+, the file must be open for writing.
+ Both routines, upon successful completion, the value 0 is returned; otherwise
+ the value -1 is returned and the global variable 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to indicate the error.
+\end_layout
+
+\begin_layout Subsection
+Making Directories.
+\end_layout
+
+\begin_layout Standard
+To create a directory
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+directory
+\end_layout
+
+\end_inset
+
+ we use the 
+\family typewriter
+mkdir
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+mkdir
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+mkdir
+\shape default
+(2).
+\end_layout
+
+\end_inset
+
+
+\family default
+ system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+.
+ It takes two arguments: the first is a character string containing the
+ path of the directory to create, the second argument an integer of type
+ 
+\family typewriter
+mode_t
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+mode_t
+\end_layout
+
+\end_inset
+
+
+\family default
+ to specify the directory
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+directory
+\end_layout
+
+\end_inset
+
+ modes.
+ The directory
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+directory
+\end_layout
+
+\end_inset
+
+ path is created with the access permissions specified by the second argument
+ and restricted by the 
+\family typewriter
+umask
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+umask
+\end_layout
+
+\end_inset
+
+
+\family default
+ of the calling process
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+calling process
+\end_layout
+
+\end_inset
+
+.
+ The directory's owner id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+owner id
+\end_layout
+
+\end_inset
+
+ is set to the process's effective user id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+user id
+\end_layout
+
+\end_inset
+
+.
+ The directory's group id
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+group id
+\end_layout
+
+\end_inset
+
+ is set to that of the parent directory in which it is created.
+ Upon successful completion, the value 0 is returned; otherwise the value -1
+ is returned and the global variable 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to indicate the error.
+\end_layout
+
+\begin_layout Subsection
+Linking and Renaming Files.
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+link
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+link
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+link
+\shape default
+(2).
+\end_layout
+
+\end_inset
+
+
+\family default
+ system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+ atomically creates the specified directory
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+directory
+\end_layout
+
+\end_inset
+
+ entry
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Hard link.
+\end_layout
+
+\end_inset
+
+.
+ It takes two arguments: the first is a character string which represent
+ the path of the source object to link to.
+ The second argument is a character string which is the path of the 
+\shape italic
+hard link
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+hard link
+\end_layout
+
+\end_inset
+
+
+\shape default
+ to be created with the attributes of the underlying object pointed at by
+ the first argument.
+ If the link is successful: the link count of the underlying object is increment
+ed; the first argument and the second argument share equal access and rights
+ to the underlying object.
+ If the file
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file
+\end_layout
+
+\end_inset
+
+ specified in the first argument is removed, the file
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file
+\end_layout
+
+\end_inset
+
+ specified in the second argument is not deleted and the link count of the
+ underlying object is decremented.
+ The file specified in the first argument must exist for the hard link
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+hard link
+\end_layout
+
+\end_inset
+
+ to succeed and both the files must be in the same file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+.
+ As mandated by POSIX.1
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+POSIX.1
+\end_layout
+
+\end_inset
+
+ the file
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file
+\end_layout
+
+\end_inset
+
+ specified in the first argument may not be a directory
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+directory
+\end_layout
+
+\end_inset
+
+.
+ Upon successful completion, the value 0 is returned; otherwise the value -1
+ is returned and the global variable 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to indicate the error.
+ To rename a file the 
+\family typewriter
+rename
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+rename
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+rename
+\shape default
+(2).
+\end_layout
+
+\end_inset
+
+
+\family default
+ system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+ is used.
+ It takes two character string arguments.
+ The first argument is the path of the source file, the second argument
+ is the destination file path.
+ The 
+\family typewriter
+rename
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+rename
+\end_layout
+
+\end_inset
+
+
+\family default
+ function causes the link named as source object to be renamed as destination
+ object.
+ If the destination object exists, it is first removed.
+ Both source and destination objects must be of the same type: that is,
+ both directories or both non-directories, must reside on the same file
+ system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+.
+ 
+\family typewriter
+rename
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+rename
+\end_layout
+
+\end_inset
+
+
+\family default
+ guarantees that if the destination already exists, an instance of it will
+ always exist, even if the system should crash in the middle of the operation.
+ If the final component of source object is a symbolic link, the symbolic
+ link is renamed, not the file
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file
+\end_layout
+
+\end_inset
+
+ or directory
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+directory
+\end_layout
+
+\end_inset
+
+ to which it points.
+ Upon successful completion, the value 0 is returned; otherwise the value -1
+ is returned and the global variable 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to indicate the error.
+\end_layout
+
+\begin_layout Subsection
+Symbolic Links.
+\end_layout
+
+\begin_layout Standard
+In OpenBSD, 
+\shape italic
+symbolic links
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+symbolic links
+\end_layout
+
+\end_inset
+
+
+\shape default
+ are simply 
+\begin_inset Quotes eld
+\end_inset
+
+pointers
+\begin_inset Quotes erd
+\end_inset
+
+ to files; they are not hard links.
+ Unlike them, they may cross file system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+file system
+\end_layout
+
+\end_inset
+
+ boundaries.
+ To create a symbolic link the 
+\family typewriter
+symlink
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+symlink
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\shape italic
+symlink
+\shape default
+(2).
+\end_layout
+
+\end_inset
+
+
+\family default
+ system call is used.
+ A symbolic link
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+symbolic link
+\end_layout
+
+\end_inset
+
+ provided as second argument in a character string is created to the first
+ argument in a character string: the second argument is the name of the
+ file created, the first argument is the string used in creating the symbolic
+ link.
+ Either name may be an arbitrary path name; the files need not be on the
+ same file system, and the file specified by the first argument need not
+ exist at all.
+ Upon successful completion, the value 0 is returned; otherwise the value -1
+ is returned and the global variable 
+\family typewriter
+errno
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+errno
+\end_layout
+
+\end_inset
+
+
+\family default
+ is set to indicate the error.
+\end_layout
+
+\begin_layout Subsection
+The umask Value.
+\end_layout
+
+\begin_layout Standard
+When a file is created with the system call open
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+The creat system call is now obsolete.
+\end_layout
+
+\end_inset
+
+, a mode is supplied for the file to created with.
+ Invisibly to the user, this mode is modified by the program's 
+\shape italic
+umask
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+umask
+\end_layout
+
+\end_inset
+
+
+\shape default
+.
+ The umask
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+umask
+\end_layout
+
+\end_inset
+
+ is a number just like the mode, except it indicates permissions to be turned
+ off rather than on.
+ For example, if the program's umask
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+umask
+\end_layout
+
+\end_inset
+
+ is 0022 and a file is created mode 0666, the actual mode of the file be
+ computed as:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+file_mode = create_mode & ~umask;
+\end_layout
+
+\end_inset
+
+so the actual mode of this file will be:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+0666 & ~0022 = 0666 & 0755 = 0644
+\end_layout
+
+\end_inset
+
+the umask
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+umask
+\end_layout
+
+\end_inset
+
+ value only affects creation modes of files and directories; the modes supplied
+ to the 
+\family typewriter
+chmod
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+chmod
+\end_layout
+
+\end_inset
+
+
+\family default
+ call are not affected.
+ Most systems have a default umask
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+umask
+\end_layout
+
+\end_inset
+
+ value of 0 or 022.
+ It may be changed with the 
+\family typewriter
+umask
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+umask
+\end_layout
+
+\end_inset
+
+
+\family default
+ system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+.
+ This system routine sets the process's file mode creation mask to the value
+ of the argument and returns the previous value of the mask.
+ Only the read
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+read
+\end_layout
+
+\end_inset
+
+, write
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+write
+\end_layout
+
+\end_inset
+
+, and execute
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+execute
+\end_layout
+
+\end_inset
+
+ file permission bits of the argument are honored, all others are ignored.
+ The file mode creation mask is used by the 
+\family typewriter
+bind
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+bind
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+mkdir
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+mkdir
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+mkdirat
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+mkdirat
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+mkfifo
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+mkfifo
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+mkfifoat
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+mkfifoat
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+mknod
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+mknod
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+mknodat
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+mknodat
+\end_layout
+
+\end_inset
+
+
+\family default
+, 
+\family typewriter
+open
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+open
+\end_layout
+
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+openat
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+openat
+\end_layout
+
+\end_inset
+
+
+\family default
+ system calls
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system calls
+\end_layout
+
+\end_inset
+
+ to turn off corresponding bits requested in the file mode, see 
+\family typewriter
+chmod
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+chmod
+\end_layout
+
+\end_inset
+
+
+\family default
+.
+ This clearing allows users to restrict the default access to their files.
+ The default mask value is 
+\family typewriter
+S_IWGRP|S_IWOTH
+\family default
+, which is 022, write access for the owner only.
+ Child processes inherit the mask of the calling process.
+\end_layout
+
+\end_body
+\end_document
