@@ -183,6 +183,7 @@ long int getCombString(char *comb, char *charset, size_t *indices, size_t count)
   }
   return ret;
 }
+
 /*
  * printArray -- print array
  */
@@ -267,6 +268,9 @@ void combinations(size_t *s, size_t m, size_t n, size_t **c)
   }
 }
 
+/*
+ * intersect -- compute the intersection set from two strings.
+ */
 char *intersect(char *a, char *b, size_t l)
 {
   char *tempa, *tempb, *ret;
@@ -310,6 +314,9 @@ char *intersect(char *a, char *b, size_t l)
   return ret;
 }
 
+/*
+ * cmp -- compare callback handler.
+ */
 bool cmp(void *a, ...)
 {
   bool ret = false;
