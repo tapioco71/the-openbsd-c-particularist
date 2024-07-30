@@ -1,0 +1,7 @@
+struct wsdisplay_screentype {
+  int idx;
+  int nidx;
+  char name[ WSSCREEN_NAME_SIZE ];
+  int ncols, nrows;
+  int fontwidth, fontheight;
+};

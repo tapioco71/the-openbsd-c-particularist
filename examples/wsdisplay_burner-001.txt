@@ -1,0 +1,5 @@
+struct wsdisplay_burner {
+  u_int off;
+  u_int on;
+  u_int flags;
+};

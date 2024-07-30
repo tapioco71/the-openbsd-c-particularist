@@ -1,0 +1,4 @@
+struct wsmux_device {
+  int type;
+  int idx;
+};

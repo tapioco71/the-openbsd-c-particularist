@@ -1,0 +1,4 @@
+struct wsmouse_param {
+  enum wsmousecfg key;
+  int value;
+};

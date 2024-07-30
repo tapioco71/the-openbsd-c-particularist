@@ -1,0 +1,7 @@
+struct wsdisplay_cmap {
+  u_int index;
+  u_int count;
+  u_char *red;
+  u_char *green;
+  u_char *blue;
+};

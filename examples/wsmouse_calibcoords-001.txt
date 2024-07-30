@@ -1,0 +1,16 @@
+struct wsmouse_calibcoords {
+  int minx;
+  int miny;
+  int maxx;
+  int maxy;
+  int swapxy;
+  int resx;
+  int resy;
+  int samplelen;
+  struct wsmouse_calibcoord {
+    int rawx;
+    int rawy;
+    int x;
+    int y;
+  } samples[ WSMOUSE_CALIBCOORDS_MAX ];
+};

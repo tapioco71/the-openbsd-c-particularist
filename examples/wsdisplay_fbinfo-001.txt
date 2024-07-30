@@ -1,0 +1,6 @@
+struct wsdisplay_fbinfo {
+  u_int height;
+  u_int width;
+  u_int depth;
+  u_int cmsize;
+};

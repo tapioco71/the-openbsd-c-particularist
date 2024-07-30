@@ -1,0 +1,3 @@
+struct wsdisplay_curpos {
+  u_int x, y;
+};

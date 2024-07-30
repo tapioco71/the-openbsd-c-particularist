@@ -1,0 +1,5 @@
+struct wskbd_keyrepeat_data {
+  u_int which;
+  u_int del1;
+  u_int delN;
+};
