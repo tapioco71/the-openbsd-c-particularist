@@ -491,32 +491,32 @@ struct sigaction {
 
 \begin_layout Plain Layout
 
-  union {
+	union {
 \end_layout
 
 \begin_layout Plain Layout
 
-    void (*__sa_handler)(int);
+		void (*__sa_handler)(int);
 \end_layout
 
 \begin_layout Plain Layout
 
-    void (*__sa_sigaction)(int, siginfo_t *, void *);
+		void (*__sa_sigaction)(int, siginfo_t *, void *);
 \end_layout
 
 \begin_layout Plain Layout
 
-  } __sigaction_u;
+	} __sigaction_u;
 \end_layout
 
 \begin_layout Plain Layout
 
-  sigset_t sa_mask;
+	sigset_t sa_mask;
 \end_layout
 
 \begin_layout Plain Layout
 
-  int sa_flags;
+	int sa_flags;
 \end_layout
 
 \begin_layout Plain Layout

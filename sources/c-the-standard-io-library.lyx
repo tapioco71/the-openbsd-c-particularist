@@ -271,7 +271,7 @@ literal "false"
 \shape italic
 buffering
 \shape default
- is performed automatically.
+ – is performed automatically.
  Rather than reading or writing data a few bytes at a time, the routines
  perform the actual input or output in large 
 \shape italic
@@ -321,7 +321,7 @@ status open
 \shape italic
 input and output conversions
 \shape default
- are perfomed.
+ – are perfomed.
  For example, when using the 
 \family typewriter
 printf
@@ -396,8 +396,7 @@ scanf
 \shape italic
 input and output are automatically formatted
 \shape default
-.
- That is, it is possible to use field widths and the like to print numbers
+ – that is, it is possible to use field widths and the like to print numbers
  and strings in any desired format.
 \end_layout
 

@@ -331,7 +331,7 @@ opensource
 \begin_layout Enumerate
 embedded computing and mobile devices are used to build cheaper and smarter
  portable computers.
- Operative Systems like UNIX and then OpenBSD are playing a central role
+ Operating Systems like UNIX and then OpenBSD are playing a central role
  in provide development platforms and services for this kind of computing
  devices
 \begin_inset Foot
@@ -442,13 +442,13 @@ The kernel is largely written in C and assembly language for different computing
 \end_inset
 
 .
- As a result, those wanting to write system programs under this operative
+ As a result, those wanting to write system programs under this operating
  system
 \begin_inset Index idx
 status open
 
 \begin_layout Plain Layout
-operative system
+operating system
 \end_layout
 
 \end_inset
@@ -1798,9 +1798,9 @@ We can apply this even to a multitasking system in which threads could be
  a file on the disk for writing and store in it 256 MB of data in it, but
  the disk is full, which is a condition not depending by the program itself,
  we can say that it is an external factor.
- As the program tries to write those data, the operative system signals
+ As the program tries to write those data, the operating system signals
  the problem and generates an error, forcing the program to abort the operation.
- Usually the operative system signals the error, after aborting the requested
+ Usually the operating system signals the error, after aborting the requested
  operation, by placing a numerical code in memory by storing it in a system-wide
  accessible variable and/or make the called routine returns that code to
  the program.

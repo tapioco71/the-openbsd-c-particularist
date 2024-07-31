@@ -180,7 +180,7 @@ file system
 
 
 \shape default
- types to ease data exchange with other operative systems.
+ types to ease data exchange with other operating systems.
  On version 7.5 we can handle:
 \end_layout
 
@@ -276,7 +276,7 @@ disk
  is a device than can store data by means of write operations and then the
  stored data can be retrieved by means of read operations.
  A disk is usually connected to the computer using electronic interfaces
- and it is configured and managed by a disk driver software in the operative
+ and it is configured and managed by a disk driver software in the operating
  system.
  To store and manage data a disk could use different technologies.
  The most convenient and used kind of disks are:
