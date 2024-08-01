@@ -1060,8 +1060,8 @@ Reading and Writing Files.
 \begin_layout Standard
 At this point the reader can easily open and close files, the next thing
  to do is read and write data from and to that file.
- There is only one way to read from a file using the low-level interface
- and likewise, only one way to write to a file - a buffer-full at a time.
+ Using the low-level interface, files can be read and written a buffer-full
+ at a time.
  The size of the buffer is left up to the programmer which has to use an
  appropriate dimension.
  For example, if the programmer reads or writes characters one at a time,

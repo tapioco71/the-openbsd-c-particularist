@@ -3038,22 +3038,22 @@ int main(int argc, char *argv[])
 
 \begin_layout Plain Layout
 
-  int n;
+	int n;
 \end_layout
 
 \begin_layout Plain Layout
 
-  FILE *from, *to;
+	FILE *from, *to;
 \end_layout
 
 \begin_layout Plain Layout
 
-  char buf[ BUFSIZ ];
+	char buf[ BUFSIZ ];
 \end_layout
 
 \begin_layout Plain Layout
 
-  long int ret = EXIT_FAILURE;
+	long int ret = EXIT_FAILURE;
 \end_layout
 
 \begin_layout Plain Layout
@@ -3062,13 +3062,13 @@ int main(int argc, char *argv[])
 
 \begin_layout Plain Layout
 
-  /* Check our arguments.
+	/* Check our arguments.
  */
 \end_layout
 
 \begin_layout Plain Layout
 
-  if(argc == 3) {
+	if(argc == 3) {
 \end_layout
 
 \begin_layout Plain Layout
@@ -3077,13 +3077,13 @@ int main(int argc, char *argv[])
 
 \begin_layout Plain Layout
 
-    /* Open the from-file for reading.
+		/* Open the from-file for reading.
  */
 \end_layout
 
 \begin_layout Plain Layout
 
-    if((from = fopen(argv[ 1 ], "r")) != NULL) {
+		if((from = fopen(argv[ 1 ], "r")) != NULL) {
 \end_layout
 
 \begin_layout Plain Layout
@@ -3092,62 +3092,28 @@ int main(int argc, char *argv[])
 
 \begin_layout Plain Layout
 
-      /*
+			/*
 \end_layout
 
 \begin_layout Plain Layout
 
-       * Open the to-file for appending.
+			 * Open the to-file for appending.
   If to-file does
 \end_layout
 
 \begin_layout Plain Layout
 
-       * not exist, fopen will create it.
+			 * not exist, fopen will create it.
 \end_layout
 
 \begin_layout Plain Layout
 
-       */
+			 */
 \end_layout
 
 \begin_layout Plain Layout
 
-      if((to = fopen(argv[ 2 ], "a")) != NULL) {
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-	/*
-\end_layout
-
-\begin_layout Plain Layout
-
-	 * Now read a buffer-full at a time from from-file
-\end_layout
-
-\begin_layout Plain Layout
-
-	 * and write it to the to-file.
-\end_layout
-
-\begin_layout Plain Layout
-
-	 */
-\end_layout
-
-\begin_layout Plain Layout
-
-	while((n = fread(buf, sizeof(char), BUFSIZ, from)) > 0)
-\end_layout
-
-\begin_layout Plain Layout
-
-	  fwrite(buf, sizeof(char), n, to);
+			if((to = fopen(argv[ 2 ], "a")) != NULL) {
 \end_layout
 
 \begin_layout Plain Layout
@@ -3156,13 +3122,47 @@ int main(int argc, char *argv[])
 
 \begin_layout Plain Layout
 
-	/* Now close the output file.
+				/*
+\end_layout
+
+\begin_layout Plain Layout
+
+				 * Now read a buffer-full at a time from from-file
+\end_layout
+
+\begin_layout Plain Layout
+
+				 * and write it to the to-file.
+\end_layout
+
+\begin_layout Plain Layout
+
+				 */
+\end_layout
+
+\begin_layout Plain Layout
+
+				while((n = fread(buf, sizeof(char), BUFSIZ, from)) > 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+					fwrite(buf, sizeof(char), n, to);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+				/* Now close the output file.
  */
 \end_layout
 
 \begin_layout Plain Layout
 
-	fclose(to);
+				fclose(to);
 \end_layout
 
 \begin_layout Plain Layout
@@ -3171,23 +3171,23 @@ int main(int argc, char *argv[])
 
 \begin_layout Plain Layout
 
-	/* Signal no errors to the shell.
+				/* Signal no errors to the shell.
  */
 \end_layout
 
 \begin_layout Plain Layout
 
-	ret = EXIT_SUCCESS;
+				ret = EXIT_SUCCESS;
 \end_layout
 
 \begin_layout Plain Layout
 
-      } else
+			} else
 \end_layout
 
 \begin_layout Plain Layout
 
-	perror(argv[ 2 ]);
+				perror(argv[ 2 ]);
 \end_layout
 
 \begin_layout Plain Layout
@@ -3196,40 +3196,40 @@ int main(int argc, char *argv[])
 
 \begin_layout Plain Layout
 
-      /* Now close the input file.
+			/* Now close the input file.
  */
 \end_layout
 
 \begin_layout Plain Layout
 
-      fclose(from);
+			fclose(from);
 \end_layout
 
 \begin_layout Plain Layout
 
-    } else
+		} else
 \end_layout
 
 \begin_layout Plain Layout
 
-      perror(argv[ 1 ]);
+			perror(argv[ 1 ]);
 \end_layout
 
 \begin_layout Plain Layout
 
-  } else
+	} else
 \end_layout
 
 \begin_layout Plain Layout
 
-    fprintf(stderr, "usage: %s from-file to-file
+		fprintf(stderr, "usage: %s from-file to-file
 \backslash
 n", *argv);
 \end_layout
 
 \begin_layout Plain Layout
 
-  exit(ret);
+	exit(ret);
 \end_layout
 
 \begin_layout Plain Layout
@@ -3976,12 +3976,12 @@ int main(int argc, char *argv[])
 
 \begin_layout Plain Layout
 
-  long int ret = EXIT_FAILURE;
+	long int ret = EXIT_FAILURE;
 \end_layout
 
 \begin_layout Plain Layout
 
-  unsigned long int n, m;
+	unsigned long int n, m;
 \end_layout
 
 \begin_layout Plain Layout
@@ -3990,69 +3990,69 @@ int main(int argc, char *argv[])
 
 \begin_layout Plain Layout
 
-  /*
+	/*
 \end_layout
 
 \begin_layout Plain Layout
 
-   * Messaging the user to enter the integer
+	 * Messaging the user to enter the integer
 \end_layout
 
 \begin_layout Plain Layout
 
-   * number.
+	 * number.
 \end_layout
 
 \begin_layout Plain Layout
 
-   */
+	 */
 \end_layout
 
 \begin_layout Plain Layout
 
-  printf("Enter an integer number: ");
+	printf("Enter an integer number: ");
 \end_layout
 
 \begin_layout Plain Layout
 
-  scanf("%lu", &n);
+	scanf("%lu", &n);
 \end_layout
 
 \begin_layout Plain Layout
 
-  if(n <= 20ul) {
+	if(n <= 20ul) {
 \end_layout
 
 \begin_layout Plain Layout
 
-    m = factorial(n);
+		m = factorial(n);
 \end_layout
 
 \begin_layout Plain Layout
 
-    printf("The factorial of %lu is %lu.
+		printf("The factorial of %lu is %lu.
 \backslash
 n", n, m);
 \end_layout
 
 \begin_layout Plain Layout
 
-    ret = EXIT_SUCCESS;
+		ret = EXIT_SUCCESS;
 \end_layout
 
 \begin_layout Plain Layout
 
-  } else
+	} else
 \end_layout
 
 \begin_layout Plain Layout
 
-    perror("n must be a positive integer between 0 and 20");
+		perror("n must be a positive integer between 0 and 20");
 \end_layout
 
 \begin_layout Plain Layout
 
-  exit(ret);
+	exit(ret);
 \end_layout
 
 \begin_layout Plain Layout
@@ -4097,27 +4097,27 @@ unsigned long int factorial(unsigned long int n)
 
 \begin_layout Plain Layout
 
-  /* computes n! */
+	/* computes n! */
 \end_layout
 
 \begin_layout Plain Layout
 
-  if((n == 0ul) || (n == 1ul))
+	if((n == 0ul) || (n == 1ul))
 \end_layout
 
 \begin_layout Plain Layout
 
-    return 1ul;
+		return 1ul;
 \end_layout
 
 \begin_layout Plain Layout
 
-  else
+	else
 \end_layout
 
 \begin_layout Plain Layout
 
-    return (n * factorial(n - 1));
+		return (n * factorial(n - 1));
 \end_layout
 
 \begin_layout Plain Layout
