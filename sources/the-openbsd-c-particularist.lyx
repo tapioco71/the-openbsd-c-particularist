@@ -1141,8 +1141,26 @@ Theo De Raadt;
 without them the adventure would never start.
  Last but not least we would like to thank the reader, whose patience we
  hope will be rewarded by learning the material exposed in this work.
- I would like to thank the people at ircnow and especially jrmu who never
- stopped encouraging the release of this humble work.
+ I would like to thank the people at ircnow and especially Mr.
+ Aaron Lin 
+\begin_inset Quotes eld
+\end_inset
+
+jrmu
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset CommandInset href
+LatexCommand href
+name "jrmu@ircnow.org"
+target "jrmu@ircnow.org"
+type "mailto:"
+literal "false"
+
+\end_inset
+
+ who never stopped encouraging me for the release of this humble work.
 \end_layout
 
 \begin_layout Section
