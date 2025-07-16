@@ -717,7 +717,7 @@ perror
 \begin_layout Standard
 \noindent
 The appendices provide information on some specialized topics that are not
- often used by the systems programmer, but are nevertheless good to know.
+ often used by the system programmers, but are nevertheless good to know.
  Appendix A presents information on how to call FORTRAN 90 subroutines from
  a C program, and vice-versa.
  Appendix B describes the use of Workstation Console Access
@@ -1131,6 +1131,10 @@ Brian W.
 
 \begin_layout Itemize
 Ken Thompson;
+\end_layout
+
+\begin_layout Itemize
+John McCarthy;
 \end_layout
 
 \begin_layout Itemize
