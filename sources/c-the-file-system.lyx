@@ -181,7 +181,7 @@ file system
 
 \shape default
  types to ease data exchange with other operating systems.
- On version 7.5 we can handle:
+ On version 7.7 we can handle:
 \end_layout
 
 \begin_layout Itemize
@@ -933,17 +933,17 @@ disk label
 \shape default
  which provides detailed information about the geometry of the disk and
  the partitions into which the disk is divided.
- The disk label
+ The disklabel structure
 \begin_inset Index idx
 status open
 
 \begin_layout Plain Layout
-disk label
+disklabel structure
 \end_layout
 
 \end_inset
 
- structure is defined in 
+ is defined in 
 \family typewriter
 <sys/disklabel.h>
 \begin_inset Index idx
@@ -1183,8 +1183,10 @@ struct disklabel {
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 d_magic
 \family default
+\series default
  the magic number;
 \end_layout
 
@@ -1193,8 +1195,10 @@ d_magic
 \noindent
 
 \family typewriter
+\series bold
 d_type
 \family default
+\series default
  drive type:
 \end_layout
 
@@ -1494,8 +1498,10 @@ DTYPE_RDROOT
 \noindent
 
 \family typewriter
+\series bold
 d_subtype
 \family default
+\series default
  controller/d_type specific;
 \end_layout
 
@@ -1504,8 +1510,10 @@ d_subtype
 \noindent
 
 \family typewriter
+\series bold
 d_typename
 \family default
+\series default
  type name, e.g.
  "eagle";
 \end_layout
@@ -1515,8 +1523,10 @@ d_typename
 \noindent
 
 \family typewriter
+\series bold
 d_packname
 \family default
+\series default
  pack identifier;
 \end_layout
 
@@ -1525,8 +1535,10 @@ d_packname
 \noindent
 
 \family typewriter
+\series bold
 d_secsize
 \family default
+\series default
  number of bytes per sector; 
 \end_layout
 
@@ -1535,8 +1547,10 @@ d_secsize
 \noindent
 
 \family typewriter
+\series bold
 d_nsectors
 \family default
+\series default
  number of data sectors per track;
 \end_layout
 
@@ -1545,9 +1559,12 @@ d_nsectors
 \noindent
 
 \family typewriter
+\series bold
 d_ntracks
 \family default
- number of tracks per cylinder;
+ 
+\series default
+number of tracks per cylinder;
 \end_layout
 
 \begin_layout Labeling
@@ -1555,8 +1572,10 @@ d_ntracks
 \noindent
 
 \family typewriter
+\series bold
 d_ncylinders
 \family default
+\series default
  number of data cylinders per unit;
 \end_layout
 
@@ -1565,8 +1584,10 @@ d_ncylinders
 \noindent
 
 \family typewriter
+\series bold
 d_secpercyl
 \family default
+\series default
  number of data sectors per cylinder;
 \end_layout
 
@@ -1575,8 +1596,10 @@ d_secpercyl
 \noindent
 
 \family typewriter
+\series bold
 d_secperunit
 \family default
+\series default
  number of data sectors (low part);
 \end_layout
 
@@ -1584,8 +1607,10 @@ d_secperunit
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 d_uid
 \family default
+\series default
  unique label identifier;
 \end_layout
 
@@ -1593,8 +1618,10 @@ d_uid
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 d_acylinders
 \family default
+\series default
  number of alt.
  cylinders per unit;
 \end_layout
@@ -1603,8 +1630,10 @@ d_acylinders
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 d_bstarth
 \family default
+\series default
  start of useable region (high part);
 \end_layout
 
@@ -1612,8 +1641,10 @@ d_bstarth
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 d_bendh
 \family default
+\series default
  size of useable region (high part);
 \end_layout
 
@@ -1621,8 +1652,10 @@ d_bendh
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 d_bstart
 \family default
+\series default
  start of useable region;
 \end_layout
 
@@ -1630,8 +1663,10 @@ d_bstart
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 d_bend
 \family default
+\series default
  end of useable region;
 \end_layout
 
@@ -1639,8 +1674,10 @@ d_bend
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 d_flags
 \family default
+\series default
  generic flags;
 \end_layout
 
@@ -1648,8 +1685,10 @@ d_flags
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 d_spare4
 \family default
+\series default
  structure pad data;
 \end_layout
 
@@ -1657,8 +1696,10 @@ d_spare4
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 d_secperunith
 \family default
+\series default
  number of data sectors (high part);
 \end_layout
 
@@ -1666,8 +1707,10 @@ d_secperunith
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 d_version
 \family default
+\series default
  version number (1=48 bit addressing);
 \end_layout
 
@@ -1675,8 +1718,10 @@ d_version
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 d_spare
 \family default
+\series default
  structure pad data, reserved for future use;
 \end_layout
 
@@ -1684,8 +1729,10 @@ d_spare
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 d_magic2
 \family default
+\series default
  the magic number (again);
 \end_layout
 
@@ -1693,8 +1740,10 @@ d_magic2
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 d_checksum
 \family default
+\series default
  xor of data incl.
  partitions;
 \end_layout
@@ -1703,8 +1752,10 @@ d_checksum
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 d_npartitions
 \family default
+\series default
  number of partitions in following;
 \end_layout
 
@@ -1712,8 +1763,10 @@ d_npartitions
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 d_spare2
 \family default
+\series default
  spare member;
 \end_layout
 
@@ -1721,8 +1774,10 @@ d_spare2
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 d_spare3
 \family default
+\series default
  spare member;
 \end_layout
 
@@ -1730,8 +1785,10 @@ d_spare3
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 d_partitions
 \family default
+\series default
  the partition table, array of a structure with the following members:
 \end_layout
 
@@ -2282,7 +2339,7 @@ disklabel - a program to retrieve disk label.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -2882,7 +2939,7 @@ disklabel2 - a program to retrieve partitions information.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -3387,7 +3444,7 @@ SBSIZE
 status open
 
 \begin_layout Plain Layout
-super-block
+fs structure
 \end_layout
 
 \end_inset
@@ -3947,8 +4004,10 @@ The members are:
 \noindent
 
 \family typewriter
+\series bold
 fs_firstfield
 \family default
+\series default
  historic file system linked list, used for incore super blocks;
 \end_layout
 
@@ -3957,8 +4016,10 @@ fs_firstfield
 \noindent
 
 \family typewriter
+\series bold
 fs_unused_1
 \family default
+\series default
  unused member;
 \end_layout
 
@@ -3967,8 +4028,10 @@ fs_unused_1
 \noindent
 
 \family typewriter
+\series bold
 fs_sblkno
 \family default
+\series default
  address of super-block / frags;
 \end_layout
 
@@ -3977,8 +4040,10 @@ fs_sblkno
 \noindent
 
 \family typewriter
+\series bold
 fs_cblkno
 \family default
+\series default
  offset of cylinder-block / frags;
 \end_layout
 
@@ -3987,8 +4052,10 @@ fs_cblkno
 \noindent
 
 \family typewriter
+\series bold
 fs_iblkno
 \family default
+\series default
  offset of inode-blocks / frags;
 \end_layout
 
@@ -3997,8 +4064,10 @@ fs_iblkno
 \noindent
 
 \family typewriter
+\series bold
 fs_dblkno
 \family default
+\series default
  offset of first data / frags;
 \end_layout
 
@@ -4007,8 +4076,10 @@ fs_dblkno
 \noindent
 
 \family typewriter
+\series bold
 fs_cgoffset
 \family default
+\series default
  cylinder group offset in cylinder;
 \end_layout
 
@@ -4017,8 +4088,10 @@ fs_cgoffset
 \noindent
 
 \family typewriter
+\series bold
 fs_cgmask
 \family default
+\series default
  used to calc mod fs_ntrak;
 \end_layout
 
@@ -4027,8 +4100,10 @@ fs_cgmask
 \noindent
 
 \family typewriter
+\series bold
 fs_ffs1_time
 \family default
+\series default
  last time written;
 \end_layout
 
@@ -4037,8 +4112,10 @@ fs_ffs1_time
 \noindent
 
 \family typewriter
+\series bold
 fs_ffs1_size
 \family default
+\series default
  number of blocks in fs / frags;
 \end_layout
 
@@ -4047,8 +4124,10 @@ fs_ffs1_size
 \noindent
 
 \family typewriter
+\series bold
 fs_ffs1_dsize
 \family default
+\series default
  number of data blocks in fs;
 \end_layout
 
@@ -4057,8 +4136,10 @@ fs_ffs1_dsize
 \noindent
 
 \family typewriter
+\series bold
 fs_ncg
 \family default
+\series default
  number of cylinder groups;
 \end_layout
 
@@ -4067,8 +4148,10 @@ fs_ncg
 \noindent
 
 \family typewriter
+\series bold
 fs_bsize
 \family default
+\series default
  size of basic blocks / bytes;
 \end_layout
 
@@ -4076,8 +4159,10 @@ fs_bsize
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_fsize
 \family default
+\series default
  size of frag blocks / bytes;
 \end_layout
 
@@ -4086,8 +4171,10 @@ fs_fsize
 \noindent
 
 \family typewriter
+\series bold
 fs_frag
 \family default
+\series default
  number of frags in a block in fs;
 \end_layout
 
@@ -4096,8 +4183,10 @@ fs_frag
 \noindent
 
 \family typewriter
+\series bold
 fs_minfree
 \family default
+\series default
  minimum percentage of free blocks;
 \end_layout
 
@@ -4106,8 +4195,10 @@ fs_minfree
 \noindent
 
 \family typewriter
+\series bold
 fs_rotdelay
 \family default
+\series default
  number of ms for optimal next block;
 \end_layout
 
@@ -4116,8 +4207,10 @@ fs_rotdelay
 \noindent
 
 \family typewriter
+\series bold
 fs_rps
 \family default
+\series default
  disk revolutions per second;
 \end_layout
 
@@ -4126,8 +4219,10 @@ fs_rps
 \noindent
 
 \family typewriter
+\series bold
 fs_bmask
 \family default
+\series default
  
 \begin_inset Quotes eld
 \end_inset
@@ -4144,8 +4239,10 @@ blkoff
 \noindent
 
 \family typewriter
+\series bold
 fs_fmask
 \family default
+\series default
  
 \begin_inset Quotes eld
 \end_inset
@@ -4162,8 +4259,10 @@ fragoff
 \noindent
 
 \family typewriter
+\series bold
 fs_bshift
 \family default
+\series default
  
 \begin_inset Quotes eld
 \end_inset
@@ -4180,8 +4279,10 @@ lblkno
 \noindent
 
 \family typewriter
+\series bold
 fs_fshift
 \family default
+\series default
  
 \begin_inset Quotes eld
 \end_inset
@@ -4198,8 +4299,10 @@ numfrags
 \noindent
 
 \family typewriter
+\series bold
 fs_maxcontig
 \family default
+\series default
  maximum number of contiguous blocks;
 \end_layout
 
@@ -4208,8 +4311,10 @@ fs_maxcontig
 \noindent
 
 \family typewriter
+\series bold
 fs_maxbpg
 \family default
+\series default
  maximum number of blocks per cylinder group;
 \end_layout
 
@@ -4218,8 +4323,10 @@ fs_maxbpg
 \noindent
 
 \family typewriter
+\series bold
 fs_fragshift
 \family default
+\series default
  block to frag shift;
 \end_layout
 
@@ -4228,8 +4335,10 @@ fs_fragshift
 \noindent
 
 \family typewriter
+\series bold
 fs_fsbtodb
 \family default
+\series default
  fsbtodb and dbtofsb shift constant;
 \end_layout
 
@@ -4238,8 +4347,10 @@ fs_fsbtodb
 \noindent
 
 \family typewriter
+\series bold
 fs_sbsize
 \family default
+\series default
  actual size of super block;
 \end_layout
 
@@ -4248,8 +4359,10 @@ fs_sbsize
 \noindent
 
 \family typewriter
+\series bold
 fs_csmask
 \family default
+\series default
  csum block offset (now unused);
 \end_layout
 
@@ -4258,8 +4371,10 @@ fs_csmask
 \noindent
 
 \family typewriter
+\series bold
 fs_csshift
 \family default
+\series default
  csum block number (now unused);
 \end_layout
 
@@ -4268,8 +4383,10 @@ fs_csshift
 \noindent
 
 \family typewriter
+\series bold
 fs_nindir
 \family default
+\series default
  value of NINDIR;
 \end_layout
 
@@ -4278,8 +4395,10 @@ fs_nindir
 \noindent
 
 \family typewriter
+\series bold
 fs_inopb
 \family default
+\series default
  i-nodes per file system block;
 \end_layout
 
@@ -4288,8 +4407,10 @@ fs_inopb
 \noindent
 
 \family typewriter
+\series bold
 fs_nspf
 \family default
+\series default
  
 \family typewriter
 DEV_BSIZE
@@ -4313,8 +4434,10 @@ DEV_BSIZE
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_optim
 \family default
+\series default
  optimization preference;
 \end_layout
 
@@ -4322,8 +4445,10 @@ fs_optim
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_npsect
 \family default
+\series default
  
 \family typewriter
 DEV_BSIZE
@@ -4347,8 +4472,10 @@ DEV_BSIZE
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_interleave
 \family default
+\series default
  
 \family typewriter
 DEV_BSIZE
@@ -4372,8 +4499,10 @@ DEV_BSIZE
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_trackskew
 \family default
+\series default
  sector 0 skew, per track;
 \end_layout
 
@@ -4381,8 +4510,10 @@ fs_trackskew
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_id
 \family default
+\series default
  unique filesystem id;
 \end_layout
 
@@ -4390,8 +4521,10 @@ fs_id
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_ffs1_csaddr
 \family default
+\series default
  block address of cylinder groyup summary area;
 \end_layout
 
@@ -4399,8 +4532,10 @@ fs_ffs1_csaddr
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_cssize
 \family default
+\series default
  cylinder group summary area size / bytes;
 \end_layout
 
@@ -4408,8 +4543,10 @@ fs_cssize
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_cgsize
 \family default
+\series default
  cylinder group block size / bytes;
 \end_layout
 
@@ -4417,8 +4554,10 @@ fs_cgsize
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_ntrak
 \family default
+\series default
  tracks per cylinder;
 \end_layout
 
@@ -4426,8 +4565,10 @@ fs_ntrak
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_nsect
 \family default
+\series default
  
 \family typewriter
 DEV_BSIZE
@@ -4451,8 +4592,10 @@ DEV_BSIZE
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_spc
 \family default
+\series default
  
 \family typewriter
 DEV_BSIZE
@@ -4476,8 +4619,10 @@ DEV_BSIZE
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_ncyl
 \family default
+\series default
  cylinders in file system;
 \end_layout
 
@@ -4485,8 +4630,10 @@ fs_ncyl
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_cpg
 \family default
+\series default
  cylinders per group;
 \end_layout
 
@@ -4494,8 +4641,10 @@ fs_cpg
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_ipg
 \family default
+\series default
  inodes per group;
 \end_layout
 
@@ -4503,8 +4652,10 @@ fs_ipg
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_fpg
 \family default
+\series default
  blocks per group * fs_frag;
 \end_layout
 
@@ -4512,8 +4663,10 @@ fs_fpg
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_ffs1_cstotal
 \family default
+\series default
  cylinder summary information;
 \end_layout
 
@@ -4521,8 +4674,10 @@ fs_ffs1_cstotal
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_fmod
 \family default
+\series default
  super-block modified flag;
 \end_layout
 
@@ -4530,8 +4685,10 @@ fs_fmod
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_clean
 \family default
+\series default
  file system is clean flag;
 \end_layout
 
@@ -4539,8 +4696,10 @@ fs_clean
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_ronly
 \family default
+\series default
  mounted read-only flag;
 \end_layout
 
@@ -4548,8 +4707,10 @@ fs_ronly
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_ffs1_flags
 \family default
+\series default
  see FS_ below;
 \end_layout
 
@@ -4557,8 +4718,10 @@ fs_ffs1_flags
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_fsmnt
 \family default
+\series default
  name mounted on;
 \end_layout
 
@@ -4566,17 +4729,22 @@ fs_fsmnt
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_volname
 \family default
- volume name;
+ 
+\series default
+volume name;
 \end_layout
 
 \begin_layout Labeling
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_swuid
 \family default
+\series default
  system-wide uid;
 \end_layout
 
@@ -4584,8 +4752,10 @@ fs_swuid
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_pad
 \family default
+\series default
  due to alignment of fs_swuid;
 \end_layout
 
@@ -4593,8 +4763,10 @@ fs_pad
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_cgrotor
 \family default
+\series default
  last cg searched;
 \end_layout
 
@@ -4602,8 +4774,10 @@ fs_cgrotor
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_ocsp
 \family default
+\series default
  padding; was list of fs_cs bufs;
 \end_layout
 
@@ -4611,8 +4785,10 @@ fs_ocsp
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_contigdirs
 \family default
+\series default
  number of contiguously allocated directories;
 \end_layout
 
@@ -4620,8 +4796,10 @@ fs_contigdirs
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_csp
 \family default
+\series default
  cg summary info buffer for fs_cs;
 \end_layout
 
@@ -4629,8 +4807,10 @@ fs_csp
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_maxcluster
 \family default
+\series default
  maximum cluster in each cylinder group;
 \end_layout
 
@@ -4638,8 +4818,10 @@ fs_maxcluster
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_active
 \family default
+\series default
  reserved for snapshots;
 \end_layout
 
@@ -4647,8 +4829,10 @@ fs_active
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_cpc
 \family default
+\series default
  cylinder per cycle in postbl;
 \end_layout
 
@@ -4656,8 +4840,10 @@ fs_cpc
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_maxbsize
 \family default
+\series default
  maximum blocking factor permitted;
 \end_layout
 
@@ -4665,8 +4851,10 @@ fs_maxbsize
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_spareconf64
 \family default
+\series default
  old rotation block list head;
 \end_layout
 
@@ -4674,8 +4862,10 @@ fs_spareconf64
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_sblockloc
 \family default
+\series default
  offset of standard super block;
 \end_layout
 
@@ -4683,8 +4873,10 @@ fs_sblockloc
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_cstotal
 \family default
+\series default
  cylinder summary information;
 \end_layout
 
@@ -4692,8 +4884,10 @@ fs_cstotal
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_time
 \family default
+\series default
  time last written;
 \end_layout
 
@@ -4701,8 +4895,10 @@ fs_time
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_size
 \family default
+\series default
  number of blocks in fs;
 \end_layout
 
@@ -4710,8 +4906,10 @@ fs_size
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_dsize
 \family default
+\series default
  number of data blocks in fs;
 \end_layout
 
@@ -4719,8 +4917,10 @@ fs_dsize
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_csaddr
 \family default
+\series default
  block address of cylinder group summary area;
 \end_layout
 
@@ -4728,8 +4928,10 @@ fs_csaddr
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_pendingblocks
 \family default
+\series default
  blocks in process of being freed;
 \end_layout
 
@@ -4737,8 +4939,10 @@ fs_pendingblocks
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_pendinginodes
 \family default
+\series default
  i-nodes in process of being freed;
 \end_layout
 
@@ -4746,8 +4950,10 @@ fs_pendinginodes
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_snapinum
 \family default
+\series default
  space reserved for snapshots;
 \end_layout
 
@@ -4755,8 +4961,10 @@ fs_snapinum
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_avgfilesize
 \family default
+\series default
  expected average file size;
 \end_layout
 
@@ -4764,8 +4972,10 @@ fs_avgfilesize
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_avgfpdir
 \family default
+\series default
  expected number of files per directory;
 \end_layout
 
@@ -4773,8 +4983,10 @@ fs_avgfpdir
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_sparecon
 \family default
+\series default
  reserved for future constants;
 \end_layout
 
@@ -4782,8 +4994,10 @@ fs_sparecon
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_flags
 \family default
+\series default
  see FS_ flags below;
 \end_layout
 
@@ -4791,8 +5005,10 @@ fs_flags
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_fscktime
 \family default
+\series default
  last time 
 \shape italic
 fsck
@@ -4804,8 +5020,10 @@ fsck
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_contigsumsize
 \family default
+\series default
  size of cluster summary array;
 \end_layout
 
@@ -4813,8 +5031,10 @@ fs_contigsumsize
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_maxsymlinklen
 \family default
+\series default
  maximum length of an internal symlink;
 \end_layout
 
@@ -4822,17 +5042,22 @@ fs_maxsymlinklen
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_inodefmt
 \family default
- format of on-disk i-nodes;
+ 
+\series default
+format of on-disk i-nodes;
 \end_layout
 
 \begin_layout Labeling
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_maxfilesize
 \family default
+\series default
  maximum representable file size;
 \end_layout
 
@@ -4840,8 +5065,10 @@ fs_maxfilesize
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_qbmask
 \family default
+\series default
  ~fs_bmask - for use with quad size;
 \end_layout
 
@@ -4849,8 +5076,10 @@ fs_qbmask
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_qfmask
 \family default
+\series default
  ~fs_fmask - for use with quad size;
 \end_layout
 
@@ -4858,8 +5087,10 @@ fs_qfmask
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_state
 \family default
+\series default
  validate fs_clean field;
 \end_layout
 
@@ -4867,8 +5098,10 @@ fs_state
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_postblformat
 \family default
+\series default
  format of positional layout tables;
 \end_layout
 
@@ -4876,8 +5109,10 @@ fs_postblformat
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_nrpos
 \family default
+\series default
  number of rotational positions;
 \end_layout
 
@@ -4885,8 +5120,10 @@ fs_nrpos
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_postbloff
 \family default
+\series default
  (u_int16) rotation block list head;
 \end_layout
 
@@ -4894,8 +5131,10 @@ fs_postbloff
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_rotbloff
 \family default
+\series default
  (u_int8) blocks for each rotation;
 \end_layout
 
@@ -4903,8 +5142,10 @@ fs_rotbloff
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_magic
 \family default
+\series default
  magic number;
 \end_layout
 
@@ -4912,8 +5153,10 @@ fs_magic
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_space
 \family default
+\series default
  list of blocks for each rotation.
 \end_layout
 
@@ -5935,7 +6178,7 @@ superblock - a program to retrieve a file system superblock.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -6503,8 +6746,10 @@ The members are:
 \noindent
 
 \family typewriter
+\series bold
 fs_spec
 \family default
+\series default
  block special device name;
 \end_layout
 
@@ -6512,8 +6757,10 @@ fs_spec
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_file
 \family default
+\series default
  file system path prefix;
 \end_layout
 
@@ -6521,17 +6768,22 @@ fs_file
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_vfstype
 \family default
- type of file system;
+ 
+\series default
+type of file system;
 \end_layout
 
 \begin_layout Labeling
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_mntops
 \family default
+\series default
  comma separated mount options;
 \end_layout
 
@@ -6539,8 +6791,10 @@ fs_mntops
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 fs_type
 \family default
+\series default
  rw, ro, sw, or xx;
 \end_layout
 
@@ -6549,8 +6803,10 @@ fs_type
 \noindent
 
 \family typewriter
+\series bold
 fs_freq
 \family default
+\series default
  dump frequency, in days;
 \end_layout
 
@@ -6559,8 +6815,10 @@ fs_freq
 \noindent
 
 \family typewriter
+\series bold
 fs_passno
 \family default
+\series default
  pass number on parallel fsck.
 \end_layout
 
@@ -6767,7 +7025,7 @@ status open
 \family typewriter
 fsbtodb(fs,b)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6790,7 +7048,7 @@ fsbtodb(fs,b)
 \family typewriter
 dbtofsb(fs,b)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6820,7 +7078,7 @@ The following are cylinder group macros to locate things in cylinder groups,
 \family typewriter
 cgbase(fs,c)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6843,7 +7101,7 @@ cgbase(fs,c)
 \family typewriter
 cgdata(fs,c)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6866,7 +7124,7 @@ cgdata(fs,c)
 \family typewriter
 cgmeta(fs,c)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6889,7 +7147,7 @@ cgmeta(fs,c)
 \family typewriter
 cgdmin(fs,c)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6912,7 +7170,7 @@ cgdmin(fs,c)
 \family typewriter
 cgimin(fs,c)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6935,7 +7193,7 @@ cgimin(fs,c)
 \family typewriter
 cgsblock(fs,c)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6958,7 +7216,7 @@ cgsblock(fs,c)
 \family typewriter
 cgtod(fs,c)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6981,7 +7239,7 @@ cgtod(fs,c)
 \family typewriter
 cgstart(fs,c)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7010,7 +7268,7 @@ Macros for handling inode numbers:
 \family typewriter
 ino_to_cg(fs,x)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7032,7 +7290,7 @@ ino_to_cg(fs,x)
 \family typewriter
 ino_to_fsba(fs,x)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7055,7 +7313,7 @@ ino_to_fsba(fs,x)
 \family typewriter
 ino_to_fsbo(fs,x)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7078,7 +7336,7 @@ ino_to_fsbo(fs,x)
 \family typewriter
 dtog(fs,d)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7101,7 +7359,7 @@ dtog(fs,d)
 \family typewriter
 dtogd(fs,d)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7124,7 +7382,7 @@ dtogd(fs,d)
 \family typewriter
 blkmap(fs,map,loc)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7147,7 +7405,7 @@ blkmap(fs,map,loc)
 \family typewriter
 cbtocylno(fs,bno)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7170,7 +7428,7 @@ cbtocylno(fs,bno)
 \family typewriter
 cbtorpos(fs,bno)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7201,7 +7459,7 @@ The following macros optimize certain frequently calculated quantities by
 \family typewriter
 blkoff(fs,loc)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7228,7 +7486,7 @@ blkoff(fs,loc)
 \family typewriter
 fragoff(fs,loc)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7255,7 +7513,7 @@ fragoff(fs,loc)
 \family typewriter
 lblktosize(fs,blk)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7282,7 +7540,7 @@ lblktosize(fs,blk)
 \family typewriter
 lblkno(fs,loc)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7307,7 +7565,7 @@ lblkno(fs,loc)
 \family typewriter
 numfrags(fs,loc)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7332,7 +7590,7 @@ numfrags(fs,loc)
 \family typewriter
 blkroundup(fs,size)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7357,7 +7615,7 @@ roundup(size, fs->fs_bsize)
 \family typewriter
 fragroundup(fs,size)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7382,7 +7640,7 @@ roundup(size, fs->fs_fsize)
 \family typewriter
 fragstoblks(fs,frags)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7407,7 +7665,7 @@ fragstoblks(fs,frags)
 \family typewriter
 blkstofrags(fs,blks)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7432,7 +7690,7 @@ blkstofrags(fs,blks)
 \family typewriter
 fragnum(fs,fsb)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7457,7 +7715,7 @@ fragnum(fs,fsb)
 \family typewriter
 blknum(fs,fsb)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7482,7 +7740,7 @@ rounddown(fsb, fs->fs_frag)
 \family typewriter
 freespace(fs,p)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7507,7 +7765,7 @@ Determining the size of a file block in the file system:
 \family typewriter
 blksize(fs,ip,lbn)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7528,7 +7786,7 @@ blksize(fs,ip,lbn)
 \family typewriter
 dblksize(fs,dip,lbn)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7549,7 +7807,7 @@ dblksize(fs,dip,lbn)
 \family typewriter
 sblksize(fs,size,lbn)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7570,7 +7828,7 @@ sblksize(fs,size,lbn)
 \family typewriter
 NSPB(fs)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7607,7 +7865,7 @@ DEV_BSIZE
 \family typewriter
 NSPF(fs)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7644,7 +7902,7 @@ DEV_BSIZE
 \family typewriter
 INOPB(fs)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7669,7 +7927,7 @@ INOPB(fs)
 \family typewriter
 INOPF(fs)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7694,7 +7952,7 @@ INOPF(fs)
 \family typewriter
 NINDIR(fs)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7715,7 +7973,7 @@ NINDIR(fs)
 \family typewriter
 FS_KERNMAXFILESIZE(pgsiz,fs)
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7801,23 +8059,17 @@ i-node
 named
 \shape default
  by its device/i-number pair.
- The 
-\shape italic
-on-disk inode
+ The on-disk inode structure
 \begin_inset Index idx
 status open
 
 \begin_layout Plain Layout
-
-\shape italic
-on-disk inode
+ufs1_dinode structure
 \end_layout
 
 \end_inset
 
-
-\shape default
- structure is called 
+ is called 
 \family typewriter
 dinode
 \family default
@@ -8246,7 +8498,7 @@ inode - a program to retrieve a file inode information.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout

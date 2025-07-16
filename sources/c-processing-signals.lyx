@@ -231,7 +231,7 @@ change in child process status
 \shape default
 
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -244,7 +244,7 @@ change in child process status
 , are purely software-oriented.
  In OpenBSD
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 OpenBSD
@@ -258,7 +258,7 @@ OpenBSD
 \shape italic
 core
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -275,7 +275,7 @@ core
 \shape italic
 core dump
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -303,7 +303,7 @@ Overview of Signal Handling.
 \begin_layout Standard
 OpenBSD
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 OpenBSD
@@ -3722,7 +3722,7 @@ sigaction - shows how to intercept/ignore signals.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -4271,7 +4271,7 @@ signal
 \family typewriter
 sigaction
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4290,7 +4290,7 @@ sigaction
 \shape italic
 signal handler
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4308,7 +4308,7 @@ signal handler
 \family typewriter
 <signal.h>
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4367,7 +4367,7 @@ ouch1 - prints "OUCH" when an interrupt is received.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -4608,7 +4608,7 @@ This program differs from the sigaction.c one since the signal
 \family typewriter
 SIGINT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4624,7 +4624,7 @@ SIGINT
 \family typewriter
 SA_RESETHAND
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4641,7 +4641,7 @@ SA_RESETHAND
 \family typewriter
 SIGINT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4674,7 +4674,7 @@ By using the
 \family typewriter
 alarm
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4688,7 +4688,7 @@ alarm
 \family default
  system call
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 system call
@@ -4704,7 +4704,7 @@ system call
 \family typewriter
 SIGALARM
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4780,7 +4780,7 @@ alarm - perform alarm issuing for the executing process.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -5051,7 +5051,7 @@ The
 \family typewriter
 setjmp
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -5068,7 +5068,7 @@ setjmp
 \family typewriter
 longjmp
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -5085,7 +5085,7 @@ longjmp
 \family typewriter
 setjmp
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -5103,7 +5103,7 @@ setjmp
 \family typewriter
 setjmp
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -5123,7 +5123,7 @@ setjmp
 \family typewriter
 setjmp
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -5139,7 +5139,7 @@ setjmp
 \family typewriter
 longjmp
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -5156,7 +5156,7 @@ longjmp
 \family typewriter
 longjmp
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -5172,7 +5172,7 @@ longjmp
 \family typewriter
 setjmp
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -5189,7 +5189,7 @@ setjmp
 \family typewriter
 longjmp
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -5207,7 +5207,7 @@ longjmp
 \family typewriter
 setjmp
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -5223,7 +5223,7 @@ setjmp
 \family typewriter
 longjmp
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -5240,7 +5240,7 @@ longjmp
 \family typewriter
 setjmp
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -5256,7 +5256,7 @@ setjmp
 \family typewriter
 longjmp
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -5307,7 +5307,7 @@ timeout - program to demonstrate a timeout routine.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -5822,7 +5822,7 @@ The Signal Mask.
 A user-defined signal handler is called with the signal mechanism provided
  by OpenBSD
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 OpenBSD
@@ -5836,7 +5836,7 @@ sigaddset
 \family default
 
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -5852,7 +5852,7 @@ sigdelset
 \family default
 
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -5868,7 +5868,7 @@ sigemptyset
 \family default
 
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -5884,7 +5884,7 @@ sigfillset
 \family default
 
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -5900,7 +5900,7 @@ sigismember
 \family default
 
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -5916,7 +5916,7 @@ sigpending
 \family default
 
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -5930,7 +5930,7 @@ sigpending
 \family typewriter
 sigprocmask
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -5946,7 +5946,7 @@ sigprocmask
 \family typewriter
 sigsuspend
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -5963,7 +5963,7 @@ sigsuspend
 \family typewriter
 sigset_t
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -5980,7 +5980,7 @@ sigset_t
 \family typewriter
 sigemptyset
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -5996,7 +5996,7 @@ sigemptyset
 \family typewriter
 sigfillset
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6012,7 +6012,7 @@ sigfillset
 \family typewriter
 sigset_t
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6029,7 +6029,7 @@ sigset_t
 \family typewriter
 sigemptyset
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6045,7 +6045,7 @@ sigemptyset
 \family typewriter
 sigfillset
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6071,7 +6071,7 @@ sigfillset
 \family typewriter
 sigemptyset
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6091,7 +6091,7 @@ sigemptyset
 \family typewriter
 sigfillset
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6111,7 +6111,7 @@ sigfillset
 \family typewriter
 sigaddset
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6131,7 +6131,7 @@ sigaddset
 \family typewriter
 sigdelset
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6151,7 +6151,7 @@ sigdelset
 \family typewriter
 sigismember
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6173,7 +6173,7 @@ The
 \family typewriter
 sigismember
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6564,7 +6564,7 @@ sigblock - program to demonstrate the blocking of signal(s).
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -7512,7 +7512,7 @@ sigstack - program to demonstrate the signal stack features.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -8153,8 +8153,17 @@ n", tooksig ? "Now on extended stack." : "On 50 kBytes stack.");
 
 \begin_layout Standard
 \noindent
-Signals play an important role in OpenBSD programming and it is important
- to understand them.
+Signals play an important role in OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ programming and it is important to understand them.
  This chapter has discussed several of the techniques and pitfalls associated
  with signal processing: Chapter 10, 
 \begin_inset CommandInset ref

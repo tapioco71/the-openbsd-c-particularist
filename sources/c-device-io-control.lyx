@@ -193,7 +193,7 @@ noprefix "false"
 
 \begin_layout Standard
 \noindent
-Controlling input and output devices is an important task for several reasom.
+Controlling input and output devices is an important task for several reasons.
  Some examples include:
 \end_layout
 
@@ -221,7 +221,7 @@ interrupt
 \end_layout
 
 \begin_layout Itemize
-programs accesing the magnetic tape device often need to rewind the tape,
+programs accessing the magnetic tape device often need to rewind the tape,
  skip over files on the tape device off-line, etc.;
 \end_layout
 
@@ -234,7 +234,7 @@ the motor state, on or off, for a disk or optical drive;
 \end_layout
 
 \begin_layout Itemize
-the tray motor for an blueray optical drive;
+the tray motor for a blu-ray optical drive;
 \end_layout
 
 \begin_layout Itemize
@@ -453,7 +453,7 @@ speaker - plays some notes on the internal PC speaker.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -723,7 +723,7 @@ status open
 
 
 \shape default
-, they as regarded as 
+, they are regarded as 
 \shape italic
 hardware terminal
 \begin_inset Index idx
@@ -3077,7 +3077,7 @@ kernel
 
 \end_inset
 
- in order to provide a consistent interface, but is not used by the kernel
+ in order to provide a consistent interface, but it is not used by the kernel
  itself:
 \begin_inset listings
 lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
@@ -3142,8 +3142,10 @@ struct winsize {
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 ws_row
 \family default
+\series default
  member is the number of window rows in characters;
 \end_layout
 
@@ -3152,8 +3154,10 @@ ws_row
 \noindent
 
 \family typewriter
+\series bold
 ws_col
 \family default
+\series default
  member is the number of window columns in characters;
 \end_layout
 
@@ -3162,8 +3166,10 @@ ws_col
 \noindent
 
 \family typewriter
+\series bold
 ws_xpixel
 \family default
+\series default
  member is the window horizontal size in pixels;
 \end_layout
 
@@ -3172,8 +3178,10 @@ ws_xpixel
 \noindent
 
 \family typewriter
+\series bold
 ws_ypixel
 \family default
+\series default
  member is the window vertical size in pixels.
 \end_layout
 
@@ -3318,7 +3326,7 @@ winsize - returns the size of the terminal window.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -3659,8 +3667,10 @@ struct termios {
 \noindent
 
 \family typewriter
+\series bold
 c_iflag
 \family default
+\series default
  is a bit mask for the input control flags which can be composed ORing the
  following constants:
 \end_layout
@@ -3954,8 +3964,10 @@ IMAXBEL
 \noindent
 
 \family typewriter
+\series bold
 c_oflag
 \family default
+\series default
  is a bit mask for the output control flags which can be composed ORing
  the following constants:
 \end_layout
@@ -4188,8 +4200,10 @@ ONLRET
 \noindent
 
 \family typewriter
+\series bold
 c_cflags
 \family default
+\series default
  are the hardware control flags.
  This bit mask could be composed ORing the following constants:
 \end_layout
@@ -4542,8 +4556,10 @@ CHWFLOW
 \noindent
 
 \family typewriter
+\series bold
 c_lflag
 \family default
+\series default
  is a bit mask for the local flags.
  It is composed by ORing the following constants:
 \end_layout
@@ -4880,8 +4896,10 @@ NOFLSH
 \noindent
 
 \family typewriter
+\series bold
 c_cc
 \family default
+\series default
  array contains the control character defined for the terminal.
  Every member in this array has got a label:
 \end_layout
@@ -5263,12 +5281,16 @@ second spare = 19.
 \noindent
 
 \family typewriter
+\series bold
 c_ispeed
 \family default
+\series default
 ,
 \family typewriter
+\series bold
 c_ospeed
 \family default
+\series default
  are the input and output spped in baud.
  Standard values are:
 \end_layout
@@ -5836,7 +5858,7 @@ pager - simple file paginator.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -6600,8 +6622,8 @@ F_DUPFD
 \begin_deeper
 \begin_layout Itemize
 \noindent
-lowest numbered available descriptor greater than or equal to arg, interpreted
- as an 
+lowest numbered available descriptor greater than or equal to the third
+ argument, interpreted as an 
 \family typewriter
 int
 \family default
@@ -6699,7 +6721,8 @@ close-on-exec
 
 \end_inset
 
- flag associated with the file descriptor fd as 
+ flag associated with the file descriptor, which is the first argument,
+ as 
 \family typewriter
 FD_CLOEXEC
 \family default
@@ -6771,8 +6794,8 @@ close-on-exec
 
 \end_inset
 
- flag associated with the file descriptor to the optional third argyment,
- where this, interpreted an an 
+ flag associated with the file descriptor to the optional third argument,
+ where this, interpreted as an 
 \family typewriter
 int
 \family default
@@ -7033,7 +7056,21 @@ The
 \family typewriter
 flock
 \family default
- structure is described as follows:
+ structure
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+flock
+\family default
+ structure
+\end_layout
+
+\end_inset
+
+ is described as follows:
 \begin_inset listings
 lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
 inline false
@@ -7103,8 +7140,10 @@ struct flock {
 \noindent
 
 \family typewriter
+\series bold
 l_start
 \family default
+\series default
  is the starting offset;
 \end_layout
 
@@ -7113,8 +7152,10 @@ l_start
 \noindent
 
 \family typewriter
+\series bold
 l_len
 \family default
+\series default
  is the length of the file, if is equal to 0 it means until the end of file;
 \end_layout
 
@@ -7123,8 +7164,10 @@ l_len
 \noindent
 
 \family typewriter
+\series bold
 l_pid
 \family default
+\series default
  lock the owner;
 \end_layout
 
@@ -7133,8 +7176,10 @@ l_pid
 \noindent
 
 \family typewriter
+\series bold
 l_type
 \family default
+\series default
  lock the read and write, etc.;
 \end_layout
 
@@ -7143,8 +7188,10 @@ l_type
 \noindent
 
 \family typewriter
+\series bold
 l_whence
 \family default
+\series default
  member is the type of l_start.
 \end_layout
 
@@ -7505,7 +7552,7 @@ literal "false"
 
 , in the networking case it is desirable to create and fork to a thread
  for every connection in a server program.
- Just think to the telnet or ssh server: they are stand alone server program,
+ Just think to the telnet or ssh servers: they are stand alone programs,
  but allows a number of connections to them.
 \end_layout
 
@@ -7921,7 +7968,7 @@ select - program to demonstrate the select system call.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout

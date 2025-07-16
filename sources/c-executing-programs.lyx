@@ -4893,7 +4893,7 @@ ezshell - a simple shell program.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -6413,7 +6413,7 @@ mailer - open a pipe to the mutt command and send email.
 
 \end_inset
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout

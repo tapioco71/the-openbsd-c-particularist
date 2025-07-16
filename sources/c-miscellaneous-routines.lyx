@@ -238,6 +238,19 @@ noprefix "false"
 
 \end_layout
 
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:generating-random-numbers"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
 \end_inset
 
 
@@ -349,7 +362,7 @@ setrlimit
 \family typewriter
 RLIMIT_CORE
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -369,7 +382,7 @@ RLIMIT_CORE
 \family typewriter
 RLIMIT_CPU
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -389,7 +402,7 @@ RLIMIT_CPU
 \family typewriter
 RLIMIT_DATA
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -416,7 +429,7 @@ mmap
 \begin_layout Itemize
 RLIMIT_FSIZE
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 RLIMIT_FSIZE
@@ -428,8 +441,18 @@ RLIMIT_FSIZE
 \end_layout
 
 \begin_layout Itemize
-RLIMIT_MEMLOCK — the maximum size, in bytes, which a process may lock into
- memory using the 
+RLIMIT_MEMLOCK
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+RLIMIT_MEMLOCK
+\end_layout
+
+\end_inset
+
+ — the maximum size, in bytes, which a process may lock into memory using
+ the 
 \shape italic
 mlock
 \shape default
@@ -441,7 +464,7 @@ mlock
 \family typewriter
 RLIMIT_NOFILE
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -589,7 +612,21 @@ For example, if the CPU time or file size is exceeded.
 \family typewriter
 rlimit
 \family default
- structure is used to specify the hard and soft limits on a resource:
+ structure
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+rlimit
+\family default
+ structure
+\end_layout
+
+\end_inset
+
+ is used to specify the hard and soft limits on a resource:
 \begin_inset listings
 lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
 inline false
@@ -648,8 +685,10 @@ The members are:
 \labelwidthstring 00.00.0000
 
 \family typewriter
+\series bold
 rlim_cur
 \family default
+\series default
  current (soft) limit;
 \end_layout
 
@@ -657,8 +696,10 @@ rlim_cur
 \labelwidthstring 00.00.0000
 
 \family typewriter
+\series bold
 rlim_max
 \family default
+\series default
  hard limit.
 \end_layout
 
@@ -962,7 +1003,7 @@ setlim - change resource limits.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -1541,7 +1582,7 @@ getrusage
 \family typewriter
 RUSAGE_SELF
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1561,7 +1602,7 @@ RUSAGE_SELF
 \family typewriter
 RUSAGE_CHILDREN
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1581,7 +1622,7 @@ RUSAGE_CHILDREN
 \family typewriter
 RUSAGE_THREAD
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1598,7 +1639,17 @@ RUSAGE_THREAD
 
 \begin_layout Standard
 The buffer to which the second argument points will be filled in with the
- following structure:
+ following structure
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+rusage structure
+\end_layout
+
+\end_inset
+
+:
 \begin_inset listings
 lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
 inline false
@@ -1728,8 +1779,10 @@ The fields are interpreted as follows:
 \noindent
 
 \family typewriter
+\series bold
 ru_utime
 \family default
+\series default
  the total amount of time spent executing in user mode;
 \end_layout
 
@@ -1737,8 +1790,10 @@ ru_utime
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 ru_stime
 \family default
+\series default
  the total amount of time spent in the system executing on behalf of the
  process(es);
 \end_layout
@@ -1747,8 +1802,10 @@ ru_stime
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 ru_maxrss
 \family default
+\series default
  the maximum resident set size utilized, in kilobytes;
 \end_layout
 
@@ -1756,8 +1813,10 @@ ru_maxrss
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 ru_ixrss
 \family default
+\series default
  an "integral" value indicating the amount of memory used by the text segment
  that was also shared among other processes.
  This value is expressed in units of kilobytes * ticks-of- execution;
@@ -1767,8 +1826,10 @@ ru_ixrss
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 ru_idrss
 \family default
+\series default
  an integral value of the amount of unshared memory residing in the data
  segment of a process, expressed in units of kilobytes * ticks-of-execution;
 \end_layout
@@ -1778,8 +1839,10 @@ ru_idrss
 \noindent
 
 \family typewriter
+\series bold
 ru_isrss
 \family default
+\series default
  an integral value of the amount of unshared memory residing in the stack
  segment of a process, expressed in units of kilobytes * ticks-of-execution;
 \end_layout
@@ -1788,8 +1851,10 @@ ru_isrss
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 ru_minflt
 \family default
+\series default
  the number of page faults serviced without any I/O activity; here I/O activity
  is avoided by 
 \shape italic
@@ -1802,8 +1867,10 @@ reclaiming
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 ru_majflt
 \family default
+\series default
  the number of page faults serviced that required I/O activity;
 \end_layout
 
@@ -1811,8 +1878,10 @@ ru_majflt
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 ru_nswap
 \family default
+\series default
  the number of times a process was 
 \shape italic
 swapped
@@ -1825,8 +1894,10 @@ swapped
 \noindent
 
 \family typewriter
+\series bold
 ru_inblock
 \family default
+\series default
  the number of times the file system had to perform input;
 \end_layout
 
@@ -1834,8 +1905,10 @@ ru_inblock
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 ru_oublock
 \family default
+\series default
  the number of times the file system had to perform output;
 \end_layout
 
@@ -1843,8 +1916,10 @@ ru_oublock
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 ru_msgsnd
 \family default
+\series default
  the number of ipc messages sent;
 \end_layout
 
@@ -1852,8 +1927,10 @@ ru_msgsnd
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 ru_msgrcv
 \family default
+\series default
  the number of ipc messages received;
 \end_layout
 
@@ -1861,8 +1938,10 @@ ru_msgrcv
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 ru_nsignals
 \family default
+\series default
  the number of signals delivered;
 \end_layout
 
@@ -1871,8 +1950,10 @@ ru_nsignals
 \noindent
 
 \family typewriter
+\series bold
 ru_nvcsw
 \family default
+\series default
  the number of times a context switch resulted due to a process voluntarily
  giving up the processor before its time slice was completed, usually to
  await availability of a resource;
@@ -1883,8 +1964,10 @@ ru_nvcsw
 \noindent
 
 \family typewriter
+\series bold
 ru_nivcsw
 \family default
+\series default
  the number of times a context switch resulted due to a higher priority
  process becoming runnable or because the current process exceeded its time
  slice.
@@ -1957,7 +2040,7 @@ rusage - get usage data for the process itself.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -4527,7 +4610,7 @@ strerror.c - prints out errors names.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -4765,7 +4848,7 @@ strsignal - program to list signals names.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -5508,7 +5591,7 @@ sort - a program to show qsort capability.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -5751,6 +5834,864 @@ int cmp(const void *a, const void *b)
 \begin_layout Plain Layout
 
 /* End of sort.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:generating-random-numbers"
+
+\end_inset
+
+Generating Random Numbers.
+\end_layout
+
+\begin_layout Standard
+In computers games and security, to generate a random sequence of integer
+ numbers is very important.
+ Every modern operating systems own a set of functions to generate such
+ sequences.
+ OpenBSD is no exception, it has got several system calls to achieve this
+ task:
+\end_layout
+
+\begin_layout Itemize
+srand;
+\end_layout
+
+\begin_layout Itemize
+srand_deterministic;
+\end_layout
+
+\begin_layout Itemize
+rand;
+\end_layout
+
+\begin_layout Itemize
+rand_r;
+\end_layout
+
+\begin_layout Itemize
+arc4random;
+\end_layout
+
+\begin_layout Itemize
+rand48;
+\end_layout
+
+\begin_layout Itemize
+random.
+\end_layout
+
+\begin_layout Standard
+then rand and srand family of functions are used for compatibility purposes.
+ Since the standard tells that the interface must return deterministic results,
+ OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ choosen to change this behaviour to return non-deterministic results by
+ default.
+ To satisfy portable code, 
+\family typewriter
+srand()
+\family default
+ may be called to initialize the subsystem.
+ In OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ the seed variable is ignored, and strong random number results will be
+ provided from 
+\shape italic
+arc4random
+\shape default
+(3).
+ In other systems, the seed variable primes a simplistic deterministic algorithm.
+ If the standardized behavior is required 
+\family typewriter
+srand_deterministic()
+\family default
+ can be substituted for 
+\family typewriter
+srand()
+\family default
+, then subsequent 
+\family typewriter
+rand()
+\family default
+ calls will return results using the deterministic algorithm.
+ The deterministic sequence algorithm changed a number of times since original
+ development, is underspecified, and should not be relied upon to remain
+ consistent between platforms and over time.
+ The 
+\family typewriter
+rand()
+\family default
+ function returns a result in the range of 0 to RAND_MAX
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+RAND_MAX
+\end_layout
+
+\end_inset
+
+.
+ By default, this result comes from 
+\shape italic
+arc4random
+\shape default
+(3).
+ If 
+\family typewriter
+srand_deterministic()
+\family default
+ was called, the result will be computed using the deterministic algorithm.
+ The 
+\family typewriter
+rand_r()
+\family default
+ function is a thread-safe version of 
+\family typewriter
+rand()
+\family default
+.
+ Storage for the seed must be provided through the seed argument, and needs
+ to have been initialized by the caller.
+ It always operates using the deterministic algorithm.
+ 
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:random"
+
+\end_inset
+
+random - a program to guess random integer numbers.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* File random.c.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#define GUESSES_COUNT 10
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Function prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int again(void);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  long int nReturnValue = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+  char c;
+\end_layout
+
+\begin_layout Plain Layout
+
+  int g, i, n;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  /* */
+\end_layout
+
+\begin_layout Plain Layout
+
+  srand(0);
+\end_layout
+
+\begin_layout Plain Layout
+
+  n = rand();
+\end_layout
+
+\begin_layout Plain Layout
+
+  for(i = 0; i < GUESSES_COUNT; i++) {
+\end_layout
+
+\begin_layout Plain Layout
+
+    printf("Guess #%d: what is the number? ", i + 1);
+\end_layout
+
+\begin_layout Plain Layout
+
+    scanf("%d", &g);
+\end_layout
+
+\begin_layout Plain Layout
+
+    if(g < n)
+\end_layout
+
+\begin_layout Plain Layout
+
+      printf("your guess is lower than the choosen number.
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+    else if(g > n)
+\end_layout
+
+\begin_layout Plain Layout
+
+      printf("your guess is higher that the choosen number.
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+    else {
+\end_layout
+
+\begin_layout Plain Layout
+
+      printf("Correct the number %d is the choosen one! You it took you
+ %d tries.
+\backslash
+n", n, i);
+\end_layout
+
+\begin_layout Plain Layout
+
+      break;
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+    if((i + 1) < GUESSES_COUNT)
+\end_layout
+
+\begin_layout Plain Layout
+
+      if(again() == 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+	i = GUESSES_COUNT;
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+  if(i >= GUESSES_COUNT)
+\end_layout
+
+\begin_layout Plain Layout
+
+    printf("The number to guess was %d
+\backslash
+n.", n);
+\end_layout
+
+\begin_layout Plain Layout
+
+  exit(nReturnValue);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+int again(void)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  char answer[ 4 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  /* */
+\end_layout
+
+\begin_layout Plain Layout
+
+  printf("do you want to continue? ");
+\end_layout
+
+\begin_layout Plain Layout
+
+  scanf("%s", answer);
+\end_layout
+
+\begin_layout Plain Layout
+
+  if(strncmp(answer, "yes", 3) == 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+    return 1;
+\end_layout
+
+\begin_layout Plain Layout
+
+  else
+\end_layout
+
+\begin_layout Plain Layout
+
+    return 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of random.c file.
+ */
+\end_layout
+
+\end_inset
+
+during compilation of random.c the compiler emits this specific warning:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+[ LD ] egcc/random ld: warning: random.c:22(egcc/random.o:(main)): warning:
+ rand() may return deterministic values, is that what you want?
+\end_layout
+
+\end_inset
+
+alas the man page for rand() reports a non-deterministic behaviour, we can
+ use a different approach with:
+\end_layout
+
+\begin_layout Itemize
+arc4random;
+\end_layout
+
+\begin_layout Itemize
+arc4random_buf;
+\end_layout
+
+\begin_layout Itemize
+arc4random_uniform;
+\end_layout
+
+\begin_layout Standard
+functions family.
+ These provide higher quality data than those described in 
+\shape italic
+rand
+\shape default
+(3), 
+\shape italic
+random
+\shape default
+(3) and 
+\shape italic
+rand48
+\shape default
+(3).
+ OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ man pages 
+\shape italic
+arc4random
+\shape default
+(3), encourages the use of this functions for all random number generation.
+ Reasons for that are mostly:
+\end_layout
+
+\begin_layout Itemize
+interface quality;
+\end_layout
+
+\begin_layout Itemize
+portability;
+\end_layout
+
+\begin_layout Itemize
+standardization;
+\end_layout
+
+\begin_layout Itemize
+availability.
+\end_layout
+
+\begin_layout Standard
+Those functions can be called in 
+\shape italic
+pthreads
+\shape default
+(3) and 
+\shape italic
+chroot
+\shape default
+(2) environment.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:random2"
+
+\end_inset
+
+random - a program to guess random integer numbers using arc4random family
+ functions.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* File random2.c.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdint.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#define GUESSES_COUNT 10
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Function prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int again(void);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  long int nReturnValue = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+  char c;
+\end_layout
+
+\begin_layout Plain Layout
+
+  int g, i;
+\end_layout
+
+\begin_layout Plain Layout
+
+  uint32_t n;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  /* */
+\end_layout
+
+\begin_layout Plain Layout
+
+  n = arc4random();
+\end_layout
+
+\begin_layout Plain Layout
+
+  for(i = 0; i < GUESSES_COUNT; i++) {
+\end_layout
+
+\begin_layout Plain Layout
+
+    printf("Guess #%d: what is the number? ", i + 1);
+\end_layout
+
+\begin_layout Plain Layout
+
+    scanf("%d", &g);
+\end_layout
+
+\begin_layout Plain Layout
+
+    if(g < n)
+\end_layout
+
+\begin_layout Plain Layout
+
+      printf("your guess is lower than the choosen number.
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+    else if(g > n)
+\end_layout
+
+\begin_layout Plain Layout
+
+      printf("your guess is higher that the choosen number.
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+    else {
+\end_layout
+
+\begin_layout Plain Layout
+
+      printf("Correct the number %d is the choosen one! You it took you
+ %d tries.
+\backslash
+n", n, i);
+\end_layout
+
+\begin_layout Plain Layout
+
+      break;
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+    if((i + 1) < GUESSES_COUNT)
+\end_layout
+
+\begin_layout Plain Layout
+
+      if(again() == 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+	i = GUESSES_COUNT;
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+  if(i >= GUESSES_COUNT)
+\end_layout
+
+\begin_layout Plain Layout
+
+    printf("The number to guess was %d
+\backslash
+n.", n);
+\end_layout
+
+\begin_layout Plain Layout
+
+  exit(nReturnValue);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+int again(void)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  char answer[ 4 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  /* */
+\end_layout
+
+\begin_layout Plain Layout
+
+  printf("do you want to continue? ");
+\end_layout
+
+\begin_layout Plain Layout
+
+  scanf("%s", answer);
+\end_layout
+
+\begin_layout Plain Layout
+
+  if(strncmp(answer, "yes", 3) == 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+    return 1;
+\end_layout
+
+\begin_layout Plain Layout
+
+  else
+\end_layout
+
+\begin_layout Plain Layout
+
+    return 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of random2.c file.
  */
 \end_layout
 

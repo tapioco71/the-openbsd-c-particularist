@@ -622,8 +622,17 @@ As mentioned in the previous section, a hostname cannot function as a network
  routine is used.
  This routine takes a single argument, a character string containing the
  name of the host to be looked up.
- It returns a pointer to a structure of type hostent, as defined in the
- include file 
+ It returns a pointer to a structure of type hostent
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+hostent structure
+\end_layout
+
+\end_inset
+
+, as defined in the include file 
 \family typewriter
 <netdb.h>
 \begin_inset Index idx
@@ -722,8 +731,10 @@ The members of this structure are:
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 h_name
 \family default
+\series default
  official name of the host;
 \end_layout
 
@@ -731,8 +742,10 @@ h_name
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 h_aliases
 \family default
+\series default
  a NULL-terminated array of alternate names for the host;
 \end_layout
 
@@ -740,8 +753,10 @@ h_aliases
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 h_addrtype
 \family default
+\series default
  the type of address being returned;
 \end_layout
 
@@ -749,8 +764,10 @@ h_addrtype
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 h_length
 \family default
+\series default
  the length, in bytes, of the address;
 \end_layout
 
@@ -758,8 +775,10 @@ h_length
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 h_addr_list
 \family default
+\series default
  a NULL-terminated array of network addresses for the host.
  Host addresses are returned in network byte order;
 \end_layout
@@ -768,8 +787,10 @@ h_addr_list
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 h_addr
 \family default
+\series default
  the first address in h_addr_list; this is for backward compatibility.
 \end_layout
 
@@ -1128,7 +1149,7 @@ hostent - program to demonstrate the usage of host database.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -1445,6 +1466,15 @@ status open
 
 .
  The fields of one line of this file are contained in the servent structure
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+servent structure
+\end_layout
+
+\end_inset
+
  defined in 
 \family typewriter
 <netdb.h>
@@ -1530,8 +1560,10 @@ The members of this structure are:
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 s_name
 \family default
+\series default
  the official name of the service;
 \end_layout
 
@@ -1539,8 +1571,10 @@ s_name
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 s_aliases
 \family default
+\series default
  a null-terminated list of alternate names for the service;
 \end_layout
 
@@ -1548,8 +1582,10 @@ s_aliases
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 s_port
 \family default
+\series default
  the port number at which the service resides.
  Port numbers are returned in network byte order;
 \end_layout
@@ -1558,8 +1594,10 @@ s_port
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 s_proto
 \family default
+\series default
  the name of the protocol to use when contacting the service.
 \end_layout
 
@@ -1875,7 +1913,7 @@ servent - program to demonstrate the usage of serfvices database.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -2539,6 +2577,8 @@ SOCK_DGRAM
 the type of 
 \family typewriter
 sackaddr
+\family default
+ structure
 \begin_inset Index idx
 status open
 
@@ -2546,13 +2586,13 @@ status open
 
 \family typewriter
 sackaddr
+\family default
+ structure
 \end_layout
 
 \end_inset
 
-
-\family default
- structure used with 
+ used with 
 \family typewriter
 accept
 \begin_inset Index idx
@@ -2728,8 +2768,10 @@ Where:
 \labelwidthstring 00.00.0000
 
 \family typewriter
+\series bold
 sa_len
 \family default
+\series default
  total length;
 \end_layout
 
@@ -2737,8 +2779,10 @@ sa_len
 \labelwidthstring 00.00.0000
 
 \family typewriter
+\series bold
 sa_family
 \family default
+\series default
  address family;
 \end_layout
 
@@ -2747,8 +2791,10 @@ sa_family
 \noindent
 
 \family typewriter
+\series bold
 sa_data
 \family default
+\series default
  actually longer; address value.
 \end_layout
 
@@ -3051,7 +3097,7 @@ inet-client - a client to demonstrate internet domain sockets.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -3432,7 +3478,7 @@ inet-server - a server to demonstrate internet domain sockets.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout

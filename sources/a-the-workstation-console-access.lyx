@@ -658,7 +658,7 @@ status open
 \family typewriter
 WSDISPLAYIO_GTYPE
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -696,7 +696,7 @@ status open
 \family typewriter
 WSDISPLAYIO_GINFO
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -778,7 +778,7 @@ The height and width members are counted in pixels.
 \family typewriter
 WSDISPLAYIO_GETCMAP
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -794,7 +794,7 @@ WSDISPLAYIO_GETCMAP
 \family typewriter
 WSDISPLAYIO_PUTCMAP
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -817,7 +817,7 @@ WSDISPLAYIO_PUTCMAP
 \family typewriter
 WSDISPLAYIO_GETSCREENTYPE
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -966,7 +966,7 @@ fontheight
 \family typewriter
 WSDISPLAYIO_GETCMAP
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1091,7 +1091,7 @@ u_chars
 \family typewriter
 WSDISPLAYIO_PUTCMAP
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1145,7 +1145,7 @@ blue
 \family typewriter
 WSDISPLAYIO_GVIDEO
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1498,7 +1498,7 @@ which
 \family typewriter
 WSDISPLAY_CURSOR_DOCUR
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1520,7 +1520,7 @@ WSDISPLAY_CURSOR_DOCUR
 \family typewriter
 WSDISPLAY_CURSOR_DOPOS
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1542,7 +1542,7 @@ WSDISPLAY_CURSOR_DOPOS
 \family typewriter
 WSDISPLAY_CURSOR_DOHOT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1566,7 +1566,7 @@ WSDISPLAY_CURSOR_DOHOT
 \family typewriter
 WSDISPLAY_CURSOR_DOCMAP
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1607,7 +1607,7 @@ WSDISPLAYIO_GETCMAP
 \family typewriter
 WSDISPLAY_CURSOR_DOSHAPE
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1632,7 +1632,7 @@ WSDISPLAY_CURSOR_DOSHAPE
 \family typewriter
 WSDISPLAY_CURSOR_DOALL
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1678,7 +1678,7 @@ NULL
 \family typewriter
 WSDISPLAYIO_SCURSOR
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1702,7 +1702,7 @@ WSDISPLAYIO_SCURSOR
 \family typewriter
 WSDISPLAY_CURSOR_DOCUR
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1723,7 +1723,7 @@ WSDISPLAY_CURSOR_DOCUR
 \family typewriter
 WSDISPLAY_CURSOR_DOPOS
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1739,7 +1739,7 @@ WSDISPLAY_CURSOR_DOPOS
 \family typewriter
 WSDISPLAYIO_SCURPOS
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1759,7 +1759,7 @@ WSDISPLAYIO_SCURPOS
 \family typewriter
 WSDISPLAY_CURSOR_DOHOT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1795,7 +1795,7 @@ hot spot
 \family typewriter
 WSDISPLAY_CURSOR_DOCMAP
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1817,7 +1817,7 @@ WSDISPLAY_CURSOR_DOCMAP
 \family typewriter
 WSDISPLAY_CURSOR_DOSHAPE
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1838,7 +1838,7 @@ WSDISPLAY_CURSOR_DOSHAPE
 \family typewriter
 WSDISPLAY_CURSOR_DOALL
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1865,7 +1865,7 @@ This call is not available on displays without a hardware cursor.
 \family typewriter
 WSDISPLAYIO_GMODE
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1887,7 +1887,7 @@ WSDISPLAYIO_GMODE
 \family typewriter
 WSDISPLAYIO_MODE_EMUL
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1907,7 +1907,7 @@ WSDISPLAYIO_MODE_EMUL
 \family typewriter
 WSDISPLAYIO_MODE_MAPPED
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1927,7 +1927,7 @@ WSDISPLAYIO_MODE_MAPPED
 \family typewriter
 WSDISPLAYIO_MODE_DUMBFB
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1948,7 +1948,7 @@ WSDISPLAYIO_MODE_DUMBFB
 \family typewriter
 WSDISPLAYIO_SMODE
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1965,7 +1965,7 @@ WSDISPLAYIO_SMODE
 \family typewriter
 WSDISPLAYIO_GMODE
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1985,7 +1985,7 @@ WSDISPLAYIO_GMODE
 \family typewriter
 WSDISPLAYIO_LDFONT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2146,7 +2146,7 @@ encoding
 \family typewriter
 WSDISPLAY_FONTEC__ISO
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2168,7 +2168,7 @@ WSDISPLAY_FONTEC__ISO
 \family typewriter
 WSDISPLAY_FONTENC_IBM
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2219,7 +2219,7 @@ byteorder
 \family typewriter
 WSDISPLAY_FONTORDER_L2R
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2242,7 +2242,7 @@ WSDISPLAY_FONTORDER_L2R
 \family typewriter
 WSDISPLAY_FONTORDER_R2L
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2270,7 +2270,7 @@ The data field contains the font character data to be loaded.
 \family typewriter
 WSDISPLAYIO_LSFONT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2288,7 +2288,7 @@ WSDISPLAYIO_LSFONT
 \family typewriter
 WSDISPLAYIO_LDFONT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2308,7 +2308,7 @@ WSDISPLAYIO_LDFONT
 \family typewriter
 WSDISPLAYIO_USEFONT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2326,7 +2326,7 @@ WSDISPLAYIO_USEFONT
 \family typewriter
 WSDISPLAYIO_LDFONT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2346,7 +2346,7 @@ WSDISPLAYIO_LDFONT
 \family typewriter
 WSDISPLAYIO_GBURNER
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2441,7 +2441,7 @@ flags
 \family typewriter
 WSDISPLAY_BURN_VBLANK
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2462,7 +2462,7 @@ WSDISPLAY_BURN_VBLANK
 \family typewriter
 WSDISPLAY_BURN_KBD
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2483,7 +2483,7 @@ WSDISPLAY_BURN_KBD
 \family typewriter
 WSDISPLAY_BURN_MOUSE
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2508,7 +2508,7 @@ wsmouse
 \family typewriter
 WSDISPLAY_BURN_OUTPUT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2534,7 +2534,7 @@ If none of the activity source flags are set, the screen burner is disabled.
 \family typewriter
 WSDISPLAYIO_SBURNER
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2551,7 +2551,7 @@ WSDISPLAYIO_SBURNER
 \family typewriter
 WSDISPLAYIO_GBURNER
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2571,7 +2571,7 @@ WSDISPLAYIO_GBURNER
 \family typewriter
 WSDISPLAYIO_ADDSCREEN
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2696,7 +2696,7 @@ An empty string will select the default emulation;
 \family typewriter
 WSDISPLAYIO_DELSCREEN
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2779,7 +2779,7 @@ flags
 \family typewriter
 WSDISPLAY_DELSCR_FORCE
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2800,7 +2800,7 @@ WSDISPLAY_DELSCR_FORCE
 \family typewriter
 WSDISPLAY_DELSCR_QUIET
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2821,7 +2821,7 @@ WSDISPLAY_DELSCR_QUIET
 \family typewriter
 WSDISPLAYIO_GETSCREEN
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2851,7 +2851,7 @@ idx
 
 WSDISPLAYIO_GETPARAM
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2871,7 +2871,7 @@ WSDISPLAYIO_GETPARAM
 \family typewriter
 WSDISPLAYIO_SETSCREEN
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2891,7 +2891,7 @@ WSDISPLAYIO_SETSCREEN
 \family typewriter
 WSDISPLAYIO_WSMOUSED
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2916,7 +2916,7 @@ wsmoused
 \family typewriter
 WSDISPLAYIO_GETPARAM
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -3006,7 +3006,7 @@ param
 \family typewriter
 WSDISPLAYIO_PARAM_BACKLIGHT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -3027,7 +3027,7 @@ WSDISPLAYIO_PARAM_BACKLIGHT
 \family typewriter
 WSDISPLAYIO_PARAM_BRIGHTNESS
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -3048,7 +3048,7 @@ WSDISPLAYIO_PARAM_BRIGHTNESS
 \family typewriter
 WSDISPLAYIO_PARAM_CONTRAST
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -3087,7 +3087,7 @@ curval
 \family typewriter
 WSDISPLAYIO_SETPARAM
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -3108,7 +3108,7 @@ WSDISPLAYIO_SETPARAM
 
 WSDISPLAYIO_GETPARAM
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -3137,7 +3137,7 @@ curval
 \family typewriter
 WSDISPLAYIO_LINEBYTES
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -3153,7 +3153,7 @@ WSDISPLAYIO_LINEBYTES
 \family typewriter
 WSDISPLAYIO_MODE_DUMBFB
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -3197,7 +3197,7 @@ wsdisplay - program to show WSDISPLAYIO ioctl calls.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -3764,7 +3764,7 @@ status open
 \family typewriter
 WSKBDIO_BELL
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -3784,7 +3784,7 @@ WSKBDIO_BELL
 \family typewriter
 WSKBDIO_COMPLEXBELL
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -3809,7 +3809,7 @@ struct wskbd_bell_data to play the bell.
 
 <dev/wscons/wsconsio.h>
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -3891,7 +3891,7 @@ which
 \family typewriter
 WSKBD_BELL_DOPITCH
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -3911,7 +3911,7 @@ WSKBD_BELL_DOPITCH
 \family typewriter
 WSKBD_BELL_DOPERIOD
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -3931,7 +3931,7 @@ WSKBD_BELL_DOPERIOD
 \family typewriter
 WSKBD_BELL_DOVOLUME
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -3951,7 +3951,7 @@ WSKBD_BELL_DOVOLUME
 \family typewriter
 WSKBD_BELL_DOALL
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4002,7 +4002,7 @@ noprefix "false"
 \family typewriter
 WSKBDIO_SETBELL
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4018,7 +4018,7 @@ WSKBDIO_SETBELL
 \family typewriter
 WSKBDIO_COMPLEXBELL
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4038,7 +4038,7 @@ WSKBDIO_COMPLEXBELL
 \family typewriter
 WSKBDIO_GETBELL
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4055,7 +4055,7 @@ WSKBDIO_GETBELL
 \family typewriter
 WSKBDIO_COMPLEXBELL
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4075,7 +4075,7 @@ WSKBDIO_COMPLEXBELL
 \family typewriter
 WSKBDIO_SETDEFAULTBELL
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4095,7 +4095,7 @@ WSKBDIO_SETDEFAULTBELL
 \family typewriter
 WSKBDIO_GETDEFAULTBELL
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4115,7 +4115,7 @@ WSKBDIO_GETDEFAULTBELL
 \family typewriter
 WSKBDIO_SETKEYREPEAT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4140,7 +4140,7 @@ wskbd_keyrepeat_data
 
 <dev/wscons/wsconsio.h>
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4222,7 +4222,7 @@ which
 \family typewriter
 WSKBD_KEYREPEAT_DODEL1
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4246,7 +4246,7 @@ del1
 \family typewriter
 WSKBD_KEYREPEAT_DODELN
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4270,7 +4270,7 @@ delN
 \family typewriter
 WSKBD_KEYREPEAT_DOALL
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4306,7 +4306,7 @@ delN
 \family typewriter
 WSKBDIO_GETKEYREPEAT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4322,7 +4322,7 @@ WSKBDIO_GETKEYREPEAT
 \family typewriter
 WSKBDIO_SETKEYREPEAT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4342,7 +4342,7 @@ WSKBDIO_SETKEYREPEAT
 \family typewriter
 WSKBDIO_SETDEFAULTKEYREPEAT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4358,7 +4358,7 @@ WSKBDIO_SETDEFAULTKEYREPEAT
 \family typewriter
 WSKBDIO_SETKEYREPEAT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4378,7 +4378,7 @@ WSKBDIO_SETKEYREPEAT
 \family typewriter
 WSKBDIO_GETDEFAULTKEYREPEAT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4394,7 +4394,7 @@ WSKBDIO_GETDEFAULTKEYREPEAT
 \family typewriter
 WSKBDIO_SETKEYREPEAT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4414,7 +4414,7 @@ WSKBDIO_SETKEYREPEAT
 \family typewriter
 WSKBDIO_SETLEDS
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4435,7 +4435,7 @@ WSKBDIO_SETLEDS
 \family typewriter
 WSKBD_LED_CAPS
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4455,7 +4455,7 @@ WSKBD_LED_CAPS
 \family typewriter
 WSKBD_LED_NUM
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4475,7 +4475,7 @@ WSKBD_LED_NUM
 \family typewriter
 WSKBD_LED_SCROLL
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4529,7 +4529,7 @@ noprefix "false"
 \family typewriter
 WSKBDIO_GETLEDS
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4549,7 +4549,7 @@ WSKBDIO_GETLEDS
 
 WSKBDIO_SETLEDS
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4569,7 +4569,7 @@ WSKBDIO_SETLEDS
 \family typewriter
 WSKBDIO_GETMAP
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4652,7 +4652,7 @@ WSKBDIO_MAXMAPLEN
 \family typewriter
 <dev/wscons/wsksymvar.h>
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4733,7 +4733,7 @@ struct wscons_keymap {
 \family typewriter
 WSKBDIO_SETMAP
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4753,7 +4753,7 @@ wskbd_map_data
 \family typewriter
 WSKBDIO_GETMAP
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4773,7 +4773,7 @@ WSKBDIO_GETMAP
 \family typewriter
 WSKBDIO_GETENCODING
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4793,7 +4793,7 @@ WSKBDIO_GETENCODING
 
 <dev/wscons/wksymdef.h>
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4824,7 +4824,7 @@ noprefix "false"
 \family typewriter
 WSKBDIO_SETENCODING
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4861,7 +4861,7 @@ WSKBDIO_GETENCODING
 \family typewriter
 WSKBDIO_GETBACKLIGHT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4963,7 +4963,7 @@ curval
 \family typewriter
 WSKBDIO_SETBACKLIGHT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4984,7 +4984,7 @@ WSKBDIO_SETBACKLIGHT
 
 WSKBDIO_GETBACKLIGHT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -5004,7 +5004,7 @@ WSKBDIO_GETBACKLIGHT
 \family typewriter
 WSKBDIO_SETMODE
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -5026,7 +5026,7 @@ WSKBDIO_SETMODE
 \family typewriter
 WSKBD_TRANSLATED
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -5043,7 +5043,7 @@ WSKBD_TRANSLATED
 \family typewriter
 WSKBDIO_SETMAP
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -5063,7 +5063,7 @@ WSKBDIO_SETMAP
 \family typewriter
 WSKBD_RAW
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -5084,7 +5084,7 @@ WSKBD_RAW
 \family typewriter
 WSKBDIO_GETMODE
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -5101,7 +5101,7 @@ WSKBDIO_GETMODE
 \family typewriter
 WSKBDIO_SETMODE
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -5140,7 +5140,7 @@ wskbd - program to shows the usage of the wskbd driver.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -5610,7 +5610,7 @@ wskbd-leds - program to shows the usage of the ioctl calls for leds.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -5902,7 +5902,7 @@ wskbd-enc - program to shows the configured encoding for the keyboard.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -6231,7 +6231,7 @@ status collapsed
 \family typewriter
 WSMOUSEIO_GTYPE
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6253,7 +6253,7 @@ WSMOUSEIO_GTYPE
 \family typewriter
 WSMOUSE_TYPE_VSXXX
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6273,7 +6273,7 @@ WSMOUSE_TYPE_VSXXX
 \family typewriter
 WSMOUSE_TYPE_PS2 2
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6293,7 +6293,7 @@ WSMOUSE_TYPE_PS2 2
 \family typewriter
 WSMOUSE_TYPE_USB
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6313,7 +6313,7 @@ WSMOUSE_TYPE_USB
 \family typewriter
 WSMOUSE_TYPE_LMS
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6333,7 +6333,7 @@ WSMOUSE_TYPE_LMS
 \family typewriter
 WSMOUSE_TYPE_MMS
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6353,7 +6353,7 @@ WSMOUSE_TYPE_MMS
 \family typewriter
 WSMOUSE_TYPE_TPANEL
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6373,7 +6373,7 @@ WSMOUSE_TYPE_TPANEL
 \family typewriter
 WSMOUSE_TYPE_NEXT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6393,7 +6393,7 @@ WSMOUSE_TYPE_NEXT
 \family typewriter
 WSMOUSE_TYPE_ARCHIMEDES
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6413,7 +6413,7 @@ WSMOUSE_TYPE_ARCHIMEDES
 \family typewriter
 WSMOUSE_TYPE_ADB
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6433,7 +6433,7 @@ WSMOUSE_TYPE_ADB
 \family typewriter
 WSMOUSE_TYPE_HIL
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6453,7 +6453,7 @@ WSMOUSE_TYPE_HIL
 \family typewriter
 WSMOUSE_TYPE_LUNA
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6473,7 +6473,7 @@ WSMOUSE_TYPE_LUNA
 \family typewriter
 WSMOUSE_TYPE_DOMAIN
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6493,7 +6493,7 @@ WSMOUSE_TYPE_DOMAIN
 \family typewriter
 WSMOUSE_TYPE_BLUETOOTH
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6513,7 +6513,7 @@ WSMOUSE_TYPE_BLUETOOTH
 \family typewriter
 WSMOUSE_TYPE_SUN
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6533,7 +6533,7 @@ WSMOUSE_TYPE_SUN
 \family typewriter
 WSMOUSE_TYPE_SYNAPTICS
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6553,7 +6553,7 @@ WSMOUSE_TYPE_SYNAPTICS
 \family typewriter
 WSMOUSE_TYPE_ALPS
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6573,7 +6573,7 @@ WSMOUSE_TYPE_ALPS
 \family typewriter
 WSMOUSE_TYPE_SGI
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6593,7 +6593,7 @@ WSMOUSE_TYPE_SGI
 \family typewriter
 WSMOUSE_TYPE_ELANTECH
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6613,7 +6613,7 @@ WSMOUSE_TYPE_ELANTECH
 \family typewriter
 WSMOUSE_TYPE_SYNAP_SBTN
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6633,7 +6633,7 @@ WSMOUSE_TYPE_SYNAP_SBTN
 \family typewriter
 WSMOUSE_TYPE_TOUCHPAD
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6654,7 +6654,7 @@ WSMOUSE_TYPE_TOUCHPAD
 \family typewriter
 WSMOUSEIO_SRES
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6674,7 +6674,7 @@ WSMOUSEIO_SRES
 \family typewriter
 WSMOUSEIO_SCALIBCOORDS
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6694,7 +6694,7 @@ WSMOUSEIO_SCALIBCOORDS
 \family typewriter
 WSMOUSEIO_GCALIBCOORDS
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6727,7 +6727,7 @@ struct wsmouse_calibcoords
 
 <dev/wscons/wsconsio.h>
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6901,7 +6901,7 @@ samplelen
 \family typewriter
 WSMOUSE_CALIBCOORDS_RESET
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6922,7 +6922,7 @@ samples
 \family typewriter
 WSMOUSE_CALIBCOORDS_MAX
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6959,7 +6959,7 @@ y
 \family typewriter
 WSMOUSEIO_SETMODE
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6980,7 +6980,7 @@ WSMOUSEIO_SETMODE
 \family typewriter
 WSMOUSE_COMPAT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7000,7 +7000,7 @@ WSMOUSE_COMPAT
 \family typewriter
 WSMOUSE_NATIVE
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7021,7 +7021,7 @@ WSMOUSE_NATIVE
 \family typewriter
 WSMOUSEIO_GETPARAMS
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7046,7 +7046,7 @@ struct wsmouse_parameters
 
 <dev/wscons/wsconsio.h>
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7172,7 +7172,7 @@ In this structure, the key member is a constant which can assume the following
 \family typewriter
 WSMOUSECFG_DX_SCALE
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7192,7 +7192,7 @@ WSMOUSECFG_DX_SCALE
 \family typewriter
 WSMOUSECFG_DY_SCALE
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7212,7 +7212,7 @@ WSMOUSECFG_DY_SCALE
 \family typewriter
 WSMOUSECFG_PRESSURE_LO
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7232,7 +7232,7 @@ WSMOUSECFG_PRESSURE_LO
 \family typewriter
 WSMOUSECFG_PRESSURE_HI
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7252,7 +7252,7 @@ WSMOUSECFG_PRESSURE_HI
 \family typewriter
 WSMOUSECFG_TRKMAXDIST
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7272,7 +7272,7 @@ WSMOUSECFG_TRKMAXDIST
 \family typewriter
 WSMOUSECFG_SWAPXY
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7292,7 +7292,7 @@ WSMOUSECFG_SWAPXY
 \family typewriter
 WSMOUSECFG_X_INV
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7312,7 +7312,7 @@ WSMOUSECFG_X_INV
 \family typewriter
 WSMOUSECFG_Y_INV
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7332,7 +7332,7 @@ WSMOUSECFG_Y_INV
 \family typewriter
 WSMOUSECFG_REVERSE_SCROLLING
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7352,7 +7352,7 @@ WSMOUSECFG_REVERSE_SCROLLING
 \family typewriter
 WSMOUSECFG__FILTERS
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7368,7 +7368,7 @@ WSMOUSECFG__FILTERS
 \family typewriter
 WSMOUSE_COMPAT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7388,7 +7388,7 @@ WSMOUSE_COMPAT
 \family typewriter
 WSMOUSECFG_DX_MAX
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7408,7 +7408,7 @@ WSMOUSECFG_DX_MAX
 \family typewriter
 WSMOUSECFG_DY_MAX
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7428,7 +7428,7 @@ WSMOUSECFG_DY_MAX
 \family typewriter
 WSMOUSECFG_X_HYSTERESIS
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7448,7 +7448,7 @@ WSMOUSECFG_X_HYSTERESIS
 \family typewriter
 WSMOUSECFG_Y_HYSTERESIS
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7468,7 +7468,7 @@ WSMOUSECFG_Y_HYSTERESIS
 \family typewriter
 WSMOUSECFG_DECELERATION
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7488,7 +7488,7 @@ WSMOUSECFG_DECELERATION
 \family typewriter
 WSMOUSECFG_STRONG_HYSTERESIS
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7508,7 +7508,7 @@ WSMOUSECFG_STRONG_HYSTERESIS
 \family typewriter
 WSMOUSECFG_SMOOTHING
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7528,7 +7528,7 @@ WSMOUSECFG_SMOOTHING
 \family typewriter
 WSMOUSECFG__TPFILTERS
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7548,7 +7548,7 @@ WSMOUSECFG__TPFILTERS
 \family typewriter
 WSMOUSECFG_SOFTBUTTONS
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7568,7 +7568,7 @@ WSMOUSECFG_SOFTBUTTONS
 \family typewriter
 WSMOUSECFG_SOFTMBTN
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7588,7 +7588,7 @@ WSMOUSECFG_SOFTMBTN
 \family typewriter
 WSMOUSECFG_TOPBUTTONS
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7608,7 +7608,7 @@ WSMOUSECFG_TOPBUTTONS
 \family typewriter
 WSMOUSECFG_TWOFINGERSCROLL
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7628,7 +7628,7 @@ WSMOUSECFG_TWOFINGERSCROLL
 \family typewriter
 WSMOUSECFG_EDGESCROLL
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7648,7 +7648,7 @@ WSMOUSECFG_EDGESCROLL
 \family typewriter
 WSMOUSECFG_HORIZSCROLL
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7668,7 +7668,7 @@ WSMOUSECFG_HORIZSCROLL
 \family typewriter
 WSMOUSECFG_SWAPSIDES
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7688,7 +7688,7 @@ WSMOUSECFG_SWAPSIDES
 \family typewriter
 WSMOUSECFG_DISABLE
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7708,7 +7708,7 @@ WSMOUSECFG_DISABLE
 \family typewriter
 WSMOUSECFG_MTBUTTONS
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7728,7 +7728,7 @@ WSMOUSECFG_MTBUTTONS
 \family typewriter
 WSMOUSECFG__TPFEATURES
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7748,7 +7748,7 @@ WSMOUSECFG__TPFEATURES
 \family typewriter
 WSMOUSECFG_LEFT_EDGE
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7768,7 +7768,7 @@ WSMOUSECFG_LEFT_EDGE
 \family typewriter
 WSMOUSECFG_RIGHT_EDGE
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7788,7 +7788,7 @@ WSMOUSECFG_RIGHT_EDGE
 \family typewriter
 WSMOUSECFG_TOP_EDGE
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7808,7 +7808,7 @@ WSMOUSECFG_TOP_EDGE
 \family typewriter
 WSMOUSECFG_BOTTOM_EDGE
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7828,7 +7828,7 @@ WSMOUSECFG_BOTTOM_EDGE
 \family typewriter
 WSMOUSECFG_CENTERWIDTH
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7848,7 +7848,7 @@ WSMOUSECFG_CENTERWIDTH
 \family typewriter
 WSMOUSECFG_HORIZSCROLLDIST
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7868,7 +7868,7 @@ WSMOUSECFG_HORIZSCROLLDIST
 \family typewriter
 WSMOUSECFG_VERTSCROLLDIST
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7888,7 +7888,7 @@ WSMOUSECFG_VERTSCROLLDIST
 \family typewriter
 WSMOUSECFG_F2WIDTH
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7908,7 +7908,7 @@ WSMOUSECFG_F2WIDTH
 \family typewriter
 WSMOUSECFG_F2PRESSURE
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7928,7 +7928,7 @@ WSMOUSECFG_F2PRESSURE
 \family typewriter
 WSMOUSECFG_TAP_MAXTIME
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7949,7 +7949,7 @@ WSMOUSECFG_TAP_MAXTIME
 \family typewriter
 WSMOUSECFG_TAP_CLICKTIME
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7969,7 +7969,7 @@ WSMOUSECFG_TAP_CLICKTIME
 \family typewriter
 WSMOUSECFG_TAP_LOCKTIME
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -7989,7 +7989,7 @@ WSMOUSECFG_TAP_LOCKTIME
 \family typewriter
 WSMOUSECFG_TAP_ONE_BTNMAP
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8009,7 +8009,7 @@ WSMOUSECFG_TAP_ONE_BTNMAP
 \family typewriter
 WSMOUSECFG_TAP_TWO_BTNMAP
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8029,7 +8029,7 @@ WSMOUSECFG_TAP_TWO_BTNMAP
 \family typewriter
 WSMOUSECFG_TAP_THREE_BTNMAP
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8049,7 +8049,7 @@ WSMOUSECFG_TAP_THREE_BTNMAP
 \family typewriter
 WSMOUSECFG_MTBTN_MAXDIST
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8069,7 +8069,7 @@ WSMOUSECFG_MTBTN_MAXDIST
 \family typewriter
 WSMOUSECFG__TPSETUP
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8089,7 +8089,7 @@ WSMOUSECFG__TPSETUP
 \family typewriter
 WSMOUSECFG_LOG_INPUT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8109,7 +8109,7 @@ WSMOUSECFG_LOG_INPUT
 \family typewriter
 WSMOUSECFG_LOG_EVENTS
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8129,7 +8129,7 @@ WSMOUSECFG_LOG_EVENTS
 \family typewriter
 WSMOUSECFG__DEBUG
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8176,7 +8176,7 @@ params
 \family typewriter
 WSMOUSEIO_SETPARAMS
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8198,7 +8198,7 @@ WSMOUSEIO_SETPARAMS
 \family typewriter
 WSMOUSEIO_GETPARAMS
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8220,7 +8220,7 @@ WSMOUSEIO_GETPARAMS
 
 WSMOUSEIO_GETPARAMS
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8241,7 +8241,7 @@ WSMOUSEIO_GETPARAMS
 
 WSMOUSEIO_SETPARAMS
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8258,7 +8258,7 @@ WSMOUSEIO_SETPARAMS
 \family typewriter
 ioctl
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8274,7 +8274,7 @@ ioctl
 \family typewriter
 WSMOUSECFG_MAX
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8464,7 +8464,7 @@ The type member could be one of:
 \family typewriter
 WSCONS_EVENT_KEY_UP
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8484,7 +8484,7 @@ WSCONS_EVENT_KEY_UP
 \family typewriter
 WSCONS_EVENT_KEY_DOWN
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8504,7 +8504,7 @@ WSCONS_EVENT_KEY_DOWN
 \family typewriter
 WSCONS_EVENT_ALL_KEYS_UP
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8524,7 +8524,7 @@ WSCONS_EVENT_ALL_KEYS_UP
 \family typewriter
 WSCONS_EVENT_MOUSE_UP
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8544,7 +8544,7 @@ WSCONS_EVENT_MOUSE_UP
 \family typewriter
 WSCONS_EVENT_MOUSE_DOWN
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8564,7 +8564,7 @@ WSCONS_EVENT_MOUSE_DOWN
 \family typewriter
 WSCONS_EVENT_MOUSE_DELTA_X
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8584,7 +8584,7 @@ WSCONS_EVENT_MOUSE_DELTA_X
 \family typewriter
 WSCONS_EVENT_MOUSE_DELTA_Y
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8604,7 +8604,7 @@ WSCONS_EVENT_MOUSE_DELTA_Y
 \family typewriter
 WSCONS_EVENT_MOUSE_ABSOLUTE_X
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8624,7 +8624,7 @@ WSCONS_EVENT_MOUSE_ABSOLUTE_X
 \family typewriter
 WSCONS_EVENT_MOUSE_ABSOLUTE_Y
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8644,7 +8644,7 @@ WSCONS_EVENT_MOUSE_ABSOLUTE_Y
 \family typewriter
 WSCONS_EVENT_MOUSE_DELTA_Z
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8664,7 +8664,7 @@ WSCONS_EVENT_MOUSE_DELTA_Z
 \family typewriter
 WSCONS_EVENT_MOUSE_ABSOLUTE_Z
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8684,7 +8684,7 @@ WSCONS_EVENT_MOUSE_ABSOLUTE_Z
 \family typewriter
 WSCONS_EVENT_MOUSE_DELTA_W
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8704,7 +8704,7 @@ WSCONS_EVENT_MOUSE_DELTA_W
 \family typewriter
 WSCONS_EVENT_MOUSE_ABSOLUTE_W
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8724,7 +8724,7 @@ WSCONS_EVENT_MOUSE_ABSOLUTE_W
 \family typewriter
 WSCONS_EVENT_SYNC
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8746,7 +8746,7 @@ Following events are not real wscons_event but are used as parameters of
 \family typewriter
 WSDISPLAYIO_WSMOUSED
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8766,7 +8766,7 @@ WSDISPLAYIO_WSMOUSED
 \family typewriter
 WSCONS_EVENT_WSMOUSED_ON
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8803,7 +8803,7 @@ wsmoused
 \family typewriter
 WSMUXIO_ADD_DEVICE
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8902,7 +8902,7 @@ idx
 \family typewriter
 WSMUXIO_REMOVE_DEVICE
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8919,7 +8919,7 @@ WSMUXIO_REMOVE_DEVICE
 \family typewriter
 WSMUXIO_ADD_DEVICE
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8939,7 +8939,7 @@ WSMUXIO_ADD_DEVICE
 \family typewriter
 WSMUXIO_LIST_DEVICES
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -9016,7 +9016,7 @@ ndevices
 \family typewriter
 WSMUX_MAXDEV
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -9037,7 +9037,7 @@ devices
 \family typewriter
 WSMUX_MAXDEV
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -9080,7 +9080,7 @@ wsmux - program to shows devices in wsmux.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout

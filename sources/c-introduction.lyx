@@ -980,7 +980,7 @@ OpenBSD
 
 \end_inset
 
- 7.5 release which is a derivative of the 4.4BSD
+ 7.7 release which is a derivative of the 4.4BSD
 \begin_inset Index idx
 status open
 
@@ -1754,7 +1754,7 @@ OpenBSD
 
  sources and binary are free and all its parts have reasonable copyright
  terms permitting free redistribution.
- The current, May 2024, version of OpenBSD
+ The current, April 28th 2025, version of OpenBSD
 \begin_inset Index idx
 status open
 
@@ -1764,7 +1764,7 @@ OpenBSD
 
 \end_inset
 
- is the 7.5.
+ is the 7.7.
 \end_layout
 
 \begin_layout Section

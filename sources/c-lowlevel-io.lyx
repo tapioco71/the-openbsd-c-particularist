@@ -602,7 +602,7 @@ status open
 \family typewriter
 O_RDONLY
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -623,7 +623,7 @@ O_RDONLY
 \family typewriter
 O_WRONLY
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -644,7 +644,7 @@ O_WRONLY
 \family typewriter
 O_RDWR
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -669,7 +669,7 @@ Any combination of the following flags may additionally be used:
 \family typewriter
 O_NONBLOCK
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -690,7 +690,7 @@ O_NONBLOCK
 \family typewriter
 O_APPEND
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -711,7 +711,7 @@ O_APPEND
 \family typewriter
 O_CREAT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -737,7 +737,7 @@ mode_t
 \family typewriter
 O_TRUNC
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -758,7 +758,7 @@ O_TRUNC
 \family typewriter
 O_EXCL
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -774,7 +774,7 @@ O_EXCL
 \family typewriter
 O_CREAT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -795,7 +795,7 @@ O_CREAT
 \family typewriter
 O_SYNC
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -816,7 +816,7 @@ O_SYNC
 \family typewriter
 O_SHLOCK
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -837,7 +837,7 @@ atomically obtain a shared lock;
 \family typewriter
 O_EXLOCK
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -858,7 +858,7 @@ O_EXLOCK
 \family typewriter
 O_NOFOLLOW
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -879,7 +879,7 @@ O_NOFOLLOW
 \family typewriter
 O_CLOEXEC
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -897,7 +897,7 @@ FD_CLOEXEC
 \family default
 
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -916,7 +916,7 @@ FD_CLOEXEC
 \family typewriter
 O_DIRECTORY
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -937,7 +937,7 @@ If the
 \family typewriter
 O_CREAT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1269,7 +1269,7 @@ append2 - append one file to another using the low-level interface.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -1743,7 +1743,7 @@ status open
 \family typewriter
 strnlen
 \family default
- which thatkes to arguments: a string and a maximum length to return.
+ which takes two arguments: a string and a maximum length to return.
  In fact if, for whatever reason, the length overflow the value specified
  in the second argument, the routine returns it.
 \end_layout

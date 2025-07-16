@@ -1862,7 +1862,7 @@ status open
 
 \begin_layout Plain Layout
 
-! -*- mode: f90-mode; -*-
+! -*- mode: f90; -*-
 \end_layout
 
 \begin_layout Plain Layout
@@ -2006,7 +2006,7 @@ status open
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -2148,13 +2148,88 @@ C Code
 
 \size tiny
 \begin_inset listings
+lstparams "language={[90]Fortran},basicstyle={\tiny\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+! -*- mode: f90; -*-
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+! hello2-for.f90 file.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+subroutine hello(count)
+\end_layout
+
+\begin_layout Plain Layout
+
+  use, intrinsic :: iso_c_binding, only: c_int
+\end_layout
+
+\begin_layout Plain Layout
+
+  implicit none
+\end_layout
+
+\begin_layout Plain Layout
+
+  integer(c_int), value :: count
+\end_layout
+
+\begin_layout Plain Layout
+
+  print "('Hello, ', i3, ' worlds!')", count
+\end_layout
+
+\begin_layout Plain Layout
+
+end subroutine hello
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+! End of hello2-for.f90 file.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+\begin_inset listings
 lstparams "language=C,basicstyle={\tiny\ttfamily},breaklines=true,tabsize=2"
 inline false
 status open
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -2234,81 +2309,6 @@ int main(int argc, char *argv[])
 
 /* End of hello2-c.c file.
  */
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size tiny
-\begin_inset listings
-lstparams "language={[90]Fortran},basicstyle={\tiny\ttfamily},breaklines=true,tabsize=2"
-inline false
-status open
-
-\begin_layout Plain Layout
-
-! -*- mode: f90-mode; -*-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-! hello2-for.f90 file.
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-subroutine hello(count)
-\end_layout
-
-\begin_layout Plain Layout
-
-  use, intrinsic :: iso_c_binding, only: c_int
-\end_layout
-
-\begin_layout Plain Layout
-
-  implicit none
-\end_layout
-
-\begin_layout Plain Layout
-
-  integer(c_int), value :: count
-\end_layout
-
-\begin_layout Plain Layout
-
-  print "('Hello, ', i3, ' worlds!')", count
-\end_layout
-
-\begin_layout Plain Layout
-
-end subroutine hello
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-! End of hello2-for.f90 file.
 \end_layout
 
 \end_inset
@@ -2614,7 +2614,7 @@ mean - FORTRAN code
 
 \begin_layout Plain Layout
 
-! -*- mode: f90-mode; -*-
+! -*- mode: f90; -*-
 \end_layout
 
 \begin_layout Plain Layout
@@ -2795,7 +2795,7 @@ mean - C code.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -2959,7 +2959,7 @@ norm2 - C code.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -3098,7 +3098,7 @@ norm2 - FORTRAN Code.
 
 \begin_layout Plain Layout
 
-! -*- mode: f90-mode; -*-
+! -*- mode: f90; -*-
 \end_layout
 
 \begin_layout Plain Layout
@@ -3260,7 +3260,7 @@ fft - FORTRAN code.
 
 \begin_layout Plain Layout
 
-! -*- mode: f90-mode; -*-
+! -*- mode: f90; -*-
 \end_layout
 
 \begin_layout Plain Layout
@@ -3464,7 +3464,7 @@ fft - C code.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -3671,7 +3671,7 @@ ifft - FORTRAN code.
 
 \begin_layout Plain Layout
 
-! -*- mode: f90-mode; -*-
+! -*- mode: f90; -*-
 \end_layout
 
 \begin_layout Plain Layout
@@ -3837,7 +3837,7 @@ ifft - C code.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout

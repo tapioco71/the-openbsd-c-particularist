@@ -1,4 +1,4 @@
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 
 /* wsdisplay-colormap.c file. */
 #include <stdio.h>

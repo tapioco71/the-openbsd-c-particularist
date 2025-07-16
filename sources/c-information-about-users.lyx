@@ -249,7 +249,7 @@ group file
 \shape default
 .
  This chapter describes each piece of information, what the operating system
- uses ir for and how programs can access and change it.
+ uses it for and how programs can access and change it.
 \end_layout
 
 \begin_layout Section
@@ -359,7 +359,7 @@ The User Id.
 \end_layout
 
 \begin_layout Standard
-Each process in the system is associated with in two integers number called
+Each process in the system is associated with in two integer numbers called
  the 
 \shape italic
 real user id
@@ -1837,9 +1837,11 @@ getpwuid
 
 \family default
  are some of these.
- Each entry of this database are in the structure 
+ Each entry of this database are in the 
 \family typewriter
 passwd
+\family default
+ structure
 \begin_inset Index idx
 status open
 
@@ -1847,12 +1849,12 @@ status open
 
 \family typewriter
 passwd
+\family default
+ structure
 \end_layout
 
 \end_inset
 
-
-\family default
  defined in the include file 
 \family typewriter
 <pwd.h>
@@ -1964,8 +1966,10 @@ struct passwd {
 \noindent
 
 \family typewriter
+\series bold
 pw_name
 \family default
+\series default
  is the user name string;
 \end_layout
 
@@ -1974,8 +1978,10 @@ pw_name
 \noindent
 
 \family typewriter
+\series bold
 pw_passwd
 \family default
+\series default
  is a string containing an encrypted password;
 \end_layout
 
@@ -1984,7 +1990,10 @@ pw_passwd
 \noindent
 
 \family typewriter
-pw_uid user id
+\series bold
+pw_uid
+\series default
+ user id
 \end_layout
 
 \begin_layout Labeling
@@ -1992,8 +2001,10 @@ pw_uid user id
 \noindent
 
 \family typewriter
+\series bold
 pw_gid
 \family default
+\series default
  group id;
 \end_layout
 
@@ -2002,8 +2013,10 @@ pw_gid
 \noindent
 
 \family typewriter
+\series bold
 pw_change
 \family default
+\series default
  is the last change time;
 \end_layout
 
@@ -2012,8 +2025,10 @@ pw_change
 \noindent
 
 \family typewriter
+\series bold
 pw_class
 \family default
+\series default
  is the user access class;
 \end_layout
 
@@ -2022,8 +2037,10 @@ pw_class
 \noindent
 
 \family typewriter
+\series bold
 pw_gecos
 \family default
+\series default
 
 \begin_inset Foot
 status open
@@ -2113,8 +2130,10 @@ finger
 \noindent
 
 \family typewriter
+\series bold
 pw_dir
 \family default
+\series default
  is the user home directory path;
 \end_layout
 
@@ -2123,8 +2142,10 @@ pw_dir
 \noindent
 
 \family typewriter
+\series bold
 pw_shell
 \family default
+\series default
  is the user shell interpreter path;
 \end_layout
 
@@ -2133,8 +2154,10 @@ pw_shell
 \noindent
 
 \family typewriter
+\series bold
 pw_expire
 \family default
+\series default
  is the expiration date for the user account.
 \end_layout
 
@@ -2150,7 +2173,7 @@ status open
 \begin_layout Plain Layout
 
 \family typewriter
-passwd
+passwd structure
 \end_layout
 
 \end_inset
@@ -2407,7 +2430,7 @@ passwd - program to demonstrate the password database system calls.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -2630,8 +2653,17 @@ group file
 /etc/group
 \shape default
 , also contains lines of colon-separated fields.
- These lines are described by the group structure, defined in the include
- file 
+ These lines are described by the group structure
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+group structure
+\end_layout
+
+\end_inset
+
+, defined in the include file 
 \family typewriter
 <grp.h>
 \family default
@@ -2716,8 +2748,10 @@ The fields are:
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 gr_name
 \family default
+\series default
  the name of the group;
 \end_layout
 
@@ -2725,8 +2759,10 @@ gr_name
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 gr_passwd
 \family default
+\series default
  the encrypted password for the group.
  The field is almost always left blank.
  If non-blank, then the newgrp command prompts for a password before permitting
@@ -2748,8 +2784,10 @@ OpenBSD
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 gr_gid
 \family default
+\series default
  the numeric group id of the group;
 \end_layout
 
@@ -2757,8 +2795,10 @@ gr_gid
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 gr_mem
 \family default
+\series default
  pointers to the login names of the members of the group.
  The list is null-terminated.
 \end_layout
@@ -2809,7 +2849,7 @@ group - program to demonstrate the group database system calls.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -3317,7 +3357,7 @@ utmp - program to read /var/run/utmp.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout

@@ -1,4 +1,4 @@
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 
 /* fft-c.c file. */
 #include <stdio.h>
@@ -32,4 +32,3 @@ bool dft(double complex x[], size_t count)
   }
   return ret;
 }
-

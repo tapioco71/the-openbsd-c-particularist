@@ -1,4 +1,4 @@
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 
 /* ifft-c.c file. */
 #include <stdio.h>
@@ -45,4 +45,3 @@ int main(int argc, char *argv[])
 }
 
 /* End of ifft-c.c file. */
-

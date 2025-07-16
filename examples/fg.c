@@ -1,6 +1,6 @@
-/* -*- mode: c; -*- */
+/* -*- mode: c-mode; -*- */
 
-/* bg.c file. */
+/* fg.c file. */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -13,7 +13,7 @@
 #include <sys/proc.h>
 #include <sys/wait.h>
 
-/* bg program. */
+/* fg program. */
 #define FOREVER for(;;)
 
 /* Functions prototypes. */
@@ -81,4 +81,4 @@ void handler(int sig)
   printf("Received SIGTTOU.\n");
 }
 
-/* End of bg.c file. */
+/* End of fg.c file. */

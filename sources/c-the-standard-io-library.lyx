@@ -206,8 +206,8 @@ noprefix "false"
 
 \begin_layout Standard
 \noindent
-A programmer learning C is forced to use the routines in the Standard I/O
- Library
+A programmer learning C language is forced to use the routines in the Standard
+ I/O Library
 \begin_inset Index idx
 status open
 
@@ -1008,8 +1008,17 @@ Opening and Creating Files.
 \end_layout
 
 \begin_layout Standard
-In order to read from or write to a stream, this must first be opened for
- the desired operation.
+In order to read from or write to a stream
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+stream
+\end_layout
+
+\end_inset
+
+, this must first be opened for the desired operation.
  The 
 \family typewriter
 fopen
@@ -1350,7 +1359,17 @@ fflush
  forces a write of all buffered data for the given output or update stream
  via the stream's underlying write function.
  The open status of the stream is unaffected.
- If the stream argument is NULL, 
+ If the stream
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+stream
+\end_layout
+
+\end_inset
+
+ argument is NULL, 
 \family typewriter
 fflush
 \begin_inset Index idx
@@ -1721,7 +1740,7 @@ append-char - append one file to another character by character.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -2028,17 +2047,9 @@ in any program where it makes sense, the program should operate on both
 \shape italic
 cat
 \shape default
-,
+ and
 \shape italic
  egrep
-\shape default
-,
-\shape italic
- tbl
-\shape default
- and 
-\shape italic
-eqn
 \shape default
 , to name a few, are good examples of programs that do this.
  Given a list of file names, these programs will open the files and process
@@ -2204,7 +2215,17 @@ fgets
 \family default
  function accept three arguments: a pointer to a character buffer to be
  filled, an integer specifying the size of the buffer and a file pointer
- referring to a stream open for reading.
+ referring to a stream
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+stream
+\end_layout
+
+\end_inset
+
+ open for reading.
  A pointer to the filled buffer is returned on success or the constant 
 \family typewriter
 NULL
@@ -2311,8 +2332,17 @@ null-terminated
 
 \end_inset
 
- string of characters and a file pointer referring to a stream open for
- writing.
+ string of characters and a file pointer referring to a stream
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+stream
+\end_layout
+
+\end_inset
+
+ open for writing.
  It returns 0 on success, or the constant 
 \family typewriter
 EOF
@@ -2413,7 +2443,7 @@ append-line - append one file to another line by line.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -2972,7 +3002,7 @@ append-buf - append one file to another buffer-full at a time.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -3324,7 +3354,7 @@ ASCII
 , which have the following bit patterns:
 \begin_inset Formula 
 \[
-'1':\qquad0b00110001
+'1':\qquad0b00110001=0x31
 \]
 
 \end_inset
@@ -3332,7 +3362,7 @@ ASCII
 
 \begin_inset Formula 
 \[
-'0':\qquad0b00110000
+'0':\qquad0b00110000=0x30
 \]
 
 \end_inset
@@ -3371,8 +3401,18 @@ fscanf
 
 \family default
  routine accepts a variable number of arguments.
- The first argument is a file pointer referring to a stream open for reading,
- in the case of the console the programmer have to use the 
+ The first argument is a file pointer referring to a stream
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+stream
+\end_layout
+
+\end_inset
+
+ open for reading, in the case of the console the programmer have to use
+ the 
 \shape italic
 standard input stream
 \begin_inset Index idx
@@ -3424,8 +3464,18 @@ fscanf
 
 
 \family default
- reads character from the stream, converts them into various internal representa
-tion as specified by the format string and stores them in the data objects.
+ reads character from the stream
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+stream
+\end_layout
+
+\end_inset
+
+, converts them into various internal representation as specified by the
+ format string and stores them in the data objects.
  The format string may contain:
 \end_layout
 
@@ -3905,7 +3955,7 @@ factorial - compute the factorial of an integer number.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -4633,7 +4683,7 @@ snprintf - snprintf test program.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -4828,8 +4878,17 @@ fseek
 \end_inset
 
 .
- It accepts three arguments: a file pointer to an open stream, a long integer
- specifying the number of bytes to move, called an 
+ It accepts three arguments: a file pointer to an open stream
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+stream
+\end_layout
+
+\end_inset
+
+, a long integer specifying the number of bytes to move, called an 
 \shape italic
 offset
 \begin_inset Index idx
@@ -4992,7 +5051,17 @@ rewind
 
 
 \family default
- takes a single argument, a file pointer to an open stream.
+ takes a single argument, a file pointer to an open stream
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+stream
+\end_layout
+
+\end_inset
+
+.
  To find out the current location in a file, the 
 \family typewriter
 ftell
@@ -5026,8 +5095,17 @@ ftell
 
 
 \family default
- accepts a single argument, a file pointer to an open stream and returns
- a long integer indicating the offset
+ accepts a single argument, a file pointer to an open stream
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+stream
+\end_layout
+
+\end_inset
+
+ and returns a long integer indicating the offset
 \begin_inset Index idx
 status open
 
@@ -5103,7 +5181,7 @@ fseekdemo - demontrate the use of the fseek routine.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -6130,7 +6208,7 @@ find-word - program to show the usage of fgets and /usr/share/dict/words
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -6349,7 +6427,7 @@ find-word - program to show the usage of fgets and /usr/share/dict/words
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -8074,7 +8152,7 @@ status open
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -8234,7 +8312,7 @@ status open
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout

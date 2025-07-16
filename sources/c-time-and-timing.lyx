@@ -264,7 +264,17 @@ Obtaining the Time.
 \end_layout
 
 \begin_layout Standard
-In the OpenBSD operating system the 
+In the OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ operating system the 
 \family typewriter
 time
 \begin_inset Index idx
@@ -616,12 +626,20 @@ struct timeval {
 
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
-tv_sec seconds elapsed from 1/1/1970;
+
+\series bold
+tv_sec
+\series default
+ seconds elapsed from 1/1/1970;
 \end_layout
 
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
-tv_usec microseconds elapse from boot.
+
+\series bold
+tv_usec
+\series default
+ microseconds elapse from boot.
 \end_layout
 
 \begin_layout Standard
@@ -741,7 +759,7 @@ time - a program to show the time-of-the-day.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -921,7 +939,7 @@ Timezones.
 \begin_layout Standard
 On the OpenBSD
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 OpenBSD
@@ -933,7 +951,7 @@ OpenBSD
 \shape italic
 timezone
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -949,7 +967,7 @@ timezone
 \family typewriter
 localtime
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -965,7 +983,7 @@ localtime
 \family typewriter
 gmtime
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -982,12 +1000,12 @@ gmtime
 \family typewriter
 tm
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
 \family typewriter
-tm
+tm structure
 \end_layout
 
 \end_inset
@@ -999,7 +1017,7 @@ tm
 \family typewriter
 localtime
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1013,7 +1031,7 @@ localtime
 \family default
  corrects for the time zone
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 time zone
@@ -1027,7 +1045,7 @@ time zone
 \family typewriter
 tm
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1043,7 +1061,7 @@ tm
 \family typewriter
 localtime
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1059,7 +1077,7 @@ localtime
 \family typewriter
 tm_isdst
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1073,7 +1091,7 @@ tm_isdst
 \family default
 'th element of tzname
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 tzname
@@ -1083,7 +1101,7 @@ tzname
 
  to a pointer to an ASCII
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 ASCII
@@ -1093,7 +1111,7 @@ ASCII
 
  string that's the time zone
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 time zone
@@ -1105,7 +1123,7 @@ time zone
 \family typewriter
 localtime
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1216,8 +1234,10 @@ struct tm {
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 tm_sec
 \family default
+\series default
  seconds after the minute [ 0 - 60 ];
 \end_layout
 
@@ -1225,8 +1245,10 @@ tm_sec
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 tm_min
 \family default
+\series default
  minutes after the hour [ 0 - 59 ];
 \end_layout
 
@@ -1234,8 +1256,10 @@ tm_min
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 tm_hour
 \family default
+\series default
  hours since midnight [ 0 - 23 ];
 \end_layout
 
@@ -1243,8 +1267,10 @@ tm_hour
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 tm_mday
 \family default
+\series default
  day of the month [ 1 - 31 ];
 \end_layout
 
@@ -1253,8 +1279,10 @@ tm_mday
 \noindent
 
 \family typewriter
+\series bold
 tm_mon
 \family default
+\series default
  months since January [ 0 - 11 ];
 \end_layout
 
@@ -1262,8 +1290,10 @@ tm_mon
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 tm_year
 \family default
+\series default
  years since 1900;
 \end_layout
 
@@ -1271,8 +1301,10 @@ tm_year
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 tm_wday
 \family default
+\series default
  days since Sunday [ 0 - 6 ];
 \end_layout
 
@@ -1280,8 +1312,10 @@ tm_wday
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 tm_yday
 \family default
+\series default
  days since January 1 [ 0 - 365 ];
 \end_layout
 
@@ -1289,8 +1323,10 @@ tm_yday
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 tm_isdst
 \family default
+\series default
  Daylight Saving Time flag;
 \end_layout
 
@@ -1298,8 +1334,10 @@ tm_isdst
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 tm_gmtoff
 \family default
+\series default
  offset from UTC in seconds;
 \end_layout
 
@@ -1307,8 +1345,10 @@ tm_gmtoff
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 tm_zone
 \family default
+\series default
  timezone abbreviation.
 \end_layout
 
@@ -1350,7 +1390,7 @@ timezone - a program to show the time-of-the-day and timezone.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -1603,7 +1643,7 @@ gmtime
 \family default
 
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1617,7 +1657,7 @@ gmtime
 \family typewriter
 difftime
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1633,7 +1673,7 @@ difftime
 \family typewriter
 asctime
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1689,7 +1729,7 @@ difftime - a program to compute the session time of a user.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -2389,7 +2429,17 @@ Top obtain information about the amount of processor time used by a process,
  the times system call may be used.
  The function fills in the structure pointed to by tp with time- accounting
  information.
- The tms structure is defined as follows:
+ The tms structure
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+tms structure
+\end_layout
+
+\end_inset
+
+ is defined as follows:
 \begin_inset listings
 lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
 inline false
@@ -2458,8 +2508,10 @@ The elements of this structure are defined as follows:
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 tms_utime
 \family default
+\series default
  CPU time charged for the execution of user instructions;
 \end_layout
 
@@ -2467,8 +2519,10 @@ tms_utime
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 tms_stime
 \family default
+\series default
  CPU time charged for execution by the system on behalf of the process;
 \end_layout
 
@@ -2476,8 +2530,10 @@ tms_stime
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 tms_cutime
 \family default
+\series default
  sum of 
 \family typewriter
 tms_utime
@@ -2493,8 +2549,10 @@ tms_cutime
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 tms_cstime
 \family default
+\series default
  sum of 
 \family typewriter
 tms_stime
@@ -2691,7 +2749,7 @@ cputime - measure cpu time used by a section of code.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -3109,7 +3167,7 @@ status open
 \begin_layout Plain Layout
 
 \family typewriter
-itimerval
+itimerval structure
 \end_layout
 
 \end_inset
@@ -3207,8 +3265,10 @@ struct itimerval {
 \noindent
 
 \family typewriter
+\series bold
 it_interval
 \family default
+\series default
  field specifies the number of seconds and microseconds before the timer
  should expire; if these values are zero the timer is disabled;
 \end_layout
@@ -3217,8 +3277,10 @@ it_interval
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 it_value
 \family default
+\series default
  specifies the values the timer should be reset to when expires; if these
  are zero the timer will not be reset.
  

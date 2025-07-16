@@ -969,7 +969,7 @@ BIOS
 
 \end_inset
 
- that can support 2 TB dives anyway.
+ that can support 2 TB drives anyway.
  The file system creation program 
 \shape italic
 newfs
@@ -1128,8 +1128,12 @@ file system
 
 \begin_layout Labeling
 \labelwidthstring 0000.0000.0000
-blocks are sections of disk that contain data, Files are placed in one or
- more blocks.
+
+\series bold
+blocks
+\series default
+ are sections of disk that contain data, Files are placed in one or more
+ blocks.
  OpenBSD's FFS uses a default block size of 16 KB or eight times the fragment
  size, whichever is smaller.
  Not all files are even multiples of 16 KB, so leftover bits go in fragments;
@@ -1137,14 +1141,22 @@ blocks are sections of disk that contain data, Files are placed in one or
 
 \begin_layout Labeling
 \labelwidthstring 0000.0000.0000
-fragments is one-eighth of the block size or 2 KB by default.
+
+\series bold
+fragments
+\series default
+ is one-eighth of the block size or 2 KB by default.
  A 20 KB file fills one block and two fragments;
 \end_layout
 
 \begin_layout Labeling
 \labelwidthstring 0000.0000.0000
-i-nodes index nodes, contain basic data about files, such as file's size,
- permissions and the list of blocks that contain the file.
+
+\series bold
+i-nodes
+\series default
+ index nodes, contain basic data about files, such as file's size, permissions
+ and the list of blocks that contain the file.
  Collectively, the data in an i-node is known as metadata or data about
  data.
 \end_layout
@@ -1155,8 +1167,12 @@ Additionally there are other data structures:
 
 \begin_layout Labeling
 \labelwidthstring 0000.0000.0000
-super-blocks which are blocks that contain vital information about the file
- system's size and specifications.
+
+\series bold
+super-blocks
+\series default
+ which are blocks that contain vital information about the file system's
+ size and specifications.
  Super-blocks are so important that FFS makes many backup copies of them.
  If one needs to meddle with superblocks there's an high chance to lost
  the entire file system.
@@ -3159,8 +3175,10 @@ single structure members are the following:
 \labelwidthstring 0000.00.0000
 
 \family typewriter
+\series bold
 st_dev
 \family default
+\series default
  a signed 32 bit integer which represent the i-node's device;
 \end_layout
 
@@ -3168,8 +3186,10 @@ st_dev
 \labelwidthstring 0000.00.0000
 
 \family typewriter
+\series bold
 st_ino
 \family default
+\series default
  an unsigned 64 bit integer which represent the i-node's number;
 \end_layout
 
@@ -3177,8 +3197,10 @@ st_ino
 \labelwidthstring 0000.00.0000
 
 \family typewriter
+\series bold
 st_mode
 \family default
+\series default
  an unsigned 32 bit integer which represent a mask of bits:
 \end_layout
 
@@ -3725,8 +3747,10 @@ S_ISVTX
 \noindent
 
 \family typewriter
+\series bold
 st_nlink
 \family default
+\series default
  an unsigned 32 bit integer which represent the number of hard links;
 \end_layout
 
@@ -3735,8 +3759,10 @@ st_nlink
 \noindent
 
 \family typewriter
+\series bold
 st_uid
 \family default
+\series default
  an unsigned 32 bit integer which represent the user id of the file's owner;
 \end_layout
 
@@ -3744,8 +3770,10 @@ st_uid
 \labelwidthstring 0000.00.0000
 
 \family typewriter
+\series bold
 st_gid
 \family default
+\series default
  an unsigned 32 bit integer which represent the group id;
 \end_layout
 
@@ -3753,8 +3781,10 @@ st_gid
 \labelwidthstring 0000.00.0000
 
 \family typewriter
+\series bold
 st_rdev
 \family default
+\series default
  a signed 32 bit integer which represent the device type;
 \end_layout
 
@@ -3762,8 +3792,10 @@ st_rdev
 \labelwidthstring 0000.00.0000
 
 \family typewriter
+\series bold
 st_atim
 \family default
+\series default
  a structured data type object, struct timespec, which holds the time of
  the last access;
 \end_layout
@@ -3773,8 +3805,10 @@ st_atim
 \noindent
 
 \family typewriter
+\series bold
 st_mtim
 \family default
+\series default
  a structured data type object, struct timespec, which holds the time of
  the last data modification;
 \end_layout
@@ -3783,8 +3817,10 @@ st_mtim
 \labelwidthstring 0000.00.0000
 
 \family typewriter
+\series bold
 st_ctim
 \family default
+\series default
  a structured data type object, strcut timespec, which holds the time of
  the last status change;
 \end_layout
@@ -3794,8 +3830,10 @@ st_ctim
 \noindent
 
 \family typewriter
+\series bold
 st_size
 \family default
+\series default
  a 64 bit signed integer which represent the file size in bytes;
 \end_layout
 
@@ -3803,8 +3841,10 @@ st_size
 \labelwidthstring 0000.00.0000
 
 \family typewriter
+\series bold
 st_blocks
 \family default
+\series default
  a 64 bit signed integer which is the number of blocks containing the file;
 \end_layout
 
@@ -3812,8 +3852,10 @@ st_blocks
 \labelwidthstring 0000.00.0000
 
 \family typewriter
+\series bold
 st_blksize
 \family default
+\series default
  a 32 bit signed integer which represent the optimal block size for file;
 \end_layout
 
@@ -3821,8 +3863,10 @@ st_blksize
 \labelwidthstring 0000.00.0000
 
 \family typewriter
+\series bold
 st_flags
 \family default
+\series default
  a 32 bit unsigned integer which holds user defined flags for the file;
 \end_layout
 
@@ -3830,8 +3874,10 @@ st_flags
 \labelwidthstring 0000.00.0000
 
 \family typewriter
+\series bold
 st_gen
 \family default
+\series default
  a 32 bit unsigned integer which represent the file generation number.
 \end_layout
 
@@ -3969,8 +4015,10 @@ struct dirent {
 \noindent
 
 \family typewriter
+\series bold
 d_fileno
 \family default
+\series default
  Files which have been deleted will have i-numbers, 
 \family typewriter
 d_fileno
@@ -3997,8 +4045,10 @@ d_fileno
 \noindent
 
 \family typewriter
+\series bold
 d_off
 \family default
+\series default
  is the offset of next entry.
 \end_layout
 
@@ -4007,8 +4057,10 @@ d_off
 \noindent
 
 \family typewriter
+\series bold
 d_reclen
 \family default
+\series default
  is the length of this record;
 \end_layout
 
@@ -4017,8 +4069,10 @@ d_reclen
 \noindent
 
 \family typewriter
+\series bold
 d_type
 \family default
+\series default
  The 
 \family typewriter
 d_type
@@ -4206,8 +4260,10 @@ DT_SOCK
 \noindent
 
 \family typewriter
+\series bold
 d_namlen
 \family default
+\series default
  is the current length of the name stored in d_name for which the maximum
  possible length is 
 \family typewriter
@@ -4233,8 +4289,10 @@ MAXNAMELEN
 \noindent
 
 \family typewriter
+\series bold
 d_name
 \family default
+\series default
  it should be noted that the name of file, 
 \family typewriter
 d_name
@@ -4283,7 +4341,7 @@ listfiles - list the names of the files in the current directory.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -4776,7 +4834,7 @@ ls - an "ls"-like program.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout

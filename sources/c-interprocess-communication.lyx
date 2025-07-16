@@ -252,7 +252,47 @@ ipc
 \end_inset
 
  facilities that allow two or more completely unrelated process to communicate
- with each other: semaphores, shared memory, messages queues and sockets.
+ with each other: semaphores
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+semaphore
+\end_layout
+
+\end_inset
+
+, shared memory
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+shared memory
+\end_layout
+
+\end_inset
+
+, messages queues
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+messages queue
+\end_layout
+
+\end_inset
+
+ and sockets
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+socket
+\end_layout
+
+\end_inset
+
+.
  Each of these mechanism, while powerful in its own area, tends to be rather
  restrictive in the types of uses to which it can be put.
  In OpenBSD
@@ -1788,7 +1828,7 @@ socket file descriptor
 \family typewriter
 MSG_EOR
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1809,7 +1849,7 @@ MSG_EOR
 \family typewriter
 MSG_OOB
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1831,7 +1871,7 @@ MSG_OOB
 \family typewriter
 MSG_NOSIGNAL
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2791,7 +2831,7 @@ file descriptor
 \family typewriter
 SHUT_RD
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2812,7 +2852,7 @@ SHUT_RD
 \family typewriter
 SHUT_WR
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2833,7 +2873,7 @@ SHUT_WR
 \family typewriter
 SHUT_RDWR
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4124,7 +4164,7 @@ socket file descriptor
 \family typewriter
 MSG_EOR
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4145,7 +4185,7 @@ MSG_EOR
 \family typewriter
 MSG_OOB
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4167,7 +4207,7 @@ MSG_OOB
 \family typewriter
 MSG_NOSIGNAL
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4508,7 +4548,7 @@ recvfrom
 \family typewriter
 MSG_PEEK
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4546,7 +4586,7 @@ recvfrom
 \family typewriter
 MSG_OOB
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4569,7 +4609,7 @@ MSG_OOB
 \family typewriter
 MSG_WAITALL
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -5044,7 +5084,7 @@ client - client program to demonstrate sockets.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -5439,7 +5479,7 @@ server - server program to demonstrate sockets.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -6216,8 +6256,10 @@ The meanings of the structure members are:
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 msg_perm
 \family default
+\series default
  msg queue permission bits;
 \end_layout
 
@@ -6225,8 +6267,10 @@ msg_perm
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 msg_first
 \family default
+\series default
  first message in the queue;
 \end_layout
 
@@ -6234,8 +6278,10 @@ msg_first
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 msg_last
 \family default
+\series default
  last message in the queue;
 \end_layout
 
@@ -6243,8 +6289,10 @@ msg_last
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 msg_cbytes
 \family default
+\series default
  number of bytes in use on the queue;
 \end_layout
 
@@ -6252,8 +6300,10 @@ msg_cbytes
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 msg_qnum
 \family default
+\series default
  number of msgs in the queue;
 \end_layout
 
@@ -6261,8 +6311,10 @@ msg_qnum
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 msg_qbytes
 \family default
+\series default
  maximum number of bytes on the queue;
 \end_layout
 
@@ -6270,8 +6322,10 @@ msg_qbytes
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 msg_lspid
 \family default
+\series default
  pid of last 
 \family typewriter
 msgsnd
@@ -6295,8 +6349,10 @@ msgsnd
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 msg_lrpid
 \family default
+\series default
  pid of last 
 \family typewriter
 msgrcv
@@ -6320,8 +6376,10 @@ msgrcv
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 msg_stime
 \family default
+\series default
  time of last 
 \family typewriter
 msgsnd
@@ -6345,8 +6403,10 @@ msgsnd
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 msg_pad1
 \family default
+\series default
  structure pad member;
 \end_layout
 
@@ -6354,8 +6414,10 @@ msg_pad1
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 msg_rtime
 \family default
+\series default
  time of last 
 \family typewriter
 msgrcv
@@ -6379,8 +6441,10 @@ msgrcv
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 msg_pad2
 \family default
+\series default
  structure pad member;
 \end_layout
 
@@ -6388,8 +6452,10 @@ msg_pad2
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 msg_ctime
 \family default
+\series default
  time of last 
 \family typewriter
 msgctl
@@ -6413,8 +6479,10 @@ msgctl
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 msg_pad3
 \family default
+\series default
  structure pad member;
 \end_layout
 
@@ -6422,8 +6490,10 @@ msg_pad3
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 msg_pad4
 \family default
+\series default
  structure pad member.
 \end_layout
 
@@ -6431,6 +6501,8 @@ msg_pad4
 The 
 \family typewriter
 ipc_perm
+\family default
+ structure
 \begin_inset Index idx
 status open
 
@@ -6438,13 +6510,13 @@ status open
 
 \family typewriter
 ipc_perm
+\family default
+ structure
 \end_layout
 
 \end_inset
 
-
-\family default
- structure defines the permissions on the message queue
+ defines the permissions on the message queue
 \begin_inset Index idx
 status open
 
@@ -6555,8 +6627,10 @@ The members are defined as:
 \labelwidthstring 00.00.0000
 
 \family typewriter
+\series bold
 cuid
 \family default
+\series default
  creator user id;
 \end_layout
 
@@ -6564,8 +6638,10 @@ cuid
 \labelwidthstring 00.00.0000
 
 \family typewriter
+\series bold
 cgid
 \family default
+\series default
  creator group id;
 \end_layout
 
@@ -6573,8 +6649,10 @@ cgid
 \labelwidthstring 00.00.0000
 
 \family typewriter
+\series bold
 uid
 \family default
+\series default
  user id;
 \end_layout
 
@@ -6582,8 +6660,10 @@ uid
 \labelwidthstring 00.00.0000
 
 \family typewriter
+\series bold
 gid
 \family default
+\series default
  group id;
 \end_layout
 
@@ -6591,8 +6671,10 @@ gid
 \labelwidthstring 00.00.0000
 
 \family typewriter
+\series bold
 mode
 \family default
+\series default
  r/w permission this is a bit mask:
 \end_layout
 
@@ -6663,8 +6745,10 @@ IPC_M
 \noindent
 
 \family typewriter
+\series bold
 seq
 \family default
+\series default
  sequence number, to generate unique msg/sem/shmid;
 \end_layout
 
@@ -6672,8 +6756,10 @@ seq
 \labelwidthstring 00.00.0000
 
 \family typewriter
+\series bold
 key
 \family default
+\series default
  user specified msg/sem/shm key.
 \end_layout
 
@@ -8519,7 +8605,7 @@ mq-server - server program to demonstrate message queues.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -8930,7 +9016,7 @@ mq-client - client program to demonstrate message queues.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -9303,7 +9389,17 @@ Semaphores.
 \end_layout
 
 \begin_layout Standard
-Semaphores are special types of flags used for signalling between two processes.
+Semaphores
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+semaphore
+\end_layout
+
+\end_inset
+
+ are special types of flags used for signalling between two processes.
  They are tipically used to guard 
 \begin_inset Quotes eld
 \end_inset
@@ -9314,7 +9410,17 @@ critical sections
 
  of code that modify shared data structures.
  In general, a section of code is written so that it cannot begin until
- a given semaphore is equal to a specific value.
+ a given semaphore
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+semaphore
+\end_layout
+
+\end_inset
+
+ is equal to a specific value.
  For example a program might wait until the semaphore
 \begin_inset Index idx
 status open
@@ -9406,7 +9512,7 @@ status open
 \begin_layout Plain Layout
 
 \family typewriter
-semid_ds
+semid_ds structure
 \end_layout
 
 \end_inset
@@ -9534,8 +9640,10 @@ The members are defined as:
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 sem_perm
 \family default
+\series default
  operation permission struct;
 \end_layout
 
@@ -9543,8 +9651,10 @@ sem_perm
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 sem_base
 \family default
+\series default
  pointer to first semaphore in set;
 \end_layout
 
@@ -9552,8 +9662,10 @@ sem_base
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 sem_nsems
 \family default
+\series default
  number of sems in set; 
 \end_layout
 
@@ -9561,8 +9673,10 @@ sem_nsems
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 sem_otime
 \family default
+\series default
  last operation time;
 \end_layout
 
@@ -9570,8 +9684,10 @@ sem_otime
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 sem_pad1
 \family default
+\series default
  SVABI/386 says I need this here (LOLx1);
 \end_layout
 
@@ -9579,8 +9695,10 @@ sem_pad1
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 sem_ctime
 \family default
+\series default
  last change time.
  Times measured in secs since 00:00:00 GMT, Jan.
  1, 1970;
@@ -9590,8 +9708,10 @@ sem_ctime
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 sem_pad2
 \family default
+\series default
  SVABI/386 says I need this here (LOLx2);
 \end_layout
 
@@ -9599,8 +9719,10 @@ sem_pad2
 \labelwidthstring 0000.0000.0000
 
 \family typewriter
+\series bold
 sem_pad3
 \family default
+\series default
  SVABI/386 says I need this here (LOLx3).
 \end_layout
 
@@ -11319,7 +11441,7 @@ semcreate - creates a semaphore group.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -11610,8 +11732,17 @@ Shared memory provides a method for two or more programs to share a segment
  processes update the same data structures.
  A shared memory segment is described by a unique identifier called a shared
  memory id.
- The shared memory segment itself is described by a structure of type shmid_ds,
- declared in the include file 
+ The shared memory segment itself is described by a structure of type shmid_ds
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+shmid_ds structure
+\end_layout
+
+\end_inset
+
+, declared in the include file 
 \family typewriter
 <sys/shm.h>
 \begin_inset Index idx
@@ -11737,8 +11868,10 @@ The members are defined as:
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 shm_perm
 \family default
+\series default
  operation permissions;
 \end_layout
 
@@ -11746,8 +11879,10 @@ shm_perm
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 shm_segsz
 \family default
+\series default
  size of segment in bytes;
 \end_layout
 
@@ -11756,8 +11891,10 @@ shm_segsz
 \noindent
 
 \family typewriter
+\series bold
 shm_lpid
 \family default
+\series default
  pid of last shm op;
 \end_layout
 
@@ -11765,8 +11902,10 @@ shm_lpid
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 shm_cpid
 \family default
+\series default
  pid of creator;
 \end_layout
 
@@ -11774,8 +11913,10 @@ shm_cpid
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 shm_nattch
 \family default
+\series default
  number of current attaches;
 \end_layout
 
@@ -11783,8 +11924,10 @@ shm_nattch
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 shm_atime
 \family default
+\series default
  last 
 \family typewriter
 shmat
@@ -11808,8 +11951,10 @@ shmat
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 shm_dtime
 \family default
+\series default
  last 
 \family typewriter
 shmdt
@@ -11833,8 +11978,10 @@ shmdt
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 shm_ctime
 \family default
+\series default
  last change by 
 \family typewriter
 shmctl
@@ -11858,8 +12005,10 @@ shmctl
 \labelwidthstring 000000.000000.000000
 
 \family typewriter
+\series bold
 shm_internal
 \family default
+\series default
  sysv stupidity.
 \end_layout
 
@@ -13093,7 +13242,7 @@ shm-server - server program to demonstrate shared memory.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout
@@ -13484,7 +13633,7 @@ shm-client - client program to demonstrate shared memory.
 
 \begin_layout Plain Layout
 
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 \end_layout
 
 \begin_layout Plain Layout

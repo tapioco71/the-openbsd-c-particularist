@@ -1,4 +1,4 @@
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 
 /* File irc-client.h */
 #include <stdio.h>
@@ -99,7 +99,7 @@ enum tagIRCNumerics {
   RPL_YOUREOPER = 381,
   RPL_REHASHING,
   RPL_TIME = 391,
-  
+
   /* Errors. */
   ERR_UNKNOWNERROR = 400,
   ERR_NOSUCHNICK,
