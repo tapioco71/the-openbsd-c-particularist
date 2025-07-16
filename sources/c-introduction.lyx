@@ -705,6 +705,75 @@ OpenBSD
  The reader will benefit by actually typing these examples in, compiling
  them, executing them and then experimenting with them in order to observe
  first-hand how they operate.
+ From the OpenBSD site (
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://www.openbsd.org/goals.html
+\end_layout
+
+\end_inset
+
+) we report the project goals fully:
+\end_layout
+
+\begin_layout Itemize
+Provide the best development platform possible.
+ Provide full source access to developers and users, including the ability
+ to look at CVS tree changes directly.
+ Users can even look at our source tree and changes directly on the web!
+\end_layout
+
+\begin_layout Itemize
+Integrate good code from any source with acceptable licenses.
+ ISC or Berkeley style licences are preferred, the GPL is not acceptable
+ when adding new code, NDAs are never acceptable.
+ We want to make available source code that anyone can use for ANY PURPOSE,
+ with no restrictions.
+ We strive to make our software robust and secure, and encourage companies
+ to use whichever pieces they want to.
+ There are commercial spin-offs of OpenBSD.
+\end_layout
+
+\begin_layout Itemize
+Pay attention to security problems and fix them before anyone else does.
+ (Try to be the #1 most secure operating system.)
+\end_layout
+
+\begin_layout Itemize
+Greater integration of cryptographic software.
+ OpenBSD is developed and released from Canada and due to Canadian law it
+ is legal to export crypto to the world (as researched by a Canadian individual
+ and as documented in the Export Control list of Canada).
+\end_layout
+
+\begin_layout Itemize
+Track and implement standards (ANSI, POSIX, parts of X/Open, etc.)
+\end_layout
+
+\begin_layout Itemize
+Work towards a very machine independent source tree.
+ Support as many different systems and hardware as feasible.
+\end_layout
+
+\begin_layout Itemize
+Be as politics-free as possible; solutions should be decided on the basis
+ of technical merit.
+\end_layout
+
+\begin_layout Itemize
+Focus on being developer-oriented in all senses, including holding developer-onl
+y events called hackathons.
+\end_layout
+
+\begin_layout Itemize
+Do not let serious problems sit unsolved.
+\end_layout
+
+\begin_layout Itemize
+Make a release approximately every six months.
  
 \end_layout
 
