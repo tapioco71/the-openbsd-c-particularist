@@ -96,6 +96,7 @@ all: ${TOOLCHAIN}/ouch1
 all: ${TOOLCHAIN}/ouch2
 all: ${TOOLCHAIN}/pager
 all: ${TOOLCHAIN}/passwd
+all: ${TOOLCHAIN}/random
 all: ${TOOLCHAIN}/rusage
 all: ${TOOLCHAIN}/select
 all: ${TOOLCHAIN}/semcreate
@@ -221,6 +222,7 @@ ${TOOLCHAIN}/ouch1: ${TOOLCHAIN}/ouch1.o
 ${TOOLCHAIN}/ouch2: ${TOOLCHAIN}/ouch2.o
 ${TOOLCHAIN}/pager: ${TOOLCHAIN}/pager.o
 ${TOOLCHAIN}/passwd: ${TOOLCHAIN}/passwd.o
+${TOOLCHAIN}/random: ${TOOLCHAIN}/random.o
 ${TOOLCHAIN}/rusage: ${TOOLCHAIN}/rusage.o
 ${TOOLCHAIN}/select: ${TOOLCHAIN}/select.o
 ${TOOLCHAIN}/semcreate: ${TOOLCHAIN}/semcreate.o
