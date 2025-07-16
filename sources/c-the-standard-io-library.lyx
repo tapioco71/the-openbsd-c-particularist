@@ -8000,7 +8000,7 @@ bool cmp(void *a, ...)
 
 \begin_layout Plain Layout
 
-	/* chack parameters.
+	/* check parameters.
  */
 \end_layout
 

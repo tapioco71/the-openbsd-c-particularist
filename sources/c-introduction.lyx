@@ -340,8 +340,8 @@ status open
 \begin_layout Plain Layout
 The Reader could consider the success of the TI BeagleBone or the Raspberry
  PI.
- Unlike the Arduino, these embedded computing solutions can run a complete
- OS such as OpenBSD.
+ Unlike the base Arduino models, these embedded computing solutions can
+ run a complete OS such as OpenBSD.
 \end_layout
 
 \end_inset
@@ -1794,10 +1794,13 @@ We can apply this even to a multitasking system in which threads could be
 .
  Those instructions must comply to rules, within the operating system, to
  perform the task for which they are designed.
- For example let's consider the following example: a program wants to open
- a file on the disk for writing and store in it 256 MB of data in it, but
- the disk is full, which is a condition not depending by the program itself,
- we can say that it is an external factor.
+ For example let's consider the following: 
+\series bold
+a program wants to open a file on the disk for writing and store in it 256
+ MB of data in it, but the disk is full, which is a condition not depending
+ by the program itself, we can say that it is an external factor
+\series default
+.
  As the program tries to write those data, the operating system signals
  the problem and generates an error, forcing the program to abort the operation.
  Usually the operating system signals the error, after aborting the requested
