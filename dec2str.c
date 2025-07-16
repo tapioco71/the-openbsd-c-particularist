@@ -1,4 +1,4 @@
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 
 /* File dec2str.c */
 #include <stdio.h>

@@ -1,4 +1,4 @@
-! -*- mode: f90-mode; -*-
+! -*- mode: f90; -*-
 
 ! hello2-for.f90 file.
 

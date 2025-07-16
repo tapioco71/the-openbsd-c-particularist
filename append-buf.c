@@ -1,4 +1,4 @@
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 
 /* append-buf.c file. */
 #include <stdio.h>

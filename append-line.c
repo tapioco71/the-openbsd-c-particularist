@@ -1,4 +1,4 @@
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 
 /* append-line.c file. */
 #include <stdio.h>

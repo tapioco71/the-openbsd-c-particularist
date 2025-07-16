@@ -1,4 +1,4 @@
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 
 /* File client.c */
 #include <stdio.h>

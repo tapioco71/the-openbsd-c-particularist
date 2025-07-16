@@ -1,4 +1,4 @@
-! -*- mode: f90-mode; -*-
+! -*- mode: f90; -*-
 
 ! fft-for.f90 file.
 

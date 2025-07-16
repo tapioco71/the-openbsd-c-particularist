@@ -1,4 +1,4 @@
-! -*- mode: f90-mode; -*-
+! -*- mode: f90; -*-
 
 function idft(x, count)
   use, intrinsic :: iso_c_binding

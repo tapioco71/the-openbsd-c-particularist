@@ -1,4 +1,4 @@
-/* -*- mode: c-mode; -*- */
+/* -*- mode: c; -*- */
 
 /* find-word.h file. */
 #ifndef __FIND_WORD_H

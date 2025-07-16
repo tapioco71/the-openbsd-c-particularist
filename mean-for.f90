@@ -1,4 +1,4 @@
-! -*- mode: f90-mode; -*-
+! -*- mode: f90; -*-
 
 ! mean-for.f90 file.
 
