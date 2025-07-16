@@ -296,11 +296,7 @@ MIPS64 — systems;
 \end_layout
 
 \begin_layout Enumerate
-powerpc64 — IBM POWER-based;
-\end_layout
-
-\begin_layout Enumerate
-PowerNV — systems;
+powerpc64 — IBM POWER-based PowerNV systems;
 \end_layout
 
 \begin_layout Enumerate
