@@ -1,4 +1,4 @@
-! -*- mode: f90-mode; -*-
+! -*- mode: f90; -*-
 
 ! norm2-for.f90 file.
 
