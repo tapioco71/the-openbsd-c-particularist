@@ -251,6 +251,19 @@ noprefix "false"
 
 \end_layout
 
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:getting-parameters-from-console"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
 \end_inset
 
 
@@ -6396,7 +6409,7 @@ name "c:random2"
 
 \end_inset
 
-random - a program to guess random integer numbers using arc4random family
+random2 - a program to guess random integer numbers using arc4random family
  functions.
 \end_layout
 
@@ -6692,6 +6705,204 @@ int again(void)
 \begin_layout Plain Layout
 
 /* End of random2.c file.
+ */
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:getting-parameters-from-console"
+
+\end_inset
+
+Getting Parameters from Console.
+\end_layout
+
+\begin_layout Subsection
+argc and argv.
+\end_layout
+
+\begin_layout Standard
+People using programs by the console are aware of the possibility to provide
+ additional informations to the programs themselves.
+ Those informations are entered following the program name, such as:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+$ ls -al
+\end_layout
+
+\end_inset
+
+where -al are called switches or options.
+ C language has got a mechanism to provide those informations to the called
+ program via two global variables: argc and argv.
+ The first is the count of the informations which are separated one from
+ another by a space plus the program name.
+ argv is an array of strings which holds every options.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:arguments"
+
+\end_inset
+
+arguments - a program to show passed parameters from console.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* File arguments.c.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdint.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Function prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  long int nReturnValue = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+  char *p;
+\end_layout
+
+\begin_layout Plain Layout
+
+  int i;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  /* */
+\end_layout
+
+\begin_layout Plain Layout
+
+  printf("You provided %d options:
+\backslash
+n", argc);
+\end_layout
+
+\begin_layout Plain Layout
+
+  for(i = 0; i < argc; i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+    printf("option #%d: %s
+\backslash
+n", i, argv[ i ]);
+\end_layout
+
+\begin_layout Plain Layout
+
+  exit(nReturnValue);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of arguments.c file.
  */
 \end_layout
 
