@@ -1843,7 +1843,7 @@ Error Handling.
 \end_layout
 
 \begin_layout Standard
-Error conditions appear when the program perform one or more actions which
+Error conditions appear when the program performs one or more actions which
  are not allowed by the system.
  Programs are in fact lists of instructions which are sequentially executed
 \begin_inset Foot
