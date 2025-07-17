@@ -780,233 +780,6 @@ Make a release approximately every six months.
 \begin_layout Section
 \begin_inset CommandInset label
 LatexCommand label
-name "sec:system-calls-vs-library-routines"
-
-\end_inset
-
-System Calls vs.
- Library Routines.
-\end_layout
-
-\begin_layout Standard
-Before discussing the 
-\shape italic
-library routines
-\begin_inset Index idx
-status open
-
-\begin_layout Plain Layout
-
-\shape italic
-library routines
-\end_layout
-
-\end_inset
-
-
-\shape default
- and 
-\shape italic
-system calls
-\begin_inset Index idx
-status open
-
-\begin_layout Plain Layout
-
-\shape italic
-system calls
-\end_layout
-
-\end_inset
-
-
-\shape default
- provided by OpenBSD
-\begin_inset Index idx
-status open
-
-\begin_layout Plain Layout
-OpenBSD
-\end_layout
-
-\end_inset
-
- system, a few words must be said.
- First the difference between a system call
-\begin_inset Index idx
-status open
-
-\begin_layout Plain Layout
-system call
-\end_layout
-
-\end_inset
-
- and a library routine
-\begin_inset Index idx
-status open
-
-\begin_layout Plain Layout
-library routine
-\end_layout
-
-\end_inset
-
- needs to been explained.
- These terms are often used incorrectly: a system call
-\begin_inset Index idx
-status open
-
-\begin_layout Plain Layout
-system call
-\end_layout
-
-\end_inset
-
- is just what its name implies - 
-\series bold
-a request for the operating system to do something on behalf of the user's
- program
-\series default
-.
- For example 
-\family typewriter
-read
-\begin_inset Index idx
-status open
-
-\begin_layout Plain Layout
-
-\family typewriter
-read
-\end_layout
-
-\end_inset
-
-
-\family default
- is a system call
-\begin_inset Index idx
-status open
-
-\begin_layout Plain Layout
-system call
-\end_layout
-
-\end_inset
-
- which ask the operating system
-\begin_inset Index idx
-status open
-
-\begin_layout Plain Layout
-operating system
-\end_layout
-
-\end_inset
-
- to fill a buffer with data stored on a disk drive or other device.
- Since great chaos would result if everyone were able to access devices
- whenever they pleased, this service must be requested dealing which each
- device.
- A library routine
-\begin_inset Index idx
-status open
-
-\begin_layout Plain Layout
-library routine
-\end_layout
-
-\end_inset
-
-, on the other hand, 
-\series bold
-does not usually need the operating system
-\series default
-
-\begin_inset Index idx
-status open
-
-\begin_layout Plain Layout
-operating system
-\end_layout
-
-\end_inset
-
- 
-\series bold
-to perform its work
-\series default
-.
- An example of a library routine
-\begin_inset Index idx
-status open
-
-\begin_layout Plain Layout
-library routine
-\end_layout
-
-\end_inset
-
- is the 
-\family typewriter
-sin
-\begin_inset Index idx
-status open
-
-\begin_layout Plain Layout
-
-\family typewriter
-sin
-\end_layout
-
-\end_inset
-
-
-\family default
- function, which computes the sine of an angle expressed in radians.
- Since this is done simply by summing a finite series, the operating system
-\begin_inset Index idx
-status open
-
-\begin_layout Plain Layout
-operating system
-\end_layout
-
-\end_inset
-
- is not needed.
- In order to avoid confusion when the difference is unimportant, this book
- will use the word 
-\shape italic
-routine
-\shape default
- to describe either a system call
-\begin_inset Index idx
-status open
-
-\begin_layout Plain Layout
-system call
-\end_layout
-
-\end_inset
-
- or a library routine
-\begin_inset Index idx
-status open
-
-\begin_layout Plain Layout
-library routine
-\end_layout
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Section
-\begin_inset CommandInset label
-LatexCommand label
 name "sec:versions-of-openbsd"
 
 \end_inset
@@ -1830,6 +1603,233 @@ OpenBSD
 \end_inset
 
  is the 7.7.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:system-calls-vs-library-routines"
+
+\end_inset
+
+System Calls vs.
+ Library Routines.
+\end_layout
+
+\begin_layout Standard
+Before discussing the 
+\shape italic
+library routines
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+library routines
+\end_layout
+
+\end_inset
+
+
+\shape default
+ and 
+\shape italic
+system calls
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+system calls
+\end_layout
+
+\end_inset
+
+
+\shape default
+ provided by OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ system, a few words must be said.
+ First the difference between a system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+ and a library routine
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+library routine
+\end_layout
+
+\end_inset
+
+ needs to been explained.
+ These terms are often used incorrectly: a system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+ is just what its name implies - 
+\series bold
+a request for the operating system to do something on behalf of the user's
+ program
+\series default
+.
+ For example 
+\family typewriter
+read
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+read
+\end_layout
+
+\end_inset
+
+
+\family default
+ is a system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+ which ask the operating system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+operating system
+\end_layout
+
+\end_inset
+
+ to fill a buffer with data stored on a disk drive or other device.
+ Since great chaos would result if everyone were able to access devices
+ whenever they pleased, this service must be requested dealing which each
+ device.
+ A library routine
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+library routine
+\end_layout
+
+\end_inset
+
+, on the other hand, 
+\series bold
+does not usually need the operating system
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+operating system
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+to perform its work
+\series default
+.
+ An example of a library routine
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+library routine
+\end_layout
+
+\end_inset
+
+ is the 
+\family typewriter
+sin
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+sin
+\end_layout
+
+\end_inset
+
+
+\family default
+ function, which computes the sine of an angle expressed in radians.
+ Since this is done simply by summing a finite series, the operating system
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+operating system
+\end_layout
+
+\end_inset
+
+ is not needed.
+ In order to avoid confusion when the difference is unimportant, this book
+ will use the word 
+\shape italic
+routine
+\shape default
+ to describe either a system call
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system call
+\end_layout
+
+\end_inset
+
+ or a library routine
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+library routine
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
