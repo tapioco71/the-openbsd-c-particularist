@@ -6908,6 +6908,969 @@ n", i, argv[ i ]);
 
 \end_inset
 
+the UNIX conventions are a bit complex, they are listed in The Open Group
+ Base Specifications Issue 7, 2018 edition IEEE Std 1003.1-2017 (Revision
+ of IEEE Std 1003.1-2008) which we will report in the following.
+\end_layout
+
+\begin_layout Subsection
+Utility Conventions.
+\end_layout
+
+\begin_layout Subsubsection
+Utility Argument Syntax.
+\end_layout
+
+\begin_layout Standard
+This section describes the argument syntax of the standard utilities and
+ introduces terminology used throughout POSIX.1-2017 for describing the arguments
+ processed by the utilities.
+ Within POSIX.1-2017, a special notation is used for describing the syntax
+ of a utility's arguments.
+ Unless otherwise noted, all utility descriptions use this notation, which
+ is illustrated by this example (see XCU Simple Commands):
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+$ utility_name[-a][-b][-c option_argument] [-d|-e][-f[option_argument]][operand...]
+\end_layout
+
+\end_inset
+
+The notation used for the SYNOPSIS sections imposes requirements on the
+ implementors of the standard utilities and provides a simple reference
+ for the application developer or system user.
+ 
+\end_layout
+
+\begin_layout Enumerate
+The utility in the example is named utility_name.
+ It is followed by options, option-arguments, and operands.
+ The arguments that consist of <hyphen-minus> characters and single letters
+ or digits, such as 'a', are known as "options" (or, historically, "flags").
+ Certain options are followed by an "option-argument", as shown with [ -c
+ option_argument].
+ The arguments following the last options and option-arguments are named
+ "operands".
+ 
+\end_layout
+
+\begin_layout Enumerate
+Option-arguments are shown separated from their options by <blank> characters,
+ except when the option-argument is enclosed in the '[' and ']' notation
+ to indicate that it is optional.
+ This reflects the situation in which an optional option-argument (if present)
+ is included within the same argument string as the option; for a mandatory
+ option-argument, it is the next argument.
+ The Utility Syntax Guidelines in Utility Syntax Guidelines require that
+ the option be a separate argument from its option-argument and that option-argu
+ments not be optional, but there are some exceptions in POSIX.1-2017 to ensure
+ continued operation of historical applications:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+If the SYNOPSIS of a standard utility shows an option with a mandatory option-ar
+gument (as with [ -c option_argument] in the example), a conforming application
+ shall use separate arguments for that option and its option-argument.
+ However, a conforming implementation shall also permit applications to
+ specify the option and option-argument in the same argument string without
+ intervening <blank> characters.
+\end_layout
+
+\begin_layout Enumerate
+If the SYNOPSIS shows an optional option-argument (as with [ -f[ option_argument
+]] in the example), a conforming application shall place any option-argument
+ for that option directly adjacent to the option in the same argument string,
+ without intervening <blank> characters.
+ If the utility receives an argument containing only the option, it shall
+ behave as specified in its description for an omitted option-argument;
+ it shall not treat the next argument (if any) as the option-argument for
+ that option.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Options are usually listed in alphabetical order unless this would make
+ the utility description more confusing.
+ There are no implied relationships between the options based upon the order
+ in which they appear, unless otherwise stated in the OPTIONS section, or
+ unless the exception in Guideline 11 of Utility Syntax Guidelines applies.
+ If an option that does not have option-arguments is repeated, the results
+ are undefined, unless otherwise stated.
+\end_layout
+
+\begin_layout Enumerate
+Frequently, names of parameters that require substitution by actual values
+ are shown with embedded <underscore> characters.
+ Alternatively, parameters are shown as follows:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\family typewriter
+<parameter name>
+\end_layout
+
+\begin_layout Standard
+The angle brackets are used for the symbolic grouping of a phrase representing
+ a single parameter and conforming applications shall not include them in
+ data submitted to the utility.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+When a utility has only a few permissible options, they are sometimes shown
+ individually, as in the example.
+ Utilities with many flags generally show all of the individual flags (that
+ do not take option-arguments) grouped, as in:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+$ utility_name [-abcDxyz][-p arg][operand]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Utilities with very complex arguments may be shown as follows:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+$ utility_name [options][operands]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Unless otherwise specified, whenever an operand or option-argument is, or
+ contains, a numeric value:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The number is interpreted as a decimal integer.
+\end_layout
+
+\begin_layout Itemize
+Numerals in the range 0 to 2147483647 are syntactically recognized as numeric
+ values.
+\end_layout
+
+\begin_layout Itemize
+When the utility description states that it accepts negative numbers as
+ operands or option-arguments, numerals in the range -2147483647 to 2147483647
+ are syntactically recognized as numeric values.
+\end_layout
+
+\begin_layout Itemize
+When the utility description states that the number is a file size-related
+ value (such as a file size or offset, line number, or block count), numerals
+ in the range 0 to the maximum file size supported by the implementation
+ are syntactically recognized as numeric values (see XCU Considerations
+ for Utilities in Support of Files of Arbitrary Size).
+ Where negative values are permitted, any value in the range -(maximum file
+ size) to the maximum file size is accepted.
+\end_layout
+
+\begin_layout Itemize
+Ranges greater than those listed here are allowed.
+\end_layout
+
+\begin_layout Standard
+This does not mean that all numbers within the allowable range are necessarily
+ semantically correct.
+ A standard utility that accepts an option-argument or operand that is to
+ be interpreted as a number, and for which a range of values smaller than
+ that shown above is permitted by the POSIX.1-2017, describes that smaller
+ range along with the description of the option-argument or operand.
+ If an error is generated, the utility's diagnostic message shall indicate
+ that the value is out of the supported range, not that it is syntactically
+ incorrect.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Arguments or option-arguments enclosed in the '[' and ']' notation are optional
+ and can be omitted.
+ Conforming applications shall not include the '[' and ']' symbols in data
+ submitted to the utility.
+\end_layout
+
+\begin_layout Enumerate
+Arguments separated by the '|' ( <vertical-line>) bar notation are mutually-excl
+usive.
+ Conforming applications shall not include the '|' symbol in data submitted
+ to the utility.
+ Alternatively, mutually-exclusive options and operands may be listed with
+ multiple synopsis lines.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+For example:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+$ utility_name -d[-a][-c option_argument][operand...] 
+\end_layout
+
+\begin_layout Plain Layout
+
+$ utility_name[-a][-b][operand...]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+When multiple synopsis lines are given for a utility, it is an indication
+ that the utility has mutually-exclusive arguments.
+ These mutually-exclusive arguments alter the functionality of the utility
+ so that only certain other arguments are valid in combination with one
+ of the mutually-exclusive arguments.
+ Only one of the mutually-exclusive arguments is allowed for invocation
+ of the utility.
+ Unless otherwise stated in an accompanying OPTIONS section, the relationships
+ between arguments depicted in the SYNOPSIS sections are mandatory requirements
+ placed on conforming applications.
+ The use of conflicting mutually-exclusive arguments produces undefined
+ results, unless a utility description specifies otherwise.
+ When an option is shown without the '[' and ']' brackets, it means that
+ option is required for that version of the SYNOPSIS.
+ However, it is not required to be the first argument, as shown in the example
+ above, unless otherwise stated.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Ellipses ( "..." ) are used to denote that one or more occurrences of an operand
+ are allowed.
+ When an option or an operand followed by ellipses is enclosed in brackets,
+ zero or more options or operands can be specified.
+ The form:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+$ utility_name [-g option_argument]...[operand...]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+indicates that multiple occurrences of the option and its option-argument
+ preceding the ellipses are valid, with semantics as indicated in the OPTIONS
+ section of the utility.
+ (See also Guideline 11 in Utility Syntax Guidelines .)
+\end_layout
+
+\begin_layout Standard
+The form:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+$ utility_name -f option_argument [-f option_argument]...
+ [operand...]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+indicates that the -f option is required to appear at least once and may
+ appear multiple times.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+When the synopsis line is too long to be printed on a single line in the
+ Shell and Utilities volume of POSIX.1-2017, the indented lines following
+ the initial line are continuation lines.
+ An actual use of the command would appear on a single logical line.
+\end_layout
+
+\begin_layout Subsubsection
+Utility Syntax Guidelines.
+\end_layout
+
+\begin_layout Standard
+The following guidelines are established for the naming of utilities and
+ for the specification of options, option-arguments, and operands.
+ The getopt() function in the System Interfaces volume of POSIX.1-2017 assists
+ utilities in handling options and operands that conform to these guidelines.
+ Operands and option-arguments can contain characters not specified in the
+ portable character set.
+ The guidelines are intended to provide guidance to the authors of future
+ utilities, such as those written specific to a local system or that are
+ components of a larger application.
+ Some of the standard utilities do not conform to all of these guidelines;
+ in those cases, the OPTIONS sections describe the deviations:
+\end_layout
+
+\begin_layout Enumerate
+Utility names should be between two and nine characters, inclusive.
+\end_layout
+
+\begin_layout Enumerate
+Utility names should include lowercase letters (the lower character classificati
+on) and digits only from the portable character set.
+\end_layout
+
+\begin_layout Enumerate
+Each option name should be a single alphanumeric character (the alnum character
+ classification) from the portable character set.
+ The -W (capital-W) option shall be reserved for vendor options.
+ Multi-digit options should not be allowed.
+\end_layout
+
+\begin_layout Enumerate
+All options should be preceded by the '-' delimiter character.
+\end_layout
+
+\begin_layout Enumerate
+One or more options without option-arguments, followed by at most one option
+ that takes an option-argument, should be accepted when grouped behind one
+ '-' delimiter.
+\end_layout
+
+\begin_layout Enumerate
+Each option and option-argument should be a separate argument, except as
+ noted in Utility Argument Syntax, item (2).
+\end_layout
+
+\begin_layout Enumerate
+Option-arguments should not be optional.
+\end_layout
+
+\begin_layout Enumerate
+When multiple option-arguments are specified to follow a single option,
+ they should be presented as a single argument, using <comma> characters
+ within that argument or <blank> characters within that argument to separate
+ them.
+\end_layout
+
+\begin_layout Enumerate
+All options should precede operands on the command line.
+\end_layout
+
+\begin_layout Enumerate
+The first -- argument that is not an option-argument should be accepted
+ as a delimiter indicating the end of options.
+ Any following arguments should be treated as operands, even if they begin
+ with the '-' character.
+\end_layout
+
+\begin_layout Enumerate
+The order of different options relative to one another should not matter,
+ unless the options are documented as mutually-exclusive and such an option
+ is documented to override any incompatible options preceding it.
+ If an option that has option-arguments is repeated, the option and option-argum
+ent combinations should be interpreted in the order specified on the command
+ line.
+\end_layout
+
+\begin_layout Enumerate
+The order of operands may matter and position-related interpretations should
+ be determined on a utility-specific basis.
+\end_layout
+
+\begin_layout Enumerate
+For utilities that use operands to represent files to be opened for either
+ reading or writing, the '-' operand should be used to mean only standard
+ input (or standard output when it is clear from context that an output
+ file is being specified) or a file named -.
+\end_layout
+
+\begin_layout Enumerate
+If an argument can be identified according to Guidelines 3 through 10 as
+ an option, or as a group of options without option-arguments behind one
+ '-' delimiter, then it should be treated as such.
+\end_layout
+
+\begin_layout Standard
+The utilities in the Shell and Utilities volume of POSIX.1-2017 that claim
+ conformance to these guidelines shall conform completely to these guidelines
+ as if these guidelines contained the term "shall" instead of "should".
+ On some implementations, the utilities accept usage in violation of these
+ guidelines for backwards-compatibility as well as accepting the required
+ form.
+ Where a utility described in the Shell and Utilities volume of POSIX.1-2017
+ as conforming to these guidelines is required to accept, or not to accept,
+ the operand '-' to mean standard input or output, this usage is explained
+ in the OPERANDS section.
+ Otherwise, if such a utility uses operands to represent files, it is implementa
+tion-defined whether the operand '-' stands for standard input (or standard
+ output), or for a file named -.
+ It is recommended that all future utilities and applications use these
+ guidelines to enhance user portability.
+ The fact that some historical utilities could not be changed (to avoid
+ breaking existing applications) should not deter this future goal.
+\end_layout
+
+\begin_layout Subsection
+The getopt interface.
+\end_layout
+
+\begin_layout Standard
+The standard getopt interface uses the function
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+int getopt(int argc, char * const argv[], const char *optstring);
+\end_layout
+
+\end_inset
+
+and the global variables
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+extern char *optarg;
+\end_layout
+
+\begin_layout Plain Layout
+
+extern int optind;
+\end_layout
+
+\begin_layout Plain Layout
+
+extern int opterr;
+\end_layout
+
+\begin_layout Plain Layout
+
+extern int optopt;
+\end_layout
+
+\end_inset
+
+optarg is a pointer to the current option to parse, if it is not NULL it
+ can be used to parse again.
+ optind is and index which holds the current position in the argv array,
+ opterr is a boolean switch indicating if getopt should emits error messages,
+ and finally optopt which holds thje value of the first unrecognized characters
+ for option.
+ The following program show the getopt interface usage.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:arguments2"
+
+\end_inset
+
+arguments2 - a program to show getopt interface usage.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* File arguments2.c.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdint.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <unistd.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main (int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  int c;
+\end_layout
+
+\begin_layout Plain Layout
+
+  int digit_optind = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+  int aopt = 0, bopt = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+  int nReturnValue = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+  char *copt = 0, *dopt = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+  const char options[] = "abc:d:h012";
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  /* */
+\end_layout
+
+\begin_layout Plain Layout
+
+  while ((c = getopt(argc, argv, options)) != -1) {
+\end_layout
+
+\begin_layout Plain Layout
+
+    int this_option_optind = optind ? optind : 1;
+\end_layout
+
+\begin_layout Plain Layout
+
+    switch(c) {
+\end_layout
+
+\begin_layout Plain Layout
+
+    case '0':
+\end_layout
+
+\begin_layout Plain Layout
+
+    case '1':
+\end_layout
+
+\begin_layout Plain Layout
+
+    case '2':
+\end_layout
+
+\begin_layout Plain Layout
+
+      if(digit_optind != 0 && digit_optind != this_option_optind) {
+\end_layout
+
+\begin_layout Plain Layout
+
+	printf ("digits occur in two different argv-elements.
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+      }
+\end_layout
+
+\begin_layout Plain Layout
+
+      digit_optind = this_option_optind;
+\end_layout
+
+\begin_layout Plain Layout
+
+      printf ("option %c
+\backslash
+n", c);
+\end_layout
+
+\begin_layout Plain Layout
+
+      nReturnValue = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+      break;
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\end_layout
+
+\begin_layout Plain Layout
+
+    case 'a':
+\end_layout
+
+\begin_layout Plain Layout
+
+      printf ("option a
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+      aopt = 1;
+\end_layout
+
+\begin_layout Plain Layout
+
+      break;
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\end_layout
+
+\begin_layout Plain Layout
+
+    case 'b':
+\end_layout
+
+\begin_layout Plain Layout
+
+      printf ("option b
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+      bopt = 1;
+\end_layout
+
+\begin_layout Plain Layout
+
+      break;
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\end_layout
+
+\begin_layout Plain Layout
+
+    case 'c':
+\end_layout
+
+\begin_layout Plain Layout
+
+      printf ("option c with value '%s'
+\backslash
+n", optarg);
+\end_layout
+
+\begin_layout Plain Layout
+
+      copt = optarg;
+\end_layout
+
+\begin_layout Plain Layout
+
+      break;
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\end_layout
+
+\begin_layout Plain Layout
+
+    case 'd':
+\end_layout
+
+\begin_layout Plain Layout
+
+      printf ("option d with value '%s'
+\backslash
+n", optarg);
+\end_layout
+
+\begin_layout Plain Layout
+
+      dopt = optarg;
+\end_layout
+
+\begin_layout Plain Layout
+
+      break;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    case 'h':
+\end_layout
+
+\begin_layout Plain Layout
+
+      printf("%s [-abcd argument] ...
+\backslash
+n", argv[ 0 ]);
+\end_layout
+
+\begin_layout Plain Layout
+
+      printf("%s [ -h ]
+\backslash
+n", argv[ 0 ]);
+\end_layout
+
+\begin_layout Plain Layout
+
+      exit(nReturnValue);
+\end_layout
+
+\begin_layout Plain Layout
+
+      break;
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\end_layout
+
+\begin_layout Plain Layout
+
+    case '?':
+\end_layout
+
+\begin_layout Plain Layout
+
+      break;
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\end_layout
+
+\begin_layout Plain Layout
+
+    default:
+\end_layout
+
+\begin_layout Plain Layout
+
+      printf ("?? getopt returned character code 0%o ??
+\backslash
+n", c);
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+  if(optind < argc) {
+\end_layout
+
+\begin_layout Plain Layout
+
+    printf ("non-option ARGV-elements: ");
+\end_layout
+
+\begin_layout Plain Layout
+
+    while (optind < argc) {
+\end_layout
+
+\begin_layout Plain Layout
+
+      printf ("%s ", argv[optind++]);
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+    printf ("
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+  exit(nReturnValue);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of arguments2.c file.
+ */
+\end_layout
+
+\end_inset
+
 
 \end_layout
 
