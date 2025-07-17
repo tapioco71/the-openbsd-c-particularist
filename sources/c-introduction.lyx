@@ -657,8 +657,8 @@ the usage of Bourne or Korn shell (bash and ksh);
 \end_layout
 
 \begin_layout Enumerate
-the usage of the fundamental OpenBSD utilities and system programs like:
- ls, mkdir, mv and rm;
+the usage of the fundamental utilities and system programs like: ls, mkdir,
+ mv and rm, etc.;
 \end_layout
 
 \begin_layout Enumerate
