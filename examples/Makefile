@@ -67,6 +67,7 @@ all: ${TOOLCHAIN}/append-line
 all: ${TOOLCHAIN}/append2
 all: ${TOOLCHAIN}/arguments
 all: ${TOOLCHAIN}/arguments2
+all: ${TOOLCHAIN}/arguments3
 all: ${TOOLCHAIN}/bg
 all: ${TOOLCHAIN}/blocks
 all: ${TOOLCHAIN}/client
@@ -195,6 +196,7 @@ ${TOOLCHAIN}/append-line: ${TOOLCHAIN}/append-line.o
 ${TOOLCHAIN}/append2: ${TOOLCHAIN}/append2.o
 ${TOOLCHAIN}/arguments: ${TOOLCHAIN}/arguments.o
 ${TOOLCHAIN}/arguments2: ${TOOLCHAIN}/arguments2.o
+${TOOLCHAIN}/arguments3: ${TOOLCHAIN}/arguments3.o
 ${TOOLCHAIN}/bg: ${TOOLCHAIN}/bg.o
 ${TOOLCHAIN}/blocks: ${TOOLCHAIN}/blocks.o
 ${TOOLCHAIN}/client: ${TOOLCHAIN}/client.o

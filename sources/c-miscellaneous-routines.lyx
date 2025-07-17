@@ -7439,6 +7439,11 @@ extern int opterr;
 extern int optopt;
 \end_layout
 
+\begin_layout Plain Layout
+
+extern int optreset;
+\end_layout
+
 \end_inset
 
 optarg is a pointer to the current option to parse, if it is not NULL it
@@ -7447,6 +7452,11 @@ optarg is a pointer to the current option to parse, if it is not NULL it
  opterr is a boolean switch indicating if getopt should emits error messages,
  and finally optopt which holds thje value of the first unrecognized characters
  for option.
+ In order to use getopt() and getopt_long() to evaluate multiple sets of
+ arguments, or to evaluate a single set of arguments multiple times, the
+ variable optreset must be set to 1 before the second and each additional
+ set of calls to getopt() or getopt_long(), and the variable optind must
+ be reinitialized.
  The following program show the getopt interface usage.
 \begin_inset listings
 lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
@@ -8061,6 +8071,672 @@ val
 \family default
 \series default
  contains the value to be returned.
+\end_layout
+
+\begin_layout Standard
+The last element of the longopts array has to be filled with zeroes.
+ If the longindex argument is not NULL, then the integer pointed to by it
+ will be set to the index of the long option relative to longopts.
+ The following global variables are also used:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+extern char *optarg;
+\end_layout
+
+\begin_layout Plain Layout
+
+extern int optind;
+\end_layout
+
+\begin_layout Plain Layout
+
+extern int optopt;
+\end_layout
+
+\begin_layout Plain Layout
+
+extern int opterr;
+\end_layout
+
+\begin_layout Plain Layout
+
+extern int optreset;
+\end_layout
+
+\end_inset
+
+The following listing shows the getopt_long usage.
+\begin_inset listings
+lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:arguments3"
+
+\end_inset
+
+arguments3 - a program to show getopt interface usage with long options.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* -*- mode: c; -*- */
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* File arguments3.c.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdio.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <stdint.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <string.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <unistd.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+#include <getopt.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Functions prototypes.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int, char *[]);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* Main function.
+ */
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(int argc, char *argv[])
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  int c;
+\end_layout
+
+\begin_layout Plain Layout
+
+  int digit_optind = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+  int aopt = 0, bopt = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+  int nReturnValue = EXIT_FAILURE;
+\end_layout
+
+\begin_layout Plain Layout
+
+  char *copt = 0, *dopt = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+  static char options[] = "abc:d:f:hv012";
+\end_layout
+
+\begin_layout Plain Layout
+
+  static struct option long_options[] = {
+\end_layout
+
+\begin_layout Plain Layout
+
+    /* NAME      ARGUMENT           FLAG  SHORTNAME */
+\end_layout
+
+\begin_layout Plain Layout
+
+    { "add",     required_argument, NULL, 'a' },
+\end_layout
+
+\begin_layout Plain Layout
+
+    { "append",  no_argument,       NULL, 'b' },
+\end_layout
+
+\begin_layout Plain Layout
+
+    { "delete",  required_argument, NULL, 'd' },
+\end_layout
+
+\begin_layout Plain Layout
+
+    { "verbose", no_argument,       NULL, 'v' },
+\end_layout
+
+\begin_layout Plain Layout
+
+    { "create",  required_argument, NULL, 'c' },
+\end_layout
+
+\begin_layout Plain Layout
+
+    { "file",    required_argument, NULL, 'f' },
+\end_layout
+
+\begin_layout Plain Layout
+
+    { "help",    no_argument,       NULL, 'h' },
+\end_layout
+
+\begin_layout Plain Layout
+
+    { NULL,      0,                 NULL, 0 }
+\end_layout
+
+\begin_layout Plain Layout
+
+  };
+\end_layout
+
+\begin_layout Plain Layout
+
+  int option_index = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  /* */
+\end_layout
+
+\begin_layout Plain Layout
+
+  while((c = getopt_long(argc, argv, options, long_options, &option_index))
+ != -1) {
+\end_layout
+
+\begin_layout Plain Layout
+
+    int this_option_optind = optind ? optind : 1;
+\end_layout
+
+\begin_layout Plain Layout
+
+    switch(c) {
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\end_layout
+
+\begin_layout Plain Layout
+
+    case 0:
+\end_layout
+
+\begin_layout Plain Layout
+
+      printf ("option %s", long_options[ option_index ].name);
+\end_layout
+
+\begin_layout Plain Layout
+
+      if(optarg) {
+\end_layout
+
+\begin_layout Plain Layout
+
+	printf (" with arg %s", optarg);
+\end_layout
+
+\begin_layout Plain Layout
+
+      }
+\end_layout
+
+\begin_layout Plain Layout
+
+      printf ("
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+      break;
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\end_layout
+
+\begin_layout Plain Layout
+
+    case '0':
+\end_layout
+
+\begin_layout Plain Layout
+
+    case '1':
+\end_layout
+
+\begin_layout Plain Layout
+
+    case '2':
+\end_layout
+
+\begin_layout Plain Layout
+
+      if(digit_optind != 0 && digit_optind != this_option_optind) {
+\end_layout
+
+\begin_layout Plain Layout
+
+	printf("digits occur in two different argv-elements.
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+      }
+\end_layout
+
+\begin_layout Plain Layout
+
+      digit_optind = this_option_optind;
+\end_layout
+
+\begin_layout Plain Layout
+
+      printf("option %c
+\backslash
+n", c);
+\end_layout
+
+\begin_layout Plain Layout
+
+      nReturnValue = EXIT_SUCCESS;
+\end_layout
+
+\begin_layout Plain Layout
+
+      break;
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\end_layout
+
+\begin_layout Plain Layout
+
+    case 'a':
+\end_layout
+
+\begin_layout Plain Layout
+
+      printf("option a
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+      aopt = 1;
+\end_layout
+
+\begin_layout Plain Layout
+
+      break;
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\end_layout
+
+\begin_layout Plain Layout
+
+    case 'b':
+\end_layout
+
+\begin_layout Plain Layout
+
+      printf("option b
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+      bopt = 1;
+\end_layout
+
+\begin_layout Plain Layout
+
+      break;
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\end_layout
+
+\begin_layout Plain Layout
+
+    case 'c':
+\end_layout
+
+\begin_layout Plain Layout
+
+      printf("option c with value '%s'
+\backslash
+n", optarg);
+\end_layout
+
+\begin_layout Plain Layout
+
+      copt = optarg;
+\end_layout
+
+\begin_layout Plain Layout
+
+      break;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    case 'd':
+\end_layout
+
+\begin_layout Plain Layout
+
+      printf("option d with value '%s'
+\backslash
+n", optarg);
+\end_layout
+
+\begin_layout Plain Layout
+
+      dopt = optarg;
+\end_layout
+
+\begin_layout Plain Layout
+
+      break;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    case 'f':
+\end_layout
+
+\begin_layout Plain Layout
+
+      printf("option f with value '%s'
+\backslash
+n", optarg);
+\end_layout
+
+\begin_layout Plain Layout
+
+      copt = optarg;
+\end_layout
+
+\begin_layout Plain Layout
+
+      break;
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\end_layout
+
+\begin_layout Plain Layout
+
+    case 'h':
+\end_layout
+
+\begin_layout Plain Layout
+
+      printf("Usage:
+\backslash
+n
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+      printf("%s [-a|--add] [-b|--append] [-c|--create argument] [-d|--delete
+ argument] [-f|--file argument] [-v|--verbose] ...
+ 
+\backslash
+n", argv[ 0 ]);
+\end_layout
+
+\begin_layout Plain Layout
+
+      printf("%s [-h]
+\backslash
+n", argv[ 0 ]);
+\end_layout
+
+\begin_layout Plain Layout
+
+      exit(nReturnValue);
+\end_layout
+
+\begin_layout Plain Layout
+
+      break;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    case 'v':
+\end_layout
+
+\begin_layout Plain Layout
+
+      printf("option v
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+      break;
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\end_layout
+
+\begin_layout Plain Layout
+
+    case '?':
+\end_layout
+
+\begin_layout Plain Layout
+
+      break;
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\end_layout
+
+\begin_layout Plain Layout
+
+    default:
+\end_layout
+
+\begin_layout Plain Layout
+
+      printf("?? getopt returned character code 0%o ??
+\backslash
+n", c);
+\end_layout
+
+\begin_layout Plain Layout
+
+      break;
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+  if(optind < argc) {
+\end_layout
+
+\begin_layout Plain Layout
+
+    printf("non-option ARGV-elements: ");
+\end_layout
+
+\begin_layout Plain Layout
+
+    while(optind < argc) {
+\end_layout
+
+\begin_layout Plain Layout
+
+      printf("%s ", argv[optind++]);
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+    printf("
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+  exit(nReturnValue);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/* End of arguments3.c file.
+ */
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body
