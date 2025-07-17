@@ -104,7 +104,7 @@ figs-within-sections
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 btprint "btPrintCited"
-bibfiles "/home/angel/Documents/LYXs/the-openbsd-c-particularist/the-openbsd-c-particularist,/home/angel/Documents/the-openbsd-c-particularist/the-openbsd-c-particularist"
+bibfiles "the-openbsd-c-particularist"
 options "plain"
 encoding "default"
 
