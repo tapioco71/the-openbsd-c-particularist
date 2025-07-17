@@ -6743,7 +6743,7 @@ $ ls -al
 
 \end_inset
 
-where -al are called switches or options.
+where -al are called switches, flags or options.
  C language has got a mechanism to provide those informations to the called
  program via two global variables: argc and argv.
  The first is the count of the informations which are separated one from
@@ -7382,12 +7382,38 @@ status open
 
 \begin_layout Plain Layout
 
-int getopt(int argc, char * const argv[], const char *optstring);
+int getopt(int argc, char *const argv[], const char *optstring);
 \end_layout
 
 \end_inset
 
-and the global variables
+where argc and argv are the two global variables described above.
+ optstring is a string containing the single character options like 
+\begin_inset Quotes eld
+\end_inset
+
+a
+\begin_inset Quotes erd
+\end_inset
+
+ or 
+\begin_inset Quotes eld
+\end_inset
+
+ab:
+\begin_inset Quotes erd
+\end_inset
+
+, where 
+\begin_inset Quotes eld
+\end_inset
+
+:
+\begin_inset Quotes erd
+\end_inset
+
+ following the letter means that this options need a parameter.
+ We have also the following global variables
 \begin_inset listings
 lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
 inline false
@@ -7871,7 +7897,170 @@ n");
 
 \end_inset
 
+GNU provided a useful extension to the getopt interface: getopt_long.
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
 
+\begin_layout Plain Layout
+
+int getopt_long(int argc, char * const argv[], const char *optstring, const
+ struct option *longopts, int *longindex);
+\end_layout
+
+\end_inset
+
+where argc and argv are the usual global variables, optstring has got the
+ same meaning of getopt(), longopts is an array of the option structure
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+option structure
+\end_layout
+
+\end_inset
+
+:
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "c:option-struct"
+
+\end_inset
+
+The option structure.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct option {
+\end_layout
+
+\begin_layout Plain Layout
+
+  char *name;
+\end_layout
+
+\begin_layout Plain Layout
+
+  int has_arg;
+\end_layout
+
+\begin_layout Plain Layout
+
+  int *flag;
+\end_layout
+
+\begin_layout Plain Layout
+
+  int val;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family typewriter
+\series bold
+name
+\family default
+\series default
+ contains the option name without the leading double dash;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family typewriter
+\series bold
+has_arg
+\family default
+\series default
+ is one of:
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family typewriter
+no_argument
+\family default
+ no argument to the option is expected;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family typewriter
+required_argument
+\family default
+ an argument to the option is required;
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family typewriter
+optional_argument
+\family default
+ an argument to the option may be present;
+\end_layout
+
+\end_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family typewriter
+\series bold
+flag
+\family default
+\series default
+ if it is not NULL, the integer pointed to by it will be set to the value
+ in the val field.
+ If the flag field is NULL, then the val field will be returned.
+ Setting flag to NULL and setting val to the correspondin short option will
+ make this function act just like 
+\shape italic
+getopt
+\shape default
+(3);
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family typewriter
+\series bold
+val
+\family default
+\series default
+ contains the value to be returned.
 \end_layout
 
 \end_body
