@@ -310,17 +310,28 @@ sparc64 — Sun SPARC (Scalable Processor ARChitecture).
 \end_deeper
 \begin_layout Enumerate
 \align block
-the opensource
+the GNU
 \begin_inset Index idx
 status open
 
 \begin_layout Plain Layout
-opensource
+GNU
 \end_layout
 
 \end_inset
 
- initiative which delivered and still is delivering, outstanding high quality
+ (
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://www.gnu.org
+\end_layout
+
+\end_inset
+
+) initiative which delivered and still is delivering, outstanding high quality
  software;
 \end_layout
 
