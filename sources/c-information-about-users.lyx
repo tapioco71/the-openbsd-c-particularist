@@ -2041,9 +2041,9 @@ pw_class
 pw_gecos
 \family default
 \series default
-
+ is the Honeywell login info string
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -2122,7 +2122,7 @@ finger
 
 \end_inset
 
- is the Honeywell login info string;
+;
 \end_layout
 
 \begin_layout Labeling

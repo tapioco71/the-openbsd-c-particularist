@@ -6081,7 +6081,17 @@ n");
 
 \end_inset
 
+for the getopt interface usage see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:getting-parameters-from-console"
+plural "false"
+caps "false"
+noprefix "false"
 
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
