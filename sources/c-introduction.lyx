@@ -653,6 +653,15 @@ OpenBSD
 \end_layout
 
 \begin_layout Enumerate
+the usage of Bourne or Korn shell (bash and ksh);
+\end_layout
+
+\begin_layout Enumerate
+the usage of the fundamental OpenBSD utilities and system programs like:
+ ls, mkdir, mv and rm;
+\end_layout
+
+\begin_layout Enumerate
 to install programs and utilities using the package manager or ports;
 \end_layout
 
