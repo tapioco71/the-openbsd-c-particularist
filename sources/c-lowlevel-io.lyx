@@ -136,7 +136,7 @@ noprefix "false"
 \begin_layout Plain Layout
 \begin_inset CommandInset ref
 LatexCommand nameref
-reference "sec:opening-and-creating-files-1"
+reference "sec:low-level-opening-and-creating-files"
 plural "false"
 caps "false"
 noprefix "false"
@@ -149,7 +149,7 @@ noprefix "false"
 \begin_layout Plain Layout
 \begin_inset CommandInset ref
 LatexCommand nameref
-reference "sec:closing-files-1"
+reference "sec:low-level-closing-files"
 plural "false"
 caps "false"
 noprefix "false"
@@ -162,7 +162,7 @@ noprefix "false"
 \begin_layout Plain Layout
 \begin_inset CommandInset ref
 LatexCommand nameref
-reference "sec:reading-and-writing-files-1"
+reference "sec:low-level-reading-and-writing-files"
 plural "false"
 caps "false"
 noprefix "false"
@@ -175,7 +175,7 @@ noprefix "false"
 \begin_layout Plain Layout
 \begin_inset CommandInset ref
 LatexCommand nameref
-reference "sec:moving-around-in-files-1"
+reference "sec:low-level-moving-around-in-files"
 plural "false"
 caps "false"
 noprefix "false"
@@ -506,7 +506,7 @@ file descriptor
 \begin_layout Section
 \begin_inset CommandInset label
 LatexCommand label
-name "sec:opening-and-creating-files-1"
+name "sec:low-level-opening-and-creating-files"
 
 \end_inset
 
@@ -968,7 +968,7 @@ noprefix "false"
 \begin_layout Section
 \begin_inset CommandInset label
 LatexCommand label
-name "sec:closing-files-1"
+name "sec:low-level-closing-files"
 
 \end_inset
 
@@ -1050,7 +1050,7 @@ file descriptor
 \begin_layout Section
 \begin_inset CommandInset label
 LatexCommand label
-name "sec:reading-and-writing-files-1"
+name "sec:low-level-reading-and-writing-files"
 
 \end_inset
 
@@ -1752,7 +1752,7 @@ strnlen
 \begin_layout Section
 \begin_inset CommandInset label
 LatexCommand label
-name "sec:moving-around-in-files-1"
+name "sec:low-level-moving-around-in-files"
 
 \end_inset
 
