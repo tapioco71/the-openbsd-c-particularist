@@ -1108,7 +1108,7 @@ file descriptor
  for the open file to read.
  The second is the pointer to the buffer which will contains data and the
  third is the number of bytes to read from the file and store into the buffer.
- If successful, the number of bytes actually read is returned.
+ If successful, it returns the number of bytes actually read.
  Upon reading end-of-file
 \begin_inset Index idx
 status open
@@ -1236,10 +1236,11 @@ noprefix "false"
 \end_inset
 
  shows a low-level version of our file appending program.
- Note that because read and write cause the system to access the disk each
- times they are called, it is important for the programmer to specify reasonably
- large buffer sizes or else his/her program, and the system, will run very
- slowly.
+ Note that because read and write cause the system to access the storage
+ device (e.g.
+ a disk) each times they are called, it is important for the programmer
+ to specify reasonably large buffer sizes or else his/her program, and the
+ system, will run very slowly.
  Try experimenting with large and small buffer sizes to get a feel for the
  difference, the reader may need to use a file of one or five bilion characters
  to really appreciate the difference.
@@ -1745,7 +1746,7 @@ strnlen
 \family default
  which takes two arguments: a string and a maximum length to return.
  In fact if, for whatever reason, the length overflow the value specified
- in the second argument, the routine returns it.
+ in the second argument, the routine returns it and stops counting.
 \end_layout
 
 \begin_layout Section
