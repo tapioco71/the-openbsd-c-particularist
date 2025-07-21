@@ -311,7 +311,7 @@ status open
 
 \family default
 .
- The routines seem to read or write in a small units, but the data is actually
+ The routines seem to read or write in a small units, but the data are actually
  saved in a buffer.
  This buffering is internal to the routines, and is invisible to the programmer;
 \end_layout
@@ -642,9 +642,9 @@ standard error
 \shape default
  stream respectively their documentation could be found in 
 \shape italic
-stdin
+fd
 \shape default
-(3).
+(4).
  Most of the stdio
 \begin_inset Index idx
 status open
@@ -2039,8 +2039,8 @@ noprefix "false"
  and the following examples, violates one of the more important UNIX conventions.
  This convention dictates that 
 \series bold
-in any program where it makes sense, the program should operate on both
- named files or on its standard input and output
+in any program where it makes sense, the program itself should operate on
+ both named files or on its standard input and output
 \series default
 .
  The text formatting programs 
@@ -3765,9 +3765,18 @@ fprintf
 
 \family default
  routine also accepts a variable number of arguments.
- The first argument is a file pointer to a stream open for writing, the
- second is again a format string and the following arguments are the objects
- to be printed.
+ The first argument is a file pointer to a stream
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+stream
+\end_layout
+
+\end_inset
+
+ open for writing, the second is again a format string and the following
+ arguments are the objects to be printed.
  Ordinary , non-
 \family typewriter
 '%'

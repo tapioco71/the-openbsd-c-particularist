@@ -811,6 +811,17 @@ FORTRAN 90
 \end_inset
 
  part in Appendix A we recomend g95 fortran compiler.
+ This book takes a lot of the material from OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ man pages and site documentations.
 \end_layout
 
 \begin_layout Section
@@ -1070,7 +1081,7 @@ library functions
 \end_layout
 
 \begin_deeper
-\begin_layout Itemize
+\begin_layout Standard
 3p 
 \shape italic
 perl

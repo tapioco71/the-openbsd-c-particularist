@@ -168,7 +168,7 @@ noprefix "false"
 \begin_layout Standard
 \noindent
 \align block
-Over the past several years, the use of the UNIX
+Over the past two decades, the use of the UNIX
 \begin_inset Index idx
 status open
 
@@ -189,7 +189,7 @@ OpenBSD
 \end_inset
 
  has become widespread for server, workstation and personal computers.
- This is due mainly to the following factors:
+ This is due to the following factors mainly:
 \end_layout
 
 \begin_layout Enumerate
@@ -204,7 +204,7 @@ UNIX
 \end_inset
 
  philosophy emphasizes building simple, compact, clear, modular, and extensible
- code that can be easily maintained and repurposed by developers other than
+ code that can be maintained and repurposed easily by developers other than
  its creators.
  It favors composability as opposed to monolithic design;
 \end_layout
@@ -222,9 +222,10 @@ UNIX
 
 \end_inset
 
- philosophy stated at the previous point; UNIX can be easily adapted to
- a variety of cpu architectures.
- OpenBSD can run on the following cpus
+ philosophy stated at the previous point; UNIX can be adapted easily to
+ a variety of cpu architectures, in fact it can run on several differente
+ architectures and cpus.
+ So OpenBSD can run on the following
 \begin_inset Foot
 status open
 
@@ -528,7 +529,26 @@ OpenBSD
  is the code correctness.
  This leads to acquire the way to do things within the system itself, leaving
  less space to bad implementations and bugs.
- The system provide, by design, the source code for ports, system utilities
+ The system provide, by design, the source code for ports
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+ports
+\end_layout
+
+\end_inset
+
+, system utilities
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+system utilities
+\end_layout
+
+\end_inset
+
  and programs like Xenocara
 \begin_inset Foot
 status open
@@ -649,16 +669,56 @@ OpenBSD
  The ideal reader will have been programming C for at least one year, and
  will have had at least a minimal introduction to data structures and computer
  algorithms such as those used for sorting and searching.
- Additionally the reader should know how:
+ The reader should know how:
 \end_layout
 
 \begin_layout Enumerate
-the usage of Bourne or Korn shell (bash and ksh);
+to use Bourne
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Bourne shell
+\end_layout
+
+\end_inset
+
+ and/or Korn shell
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Korn shell
+\end_layout
+
+\end_inset
+
+ (bash
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+bash
+\end_layout
+
+\end_inset
+
+ and/or ksh
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+ksh
+\end_layout
+
+\end_inset
+
+);
 \end_layout
 
 \begin_layout Enumerate
-the usage of the fundamental utilities and system programs like: ls, mkdir,
- mv and rm, etc.;
+to use fundamental utilities and system programs like: ls, mkdir, mv and
+ rm, tar, gzip, grep, etc.;
 \end_layout
 
 \begin_layout Enumerate
@@ -721,10 +781,10 @@ OpenBSD
  A student in a college-level computer sciences should have no trouble with
  the concepts presented here.
  Throughout this book small, heavily commented example have been provided
- to demonstrate how the various routines being discussed are actually used.
- The reader will benefit by actually typing these examples in, compiling
- them, executing them and then experimenting with them in order to observe
- first-hand how they operate.
+ to demonstrate how the various routines being discussed are used actually.
+ The reader will benefit by typing these examples in, compiling them, executing
+ them and then experimenting with them in order to observe first-hand how
+ they operate.
  From the OpenBSD site (
 \begin_inset Flex URL
 status open
@@ -1865,7 +1925,7 @@ Error Handling.
 \begin_layout Standard
 Error conditions appear when the program performs one or more actions which
  are not allowed by the system.
- Programs are in fact lists of instructions which are sequentially executed
+ Programs are in fact lists of instructions which are executed
 \begin_inset Foot
 status open
 
@@ -1876,22 +1936,22 @@ We can apply this even to a multitasking system in which threads could be
 
 \end_inset
 
-.
+ sequentially.
  Those instructions must comply to rules, within the operating system, to
  perform the task for which they are designed.
  For example let's consider the following: 
 \series bold
-a program wants to open a file on the disk for writing and store in it 256
- MB of data in it, but the disk is full, which is a condition not depending
+a program wants to open a file on the disk for writing and store 256 MB
+ of data in it, but the disk is full, which is a condition not depending
  by the program itself, we can say that it is an external factor
 \series default
 .
  As the program tries to write those data, the operating system signals
  the problem and generates an error, forcing the program to abort the operation.
- Usually the operating system signals the error, after aborting the requested
+ The operating system signals the error usually, after aborting the requested
  operation, by placing a numerical code in memory by storing it in a system-wide
  accessible variable and/or make the called routine returns that code to
- the program.
+ the program itself.
  All of the routines in the Standard I/O Library
 \begin_inset Index idx
 status open
@@ -1998,7 +2058,7 @@ errno
 
 
 \family default
- is set to a number indicating exactly which error occurred.
+ is set to a number indicating which error exactly occurred.
  The 
 \shape italic
 values
@@ -2019,7 +2079,7 @@ status open
 
 
 \family default
- and may be easily printed out using the 
+ and may be printed out easily using the 
 \family typewriter
 perror
 \begin_inset Index idx
@@ -2102,8 +2162,8 @@ errno
 
 \end_inset
 
-; once set, it remains until another error occurs.
- It should only be examined after an error.
+; once set, it remains until another error occurs: it should be examined
+ only after the execution of the system call.
  Note that a number of system calls overload the meanings of these error
  numbers and that the meanings must be interpreted according to the type
  and circumstances of the call.
