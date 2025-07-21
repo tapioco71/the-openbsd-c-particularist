@@ -235,7 +235,7 @@ file system
 .
  Other parts of this interface are the system calls to perform particular
  operations to properly handle these informations.
- For example: delete, rename, move, truncate a file, reaname a directory,
+ For example: delete, rename, move, truncate a file, rename a directory,
  etc..
 \end_layout
 
