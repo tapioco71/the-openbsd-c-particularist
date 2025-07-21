@@ -198,7 +198,7 @@ Controlling input and output devices is an important task for several reasons.
 \end_layout
 
 \begin_layout Itemize
-when prompting fo a password, it is normally desirable to prevent the computer
+when prompting for a password, it is normally desirable to prevent the computer
  from echoing by printing the characters typed and thus giving the password
  away;
 \end_layout
@@ -426,7 +426,17 @@ noprefix "false"
 
 \end_inset
 
- shows the usage of ioctl to plays some notes on the internal PC speaker.
+ shows the usage of ioctl to plays some notes on the internal PC speaker
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+internal PC speaker
+\end_layout
+
+\end_inset
+
+.
 \begin_inset listings
 lstparams "language=C,numbers=left,basicstyle={\ttfamily},breaklines=true,tabsize=2"
 inline false

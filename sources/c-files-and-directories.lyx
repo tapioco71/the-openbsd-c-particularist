@@ -7218,7 +7218,17 @@ Symbolic Links.
 \end_layout
 
 \begin_layout Standard
-In OpenBSD, 
+In OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+, 
 \shape italic
 symbolic links
 \begin_inset Index idx
