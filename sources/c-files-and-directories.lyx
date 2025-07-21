@@ -644,7 +644,11 @@ blksize
 
 (fs, ip, lbn)
 \family default
- macro.
+ macro defined in 
+\family typewriter
+<ufs/ffs/fs.h>
+\family default
+.
  The file system
 \begin_inset Index idx
 status open
