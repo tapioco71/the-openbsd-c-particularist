@@ -5900,7 +5900,26 @@ Setting Up Pipelines.
 
 \begin_layout Standard
 One of the most powerful features of the UNIX operating system and OpenBSD
- is the ability to construct a pipeline pf commands.
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ is the ability to construct a pipeline of commands
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+pipeline of commands
+\end_layout
+
+\end_inset
+
+.
  This pipeline is set up such that the output of the first command is sent
  to the input of the second, the output of the second command is sent to
  the input of the third and so forth.
@@ -5929,7 +5948,17 @@ popen
 \end_layout
 
 \begin_layout Standard
-One way to create a pipe is to use 
+One way to create a pipe
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+pipe
+\end_layout
+
+\end_inset
+
+ is to use 
 \family typewriter
 popen
 \begin_inset Index idx

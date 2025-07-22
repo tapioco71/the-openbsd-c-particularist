@@ -6905,8 +6905,8 @@ It is possible for a program to specify an alternate stack on which signals
  since there is no stack space available, the stack cannot be extended to
  catch the signal.
  Using the alternate signal stack, the process can take the signal on this
- stack, issue the appropriate requests to increse the stack size limit and
- then return to normal operation on the regular stack.
+ stack, issue the appropriate requests to increase the stack size limit
+ and then return to normal operation on the regular stack.
  The 
 \shape italic
 alternate signal stack
@@ -7642,13 +7642,13 @@ int main(int, char *[]);
 
 \begin_layout Plain Layout
 
-char *stack;                    /* pointer to signal stack base.
+char *stack;			/* pointer to signal stack base.
  */
 \end_layout
 
 \begin_layout Plain Layout
 
-int tooksig = 0;                /* 1 after we take the signal.
+int tooksig = 0;	/* 1 after we take the signal.
  */
 \end_layout
 
