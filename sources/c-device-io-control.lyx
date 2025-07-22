@@ -3087,8 +3087,8 @@ kernel
 
 \end_inset
 
- in order to provide a consistent interface, but it is not used by the kernel
- itself:
+ in order to provide a consistent interface, but they are not used by the
+ kernel itself:
 \begin_inset listings
 lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
 inline false
@@ -3571,8 +3571,17 @@ The termios Structure.
 
 \begin_layout Standard
 It is the general terminal line discipline.
- Informations about that are stored in the termios structure defined in
- 
+ Informations about that are stored in the termios structure
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+termios structure
+\end_layout
+
+\end_inset
+
+ defined in 
 \family typewriter
 <termios.h>
 \family default
@@ -7778,7 +7787,11 @@ select
  that are ready for the requested operation.
  It returns the total number of ready descriptors in all the sets.
  The descriptor sets are stored as bit fields in arrays of integers.
- The following macros are provided for manipulating such descriptor sets:
+ The following macros, defined in 
+\family typewriter
+<sys/select.h>
+\family default
+ are provided for manipulating such descriptor sets:
 \end_layout
 
 \begin_layout Itemize
