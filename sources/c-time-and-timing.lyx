@@ -245,12 +245,22 @@ OpenBSD
 \end_inset
 
  operating system keeps track of the current date and time by storing the
- number of seconds that have elapsed since January, 1, 1900 UTC
+ number of seconds that have elapsed since January, 1, 1970 UTC
 \begin_inset Foot
 status open
 
 \begin_layout Plain Layout
 Coordinated Universal Time, also known as Greenwich Mean Time.
+\end_layout
+
+\end_inset
+
+ called UNIX epoch
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+UNIX epoch
 \end_layout
 
 \end_inset
@@ -627,8 +637,10 @@ struct timeval {
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
 
+\family typewriter
 \series bold
 tv_sec
+\family default
 \series default
  seconds elapsed from 1/1/1970;
 \end_layout
@@ -636,8 +648,10 @@ tv_sec
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
 
+\family typewriter
 \series bold
 tv_usec
+\family default
 \series default
  microseconds elapse from boot.
 \end_layout
@@ -2425,10 +2439,10 @@ Process Timing.
 \end_layout
 
 \begin_layout Standard
-Top obtain information about the amount of processor time used by a process,
+To obtain information about the amount of processor time used by a process,
  the times system call may be used.
- The function fills in the structure pointed to by tp with time- accounting
- information.
+ The function fills in the structure pointed to by the first argument with
+ time- accounting information.
  The tms structure
 \begin_inset Index idx
 status open
@@ -3030,7 +3044,7 @@ OpenBSD
 
 \end_inset
 
- provides several systems call to set file access and modification times.
+ provides several system calls to set file access and modification times.
  Let's consider the 
 \family typewriter
 utimes

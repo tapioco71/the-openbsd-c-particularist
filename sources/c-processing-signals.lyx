@@ -389,7 +389,7 @@ sigprocmask
 \family typewriter
 sa_mask
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -405,7 +405,7 @@ sa_mask
 \family typewriter
 SIGKILL
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -421,7 +421,7 @@ SIGKILL
 \family typewriter
 SIGSTOP
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -533,7 +533,7 @@ struct sigaction {
 \noindent
 The system call
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 system call
@@ -545,7 +545,7 @@ system call
 \family typewriter
  sigaction
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -563,7 +563,7 @@ sigaction
 \family typewriter
 SIG_DFL
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -579,7 +579,7 @@ SIG_DFL
 \family typewriter
 SIG_IGN
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -600,7 +600,7 @@ SIG_IGN
 \family typewriter
 sigaction
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -621,7 +621,7 @@ execve
 \family typewriter
 sa_handler
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -637,7 +637,7 @@ sa_handler
 \family typewriter
 SA_SIGINFO
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -653,7 +653,7 @@ SA_SIGINFO
 \family typewriter
 sa_sigaction
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -670,7 +670,7 @@ sa_sigaction
 \family typewriter
 sa_handler
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -686,7 +686,7 @@ sa_handler
 \family typewriter
 SIG_DFL
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -703,7 +703,7 @@ SIG_DFL
 \family typewriter
 SA_RESETHAND
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -723,7 +723,7 @@ SA_RESETHAND
 \family typewriter
 sa_handler
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -739,7 +739,7 @@ sa_handler
 \family typewriter
 SIG_DFL
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -757,7 +757,7 @@ SIG_DFL
 \family typewriter
 sa_handler
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -773,7 +773,7 @@ sa_handler
 \family typewriter
 SIG_IGN
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -790,7 +790,7 @@ SIG_IGN
 \family typewriter
 sigaction
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -806,7 +806,7 @@ sigaction
 \family typewriter
 SIGCHLD
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -822,7 +822,7 @@ SIGCHLD
 \family typewriter
 sa_handler
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -838,7 +838,7 @@ sa_handler
 \family typewriter
 SIG_IGN
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -854,7 +854,7 @@ SIG_IGN
 \family typewriter
 SA_NOCLDWAIT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -871,7 +871,7 @@ SA_NOCLDWAIT
 \family typewriter
 sa_mask
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -892,7 +892,7 @@ sigaddset
 \family typewriter
 sa_flags
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -915,7 +915,7 @@ sa_flags
 \family typewriter
 SA_NOCLDSTOP
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -931,7 +931,7 @@ SA_NOCLDSTOP
 \family typewriter
 SIGCHLD
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -947,7 +947,7 @@ SIGCHLD
 \family typewriter
 SIGCHLD
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -969,7 +969,7 @@ SIGCHLD
 \family typewriter
 SA_NOCLDWAIT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -985,7 +985,7 @@ SA_NOCLDWAIT
 \family typewriter
 sigaction
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1001,7 +1001,7 @@ sigaction
 \family typewriter
 SIGCHLD
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1030,7 +1030,7 @@ waitpid
 \family typewriter
 ECHILD
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1051,7 +1051,7 @@ ECHILD
 \family typewriter
 SA_ONSTACK
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1077,7 +1077,7 @@ sigaltstack
 \family typewriter
 SA_NODEFER
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1099,7 +1099,7 @@ SA_NODEFER
 \family typewriter
 SA_RESETHAND
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1115,7 +1115,7 @@ SA_RESETHAND
 \family typewriter
 SIG_DFL
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1136,7 +1136,7 @@ SIG_DFL
 \family typewriter
 SA_SIGINFO
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1153,7 +1153,7 @@ SA_SIGINFO
 \family typewriter
 siginfo_t
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1169,7 +1169,7 @@ siginfo_t
 \family typewriter
 <sys/siginfo.h>
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1192,7 +1192,7 @@ status collapsed
 \family typewriter
 SA_RESTART
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1209,7 +1209,7 @@ SA_RESTART
 \family typewriter
 EINTR
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1227,7 +1227,7 @@ EINTR
 \family typewriter
 SA_RESTART
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1243,7 +1243,7 @@ SA_RESTART
 \family typewriter
 sa_flags
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1323,7 +1323,7 @@ execve
 \family typewriter
 SIGCHLD
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1343,7 +1343,7 @@ SIGCHLD
 \family typewriter
 sigaction
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1359,7 +1359,7 @@ sigaction
 \family typewriter
 errno
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1526,7 +1526,7 @@ Description
 \family typewriter
 SIGHUP
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1578,7 +1578,7 @@ terminal line hangup
 \family typewriter
 SIGINT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1682,7 +1682,7 @@ quit program
 \family typewriter
 SIGILL
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1734,7 +1734,7 @@ illegal instruction
 \family typewriter
 SIGTRAP
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1786,7 +1786,7 @@ trace trap
 \family typewriter
 SIGABRT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1842,7 +1842,7 @@ abort
 \family typewriter
 SIGEMT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1946,7 +1946,7 @@ floating-point exception
 \family typewriter
 SIGKILL
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1998,7 +1998,7 @@ kill program, cannot be caught or ignored
 \family typewriter
 SIGBUS
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2050,7 +2050,7 @@ bus error
 \family typewriter
 SIGSEGV
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2102,7 +2102,7 @@ segmentation violation
 \family typewriter
 SIGSYS
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2154,7 +2154,7 @@ system call given invalid argument
 \family typewriter
 SIGPIPE
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2206,7 +2206,7 @@ write on a pipe with no reader
 \family typewriter
 SIGALRM
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2258,7 +2258,7 @@ real-time timer expired
 \family typewriter
 SIGTERM
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2310,7 +2310,7 @@ software termination signal
 \family typewriter
 SIGURG
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2362,7 +2362,7 @@ urgent condition present on socket
 \family typewriter
 SIGSTOP
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2414,7 +2414,7 @@ stop, cannot be caught or ignored
 \family typewriter
 SIGTSTP
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2466,7 +2466,7 @@ stop signal generated from keyboard
 \family typewriter
 SIGCONT
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2518,7 +2518,7 @@ continue after stop
 \family typewriter
 SIGCHLD
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2570,7 +2570,7 @@ child status has changed
 \family typewriter
 SIGTTIN
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2622,7 +2622,7 @@ background read attempted from controlling terminal
 \family typewriter
 SIGTTOU
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2674,7 +2674,7 @@ background write attempted to controlling terminal
 \family typewriter
 SIGIO
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2740,7 +2740,7 @@ fcntl
 \family typewriter
 SIGXCPU
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2806,7 +2806,7 @@ setrlimit
 \family typewriter
 SIGXFSZ
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2872,7 +2872,7 @@ setrlimit
 \family typewriter
 SIGVTALRM
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2938,7 +2938,7 @@ setitimer
 \family typewriter
 SIGPROF
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -3004,7 +3004,7 @@ setitimer
 \family typewriter
 SIGWINCH
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -3056,7 +3056,7 @@ window size change
 \family typewriter
 SIGINFO
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -3108,7 +3108,7 @@ status request from keyboard
 \family typewriter
 SIGUSR1
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -3160,7 +3160,7 @@ user-defined signal 1
 \family typewriter
 SIGUSR2
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -3212,7 +3212,7 @@ user-defined signal 2
 \family typewriter
 SIGTHR
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -3652,8 +3652,18 @@ Catching and Ignoring Signals.
 \end_layout
 
 \begin_layout Standard
-Using the sigaction structure to configure signals and the sigaction to
- attach the handler function to the signal event led us to the Listing 
+Using the sigaction structure
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+sigaction structure
+\end_layout
+
+\end_inset
+
+ to configure signals and the sigaction to attach the handler function to
+ the signal event led us to the Listing 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "c:sigaction"
@@ -4053,7 +4063,7 @@ The first is intercepted and handled in the handler function.
 \family typewriter
 sa
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4069,7 +4079,7 @@ sa
 \family typewriter
 sb
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4085,7 +4095,7 @@ sb
 \family typewriter
 struct sigaction
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4101,7 +4111,7 @@ struct sigaction
 \family typewriter
 sa
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4117,7 +4127,7 @@ sa
 \family typewriter
 SIGUSR1
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4133,7 +4143,7 @@ SIGUSR1
 \family typewriter
 int
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4152,7 +4162,7 @@ int
 \shape italic
 kill
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6260,7 +6270,7 @@ sigprocmask
 \end_layout
 
 \begin_layout Labeling
-\labelwidthstring 0000.0000.0000
+\labelwidthstring 000000000000.0.0
 
 \family typewriter
 SIG_BLOCK
@@ -6281,7 +6291,7 @@ SIG_BLOCK
 \end_layout
 
 \begin_layout Labeling
-\labelwidthstring 0000.0000.0000
+\labelwidthstring 000000000000.0.0
 
 \family typewriter
 SIG_UNBLOCK
@@ -6303,7 +6313,7 @@ SIG_UNBLOCK
 \end_layout
 
 \begin_layout Labeling
-\labelwidthstring 0000.0000.0000
+\labelwidthstring 000000000000.0.0
 
 \family typewriter
 SIG_SETMASK

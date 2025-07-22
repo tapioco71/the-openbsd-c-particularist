@@ -3472,7 +3472,7 @@ int main(int argc, char *argv[])
 
 \begin_layout Plain Layout
 
-	/* Open the /va/run/utmp file.
+	/* Open the /var/run/utmp file.
  */
 \end_layout
 
