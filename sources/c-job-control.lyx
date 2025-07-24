@@ -835,7 +835,7 @@ ksh
 \family typewriter
 ioctl
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -905,7 +905,7 @@ ioctl
 \family typewriter
 setpgid
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -930,7 +930,7 @@ setpgid
 \family typewriter
 killpg
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1012,7 +1012,7 @@ SIGCONT
 \family typewriter
 wait4
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1051,8 +1051,25 @@ system call
 \end_inset
 
 .
- it is called as:pid_t wait4(pid_t wpid, int *status, int options,  struct
- rusage *rusage);where 
+ it is called as: 
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+pid_t wait4(pid_t wpid, int *status, int options, struct rusage *rusage);
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+where 
 \family typewriter
 wpid
 \family default
@@ -1076,7 +1093,6 @@ status open
 :
 \end_layout
 
-\begin_deeper
 \begin_layout Standard
 \begin_inset listings
 lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
@@ -1732,7 +1748,7 @@ pgrp
 
 \end_inset
 
- is defined:
+ is defined as:
 \begin_inset listings
 lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
 inline false

@@ -1785,6 +1785,10 @@ name(j, i)
  it in the two languages.
  In the following code example a FORTRAN 90 program is using C code, the
  hello function:
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \begin_inset Tabular
 <lyxtabular version="3" rows="3" columns="2">
 <features booktabs="true" islongtable="true" longtabularalignment="center">
@@ -2377,7 +2381,7 @@ Naming C Routines to be Called from FORTRAN
 \end_layout
 
 \begin_layout Standard
-In order for function
+In order for a function
 \begin_inset Foot
 status collapsed
 

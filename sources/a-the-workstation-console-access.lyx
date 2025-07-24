@@ -268,8 +268,8 @@ Terminal Emulations.
 \end_layout
 
 \begin_layout Standard
-Terminal emulations wscons does not define its own set of terminal control
- sequences and special keyboard codes in terms of 
+wscons does not define its own set of terminal control sequences and special
+ keyboard codes in terms of 
 \shape italic
 termcap
 \shape default
@@ -423,7 +423,17 @@ wsdisplay
 
 
 \shape default
- driver is an abstraction layer for display devices within the 
+ driver is an abstraction layer
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+abstraction layer
+\end_layout
+
+\end_inset
+
+ for display devices within the 
 \shape italic
 wscons
 \shape default
@@ -706,7 +716,19 @@ WSDISPLAYIO_GINFO
 
 \end_inset
 
- struct wsdisplay_fbinfo 
+ struct wsdisplay_fbinfo
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wsdisplay_fbinfo structure
+\end_layout
+
+\end_inset
+
+ 
 \family default
 — retrieve basic information about a framebuffer display.
  The returned structure is as follows;
@@ -832,6 +854,18 @@ WSDISPLAYIO_GETSCREENTYPE
  
 \family typewriter
 struct wsdisplay_screentype
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wsdisplay_screentype structure
+\end_layout
+
+\end_inset
+
+
 \family default
  — retrieve basic information about a screen.
  The returned structure is as follows
@@ -977,6 +1011,18 @@ WSDISPLAYIO_GETCMAP
 \end_inset
 
  struct wsdisplay_cmap
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wsdisplay_cmap structure
+\end_layout
+
+\end_inset
+
+
 \family default
  — retrieve the current color map from the display.
  This call needs the following structure set up beforehand:
@@ -1245,8 +1291,23 @@ WSDISPLAYIO_GVIDEO
 \end_layout
 
 \begin_layout Itemize
-WSDISPLAYIO_GCURPOS struct wsdisplay_curpos — retrieve the current position
- of the hardware cursor.
+WSDISPLAYIO_GCURPOS 
+\family typewriter
+struct wsdisplay_curpos
+\family default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wsdisplay_curpos structure
+\end_layout
+
+\end_inset
+
+ — retrieve the current position of the hardware cursor.
  The returned structure is as follows:
 \begin_inset listings
 lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
@@ -1319,7 +1380,7 @@ y
 \family typewriter
 WSDISPLAYIO_SCURPOS
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1336,7 +1397,7 @@ WSDISPLAYIO_SCURPOS
 \family typewriter
 WSDISPLAYIO_GCURPOS
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1357,7 +1418,7 @@ WSDISPLAYIO_GCURPOS
 \family typewriter
 WSDISPLAYIO_GCURMAX
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1388,7 +1449,7 @@ y
 \family typewriter
 WSDISPLAYIO_GCURSOR
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1399,6 +1460,18 @@ WSDISPLAYIO_GCURSOR
 \end_inset
 
  struct wsdisplay_cursor
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wsdisplay_cursor structure
+\end_layout
+
+\end_inset
+
+
 \family default
  — retrieve some or all of the hardware cursor's attributes.
  The argument structure is as follows:
@@ -1996,6 +2069,18 @@ WSDISPLAYIO_LDFONT
 \end_inset
 
  struct wsdisplay_font
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wsdisplay_font structure
+\end_layout
+
+\end_inset
+
+
 \family default
  — loads a font specified by the wsdisplay_font structure:
 \begin_inset listings
@@ -2357,6 +2442,18 @@ WSDISPLAYIO_GBURNER
 \end_inset
 
  struct wsdisplay_burner
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wsdisplay_burner structure
+\end_layout
+
+\end_inset
+
+
 \family default
  — retrieves the state of the screen burner.
  The returned structure is as follows:
@@ -2582,6 +2679,16 @@ WSDISPLAYIO_ADDSCREEN
 \end_inset
 
  struct wsdisplay_addscreendata
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+wsdisplay_addscreendata structure
+\end_layout
+
+\end_inset
+
+
 \family default
  — creates a new screen:
 \begin_inset listings
@@ -2707,6 +2814,18 @@ WSDISPLAYIO_DELSCREEN
 \end_inset
 
  struct wsdisplay_delscreendata
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wsdisplay_delscreendata structure
+\end_layout
+
+\end_inset
+
+
 \family default
  — deletes a screen:
 \begin_inset listings
@@ -2927,6 +3046,18 @@ WSDISPLAYIO_GETPARAM
 \end_inset
 
  struct wsdisplay_param
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wsdisplay_param structure
+\end_layout
+
+\end_inset
+
+
 \family default
  — retrieves the state of a display parameter.
  This call needs the following structure set up beforehand:
@@ -3800,7 +3931,23 @@ WSKBDIO_COMPLEXBELL
 \begin_inset Newline linebreak
 \end_inset
 
-struct wskbd_bell_data to play the bell.
+
+\family typewriter
+struct wskbd_bell_data
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wskbd_bell_data structure
+\end_layout
+
+\end_inset
+
+
+\family default
+ to play the bell.
  The structure is defined in 
 \family typewriter
 
@@ -4128,10 +4275,22 @@ WSKBDIO_SETKEYREPEAT
  struct wskbd_keyrepeat_data
 \family default
  — set keyboard autorepeat settings.
- The structure 
+ The 
 \family typewriter
 wskbd_keyrepeat_data
 \family default
+ structure
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wskbd_keyrepeat_data structure
+\end_layout
+
+\end_inset
+
  is defined in 
 \family typewriter
 
@@ -4580,6 +4739,18 @@ WSKBDIO_GETMAP
 \end_inset
 
  struct wskbd_map_data
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wskbd_map_data structure
+\end_layout
+
+\end_inset
+
+
 \family default
  — get the keyboard mapping settings.
  They are stored in a structure of type wskbd_map_data:
@@ -4647,8 +4818,23 @@ WSKBDIO_MAXMAPLEN
 
 \family default
  constant.
- The map member is a pointer to the array of struct wscons_keymap defined
- in 
+ The map member is a pointer to the array of 
+\family typewriter
+struct wscons_keymap
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wscons_keymap structure
+\end_layout
+
+\end_inset
+
+
+\family default
+ defined in 
 \family typewriter
 <dev/wscons/wsksymvar.h>
 \begin_inset Index idx
@@ -4872,6 +5058,18 @@ WSKBDIO_GETBACKLIGHT
 \end_inset
 
  struct wskbd_backlight
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wskbd_backlight structure
+\end_layout
+
+\end_inset
+
+
 \family default
  — get configurations for the backlight on keyboards that support that features.
  The structure wskbd_backlight is defined in 
@@ -6211,7 +6409,7 @@ ioctl
 \family typewriter
 <dev/wscons/wsconsio.h>
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -6705,6 +6903,18 @@ WSMOUSEIO_GCALIBCOORDS
 \end_inset
 
  struct wsmouse_calibcoords
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wsmouse_calibcoords structure
+\end_layout
+
+\end_inset
+
+
 \family default
  — 
 \begin_inset Newline linebreak
@@ -7037,6 +7247,18 @@ WSMOUSEIO_GETPARAMS
  The 
 \family typewriter
 struct wsmouse_parameters
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wsmouse_parameters structure
+\end_layout
+
+\end_inset
+
+
 \family default
  is defined in 
 \family typewriter
@@ -7111,7 +7333,23 @@ struct wsmouse_parameters {
 \begin_deeper
 \begin_layout Standard
 \noindent
-The params member is a pointer to the array of type struct wsmouse_param:
+The params member is a pointer to the array of type 
+\family typewriter
+struct wsmouse_param
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wsmouse_param structure
+\end_layout
+
+\end_inset
+
+
+\family default
+:
 \begin_inset listings
 lstparams "language=C,basicstyle={\ttfamily},breaklines=true,tabsize=2"
 inline false
@@ -8358,7 +8596,7 @@ The following ioctl(2) calls are available for th wsmux device defined in
 \family typewriter
 <dev/wscons/wsconsio.h>
 \begin_inset Index idx
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8381,6 +8619,18 @@ WSMUXIO_INJECTEVENT struct wscons_event — injects a
 \end_inset
 
 wscons_event
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wscons_event structure
+\end_layout
+
+\end_inset
+
+
 \family default
  in the queue.
  The structure is defined in 
@@ -8814,6 +9064,18 @@ WSMUXIO_ADD_DEVICE
 \end_inset
 
  struct wsmux_device
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wsmux_device structure
+\end_layout
+
+\end_inset
+
+
 \family default
  — adds a new multiplexor to the devices list.
  The 
@@ -8950,6 +9212,18 @@ WSMUXIO_LIST_DEVICES
 \end_inset
 
  struct wsmux_device_list
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\family typewriter
+wsmux_device_list structure
+\end_layout
+
+\end_inset
+
+
 \family default
  — retrieves the multiplexors list of the devices in wmux.
  The wsmux_device_list is:

@@ -286,8 +286,17 @@ Resource Limits.
 \end_layout
 
 \begin_layout Standard
-On OpenBSD each process operates with certain limits on the resources it
- may use.
+On OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ each process operates with certain limits on the resources it may use.
  These limits prevent processes from creating files that are considered
  
 \shape italic
@@ -3353,8 +3362,17 @@ Searching for Characters in Strings.
 \end_layout
 
 \begin_layout Standard
-Two function are provided by OpenBSD to achieve character search in a NUL
- terminated string: 
+Two function are provided by OpenBSD
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+OpenBSD
+\end_layout
+
+\end_inset
+
+ to achieve character search in a NUL terminated string: 
 \family typewriter
 strchr
 \begin_inset Index idx
@@ -4598,7 +4616,7 @@ status open
 \family default
 .
 \begin_inset listings
-lstparams "language=C,numbers=left,breaklines=true,tabsize=2"
+lstparams "language=C,numbers=left,basicstyle={\small\ttfamily},breaklines=true,tabsize=2"
 inline false
 status open
 
